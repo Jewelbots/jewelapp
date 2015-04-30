@@ -1,3 +1,4 @@
+'use strict';
 angular.module('jewlieApp.controllers')
 .controller('SignupCtrl', function($scope, $ionicLoading, $state, $stateParams, JewliebotService){
     if (!JewliebotService.IsPaired()) {
@@ -6,12 +7,9 @@ angular.module('jewlieApp.controllers')
     $scope.registrationModel = {};
 
 })
-.controller('HomeCtrl',['$scope', function($scope) {
-}])
-
-.controller('LoginCtrl', function($scope, $ionicLoading, $state, $stateParams) {
-    $scope.onTouch = function(item, event) {
-        console.log("logged In");
+.controller('LoginCtrl', ['$scope', '$ionicLoading', '$state', function($scope, $ionicLoading, $state) {
+    $scope.onTouch = function() {
+        console.log('logged In');
         $state.transitionTo('dashboard');
     };
-});
+}]);

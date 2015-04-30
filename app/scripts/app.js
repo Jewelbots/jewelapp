@@ -1,3 +1,4 @@
+'use strict';
 angular.module('jewlieApp', ['ionic', 'jewlieApp.services', 'jewlieApp.controllers'])
 
 .run(function($ionicPlatform) {
@@ -51,14 +52,14 @@ angular.module('jewlieApp', ['ionic', 'jewlieApp.services', 'jewlieApp.controlle
     controller: 'FriendsCtrl',
     templateUrl: 'templates/friends/add-friends.html'
   })
-  .state('login', { 
+  .state('login', {
     url: '/login',
 
         controller: 'LoginCtrl',
         templateUrl: 'templates/login.html'
 
   })
-  .state('signup', { 
+  .state('signup', {
     url: '/sign-up',
 
         controller: 'SignupCtrl',

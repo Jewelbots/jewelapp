@@ -1,9 +1,10 @@
+'use strict';
 angular.module('jewlieApp.controllers')
-.controller('DashboardCtrl', ['$scope', function($scope) {
+.controller('DashboardCtrl', ['$scope', '$state', function($scope, $state) {
     $scope.addFriends = function() {
         $state.transitionTo('addFriends');
-    }
+    };
 }])
 .controller('FriendsCtrl', ['$scope', function($scope){
-
+  $scope.consoleLog = 'hi';
 }]);
