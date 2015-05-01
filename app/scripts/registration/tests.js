@@ -1,34 +1,31 @@
 'use strict';
+var $rootScope, $controller, scope, JewelbotService;
+
+beforeEach(inject(function(_$rootScope_, _$controller_, _JewelbotService_) {
+  module('jewelApp');
+  $rootScope = _$rootScope_;
+  $controller = _$controller_;
+  JewelbotService = _JewelbotService_;
+  scope = $rootScope.$new();
+}));
 describe('Registration', function() {
-  beforeEach(angular.injector(module('jewelApp')));
-  beforeEach(module('jewelApp.services'));
-  var JewelbotService;
-
-  beforeEach(inject(function(_$controller_){
-    $controller = _$controller_;
-  }));
-
-  describe('AppStartup', inject(function($scope, $controller) {
-    it('Creates Id If it doesn\'t exist', function() {
-      inject(function($injector){
-        JewelbotService = $injector.get('JewelbotService');
-      })
-      var fauxId = '9DB6249A-D36E-4FE9-ACED-6885BCF2721D';
-      //var $scope = {};
-      //var $state = {};
-      //var $injector = angular.injector(['jewelApp']);
-
-      var controller = $controller(HomeCtrl, {$scope : $scope, JewelbotService : JewelbotService});
-
-      spyOn(JewelbotService, 'GetDeviceId').andReturn(fauxId);
-      $scope.startUp(fauxId);
-      //expect($scope.appId).toBe('F4354DB6249A-D36E-4FE9-ACED-6885BCF2721D');
-      expect(1).toBe(2);
+  beforeEach(function() {
+    JewelbotService.when("GetDeviceID").respond("0");
+    $controller("HomeCtrl", {
+      $scope: scope
     });
-    it('uses existing ID if it does', function(){
-      expect(2).toBe(1);
-    });
-  }));
+  });
+
+  it('Creates Id If it doesn\'t exist', function() {
+    var fauxId = '9DB6249A-D36E-4FE9-ACED-6885BCF2721D';
+    //expect(mockJewelbotService.GetDeviceId).toBe(fauxId);
+    $scope.startUp(fauxId);
+    expect(fauxId).toEqual('9DB6249A-D36E-4FE9-ACED-6885BCF2721D');
+  });
+  it('uses existing ID if it does', function(){
+
+  });
+
   //it('Reports when BLE is disabled', function() {
   //
   //});
