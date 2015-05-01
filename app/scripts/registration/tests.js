@@ -1,31 +1,23 @@
 'use strict';
-var $rootScope, $controller, scope, JewelbotService;
-
-beforeEach(inject(function(_$rootScope_, _$controller_, _JewelbotService_) {
-  module('jewelApp');
-  $rootScope = _$rootScope_;
-  $controller = _$controller_;
-  JewelbotService = _JewelbotService_;
-  scope = $rootScope.$new();
-}));
-describe('Registration', function() {
-  beforeEach(function() {
-    JewelbotService.when("GetDeviceID").respond("0");
-    $controller("HomeCtrl", {
-      $scope: scope
+describe('Controllers', function(){
+  var $scope, ctrl;
+  beforeEach(module('jewelApp'));
+  describe('HomeCtrl', function() {
+    var jewelbotService;
+    beforeEach(inject(function($rootScope, $controller, JewelbotService){
+      jewelbotService = JewelbotService;
+      $scope = $rootScope.$new();
+      ctrl = $controller('HomeCtrl', {
+      $scope: $scope
+      });
+    }));
+    it('uses existing ID if it does', function(){
+      $scope.startUp();
+      var result = $scope.id;
+      expect(result).toEqual(1000000);
     });
-  });
-
-  it('Creates Id If it doesn\'t exist', function() {
-    var fauxId = '9DB6249A-D36E-4FE9-ACED-6885BCF2721D';
-    //expect(mockJewelbotService.GetDeviceId).toBe(fauxId);
-    $scope.startUp(fauxId);
-    expect(fauxId).toEqual('9DB6249A-D36E-4FE9-ACED-6885BCF2721D');
-  });
-  it('uses existing ID if it does', function(){
-
-  });
-
+  })
+});
   //it('Reports when BLE is disabled', function() {
   //
   //});
@@ -48,4 +40,4 @@ describe('Registration', function() {
   //it('asks for phone number if user is using an Android phone or IPhone', function() {
   //
   //});
-});
+

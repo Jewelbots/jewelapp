@@ -11,8 +11,9 @@ angular.module('jewelApp.controllers')
   $scope.startUp = function() {
     var deviceId = JewelbotService.GetDeviceId();
     if (!deviceId) {
-      JewelbotService.SetDeviceId();
+      JewelbotService.SetDeviceId()
     }
+
   };
 }])
 .controller('LoginCtrl', ['$scope', '$ionicLoading', '$state', function($scope, $ionicLoading, $state) {
