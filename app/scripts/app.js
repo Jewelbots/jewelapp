@@ -1,5 +1,5 @@
 'use strict';
-angular.module('jewlieApp', ['ionic', 'jewlieApp.services', 'jewlieApp.controllers'])
+angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -68,7 +68,7 @@ angular.module('jewlieApp', ['ionic', 'jewlieApp.services', 'jewlieApp.controlle
   });
   $urlRouterProvider.otherwise('/home');
 });
-angular.module('jewlieApp.controllers', []);
-angular.module('jewlieApp.services', []);
+angular.module('jewelApp.controllers', []);
+angular.module('jewelApp.services', []);
 
 
