@@ -1,6 +1,6 @@
 'use strict';
 angular.module('jewelApp.controllers')
-.controller('PairCtrl',['$scope', '$ionicLoading', '$state', 'ionic', function($scope, $ionicLoading, $state, ionic){
+.controller('PairCtrl',['$scope', '$ionicLoading', '$state', function($scope, $ionicLoading, $state){
     var isIOS = function() {
         return (ionic.Platform.isIPad() || ionic.Platform.isIOS());
     };

@@ -5,10 +5,10 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         IsPaired : function() {
             return false; //STUB; replace with Parse.com call. toggle to manually test different states.
         },
-        GetDeviceId : function(stubId) {
+        GetAppId : function(stubId) {
           return stubId || '';
         },
-        SetDeviceId : function() {
+        SetAppId : function() {
           //stub call to local storage and Parse.
         }
     };

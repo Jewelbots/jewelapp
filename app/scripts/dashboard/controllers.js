@@ -1,23 +1,23 @@
 'use strict';
 angular.module('jewelApp.controllers')
-.controller('SignupCtrl', function($scope, $ionicLoading, $state, $stateParams, JewliebotService){
-  if (!JewliebotService.IsPaired()) {
+.controller('SignupCtrl', function($scope, $ionicLoading, $state, $stateParams, JewelbotService){
+  if (!JewelbotService.IsPaired()) {
     $state.transitionTo('pair');
   }
   $scope.registrationModel = {};
 
 })
-.controller('HomeCtrl',['$scope', 'JewelbotService', function($scope, JewelbotService) {
+.controller('HomeCtrl',['$scope', '$window', 'JewelbotService',  function($scope, $window, JewelbotService) {
   $scope.startUp = function() {
-    var deviceId = JewelbotService.GetDeviceId();
-    if (!deviceId) {
-      $scope.generateDeviceId();
-      JewelbotService.SetDeviceId();
+    $scope.appId = JewelbotService.GetAppId();
+    if (!$scope.appId) {
+      $scope.appId = $scope.generateAppId();
+      JewelbotService.SetAppId($scope.appId);
     }
   };
 
-  $scope.generateDeviceId = function() {
-    return 0;
+  $scope.generateAppId = function(key, salt) {
+    return (salt+key);
   };
 
 
