@@ -18,6 +18,7 @@
   "strict": true,
   "trailing": true,
   "smarttabs": true,
+  "jasmine": true,
   "globals": {
     "after": false,
     "afterEach": false,
@@ -29,7 +30,6 @@
     "expect": false,
     "inject": false,
     "it": false,
-    "jasmine": false,
     "spyOn": false
   }
 }

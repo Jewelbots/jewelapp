@@ -24,7 +24,7 @@ module.exports = function (grunt) {
       scripts: 'scripts',
       styles: 'styles',
       images: 'images',
-      test: 'app/scripts/**/tests.js',
+      test: 'test',
       dist: 'www'
     },
 
@@ -161,7 +161,7 @@ module.exports = function (grunt) {
       }
     },
 
-    
+
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
       options: {
@@ -190,7 +190,7 @@ module.exports = function (grunt) {
         }
       }
     },
-    
+
 
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
@@ -370,7 +370,8 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/bower_components/ionic/release/js/ionic-angular.js',
           '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
           '<%= yeoman.test %>/mock/**/*.js',
-          '<%= yeoman.test %>/spec/**/*.js'
+          '<%= yeoman.test %>/spec/**/*.js',
+	        '<%= yeoman.test %>/unit/**/*.js',
         ],
         autoWatch: false,
         reporters: ['dots', 'coverage'],
@@ -474,7 +475,7 @@ module.exports = function (grunt) {
   // we don't have to run the karma test server as part of `grunt serve`
   grunt.registerTask('watch:karma', function () {
     var karma = {
-      files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', '<%= yeoman.test %>/spec/**/*.js'],
+      files: ['<%= yeoman.test %>/unit/**/*.js'],
       tasks: ['newer:jshint:test', 'karma:unit:run']
     };
     grunt.config.set('watch', karma);
@@ -549,7 +550,7 @@ module.exports = function (grunt) {
     'htmlmin'
   ]);
 
-  grunt.registerTask('coverage', 
+  grunt.registerTask('coverage',
     ['karma:continuous',
     'connect:coverage:keepalive'
   ]);

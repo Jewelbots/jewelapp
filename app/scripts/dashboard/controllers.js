@@ -11,10 +11,17 @@ angular.module('jewelApp.controllers')
   $scope.startUp = function() {
     var deviceId = JewelbotService.GetDeviceId();
     if (!deviceId) {
-      JewelbotService.SetDeviceId()
+      $scope.generateDeviceId();
+      JewelbotService.SetDeviceId();
     }
-
   };
+
+  $scope.generateDeviceId = function() {
+    return 0;
+  };
+
+
+
 }])
 .controller('LoginCtrl', ['$scope', '$ionicLoading', '$state', function($scope, $ionicLoading, $state) {
     $scope.onTouch = function() {

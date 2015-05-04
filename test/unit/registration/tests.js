@@ -1,23 +1,5 @@
 'use strict';
-describe('Controllers', function(){
-  var $scope, ctrl;
-  beforeEach(module('jewelApp'));
-  describe('HomeCtrl', function() {
-    var jewelbotService;
-    beforeEach(inject(function($rootScope, $controller, JewelbotService){
-      jewelbotService = JewelbotService;
-      $scope = $rootScope.$new();
-      ctrl = $controller('HomeCtrl', {
-      $scope: $scope
-      });
-    }));
-    it('uses existing ID if it does', function(){
-      $scope.startUp();
-      var result = $scope.id;
-      expect(result).toEqual(1000000);
-    });
-  })
-});
+
   //it('Reports when BLE is disabled', function() {
   //
   //});
