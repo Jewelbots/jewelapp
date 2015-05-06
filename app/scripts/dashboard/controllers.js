@@ -1,13 +1,17 @@
 'use strict';
 angular.module('jewelApp.controllers')
-.controller('SignupCtrl', function($scope, $ionicLoading, $state, $stateParams, JewelbotService){
-  if (!JewelbotService.IsPaired()) {
-    $state.transitionTo('pair');
-  }
+.controller('SignupCtrl'['$scope', '$ionicLoading', '$state', '$stateParams', 'JewelbotService', function($scope, $ionicLoading, $state, $stateParams, JewelbotService){
+
   $scope.registrationModel = {};
 
-})
-.controller('HomeCtrl',['$scope', '$window', 'JewelbotService',  function($scope, $window, JewelbotService) {
+}])
+.controller('HomeCtrl',['$scope', '$window', '$state', 'JewelbotService',  function($scope, $window, $state, JewelbotService) {
+    $scope.isPaired = function() {
+      if (!JewelbotService.IsPaired()) {
+        $state.transitionTo('pair');
+      }
+    }
+    //$scope.isPaired();
   $scope.startUp = function() {
     $scope.appId = JewelbotService.GetAppId();
     if (!$scope.appId) {
@@ -17,10 +21,11 @@ angular.module('jewelApp.controllers')
   };
 
   $scope.generateAppId = function(key, salt) {
-    return (salt+key);
+    if (!key || !salt) {
+      return undefined;
+    }
+    return (salt.toString()+ key.toString());
   };
-
-
 
 }])
 .controller('LoginCtrl', ['$scope', '$ionicLoading', '$state', function($scope, $ionicLoading, $state) {

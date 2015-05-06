@@ -1,26 +1,61 @@
 'use strict';
 describe('DashboardControllers', function(){
-  var $scope, ctrl;
-  beforeEach(module('jewelApp'));
+  var $httpBackend, $scope, $state, ctrl, jewelbotServiceStub;
+  jewelbotServiceStub = {
+    GetAppId: function() {},
+    SetAppId : function() {},
+    IsPaired : function() {}
+  };
+  beforeEach(module('jewelApp'), function($provide){
+    $provide.value('JewelbotService', jewelbotServiceStub);
+  });
+
   describe('HomeCtrl', function() {
-    var jewelbotService;
-    beforeEach(inject(function($rootScope, $controller, JewelbotService){
-      jewelbotService = JewelbotService;
+    beforeEach(inject(function($rootScope, $controller, _$window_,_$httpBackend_, _$state_){
       $scope = $rootScope.$new();
+      $httpBackend = _$httpBackend_;
+      $state = _$state_;
+
       ctrl = $controller('HomeCtrl', {
-        $scope: $scope
+        $scope: $scope,
+        $state: $state,
+        JewelbotService: jewelbotServiceStub
       });
     }));
-    it('hasId returns null if App ID does not Exist', function(){
+    it('hasId returns undefined if App ID does not Exist', function(){
+      jewelbotServiceStub.GetAppId = jasmine.createSpy('GetAppId').and.returnValue(undefined);
+      jewelbotServiceStub.SetAppId = jasmine.createSpy('SetAppId').and.returnValue(undefined);
       $scope.startUp();
-      var result = $scope.id;
-      expect(result).toEqual(1000);
+      var result = $scope.appId;
+      expect(result).toEqual(undefined);
+    });
+    it('Generates App Id', function() {
+      var seed,
+        salt,
+        result;
+      seed = 1;
+      salt = 123456;
+
+      result = $scope.generateAppId(seed, salt);
+      expect(result).toEqual('1234561');
+    });
+    it('transitions to pairing if device is not paired', function() {
+      $httpBackend.when('GET', 'templates/signup.html').respond(200);
+      $httpBackend.when('GET', 'templates/login.html').respond(200);
+      $httpBackend.when('GET', 'templates/friends/add-friends.html').respond(200);
+      $httpBackend.when('GET', 'templates/registration/registration-step-four.html').respond(200);
+      $httpBackend.when('GET', 'templates/pair_to_device.html').respond(200);
+      $httpBackend.when('GET', 'templates/home.html').respond(200);
+      $scope.$apply();
+      $httpBackend.flush();
+      expect($state.current.name).toBe('home');
+            jewelbotServiceStub.IsPaired = jasmine.createSpy('IsPaired').and.returnValue(false);
+      $scope.isPaired();
+
+      $httpBackend.when('GET', 'templates/pair.html').respond(200);
+      $scope.$apply();
+      $httpBackend.flush();
+      expect($state.current.name).toBe('pair');
     });
   });
 });
-//'use strict';
-//describe('testcontroller', function() {
-//  it('returns false', function() {
-//    expect(1).toEqual(2);
-//  });
-//});
