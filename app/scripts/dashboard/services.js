@@ -1,6 +1,6 @@
 'use strict';
 angular.module('jewelApp.services')//Todo: Implement Parse.com calls
-.factory('JewelbotService'['$q', function($q) {
+.factory('JewelbotService', function() {
     return {
         IsPaired : function() {
             return false; //STUB; replace with Parse.com call. toggle to manually test different states.
@@ -12,7 +12,9 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
           //stub call to local storage and Parse.
         },
         GetDevices : function() {
-          return $
+         //open BLE
+         //throw BLEError if not connected
+         //return devices
         }
     };
-}]);
+});
