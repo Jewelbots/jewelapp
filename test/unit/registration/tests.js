@@ -21,12 +21,27 @@ describe('RegistrationController', function(){
         $state: $state,
         JewelbotService: jewelbotServiceStub
       });
-    })); 
+    }));
     it('should return a list of Jewelbot devices in proximity', function() {
-      expect(true).toBeTruthy();
+      var listOfDevices = [
+        {
+          name: 'Bob Jewelbot',
+          id : '1'
+        },
+        {
+          name: 'Alice Jewelbot',
+          id : '2'
+        }
+      ];
+      jewelbotServiceStub.GetDevices = jasmine.createSpy('GetDevices').and.returnValue(listOfDevices);
+      var result = $scope.availableDevices();
+      expect(result).toEqual(listOfDevices);
     });
     it('should report when BLE is disabled', function(){
       expect(1).toBe(1);
+    });
+    it('should let a user choose a device to pair to', function(){
+
     });
   });
 });
