@@ -5,6 +5,7 @@ describe('RegistrationController', function(){
     IsPaired : function() {},
     GetDevices : function() {}
   };
+
   beforeEach(module('jewelApp'), function($provide){
     $provide.value('JewelbotService', jewelbotServiceStub);
   });
@@ -20,12 +21,12 @@ describe('RegistrationController', function(){
         $state: $state,
         JewelbotService: jewelbotServiceStub
       });
-    }));
+    })); 
     it('should return a list of Jewelbot devices in proximity', function() {
       expect(true).toBeTruthy();
     });
     it('should report when BLE is disabled', function(){
-
+      expect(1).toBe(1);
     });
   });
 });

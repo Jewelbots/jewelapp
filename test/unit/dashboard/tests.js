@@ -43,6 +43,8 @@ describe('DashboardControllers', function(){
       $httpBackend.when('GET', 'templates/signup.html').respond(200);
       $httpBackend.when('GET', 'templates/login.html').respond(200);
       $httpBackend.when('GET', 'templates/friends/add-friends.html').respond(200);
+      $httpBackend.when('GET', 'templates/registration/registration-step-two.html').respond(200);
+      $httpBackend.when('GET', 'templates/registration/registration-step-three.html').respond(200);
       $httpBackend.when('GET', 'templates/registration/registration-step-four.html').respond(200);
       $httpBackend.when('GET', 'templates/pair_to_device.html').respond(200);
       $httpBackend.when('GET', 'templates/home.html').respond(200);
