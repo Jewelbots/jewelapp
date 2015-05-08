@@ -22,7 +22,7 @@ describe('RegistrationController', function(){
       });
     }));
     it('should return a list of Jewelbot devices in proximity', function() {
-      expect(true).toBeTruthy(); 
+      expect(true).toBeTruthy();
     });
     it('should report when BLE is disabled', function(){
 

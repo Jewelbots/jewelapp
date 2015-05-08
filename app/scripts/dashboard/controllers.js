@@ -1,17 +1,11 @@
 'use strict';
 angular.module('jewelApp.controllers')
-.controller('SignupCtrl'['$scope', '$ionicLoading', '$state', '$stateParams', 'JewelbotService', function($scope, $ionicLoading, $state, $stateParams, JewelbotService){
-
-  $scope.registrationModel = {};
-
-}])
 .controller('HomeCtrl',['$scope', '$window', '$state', 'JewelbotService',  function($scope, $window, $state, JewelbotService) {
     $scope.isPaired = function() {
       if (!JewelbotService.IsPaired()) {
         $state.transitionTo('pair');
       }
-    }
-    //$scope.isPaired();
+    };
   $scope.startUp = function() {
     $scope.appId = JewelbotService.GetAppId();
     if (!$scope.appId) {
@@ -28,9 +22,8 @@ angular.module('jewelApp.controllers')
   };
 
 }])
-.controller('LoginCtrl', ['$scope', '$ionicLoading', '$state', function($scope, $ionicLoading, $state) {
-    $scope.onTouch = function() {
-      console.log('logged In');
-      $state.transitionTo('dashboard');
-    };
+.controller('DashboardCtrl', ['$scope', '$state', function($scope, $state) {
+  $scope.addFriends = function() {
+    $state.transitionTo('addFriends');
+  };
 }]);

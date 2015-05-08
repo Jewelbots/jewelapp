@@ -10,6 +10,11 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         },
         SetAppId : function() {
           //stub call to local storage and Parse.
+        },
+        GetDevices : function() {
+         //open BLE
+         //throw BLEError if not connected
+         //return devices
         }
     };
 });

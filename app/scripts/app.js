@@ -24,13 +24,13 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
  })
 .state('home', {
   url: '/home',
-  controller: 'DashboardCtrl',
+  controller: 'HomeCtrl',
   templateUrl: 'templates/home.html'
 })
   .state('pair', {
     url: '/pair',
     controller: 'PairCtrl',
-    templateUrl: 'templates/pair_to_device.html'
+    templateUrl: 'templates/pair.html'
   })
   .state('registration-step-two', {
     url: '/register/step-two',
@@ -51,20 +51,6 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
     url:'add-friends',
     controller: 'FriendsCtrl',
     templateUrl: 'templates/friends/add-friends.html'
-  })
-  .state('login', {
-    url: '/login',
-
-        controller: 'LoginCtrl',
-        templateUrl: 'templates/login.html'
-
-  })
-  .state('signup', {
-    url: '/sign-up',
-
-        controller: 'SignupCtrl',
-        templateUrl: 'templates/signup.html'
-
   });
   $urlRouterProvider.otherwise('/home');
 });
