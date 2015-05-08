@@ -38,7 +38,11 @@ describe('RegistrationController', function(){
       expect(result).toEqual(listOfDevices);
     });
     it('should report when BLE is disabled', function(){
-      expect(1).toBe(1);
+      jewelbotServiceStub.GetDevices = jasmine.createSpy('GetDevices').and.returnValue(function() {
+        return new Error('No device found');
+      });
+      var result = $scope.availableDevices();
+      expect(result() instanceof Error).toBeTruthy();
     });
     it('should let a user choose a device to pair to', function(){
 
