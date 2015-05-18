@@ -57,6 +57,5 @@ describe('DashboardControllers', function(){
       $httpBackend.flush();
       expect($state.current.name).toBe('pair');
     });
-
   });
 });

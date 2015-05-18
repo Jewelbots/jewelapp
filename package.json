@@ -59,6 +59,11 @@
     "com.ionic.keyboard",
     "org.apache.cordova.device",
     "org.apache.cordova.console",
-    "com.ionic.keyboard"
-  ]
+    "com.ionic.keyboard",
+    {
+      "locator": "https://github.com/randdusing/BluetoothLE",
+      "id": "com.randdusing.bluetoothle"
+    }
+  ],
+  "cordovaPlatforms": []
 }

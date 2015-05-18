@@ -1,5 +1,5 @@
 'use strict';
-angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'])
+angular.module('jewelApp', ['ionic', 'ngCordova', 'jewelApp.services', 'jewelApp.controllers' ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -8,6 +8,7 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
+    $cordovaBluetoothle
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
