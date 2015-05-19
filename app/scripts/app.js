@@ -1,5 +1,5 @@
 'use strict';
-angular.module('jewelApp', ['ionic', 'ngCordova', 'jewelApp.services', 'jewelApp.controllers' ])
+angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -63,6 +63,7 @@ angular.module('jewelApp', ['ionic', 'ngCordova', 'jewelApp.services', 'jewelApp
   $urlRouterProvider.otherwise('/home');
 });
 angular.module('jewelApp.controllers', []);
-angular.module('jewelApp.services', ['ngCordova']);
+angular.module('jewelApp.services', []);
+
 
 
