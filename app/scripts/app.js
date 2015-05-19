@@ -1,5 +1,5 @@
 'use strict';
-angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers' ])
+angular.module('jewelApp', ['ionic', 'ngCordova', 'jewelApp.services', 'jewelApp.controllers' ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -7,6 +7,9 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if ($cordovaBluetoothle) {
+      console.log('Bluetooth is on?');
     }
     if(window.StatusBar) {
       StatusBar.styleDefault();
@@ -51,10 +54,15 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
     url:'add-friends',
     controller: 'FriendsCtrl',
     templateUrl: 'templates/friends/add-friends.html'
+  })
+  .state('diagnostics', {
+    url: 'diagnostics',
+    controller: 'DiagnosticsCtrl',
+    templateUrl: 'templates/diagnostics/index.html'
   });
   $urlRouterProvider.otherwise('/home');
 });
 angular.module('jewelApp.controllers', []);
-angular.module('jewelApp.services', []);
+angular.module('jewelApp.services', ['ngCordova']);
 
 
