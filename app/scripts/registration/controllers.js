@@ -1,6 +1,6 @@
 'use strict';
 angular.module('jewelApp.controllers')
-.controller('PairCtrl',['$scope', '$ionicLoading', '$state', 'JewelbotService', function($scope, $ionicLoading, $state, JewelbotService){
+.controller('PairCtrl',['$scope', '$state', 'JewelbotService', function($scope, $state, JewelbotService){
     $scope.model = {
         devices:[
             { name: 'Alice\'s Jewliebot Device'},
@@ -13,8 +13,8 @@ angular.module('jewelApp.controllers')
     };
     $scope.availableDevices = function() {
       return JewelbotService.GetDevices();
-    }
+    };
 }])
-.controller('RegistrationCtrl',['$scope','$ionicLoading', '$state', function($scope, $ionicLoading, $state){
+.controller('RegistrationCtrl', function(){
 
-}]);
+});

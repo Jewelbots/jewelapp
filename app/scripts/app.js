@@ -1,7 +1,9 @@
 'use strict';
+angular.module('ngCordova', ['ngCordova.plugins']);
+angular.module('ngCordova.plugins.bluetoothle');
 angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $cordovaBluetoothle) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -51,19 +53,19 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
         templateUrl: 'templates/registration/registration-step-four.html'
   })
   .state('addFriends', {
-    url:'add-friends',
+    url:'/add-friends',
     controller: 'FriendsCtrl',
     templateUrl: 'templates/friends/add-friends.html'
   })
   .state('diagnostics', {
-    url: 'diagnostics',
-    controller: 'DiagnosticsCtrl',
+    url: '/diagnostics',
+    controller: 'DiagnosticCtrl',
     templateUrl: 'templates/diagnostics/index.html'
   });
   $urlRouterProvider.otherwise('/home');
 });
 angular.module('jewelApp.controllers', []);
-angular.module('jewelApp.services', []);
+angular.module('jewelApp.services', ['ngCordova.plugins.bluetoothle']);
 
 
 
