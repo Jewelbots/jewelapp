@@ -64,7 +64,7 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
   })
   .state('start', {
     url: '/start',
-    controller: 'StartCtrl',
+    controller: 'LoadCtrl',
     templateUrl: 'templates/start/load.html'
   })
   .state('birthday', {
