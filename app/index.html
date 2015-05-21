@@ -43,6 +43,19 @@
     <!-- endbuild -->
   </head>
   <body ng-app="jewelApp">
-    <ion-nav-view></ion-nav-view>
+  <ion-nav-view>
+  <ion-nav-bar class="bar nav-title-slide-ios7" show-back-button="true" show-bar="true" title="home">
+    <ion-nav-buttons side="primary">
+      <button class="button">
+        <i class="ion-arrow-left-c"></i> Back
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="secondary">
+      <button class="button button-clear">
+        <i class="ion-ios-settings" style="font-size:180%"></i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  </ion-nav-view>
   </body>
 </html>
