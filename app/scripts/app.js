@@ -62,19 +62,23 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
     controller: 'DiagnosticCtrl',
     templateUrl: 'templates/diagnostics/index.html'
   })
-  .state('start', {
-    url: '/start',
+  .state('load', {
+    url: '/load',
     controller: 'LoadCtrl',
     templateUrl: 'templates/start/load.html'
   })
+  .state('start', {
+    url: '/start',
+    controller: 'StartCtrl'
+  })
   .state('birthday', {
     url: '/start/birthday',
-    controller: 'StartCtrl',
+    controller: 'BirthdayCtrl',
     templateUrl: 'templates/start/birthday.html'
   })
   .state('privacy',{
     url: '/start/privacy',
-    controller: 'StartCtrl',
+    controller: 'PrivacyCtrl',
     templateUrl: 'templates/start/privacy.html'
   });
 

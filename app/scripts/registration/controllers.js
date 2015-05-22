@@ -3,8 +3,8 @@ angular.module('jewelApp.controllers')
 .controller('PairCtrl',['$scope', '$state', 'JewelbotService', function($scope, $state, JewelbotService){
     $scope.model = {
         devices:[
-            { name: 'Alice\'s Jewliebot Device'},
-            { name: 'Bob\'s Jewliebot Device'}
+            { name: 'Alice\'s Jewelbot'},
+            { name: 'Bob\'s Jewelbot'}
         ]
     }; //STUB
     $scope.pairToDevice = function(name) {

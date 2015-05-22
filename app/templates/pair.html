@@ -1,29 +1,12 @@
-<ion-nav-bar class="bar nav-title-slide-ios7" show-back-button="true" show-bar="true" title="home">
-  <ion-nav-buttons side="primary">
-    <button class="button">
-      <i class="ion-arrow-left-c"></i> Back
-    </button>
-  </ion-nav-buttons>
-  <ion-nav-buttons side="secondary">
-    <button class="button button-clear">
-      <i class="ion-ios-settings" style="font-size:180%"></i>
-    </button>
-  </ion-nav-buttons>
-</ion-nav-bar>
 <ion-content>
 <div class="bar bar-header bar-light">
     <h1 class="title">Device Pairing</h1>
 </div>
 <div class="content has-header padding">
     <div class="list">
-        <label class="item item-radio" ng-repeat="device in model.devices">
-            <input type="radio" name="group-pairing" ng-model="device.name" ng-change="pairToDevice(device.name)">
-            <div class="item-content">
-                {{device.name}}
-            </div>
-            <i class="radio-icon ion-checkmark"></i>
-        </label>
-
+      <ion-radio ng-repeat="device in model.devices" ng-model="chosenDevice" ng-value="device.name" ng-change="pairToDevice(device.name)">
+        {{device.name}}
+      </ion-radio>
     </div>
 </div>
 </ion-content>
