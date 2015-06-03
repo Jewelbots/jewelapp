@@ -10,7 +10,7 @@ angular.module('jewelApp.controllers')
     $scope.model = {
       status : [],
       devices : []
-    }
+    };
     $scope.pairToDevice = function(device) {
         var paired = JewelbotService.Pair(device);
         if (paired.result === 'success') {
@@ -22,8 +22,8 @@ angular.module('jewelApp.controllers')
       var devices = JewelbotService.GetDevices();
       $scope.model.status.push('got devices');
       $scope.model.status.push(devices);
-      for (var property in object) {
-        $scope.model.devices.push({name: object[property]});
+      for (var property in devices) {
+        $scope.model.devices.push({name: devices[property]});
       }
     };
 }])
