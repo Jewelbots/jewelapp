@@ -8,7 +8,16 @@
         {{device.name}}
       </ion-radio>
     </div>
+  <button class="button button-positive" ng-click="getAvailableDevices()">
+    Scan
+  </button>
+  <div class="card" ng-repeat="s in model.status">
+    {{s}}
+  </div>
+
+
 </div>
+
 </ion-content>
 
 
