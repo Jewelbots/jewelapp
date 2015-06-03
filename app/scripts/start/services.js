@@ -1,9 +1,9 @@
 'use strict';
 angular.module('jewelApp.services')//Todo: Implement Parse.com calls
-  .factory('UserService', ['$localStorage', function($localStorage) {
+  .factory('UserService', ['$localStorage', function ($localStorage) {
     return {
-      AgreedToPrivacyPolicy : function() {
-        return $localStorage.getItem('acceptPrivacyPolicy') === true;
+      AgreedToPrivacyPolicy : function () {
+        return $localStorage.get('acceptPrivacyPolicy') === true;
       },
       SetPrivacyPolicy : function (valueSet) {
         $localStorage.set('acceptPrivacyPolicy', valueSet);
@@ -12,11 +12,11 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         console.log($localStorage.get('birthday'));
         return $localStorage.get('birthday') !== null;
       },
-      SetBirthday : function(birthday) {
+      SetBirthday : function (birthday) {
         console.log($localStorage.get('birthday'));
         $localStorage.set('birthday', birthday);
       },
-      GetBirthday : function() {
+      GetBirthday : function () {
         console.log($localStorage.get('birthday'));
         return $localStorage.get('birthday');
       }
