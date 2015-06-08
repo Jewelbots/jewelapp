@@ -14,6 +14,9 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
     if ($cordovaBluetoothle) {
       console.log('Bluetooth is on?');
     }
+    if (bluetoothle) {
+      console.log('the superior one is loaded?');
+    }
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
@@ -37,6 +40,11 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
     url: '/pair',
     controller: 'PairCtrl',
     templateUrl: 'templates/pair.html'
+  })
+  .state('pair-success', {
+    url: '/pair-success',
+    controller: 'PairCtrl',
+    templateUrl: 'templates/registration/pair-success.html'
   })
   .state('registration-step-two', {
     url: '/register/step-two',

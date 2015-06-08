@@ -14,7 +14,10 @@ angular.module('jewelApp.controllers')
     $scope.pairToDevice = function(device) {
         var paired = JewelbotService.Pair(device);
         if (paired.result === 'success') {
-          $state.transitionTo('registration-step-two', device.name);
+          $state.transitionTo('pair-success', device.name);
+        }
+        else {
+          $scope.model.status.push('didn\'t succeed' + paired);
         }
     };
     $scope.getAvailableDevices = function() {
@@ -26,7 +29,9 @@ angular.module('jewelApp.controllers')
         $scope.model.devices.push({name: devices[property]});
       }
     };
+
 }])
+
 .controller('RegistrationCtrl', function(){
 
 });

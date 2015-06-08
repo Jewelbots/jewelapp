@@ -16,7 +16,7 @@ angular.module('jewelApp.controllers')
     }
 
   }])
-  .controller('LoadCtrl', ['$ionicLoading', '$state', '$scope', '$timeout', function($ionicLoading, $state, $scope, $timeout) {
+  .controller('LoadCtrl', ['$ionicLoading', '$gitVersion', '$state', '$scope', '$timeout', function($ionicLoading, $gitVersion, $state, $scope, $timeout) {
     $scope.show = function() {
       $ionicLoading.show({
         templateUrl: '/templates/start/load.html'
@@ -29,6 +29,9 @@ angular.module('jewelApp.controllers')
     $timeout($scope.show, 5000).then(function() {
       $scope.hide();
     });
+    $scope.model = {
+      version: $gitVersion.Version
+    };
 
   }])
   .controller('BirthdayCtrl',['$scope', '$state', 'UserService',  function ($scope, $state, UserService) {

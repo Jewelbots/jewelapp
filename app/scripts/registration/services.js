@@ -27,6 +27,9 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
             return result;
           });
 
+        },
+        Pair : function () {
+          return 'success'; //Stubbed. Thanks <strike>Obama</strike> Apple Dev Center being down.
         }
 
     };
