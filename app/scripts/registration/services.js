@@ -14,19 +14,23 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         GetDevices : function () {
           var result;
           $ionicPlatform.ready(function () {
-            $timeout($cordovaBluetoothle.startScan()
-              .then(function (response) {
-                result = response;
-              },
-              function (error) {
+            $cordovaBluetoothle.initialize()
+              .then(function() {
+                $timeout($cordovaBluetoothle.startScan()
+                  .then(function (response) {
+                    result = response;
+                  },
+                  function (error) {
+                    result = error;
+                  }), 500)
+                  .then(function () {
+                    $cordovaBluetoothle.stopScan();
+                  })
+              }, function(error) {
                 result = error;
-              }), 500)
-              .then(function () {
-                $cordovaBluetoothle.stopScan();
               });
             return result;
           });
-
         },
         Pair : function () {
           return 'success'; //Stubbed. Thanks <strike>Obama</strike> Apple Dev Center being down.
