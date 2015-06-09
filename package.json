@@ -64,7 +64,8 @@
     {
       "locator": "https://github.com/randdusing/BluetoothLE",
       "id": "com.randdusing.bluetoothle"
-    }
+    },
+    "org.apache.cordova.dialogs"
   ],
   "cordovaPlatforms": []
 }
