@@ -2,7 +2,7 @@
 
 angular.module('ngCordova', ['ngCordova.plugins']);
 angular.module('ngCordova.plugins.bluetoothle');
-angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova', 'ionic.utils'])
+angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova', 'jewelbots.utils'])
 
 .run(function($ionicPlatform, $cordovaBluetoothle) {
   $ionicPlatform.ready(function() {
@@ -94,7 +94,7 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
   $urlRouterProvider.otherwise('/home');
 });
 angular.module('jewelApp.controllers', []);
-angular.module('jewelApp.services', ['ngCordova.plugins.bluetoothle', 'ionic.utils']);
+angular.module('jewelApp.services', ['ngCordova.plugins.bluetoothle', 'jewelbots.utils']);
 
 
 

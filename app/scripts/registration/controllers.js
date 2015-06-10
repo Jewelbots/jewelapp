@@ -1,6 +1,6 @@
 'use strict';
 angular.module('jewelApp.controllers')
-.controller('PairCtrl',['$scope', '$state', 'JewelbotService', function($scope, $state, JewelbotService){
+.controller('PairCtrl',['$scope', '$state', 'JewelbotService','$logService', function($scope, $state, JewelbotService,$logService){
     //$scope.model = {
     //    devices:[
     //        { name: 'Alice\'s Jewelbot' address: 'BAB012AC-21BA-FDB8-1121-B2482B1F4A61'},
@@ -9,7 +9,11 @@ angular.module('jewelApp.controllers')
     //}; //STUB
     $scope.model = {
       status : [],
-      devices : []
+      devices : [],
+      errors : []
+    };
+    $scope.getErrors = function() {
+      $scope.model.errors = $logService.GetErrors();
     };
     $scope.pairToDevice = function(device) {
         var paired = JewelbotService.Pair(device);
