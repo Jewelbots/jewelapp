@@ -15,20 +15,22 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
           var result;
           $ionicPlatform.ready(function () {
             $cordovaBluetoothle.initialize()
-              .then(function() {
+              .then(function(re) {
+                $logService.LogMessage('ble initialized:\n' + JSON.stringify(re));
                 $timeout($cordovaBluetoothle.startScan()
                   .then(function (response) {
+                    $logService.LogMessage('result of scan:\n' + JSON.stringify(response));
                     result = response;
                   },
                   function (error) {
-                    $logService.LogError(error, "Failed to Start Scan");
+                    $logService.LogError(error, 'Failed to Start Scan');
                     result = error;
                   }), 500)
                   .then(function () {
                     $cordovaBluetoothle.stopScan();
-                  })
+                  });
               }, function(error) {
-                $logService.LogError(error, "Failed to initialize");
+                $logService.LogError(error, 'Failed to initialize');
                 result = error;
               });
             return result;
