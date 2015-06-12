@@ -30,12 +30,25 @@ angular.module('jewelApp.controllers')
     };
     $scope.getAvailableDevices = function() {
       $logService.LogMessage('Getting devices');
-      var devices = JewelbotService.GetDevices();
+      var params = {serviceUuids:[]};
+      JewelbotService.GetDevices(params).then(function(response) {
+        $logService.LogMessage('Scan Status Obj: ' + JSON.stringify(response));
+        if (response.status === 'scanStarted') {
+          $logService.LogMessage('Scan has started; no devices yet');
+        } else if (response.status === 'scanResult') {
+          $logService.LogMessage('found a device, ID: '+ response.address +' Name: '+ response.name);
+          $scope.model.status.push(JSON.stringify(response));
+        }
+        else {
+          $logService.LogMessage('Here\'s everything: ' + JSON.stringify(response) );
+        }
+
+      });
       $logService.LogMessage('got devices');
-      $scope.model.status.push(devices);
-      for (var property in devices) {
-        $scope.model.devices.push({name: devices[property]});
-      }
+
+    };
+    $scope.clearLog = function () {
+      $logService.Clear();
     };
 
 }])

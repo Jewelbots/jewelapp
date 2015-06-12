@@ -18,6 +18,11 @@ angular.module('jewelbots.utils', [])
   }])
   .factory('$logService',['$localStorage', function($localStorage) {
     return {
+      Clear: function () {
+        $localStorage.setObject('LogServiceError', {});
+        $localStorage.setObject('LogServiceWarning', {});
+        $localStorage.setObject('LogServiceMessage', {});
+      },
       LogError: function (exception, message) {
         var error = {
           Exception: exception,
