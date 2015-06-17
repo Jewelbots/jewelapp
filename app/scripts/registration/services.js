@@ -1,6 +1,6 @@
 'use strict';
 angular.module('jewelApp.services')//Todo: Implement Parse.com calls
-.factory('JewelbotService',['$ionicPlatform', '$cordovaBluetoothle', '$timeout', function($ionicPlatform, $cordovaBluetoothle, $timeout) {
+.factory('JewelbotService',['$ionicPlatform', '$cordovaBluetoothle', '$timeout', '$logService', '$q', function($ionicPlatform, $cordovaBluetoothle, $timeout, $logService, $q) {
     return {
         IsPaired : function() {
             return false; //STUB; replace with Parse.com call. toggle to manually test different states.
@@ -11,25 +11,35 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         SetAppId : function () {
           //stub call to local storage and Parse.
         },
-        GetDevices : function () {
-          var result;
+        GetDevices : function (params) {
+          var d = $q.defer;
           $ionicPlatform.ready(function () {
-            $cordovaBluetoothle.initialize()
-              .then(function() {
-                $timeout($cordovaBluetoothle.startScan()
-                  .then(function (response) {
-                    result = response;
-                  },
-                  function (error) {
-                    result = error;
-                  }), 500)
-                  .then(function () {
-                    $cordovaBluetoothle.stopScan();
-                  })
-              }, function(error) {
-                result = error;
-              });
-            return result;
+            if (!$cordovaBluetoothle.isInitialized) {
+
+              $cordovaBluetoothle.initialize()
+                .then(function (re) {
+                  $logService.LogMessage('ble initialized:\n' + JSON.stringify(re));
+                  $cordovaBluetoothle.startScan(params)
+                    .then(function (response) {
+                      $logService.LogMessage('scan:\n' + JSON.stringify(response));
+                      if (response.status === 'scanResult') {
+                        $logService.LogMessage('result of scan:\n' + JSON.stringify(response));
+                        d = response;
+                      }
+                      else {
+                        $logService.LogMessage('still scanning:\n' + JSON.stringify(response));
+                      }
+                    },
+                    function (error) {
+                      $logService.LogError(error, 'Failed to Start Scan');
+                      d = error;
+                    });
+                }, function (error) {
+                  $logService.LogError(error, 'Failed to initialize');
+                  d = error;
+                });
+            }
+            return d.promise;
           });
         },
         Pair : function () {

@@ -11,10 +11,29 @@
   <button class="button button-positive" ng-click="getAvailableDevices()">
     Scan
   </button>
-  <div class="card" ng-repeat="s in model.status">
+  <div class="card" ng-repeat="s in model.status track by $index">
     {{s}}
   </div>
+  <div class="card" ng-repeat="e in model.errors track by $index">
+    {{e.Date}}
+    {{e.Message}}
+    {{e.Exception}}
+    <hr />
+  </div>
+  <div class="card" ng-repeat="m in model.messages track by $index">
+    {{m}}
+    <hr />
+  </div>
 
+  <button class="button button-positive" ng-click="getErrors()">
+    Refresh Errors
+  </button>
+  <button class="button button-positive" ng-click="getMessages()">
+    Refresh Messages
+  </button>
+  <button class="button button-positive" ng-click="clearLog()">
+    Clear Log
+  </button>
 
 </div>
 
