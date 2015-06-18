@@ -35,6 +35,7 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
                 return this.ScanDevices(params);
               });
             }
+            return this.ScanDevices(params);
           });
         },
         ScanDevices : function (params) {
