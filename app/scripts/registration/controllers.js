@@ -32,7 +32,11 @@ angular.module('jewelApp.controllers')
       try {
         $logService.LogMessage('Getting devices');
         var params = {serviceUuids: []};
-        var response = JewelbotService.GetDevices(params);
+        JewelbotService.GetDevices(params).then(function (results) {
+          $logService.LogMessage('got devices' + JSON.stringify(results));
+        }, function(error) {
+          $logService.LogMessage('logging error from get devices: ' + JSON.stringify(error));
+        });
       //.then(function (response) {
       //      $logService.LogMessage('scan:\n' + JSON.stringify(response));
       //      if (response.status === 'scanResult') {
@@ -51,10 +55,6 @@ angular.module('jewelApp.controllers')
       //      $logService.LogError(error, 'Failed to Start Scan');
       //      return error;
       //    });
-
-        response.then(function (results) {
-          $logService.LogMessage('got devices' + JSON.stringify(results));
-        });
       }
       catch (e) {
         $logService.LogError('error was: ' + JSON.stringify(e));
