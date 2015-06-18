@@ -35,10 +35,12 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
                 return this.ScanDevices(params);
               });
             }
+            $logService.LogMessage('is Initialized');
             return this.ScanDevices(params);
           });
         },
         ScanDevices : function (params) {
+          $logService.LogMessage('entered scannning devices');
             $cordovaBluetoothle.startScan(params)
               .then(function (response) {
                 $logService.LogMessage('scan:\n' + JSON.stringify(response));
@@ -57,7 +59,8 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
               function (error) {
                 $logService.LogError(error, 'Failed to Start Scan');
                 return error;
-              });
+            });
+          $logService.LogMessage('exited scanning devices');
         },
         Pair : function (device) {
           var result = $cordovaBluetoothle.initialize({'request': true})
