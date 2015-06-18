@@ -33,6 +33,25 @@ angular.module('jewelApp.controllers')
         $logService.LogMessage('Getting devices');
         var params = {serviceUuids: []};
         var response = JewelbotService.GetDevices(params);
+      //.then(function (response) {
+      //      $logService.LogMessage('scan:\n' + JSON.stringify(response));
+      //      if (response.status === 'scanResult') {
+      //        $logService.LogMessage('result of scan:\n' + JSON.stringify(response));
+      //        var d = response;
+      //        $cordovaBluetoothle.stopScan().then(function(stopped){
+      //          $logService.LogMessage('stopping scan: ' + JSON.stringify(stopped));
+      //          return d;
+      //        });
+      //      }
+      //      else {
+      //        $logService.LogMessage('still scanning:\n' + JSON.stringify(response));
+      //      }
+      //    },
+      //    function (error) {
+      //      $logService.LogError(error, 'Failed to Start Scan');
+      //      return error;
+      //    });
+
         response.then(function (results) {
           $logService.LogMessage('got devices' + JSON.stringify(results));
         });
