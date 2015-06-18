@@ -28,7 +28,7 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
           $ionicPlatform.ready(function () {
             params.request = true;
             $logService.LogMessage('Entering initalization');
-            if (!service.IsInitialized) {
+            if (!service.IsInitialized()) {
               $logService.LogMessage('ble initialized:\n' + JSON.stringify(params));
               service.Initialize.then(function (result) {
                 $logService.LogMessage('result of Initialize: ' + JSON.stringify(result));
