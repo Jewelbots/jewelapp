@@ -33,7 +33,9 @@ angular.module('jewelApp.controllers')
         $logService.LogMessage('Getting devices');
         var params = {serviceUuids: []};
         var response = JewelbotService.GetDevices(params);
-        $logService.LogMessage('got devices' + JSON.stringify(response));
+        response.then(function (results) {
+          $logService.LogMessage('got devices' + JSON.stringify(results));
+        });
       }
       catch (e) {
         $logService.LogError('error was: ' + JSON.stringify(e));
