@@ -29,23 +29,27 @@ angular.module('jewelApp.controllers')
         }
     };
     $scope.getAvailableDevices = function() {
-      $logService.LogMessage('Getting devices');
-      var params = {serviceUuids:[]};
-      JewelbotService.GetDevices(params).then(function(response) {
-        $logService.LogMessage('Scan Status Obj: ' + JSON.stringify(response));
-        if (response.status === 'scanStarted') {
-          $logService.LogMessage('Scan has started; no devices yet');
-        } else if (response.status === 'scanResult') {
-          $logService.LogMessage('found a device, ID: '+ response.address +' Name: '+ response.name);
-          $scope.model.status.push(JSON.stringify(response));
-        }
-        else {
-          $logService.LogMessage('Here\'s everything: ' + JSON.stringify(response) );
-        }
+      try {
+        $logService.LogMessage('Getting devices');
+        var params = {serviceUuids: []};
+        JewelbotService.GetDevices(params).then(function (response) {
+          $logService.LogMessage('Scan Status Obj: ' + JSON.stringify(response));
+          if (response.status === 'scanStarted') {
+            $logService.LogMessage('Scan has started; no devices yet');
+          } else if (response.status === 'scanResult') {
+            $logService.LogMessage('found a device, ID: ' + response.address + ' Name: ' + response.name);
+            $scope.model.status.push(JSON.stringify(response));
+          }
+          else {
+            $logService.LogMessage('Here\'s everything: ' + JSON.stringify(response));
+          }
 
-      });
-      $logService.LogMessage('got devices');
-
+        });
+        $logService.LogMessage('got devices');
+      }
+      catch (e) {
+        $logService.LogError('error was: ' + JSON.stringify(e));
+      }
     };
     $scope.clearLog = function () {
       $logService.Clear();
