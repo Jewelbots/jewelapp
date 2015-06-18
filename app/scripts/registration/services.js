@@ -20,9 +20,7 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         },
         Initialize : function (params) {
           $logService.LogMessage('initializing' + JSON.stringify(params));
-          $cordovaBluetoothle.initialize(params).then(function(result) {
-            return result;
-          });
+
         },
         GetDevices : function (params) {
           $ionicPlatform.ready(function () {
@@ -30,7 +28,7 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
             $logService.LogMessage('Entering initalization');
             if (!service.IsInitialized()) {
               $logService.LogMessage('ble initialized:\n' + JSON.stringify(params));
-              service.Initialize.then(function (result) {
+              $cordovaBluetoothle.initialize(params).then(function(result) {
                 $logService.LogMessage('result of Initialize: ' + JSON.stringify(result));
                 return service.ScanDevices(params);
               });
