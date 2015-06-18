@@ -15,18 +15,6 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
     if ($cordovaBluetoothle !== undefined) {
       $logService.LogMessage('$cordovaBluetoothle is present');
     }
-    try {
-      if (bluetoothle) {
-        $logService.LogMessage('bluetoothle is present as \'bluetoothle\'');
-      }
-
-      if ($window.cordova.plugins.bluetoothle !== undefined || cordova.plugins.bluetoothle !== undefined) {
-        $logService.LogMessage('bluetoothle is present as either $window.cordova.plugins.bluetoothle or cordova.plugins.bluetoothle');
-      }
-    }
-    catch(e) {
-      $logService.LogError(e, 'BluetoothLE not present, error: ');
-    }
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
