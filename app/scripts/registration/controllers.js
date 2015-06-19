@@ -32,12 +32,20 @@ angular.module('jewelApp.controllers')
 
         $logService.LogMessage('Getting devices');
         var params = {'serviceUuids': []};
-        JewelbotService.GetDevices(params).then(function (data) {
-          $scope.model.devices.push(data);
-          $logService.LogMessage('data from scan: '+ JSON.stringify(data));
-        }).catch(function(error){
-          $logService.LogMessage('got error in stack: '+ JSON.stringify(error));
-        });
+        try {
+          JewelbotService.GetDevices(params).then(function (data) {
+            $scope.model.devices.push(data);
+            $logService.LogMessage('data from scan: ' + JSON.stringify(data));
+          }, function (error) {
+            $logService.LogMessage('got error in stack: ' + JSON.stringify(error));
+          },
+          function (notify) {
+            $logService.LogMessage('getting notified' + JSON.stringify(notify));
+          });
+        }
+        catch(err) {
+          $logService.LogMessage('error when trying to get devices: ' + JSON.stringify(err));
+        }
         //var promise = JewelbotService.GetDevices(params).when(function (results) {
         //  $logService.LogMessage('got devices' + JSON.stringify(results));
         //  return promise.then (function (result) {
