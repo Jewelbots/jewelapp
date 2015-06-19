@@ -29,14 +29,23 @@ angular.module('jewelApp.controllers')
         }
     };
     $scope.getAvailableDevices = function() {
-      try {
+
         $logService.LogMessage('Getting devices');
-        var params = {serviceUuids: []};
-        JewelbotService.GetDevices(params).then(function (results) {
-          $logService.LogMessage('got devices' + JSON.stringify(results));
-        }, function(error) {
-          $logService.LogMessage('logging error from get devices: ' + JSON.stringify(error));
+        var params = {'serviceUuids': []};
+        JewelbotService.GetDevices(params).then(function (data) {
+          $scope.model.devices.push(data);
+          $logService.LogMessage('data from scan: '+ JSON.stringify(data));
+        }).catch(function(error){
+          $logService.LogMessage('got error in stack: '+ JSON.stringify(error));
         });
+        //var promise = JewelbotService.GetDevices(params).when(function (results) {
+        //  $logService.LogMessage('got devices' + JSON.stringify(results));
+        //  return promise.then (function (result) {
+        //    $scope.model.devices.push(result);
+        //  });
+        //}).catch(function(error) {
+        //  $logService.LogMessage('logging error from get devices: ' + JSON.stringify(error));
+        //});
       //.then(function (response) {
       //      $logService.LogMessage('scan:\n' + JSON.stringify(response));
       //      if (response.status === 'scanResult') {
@@ -55,10 +64,6 @@ angular.module('jewelApp.controllers')
       //      $logService.LogError(error, 'Failed to Start Scan');
       //      return error;
       //    });
-      }
-      catch (e) {
-        $logService.LogError('error was: ' + JSON.stringify(e));
-      }
     };
     $scope.clearLog = function () {
       $logService.Clear();

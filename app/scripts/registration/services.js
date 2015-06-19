@@ -30,16 +30,14 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
               $logService.LogMessage('ble initialized:\n' + JSON.stringify(params));
               $cordovaBluetoothle.initialize(params).then(function(result) {
                 $logService.LogMessage('result of Initialize: ' + JSON.stringify(result));
-                return service.ScanDevices(params);
+                $logService.LogMessage('entered scannning devices');
+                return $cordovaBluetoothle.startScan(params);
               });
             }
             $logService.LogMessage('is Initialized');
-            return service.ScanDevices(params);
-          });
-        },
-        ScanDevices : function (params) {
-          $logService.LogMessage('entered scannning devices');
+            $logService.LogMessage('entered scannning devices');
             return $cordovaBluetoothle.startScan(params);
+          });
         },
         Pair : function (device) {
           var result = $cordovaBluetoothle.initialize({'request': true})
