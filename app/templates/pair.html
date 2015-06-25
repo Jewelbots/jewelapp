@@ -24,6 +24,10 @@
     {{m}}
     <hr />
   </div>
+  <div class="card" ng-repeat="service in model.services track by $index">
+    {{service}}
+    <hr />
+  </div>
 
   <button class="button button-positive" ng-click="getErrors()">
     Refresh Errors

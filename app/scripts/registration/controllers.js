@@ -3,6 +3,8 @@ angular.module('jewelApp.controllers')
 .controller('PairCtrl',['$scope', '$state', '$timeout', '$logService', '$ionicPlatform', '$cordovaBluetoothle', function($scope, $state, $timeout, $logService, $ionicPlatform, $cordovaBluetoothle){
     //$scope.model = {
     //};
+    var devices = [];
+    $scope.services = [];
     $scope.model = {
       status : [],
       devices : [],
@@ -42,7 +44,7 @@ angular.module('jewelApp.controllers')
           $cordovaBluetoothle.startScan(params).then(function (data) {
             if (data.status === 'scanResult') {
               $logService.LogMessage('found! : ' + JSON.stringify(data));
-              $scope.model.devices.push(data);
+              devices.push(data);
             } else {
               $logService.LogMessage('still scanning');
             }
@@ -57,8 +59,34 @@ angular.module('jewelApp.controllers')
         }).then(function () {
             $logService.LogMessage('stopping scan');
             $timeout($cordovaBluetoothle.stopScan, 10000);
-          });
+        }).then(function () {
+          if ($ionicPlatform.isIOS()) {
+            var params = {
+              address : devices[0].address,
+              serviceUuids : []
+            };
+            $cordovaBluetoothle.services(function(result) {
+              $scope.services.push(result);
+            }, function (error) {
+              $logService.LogError(error, 'Failed to get device: services' + JSON.stringify(params));
+            }, params).then(function() {
+              var params = {};
+              for(var i = 0; i < services.length; i = i + 1) {
+                $cordovaBluetoothle.characteristics(function (result) {
+                  $scope.services[i].characteristics.push(result);
+                }, function (error) {
+                  $logService.LogError(error, 'Failed to get characteristics for services: '+ JSON.stringify(params));
+                })
+              }
+            });
+          }
+          else if ($ionicPlatform.isAndroid()) {
+            //todo
+          }
+        });
+
       });
+
     };
 
     $scope.clearLog = function () {
