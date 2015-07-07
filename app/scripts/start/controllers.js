@@ -2,28 +2,13 @@
 angular.module('jewelApp.controllers')
   .controller('StartCtrl',['$scope', '$state', 'UserService', 'JewelbotService',  function ($scope, $state, UserService, JewelbotService) {
 
-    if (!UserService.HasBirthday()) {
-      console.log('user does not have birthday set');
-      $state.transitionTo('birthday');
-      $scope.$apply();
-    }
-    else if (!UserService.AgreedToPrivacyPolicy()) {
-      console.log('user does not have privacy policy agreed to');
-      $state.transitionTo('privacy');
-      $scope.$apply();
-
-    }
-    else if (!JewelbotService.IsPaired()) {
+    if (!JewelbotService.IsPaired()) {
       console.log('user has not paired device');
       $state.transitionTo('pair');
-      $scope.$apply();
-
     }
     else {
-      console.log('user did all those things');
+      console.log('paired-> to dashboard!');
       $state.transitionTo('dashboard');
-      $scope.$apply();
-
     }
 
   }])

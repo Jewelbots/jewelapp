@@ -1,6 +1,6 @@
 'use strict';
 angular.module('jewelApp.controllers')
-  .controller('DiagnosticCtrl',['$scope', 'JewelbotService',  function($scope, JewelbotService) {
+  .controller('DiagnosticCtrl',['$scope', 'JewelbotService', '$logService', function($scope, JewelbotService, $logService) {
     var jewelModel = {},
       devices = [],
       i = 0,
@@ -8,7 +8,10 @@ angular.module('jewelApp.controllers')
       deviceString = '',
       propName;
     $scope.jewelModel = {};
-
+    $scope.getErrors = function() {
+      $scope.Errors = $logService.GetErrors();
+    };
+    $scope.Errors = {};
     jewelModel.isPaired = JewelbotService.IsPaired();
     //devices = JewelbotService.GetDevices();
     devices = [];

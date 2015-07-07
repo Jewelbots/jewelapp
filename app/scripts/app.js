@@ -2,25 +2,26 @@
 
 angular.module('ngCordova', ['ngCordova.plugins']);
 angular.module('ngCordova.plugins.bluetoothle');
-angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova', 'ionic.utils'])
+angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova', 'jewelbots.utils'])
 
-.run(function($ionicPlatform, $cordovaBluetoothle) {
+.run(['$ionicPlatform', '$cordovaBluetoothle', '$logService', '$window',function($ionicPlatform, $cordovaBluetoothle, $logService, $window) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
+    if($window.cordova.plugins.Keyboard) {
+      $logService.LogMessage('Window.cordova.plugins.Keyboard is true');
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
-    if ($cordovaBluetoothle) {
-      console.log('Bluetooth is on?');
+    if ($cordovaBluetoothle !== undefined) {
+      $logService.LogMessage('$cordovaBluetoothle is present');
     }
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
   });
-})
+}])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
  .state('dashboard', {
@@ -37,6 +38,11 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
     url: '/pair',
     controller: 'PairCtrl',
     templateUrl: 'templates/pair.html'
+  })
+  .state('pair-success', {
+    url: '/pair-success',
+    controller: 'PairCtrl',
+    templateUrl: 'templates/registration/pair-success.html'
   })
   .state('registration-step-two', {
     url: '/register/step-two',
@@ -84,9 +90,9 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
   });
 
   $urlRouterProvider.otherwise('/home');
-});
+}]);
 angular.module('jewelApp.controllers', []);
-angular.module('jewelApp.services', ['ngCordova.plugins.bluetoothle', 'ionic.utils']);
+angular.module('jewelApp.services', ['ngCordova.plugins.bluetoothle', 'jewelbots.utils']);
 
 
 

@@ -1,5 +1,8 @@
 set -v
 
+gem install sass
+gem install compass
+
 npm install grunt
 npm install
 bower install
