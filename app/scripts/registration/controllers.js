@@ -3,7 +3,6 @@ angular.module('jewelApp.controllers')
 .controller('PairCtrl',['$scope', '$state', '$timeout', '$logService', '$ionicPlatform', '$cordovaBluetoothle', function($scope, $state, $timeout, $logService, $ionicPlatform, $cordovaBluetoothle){
     //$scope.model = {
     //};
-    var devices = [];
     $scope.services = [];
     $scope.model = {
       status : [],
@@ -30,95 +29,84 @@ angular.module('jewelApp.controllers')
         //  $scope.model.status.push('didn\'t succeed' + paired);
         //}
     };
-    $scope.getAvailableDevices = function() {
-      var services = [];
-      $logService.LogMessage('Getting devices');
-      var params = {'serviceUuids': []};
-      $ionicPlatform.ready(function () {
-        params.request = true;
-        $logService.LogMessage('Entering initalization');
+    var contains = function (arr, str) {
+      var len = arr.length;
+      var i;
+      for (i = 0; i < len; i = i + 1) {
+        if (arr[i] === str) {
+          return true;
+        }
+      }
+      return false;
+    };
+    $scope.getAvailableDevices = function () {
+      var addresses = [];
 
-        $cordovaBluetoothle.initialize(params).then(function (result) {
-          $logService.LogMessage('result of initialize call: ' + JSON.stringify(result));
-          $logService.LogMessage('Stepping into scanning');
-          $cordovaBluetoothle.startScan(params).then(function (data) {
-            if (data.status === 'scanResult') {
-              $logService.LogMessage('found! : ' + JSON.stringify(data));
-              devices.push(data);
-            } else {
-              $logService.LogMessage('still scanning' + JSON.stringify(data));
-            }
-          }, function (err) {
-            $logService.LogMessage('error while scanning ' + JSON.stringify(err));
-          }, function (notify) {
-            $logService.LogMessage('notifying: ' + JSON.stringify(notify));
-          }).then($cordovaBluetoothle.stopScan().then(function(result) {
-            $logService.LogMessage('stopping scan ' + JSON.stringify(result));
-            $logService.LogMessage('Stepping into characteristic search');
-            var addCharacteristics = function (services, characteristic, service, index) {
-              $scope.services[index] = service[index];
-              $scope.services[index].characteristics.push(characteristic);
-            };
-            var addError = function (error, params) {
-              $logService.LogError(error, 'Failed to get characteristics for services: '+ JSON.stringify(params));
-            };
-
-            $logService.LogMessage('stepping into decision matrix');
-            if ($ionicPlatform.isIOS()) {
-              $logService.LogMessage('is IOS');
-              var params = {
-                address : devices[0].address,
-                serviceUuids : []
-              };
-              $cordovaBluetoothle.services(function(result) {
-                $logService.LogMessage('found result in services scan: ' + JSON.stringify(result));
-                services.push(result);
-              }, function (error) {
-                $logService.LogError(error, 'Failed to get device: services' + JSON.stringify(params));
-              }, params).then(function(result) {
-                for(var i = 0; i < services.length; i = i + 1) {
-                  $cordovaBluetoothle.characteristics(addCharacteristics(services, result, services[i], i), function (error) {addError(error, params); });
+        $ionicPlatform.ready()
+          .then(function () {
+            var params = {request: true};
+            return $cordovaBluetoothle.initialize(params)
+              .then(function (initialized) {
+                $logService.LogMessage('Initialized! : ' + JSON.stringify(initialized));
+                return $cordovaBluetoothle.startScan(params);
+              },
+              function (err) {
+                $logService.LogError('not initalized?: ' + JSON.stringify(err));
+                if (err.hasOwnProperty('isInitialized') && !err.isInitialized) {
+                  return $cordovaBluetoothle.initialize()
+                    .then(function (initialized) {
+                      var params = {request: true};
+                      $logService.LogMessage('Initialized! : ' + JSON.stringify(initialized));
+                      return $cordovaBluetoothle.startScan(params);
+                    })
+                    .then(function (data) {
+                      $logService.LogMessage('data is: ' + JSON.stringify(data));
+                      if (data.status === 'scanResult' && !(contains(addresses, data.address))) {
+                        $logService.LogMessage('pushing new data: 2' + JSON.stringify(data));
+                        $scope.model.devices.push(data);
+                        return $cordovaBluetoothle.isScanning();
+                      }
+                      else {
+                        $logService.LogMessage('stopping scan');
+                        return $cordovaBluetoothle.isScanning();
+                      }
+                    }, function (error) {
+                      $logService.LogError(error, 'Error while scanning:');
+                    }, function (notify) {
+                      $logService.LogMessage('still scanning: ' + JSON.stringify(notify));
+                    }).then(function (scanning) {
+                      $logService.LogMessage('result of scanning then is: ' + JSON.stringify(scanning));
+                      if (scanning) {
+                        return $cordovaBluetoothle.stopScan();
+                      }
+                    });
                 }
+                else {
+                  $logService.LogMessage('not sure how we got here: ' + JSON.stringify(err));
+                }
+                $logService.LogMessage('don\'t you love logging?');
+              })
+              .then(function (data) {
+                $logService.LogMessage('raw data from initialize?' + JSON.stringify(data));
+                if (data.status === 'scanResult' && !(contains(addresses, data.address))) {
+                  $logService.LogMessage('pushing new data: 1 ' + JSON.stringify(data));
+                  $scope.devices.push(data);
+                }
+                else {
+                  $logService.LogMessage('stopping scan');
+                  return $cordovaBluetoothle.stopScan();
+                }
+              }, function (error) {
+                $logService.LogError(error, 'Error while scanning:');
+              }, function (notify) {
+                $logService.LogMessage('still scanning: ' + JSON.stringify(notify));
               });
-            }
-            else if ($ionicPlatform.isAndroid()) {
-              //todo
-            }
-          }));
-
-        }, function (alreadyInit) {
-          $logService.LogMessage('already initialized: ' + JSON.stringify(alreadyInit));
-        }).then(function () {
-          var addCharacteristics = function (services, characteristic, service, index) {
-            $scope.services[index] = service[index];
-            $scope.services[index].characteristics.push(characteristic);
-          };
-          var addError = function (error, params) {
-              $logService.LogError(error, 'Failed to get characteristics for services: '+ JSON.stringify(params));
-          };
-
-          if ($ionicPlatform.isIOS()) {
-            var params = {
-              address : devices[0].address,
-              serviceUuids : []
-            };
-            $cordovaBluetoothle.services(function(result) {
-              services.push(result);
-            }, function (error) {
-              $logService.LogError(error, 'Failed to get device: services' + JSON.stringify(params));
-            }, params).then(function(result) {
-              for(var i = 0; i < services.length; i = i + 1) {
-                $cordovaBluetoothle.characteristics(addCharacteristics(services, result, services[i], i), function (error) {addError(error, params); });
-              }
-            });
-          }
-          else if ($ionicPlatform.isAndroid()) {
-            //todo
-          }
-        });
-
-      });
-
+          }).then(function (result) {
+            $logService.LogMessage('we\'re done here? ' + JSON.stringify(result));
+          }).then(function (result) {
+            $logService.LogMessage('this happens last.' + JSON.stringify(result));
+          });
+        $logService.LogMessage('this happens first...');
     };
 
     $scope.clearLog = function () {

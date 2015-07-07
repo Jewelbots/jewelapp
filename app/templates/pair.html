@@ -4,7 +4,7 @@
 </div>
 <div class="content has-header padding">
     <div class="list">
-      <ion-radio ng-repeat="device in model.devices" ng-model="chosenDevice" ng-value="device.name" ng-change="pairToDevice(device.name)">
+      <ion-radio ng-repeat="device in model.devices" ng-model="chosenDevice" ng-value="device.name">
         {{device.name}}<br />{{device.address}}
       </ion-radio>
     </div>
