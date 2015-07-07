@@ -1,47 +1,18 @@
+<ion-view can-swipe-back="false" view-title="Device Pairing" hide-back-button="true">
 <ion-content>
-<div class="bar bar-header bar-light">
-    <h1 class="title">Device Pairing</h1>
-</div>
 
 <div class="content has-header padding">
-    <div class="card">
-      Current Status: {{model.status}}
-    </div>
     <div class="list">
-      <ion-radio ng-repeat="device in model.devices" ng-model="chosenDevice" ng-value="device.name">
+      <ion-radio ng-repeat="device in model.devices" ng-model="model.chosenDevice" ng-value="device">
         {{device.name}}<br />{{device.address}}
       </ion-radio>
     </div>
-  <button class="button button-positive" ng-click="getAvailableDevices()">
-    Scan
+  <button class="button button-neutral" ng-click="pairToDevice(model.chosenDevice.address)">
+    Pair your Jewelbot
   </button>
-  <div class="card" ng-repeat="e in model.errors track by $index">
-    {{e.Date}}
-    {{e.Message}}
-    {{e.Exception}}
-    <hr />
-  </div>
-  <div class="card" ng-repeat="m in model.messages track by $index">
-    {{m}}
-    <hr />
-  </div>
-  <div class="card" ng-repeat="service in model.services track by $index">
-    {{service}}
-    <hr />
-  </div>
-
-  <button class="button button-positive" ng-click="getErrors()">
-    Refresh Errors
-  </button>
-  <button class="button button-positive" ng-click="getMessages()">
-    Refresh Messages
-  </button>
-  <button class="button button-positive" ng-click="clearLog()">
-    Clear Log
-  </button>
-
 </div>
 
 </ion-content>
+</ion-view>
 
 
