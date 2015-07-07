@@ -2,7 +2,11 @@
 <div class="bar bar-header bar-light">
     <h1 class="title">Device Pairing</h1>
 </div>
+
 <div class="content has-header padding">
+    <div class="card">
+      Current Status: {{model.status}}
+    </div>
     <div class="list">
       <ion-radio ng-repeat="device in model.devices" ng-model="chosenDevice" ng-value="device.name">
         {{device.name}}<br />{{device.address}}
@@ -11,9 +15,6 @@
   <button class="button button-positive" ng-click="getAvailableDevices()">
     Scan
   </button>
-  <div class="card" ng-repeat="s in model.status track by $index">
-    {{s}}
-  </div>
   <div class="card" ng-repeat="e in model.errors track by $index">
     {{e.Date}}
     {{e.Message}}
