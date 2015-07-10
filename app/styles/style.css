@@ -35,3 +35,24 @@
 i.large-size-icon {
   font-size: 300%;
 }
+.jewelbots-icon:before {
+}
+.jewelbots-icon:after {
+
+}
+.jewelbots-icon {
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url('/images/header_icon.png');
+  width: 30px;
+  height: 30px;
+  background-size: 30px 30px;
+  margin-top: 5px;
+}

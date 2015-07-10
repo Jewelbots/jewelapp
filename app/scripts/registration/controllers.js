@@ -5,15 +5,23 @@ angular.module('jewelApp.controllers')
       status : 'starting...',
       chosenDevice : {},
       devices : [],
+      pairing: false,
+      isPaired : false,
+      deviceChosen : function () {
+        return Object.keys(chosenDevice).length !== 0;
+      }
     };
 
     $scope.pairToDevice = function(address) {
+        $scope.model.pairing = true;
         $logService.LogMessage('chosen device was: ' + JSON.stringify(address));
         $ionicPlatform.ready()
           .then(function () {
             return $cordovaBluetoothle.connect({address: address})
               .then( function (success) {
                 $scope.model.status = 'Successfully connected!';
+                $scope.model.pairing = false;
+                $scope.model.isPaired = true;
                 $logService.LogMessage('successfully connected to: ' + JSON.stringify(success));
               })
               .error(function (err) {
@@ -22,7 +30,7 @@ angular.module('jewelApp.controllers')
               });
           })
           .then( function (success) {
-            return $state.transitionTo('/pair-success');
+            return $timeout($state.transitionTo('/pair-success'), 2000);
           });
 
     };
