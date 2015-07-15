@@ -1,10 +1,20 @@
-<ion-nav-view view-title="diagnostics">
+<ion-view can-swipe-back="true" view-title="Device Pairing" hide-back-button="true">
   <div class="content has-header padding">
-    <div class="card">
+     <button class="button button-positive" ng-click="getLoggingInfo()">
+      Get Logging Info
+    </button>
+    <div class="card" ng-repeat="message in model.messages track by $index">
       <div class="item item-text-wrap">
-        {{jewelModel.devices}}
-
+        {{message}}
       </div>
     </div>
+    <div class="card" ng-repeat="e in model.errorMessages track by $index">
+      <div class="item item-text-wrap">
+        {{e.Timestamp}}
+        {{e.Message}}
+        {{e.Exception}}
+      </div>
+    </div>
+
   </div>
-</ion-nav-view>
+</ion-view>

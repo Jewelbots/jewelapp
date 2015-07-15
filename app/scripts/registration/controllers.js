@@ -37,7 +37,8 @@ angular.module('jewelApp.controllers')
 
     var getAvailableDevices = function () {
       var params = {
-        request: true
+        request: true,
+        name: 'JewelBot'
       };
       $ionicPlatform.ready()
         .then(function () {
@@ -45,7 +46,7 @@ angular.module('jewelApp.controllers')
             .then(function (initialized) {
               $logService.LogMessage('initialized: ' + JSON.stringify(initialized));
               $scope.model.status = 'Bluetooth Initialized!';
-              return $cordovaBluetoothle.startScan(params);
+              return $cordovaBluetoothle.find(params);
             });
         })
         .then(function (data) {
