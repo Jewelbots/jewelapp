@@ -27,7 +27,7 @@ angular.module('jewelbots.utils', [])
         var error = {
           Exception: exception,
           Message: message,
-          Date : Date.now()
+          Timestamp : Date.now()
         };
         var newErrorLog = {
          Errors : [
@@ -50,7 +50,7 @@ angular.module('jewelbots.utils', [])
         };
         var warning = {
           Message : message,
-          Date : Date.now()
+          Timestamp : Date.now()
         };
         var warningLog = $localStorage.getObject('LogServiceWarning');
         if (Object.keys(warningLog).length === 0) {
@@ -65,7 +65,7 @@ angular.module('jewelbots.utils', [])
       LogMessage : function (message) {
         var messages = $localStorage.getObject('LogServiceMessage');
         if (Object.keys(messages).length === 0) {
-          $localStorage.setObject('LogServiceMessage', { Messages: [message]});
+          $localStorage.setObject('LogServiceMessage', { Messages: [message], Timestamp: Date.now()});
         }
         else {
           messages.Messages.push(message);
