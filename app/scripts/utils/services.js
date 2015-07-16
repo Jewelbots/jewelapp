@@ -1,5 +1,5 @@
 'use strict';
-angular.module('jewelbots.utils', [])
+angular.module('jewelbots.utils', ['angular-lodash'])
   .factory('$localStorage', ['$window', function($window) {
     return {
       set: function(key, value) {
@@ -17,18 +17,22 @@ angular.module('jewelbots.utils', [])
     };
   }])
   .factory('$logService',['$localStorage', function($localStorage) {
+    var logKey = 'JewelbotsLogger';
     return {
       Clear: function () {
-        $localStorage.setObject('JewelbotsLogger', {});
+        $localStorage.setObject(logKey, {});
       },
       Log : function (type, message) {
-        var log = $localStorage.getObject('JewelbotsLogger');
+        var log = $localStorage.getObject(logKey);
+        if (!log.hasOwnProperty('Messages')) {
+          log.Messages = [];
+        }
         log.Messages.push({Type: type, Message: message, Timestamp: Date.now()});
-        $localStorage.setObject('JewelbotLogger', log);
+        $localStorage.setObject(logKey, log);
       },
       Get : function (type) {
-        var logs = $logStorage.getObject('JewelbotsLogger');
-        if (type !== 'all' || type.length > 0) {
+        var logs = $localStorage.getObject(logKey);
+        if (type !== 'all' && type.length > 0) {
           return _.pluck(_.where(logs.Messages, {'Type': type.toLowerCase()}));
         }
         return logs.Messages;
