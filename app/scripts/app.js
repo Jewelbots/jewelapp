@@ -6,15 +6,17 @@ angular.module('ngCordova.plugins.bluetoothle');
 angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova', 'jewelbots.utils'])
 
 .run(['$ionicPlatform', '$cordovaBluetoothle', '$logService', '$window',function($ionicPlatform, $cordovaBluetoothle, $logService, $window) {
+  $logService.Log('message', 'entering ionic.ready()');
   $ionicPlatform.ready(function() {
+    $logService.Log('message', 'starting up');
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if($window.cordova.plugins.Keyboard) {
-      $logService.LogMessage('Window.cordova.plugins.Keyboard is true');
+      $logService.Log('message', 'Window.cordova.plugins.Keyboard is true');
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
     if ($cordovaBluetoothle !== undefined) {
-      $logService.LogMessage('$cordovaBluetoothle is present');
+      $logService.Log('message','$cordovaBluetoothle is present');
     }
     if(window.StatusBar) {
       StatusBar.styleDefault();

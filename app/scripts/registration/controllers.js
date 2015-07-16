@@ -22,7 +22,7 @@ angular.module('jewelApp.controllers')
                 $scope.model.status = 'Successfully connected!';
                 $scope.model.pairing = false;
                 $scope.model.isPaired = true;
-                $logService.LogMessage('successfully connected to: ' + JSON.stringify(success));
+                $logService.Log('message', 'successfully connected to: ' + JSON.stringify(success));
               })
               .error(function (err) {
                 $scope.model.status = 'Error While Connecting: ' + JSON.stringify(err);
@@ -44,7 +44,7 @@ angular.module('jewelApp.controllers')
         .then(function () {
           return $cordovaBluetoothle.initialize(params)
             .then(function (initialized) {
-              $logService.LogMessage('initialized: ' + JSON.stringify(initialized));
+              $logService.Log('message', 'initialized: ' + JSON.stringify(initialized));
               $scope.model.status = 'Bluetooth Initialized!';
               return $cordovaBluetoothle.find(params);
             });
@@ -53,7 +53,7 @@ angular.module('jewelApp.controllers')
           $scope.model.status = 'Scanning...';
           if (data.status === 'scanResult') {
             $scope.model.status = 'Found device: ' + data.name;
-            $logService.LogMessage('pushing new data: ' + JSON.stringify(data));
+            $logService.Log('message', 'pushing new data: ' + JSON.stringify(data));
             $scope.model.devices.push(data);
             return $cordovaBluetoothle.stopScan();
           }
@@ -61,12 +61,12 @@ angular.module('jewelApp.controllers')
           $scope.model.status = 'Error while scanning.' + JSON.stringify(error);
           return $cordovaBluetoothle.stopScan();
         }, function (notify) {
-          $logService.LogMessage('still scanning: ' + JSON.stringify(notify));
+          $logService.Log('message', 'still scanning: ' + JSON.stringify(notify));
         })
         .then(function () {
           $scope.model.status = 'ending scan...';
           return $cordovaBluetoothle.isScanning().then(function(isScanning) {
-            $logService.LogMessage('Are we scanning? 2' + JSON.stringify(isScanning));
+            $logService.Log('message', 'Are we scanning? 2' + JSON.stringify(isScanning));
             $scope.model.status = isScanning ? 'Scan Ended' : 'Scan Not Ended';
           });
         });
