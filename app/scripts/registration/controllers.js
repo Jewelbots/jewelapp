@@ -30,7 +30,8 @@ angular.module('jewelApp.controllers')
               });
           })
           .then( function (success) {
-            return $timeout($state.transitionTo('/pair-success'), 2000);
+            $logService.Log('message', 'paired! Now transitioning: ' + JSON.stringify(success));
+            return $state.go('/pair-success');
           });
 
     };
@@ -67,7 +68,7 @@ angular.module('jewelApp.controllers')
           $scope.model.status = 'ending scan...';
           return $cordovaBluetoothle.isScanning().then(function(isScanning) {
             $logService.Log('message', 'Are we scanning? 2' + JSON.stringify(isScanning));
-            $scope.model.status = isScanning ? 'Scan Ended' : 'Scan Not Ended';
+            $scope.model.status = isScanning ? 'Scan Not Ended' : 'Scan Ended';
           });
         });
     };

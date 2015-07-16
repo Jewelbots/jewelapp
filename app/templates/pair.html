@@ -11,7 +11,7 @@
   <button class="button button-neutral" ng-click="pairToDevice(model.chosenDevice.address)">
     Pair your Jewelbot
   </button>
-  <ion-spinner icon="dot" ng-hide="model.pairing"></ion-spinner>
+  <ion-spinner icon="dots" ng-hide="model.pairing || model.isPaired"></ion-spinner>
   <div ng-show="model.isPaired">Jewelbot Paired!</div>
 </div>
 
