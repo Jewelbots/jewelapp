@@ -8,7 +8,7 @@ angular.module('jewelApp.controllers')
       pairing: false,
       isPaired : false,
       deviceChosen : function () {
-        return Object.keys(chosenDevice).length !== 0;
+        return Object.keys($scope.model.chosenDevice).length !== 0;
       }
     };
 

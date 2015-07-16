@@ -1,18 +1,13 @@
-<ion-view can-swipe-back="true" view-title="Device Pairing" hide-back-button="true">
+<ion-view can-swipe-back="true" view-title="Diagnostics" hide-back-button="true">
   <div class="content has-header padding">
      <button class="button button-positive" ng-click="getLoggingInfo()">
       Get Logging Info
-    </button>
-    <div class="card" ng-repeat="message in model.messages track by $index">
+    </button> <button class="button button-calm" ng-click="clearLog()">Clear Log</button>
+    <div class="card" ng-repeat="l in model.log track by $index">
       <div class="item item-text-wrap">
-        {{message}}
-      </div>
-    </div>
-    <div class="card" ng-repeat="e in model.errorMessages track by $index">
-      <div class="item item-text-wrap">
-        {{e.Timestamp}}
-        {{e.Message}}
-        {{e.Exception}}
+        {{l.Message}}
+        {{l.Exception}}
+        {{l.Timestamp}}
       </div>
     </div>
 

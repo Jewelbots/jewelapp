@@ -1,5 +1,6 @@
 'use strict';
-
+angular.module('angular-lodash', []);
+angular.module('angular-lodash').constant('_', window._);
 angular.module('ngCordova', ['ngCordova.plugins']);
 angular.module('ngCordova.plugins.bluetoothle');
 angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova', 'jewelbots.utils'])
@@ -91,7 +92,7 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
 
   $urlRouterProvider.otherwise('/home');
 }]);
-angular.module('jewelApp.controllers', []);
+angular.module('jewelApp.controllers', ['angular-lodash']);
 angular.module('jewelApp.services', ['ngCordova.plugins.bluetoothle', 'jewelbots.utils']);
 
 

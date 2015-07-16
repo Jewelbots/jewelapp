@@ -19,71 +19,19 @@ angular.module('jewelbots.utils', [])
   .factory('$logService',['$localStorage', function($localStorage) {
     return {
       Clear: function () {
-        $localStorage.setObject('LogServiceError', {});
-        $localStorage.setObject('LogServiceWarning', {});
-        $localStorage.setObject('LogServiceMessage', {});
+        $localStorage.setObject('JewelbotsLogger', {});
       },
-      LogError: function (exception, message) {
-        var error = {
-          Exception: exception,
-          Message: message,
-          Timestamp : Date.now()
-        };
-        var newErrorLog = {
-         Errors : [
-         ]
-        };
-
-        var errorLog = $localStorage.getObject('LogServiceError');
-        if(Object.keys(errorLog).length === 0) {
-          newErrorLog.Errors.push(error);
-          $localStorage.setObject('LogServiceError', newErrorLog);
-        }
-        else {
-          errorLog.Errors.push(error);
-          $localStorage.setObject('LogServiceError', errorLog);
-        }
+      Log : function (type, message) {
+        var log = $localStorage.getObject('JewelbotsLogger');
+        log.Messages.push({Type: type, Message: message, Timestamp: Date.now()});
+        $localStorage.setObject('JewelbotLogger', log);
       },
-      LogWarning: function (message) {
-        var newWarningLog = {
-          Warnings: []
-        };
-        var warning = {
-          Message : message,
-          Timestamp : Date.now()
-        };
-        var warningLog = $localStorage.getObject('LogServiceWarning');
-        if (Object.keys(warningLog).length === 0) {
-          newWarningLog.Warnings.push(warning);
-          $localStorage.setObject('LogServiceWarning', newWarningLog);
+      Get : function (type) {
+        var logs = $logStorage.getObject('JewelbotsLogger');
+        if (type !== 'all' || type.length > 0) {
+          return _.pluck(_.where(logs.Messages, {'Type': type.toLowerCase()}));
         }
-        else {
-          warningLog.Warnings.push(warning);
-          $localStorage.setObject('LogServiceWarning', warningLog);
-        }
-      },
-      LogMessage : function (message) {
-        var messages = $localStorage.getObject('LogServiceMessage');
-        if (Object.keys(messages).length === 0) {
-          $localStorage.setObject('LogServiceMessage', { Messages: [message], Timestamp: Date.now()});
-        }
-        else {
-          messages.Messages.push(message);
-          $localStorage.setObject('LogServiceMessage', messages);
-        }
-      },
-      GetErrors : function () {
-        var errors = $localStorage.getObject('LogServiceError');
-        return errors.Errors;
-      },
-      GetWarnings : function () {
-        var warnings = $localStorage.getObject('LogServiceWarning');
-        return warnings.Warnings;
-      },
-      GetMessages : function () {
-        var messages = $localStorage.getObject('LogServiceMessage');
-        return messages.Messages;
-
+        return logs.Messages;
       }
     };
   }]);
