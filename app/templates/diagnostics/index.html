@@ -3,10 +3,9 @@
      <button class="button button-positive" ng-click="getLoggingInfo()">
       Get Logging Info
     </button> <button class="button button-calm" ng-click="clearLog()">Clear Log</button>
-    <div class="card" ng-repeat="l in model.log track by $index">
+    <div class="text" ng-repeat="l in model.log track by $index">
       <div class="item item-text-wrap">
         {{l.Message}}
-        {{l.Exception}}
         {{l.Timestamp}}
       </div>
     </div>
