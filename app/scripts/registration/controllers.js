@@ -14,26 +14,27 @@ angular.module('jewelApp.controllers')
 
     $scope.pairToDevice = function(address) {
         $scope.model.pairing = true;
-        $logService.LogMessage('chosen device was: ' + JSON.stringify(address));
+        $logService.Log('message', 'chosen device was: ' + JSON.stringify(address));
         $ionicPlatform.ready()
           .then(function () {
+            $logService.Log('message', 'inside pairToDevice: ');
             return $cordovaBluetoothle.connect({address: address})
               .then( function (success) {
                 $scope.model.status = 'Successfully connected!';
                 $scope.model.pairing = false;
                 $scope.model.isPaired = true;
                 $logService.Log('message', 'successfully connected to: ' + JSON.stringify(success));
+                $logService.Log('message', 'paired! Now transitioning: ' + JSON.stringify(success));
+                $state.go('pair-success');
               })
               .error(function (err) {
                 $scope.model.status = 'Error While Connecting: ' + JSON.stringify(err);
                 return $cordovaBluetoothle.disconnect(address);
+              })
+              .notify(function (notify) {
+                $logService.Log('message', 'still trying to connect: ' + JSON.stringify(notify));
               });
-          })
-          .then( function (success) {
-            $logService.Log('message', 'paired! Now transitioning: ' + JSON.stringify(success));
-            return $state.go('/pair-success');
           });
-
     };
 
     var getAvailableDevices = function () {
@@ -67,7 +68,7 @@ angular.module('jewelApp.controllers')
         .then(function () {
           $scope.model.status = 'ending scan...';
           return $cordovaBluetoothle.isScanning().then(function(isScanning) {
-            $logService.Log('message', 'Are we scanning? 2' + JSON.stringify(isScanning));
+            $logService.Log('message', 'chosen device looks like this ' + JSON.stringify($scope.model.chosenDevice));
             $scope.model.status = isScanning ? 'Scan Not Ended' : 'Scan Ended';
           });
         });
