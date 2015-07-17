@@ -2,10 +2,11 @@
 angular.module('angular-lodash', []);
 angular.module('angular-lodash').constant('_', window._);
 angular.module('ngCordova', ['ngCordova.plugins']);
+angular.module('ngCordova.plugins.contacts');
 angular.module('ngCordova.plugins.bluetoothle');
 angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova', 'jewelbots.utils'])
 
-.run(['$ionicPlatform', '$cordovaBluetoothle', '$logService', '$window',function($ionicPlatform, $cordovaBluetoothle, $logService, $window) {
+.run(['$ionicPlatform', '$cordovaBluetoothle','$cordovaContacts', '$logService', '$window',function($ionicPlatform, $cordovaBluetoothle, $cordovaContacts, $logService, $window) {
   $logService.Log('message', 'entering ionic.ready()');
   $ionicPlatform.ready(function() {
     $logService.Log('message', 'starting up');
@@ -17,6 +18,12 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
     }
     if ($cordovaBluetoothle !== undefined) {
       $logService.Log('message','$cordovaBluetoothle is present');
+    }
+    if ($cordovaContacts !== undefined) {
+      $logService.Log('message', '$cordovaContacts is present');
+    }
+    else {
+      $logService.Log('warning', '$cordovaContacts is not present');
     }
     if(window.StatusBar) {
       StatusBar.styleDefault();
