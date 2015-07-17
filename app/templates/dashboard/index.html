@@ -1,15 +1,18 @@
-<ion-view can-swipe-back="false" hide-back-button="true">
-  <ion-nav-title><i class="jewelbots-icon"></i></ion-nav-title>
-    <div class="content has-header padding">
-        <h2>Welcome To Jewelbots!</h2>
-        <p>
-            Add your friends to colors so they light up the same when you're close.
-        </p>
+<ion-nav-view title="dashboard">
+  <div class="bar bar-header bar-light">
+    <i class="jewelbots-icon"></i>
+  </div>
+  <div class="content has-header padding center">
+    <h2>Welcome To Jewelbots!</h2>
+    <p>
+      Add your friends to colors so they light up the same when you're close.
+    </p>
 
-        <p class="center">
-            <i icon-off="ion-ios-plus" icon-on="ion-ios-plus-outline" class="ion-ios-plus large-size-icon" ng-click="addFriends()">
-            </i>
-            </p>
-        <p class="center">Add Friends</p>
+    <div class="buttons">
+      <button class="button button-icon ion-ios-plus-outline large-size-icon" ng-click="findFriendsToAdd()">
+        Add Friends
+      </button>
     </div>
+  </div>
+</ion-nav-view>
 
