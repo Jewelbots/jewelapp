@@ -69,11 +69,6 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
         controller: 'RegistrationCtrl',
         templateUrl: 'templates/registration/registration-step-four.html'
   })
-  .state('add-friends', {
-    url:'/add-friends',
-    controller: 'FriendsCtrl',
-    templateUrl: 'templates/friends/add-friends.html'
-  })
   .state('diagnostics', {
     url: '/diagnostics',
     controller: 'DiagnosticCtrl',

@@ -3,16 +3,7 @@
     <i class="jewelbots-icon"></i>
   </div>
   <div class="content has-header padding center">
-    <h2>Welcome To Jewelbots!</h2>
-    <p>
-      Add your friends to colors so they light up the same when you're close.
-    </p>
+    <ng-include=" 'templates/friends/no-friends.html' " ng-if="!hasFriends"></ng-include>
 
-    <div class="buttons">
-      <button class="button button-icon ion-ios-plus-outline large-size-icon" ng-click="findFriendsToAdd()">
-        Add Friends
-      </button>
-    </div>
-  </div>
 </ion-nav-view>
 

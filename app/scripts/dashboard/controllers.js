@@ -22,8 +22,18 @@ angular.module('jewelApp.controllers')
   };
 
 }])
-.controller('DashboardCtrl', ['$scope', '$state', function($scope, $state) {
-  $scope.addFriends = function() {
-    $state.transitionTo('addFriends');
-  };
+.controller('DashboardCtrl', ['$scope', '$state', '$ionicPlatform', '$cordovaContacts', '$logService', 'UserService', function($scope, $state, $ionicPlatform, $cordovaContacts, $logService, UserService) {
+    $scope.hasFriends = function() {
+      return UserService.HasFriends();
+    }
+
+    $scope.findFriendsToAdd = function() {
+      $logService.Log('message', 'entering findFriendsToAdd');
+      $ionicPlatform.ready().then(function () {
+        $logService.Log('message', 'entering we are ready in ionicPlatform');
+        $cordovaContacts.pickContact().then (function (contactPicked) {
+          $logService.Log('message', 'contact picked: ' + JSON.stringify(contactPicked));
+        });
+      });
+    };
 }]);
