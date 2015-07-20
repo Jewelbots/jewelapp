@@ -1,9 +1,10 @@
-<ion-nav-view title="dashboard">
+<ion-view>
   <div class="bar bar-header bar-light">
-    <i class="jewelbots-icon"></i>
+    <div class="center-icon"><i class="jewelbots-icon"></i></div>
   </div>
   <div class="content has-header padding center">
-    <ng-include=" 'templates/friends/no-friends.html' " ng-if="!hasFriends"></ng-include>
+    <ng-if="!hasFriends" ng-include src="'templates/friends/no-friends.html'"></ng-if>
+  </div>
 
-</ion-nav-view>
+</ion-view>
 

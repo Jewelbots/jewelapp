@@ -4,27 +4,12 @@ angular.module('angular-lodash').constant('_', window._);
 angular.module('ngCordova', ['ngCordova.plugins']);
 angular.module('ngCordova.plugins.contacts');
 angular.module('ngCordova.plugins.bluetoothle');
-angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova', 'jewelbots.utils'])
+angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova', 'jewelbots.utils', 'angular-lodash'])
 
 .run(['$ionicPlatform', '$cordovaBluetoothle','$cordovaContacts', '$logService', '$window',function($ionicPlatform, $cordovaBluetoothle, $cordovaContacts, $logService, $window) {
-  $logService.Log('message', 'entering ionic.ready()');
   $ionicPlatform.ready(function() {
-    $logService.Log('message', 'starting up');
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    if($window.cordova.plugins.Keyboard) {
-      $logService.Log('message', 'Window.cordova.plugins.Keyboard is true');
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if ($cordovaBluetoothle !== undefined) {
-      $logService.Log('message','$cordovaBluetoothle is present');
-    }
-    if ($cordovaContacts !== undefined) {
-      $logService.Log('message', '$cordovaContacts is present');
-    }
-    else {
-      $logService.Log('warning', '$cordovaContacts is not present');
-    }
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }

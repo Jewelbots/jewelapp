@@ -24,14 +24,14 @@ angular.module('jewelApp.controllers')
 }])
 .controller('DashboardCtrl', ['$scope', '$state', '$ionicPlatform', '$cordovaContacts', '$logService', 'UserService', function($scope, $state, $ionicPlatform, $cordovaContacts, $logService, UserService) {
     $scope.hasFriends = function() {
+      $logService.Log('message', 'entering has friends');
       return UserService.HasFriends();
     }
-
     $scope.findFriendsToAdd = function() {
       $logService.Log('message', 'entering findFriendsToAdd');
       $ionicPlatform.ready().then(function () {
         $logService.Log('message', 'entering we are ready in ionicPlatform');
-        $cordovaContacts.pickContact().then (function (contactPicked) {
+        $cordovaContacts.find().then (function (contactPicked) {
           $logService.Log('message', 'contact picked: ' + JSON.stringify(contactPicked));
         });
       });

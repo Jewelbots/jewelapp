@@ -10,10 +10,11 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         $localStorage.set('IsRegistered', true);
       },
       HasFriends : function () {
+
         return Object.keys($localStorage.getObject('HasFriends')).length !== 0;
       },
       GetFriends: function () {
-        return $localStorage.getObject('Friends');
+        return $localStorage.getObject('Friends').friends || [];
       }
     };
     return service;
@@ -21,6 +22,9 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
   .factory('UserService',['$ionicPlatform', '$cordovaBluetoothle', '$timeout', '$logService','SettingsService', 'DataService',  function($ionicPlatform, $cordovaBluetoothle, $timeout, $logService, SettingsService, DataService) {
     var self = this;
     var service = {
+      GetFriends : function () {
+        return DataService.GetFriends();
+      },
       HasFriends : function () {
         if (this.GetFriends() > 0) {
           return true; //yes, I know I shouldn't return true; there's more coming.
@@ -32,6 +36,7 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
           return false;
         }
       },
+
       IsRegistered : function () {
         return DataService.IsRegistered();
       }
