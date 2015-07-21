@@ -15,6 +15,12 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
       },
       GetFriends: function () {
         return $localStorage.getObject('Friends').friends || [];
+      },
+      SaveConnection: function (address) {
+        $localStorage.set('Connection', address);
+      },
+      IsPaired : function () {
+        return $localStorage.get('Connection', '').length > 0;
       }
     };
     return service;

@@ -1,9 +1,12 @@
 'use strict';
 angular.module('jewelApp.controllers')
-.controller('HomeCtrl',['$scope', '$window', '$state', 'JewelbotService',  function($scope, $window, $state, JewelbotService) {
+.controller('HomeCtrl',['$scope', '$window', '$state', 'DataService',  function($scope, $window, $state, DataService) {
     $scope.isPaired = function() {
-      if (!JewelbotService.IsPaired()) {
-        $state.transitionTo('pair');
+      if (!DataService.IsPaired()) {
+        $state.go('pair');
+      }
+      else {
+        $state.go('dashboard');
       }
     };
   $scope.startUp = function() {
@@ -27,13 +30,19 @@ angular.module('jewelApp.controllers')
       $logService.Log('message', 'entering has friends');
       return UserService.HasFriends();
     }
-    $scope.findFriendsToAdd = function() {
-      $logService.Log('message', 'entering findFriendsToAdd');
-      $ionicPlatform.ready().then(function () {
-        $logService.Log('message', 'entering we are ready in ionicPlatform');
-        $cordovaContacts.find().then (function (contactPicked) {
-          $logService.Log('message', 'contact picked: ' + JSON.stringify(contactPicked));
+    $scope.findFriendsToAdd = function(color) {
+      try {
+        $logService.Log('message', 'entering find Friends?');
+        $ionicPlatform.ready().then(function () {
+          $logService.Log('message', 'entering we are ready in ionicPlatform');
+          $cordovaContacts.find({fields: ['givenName', 'familyName', 'phoneNumbers']}).then(function (contactPicked) {
+            $logService.Log('message', 'contact picked: ' + JSON.stringify(contactPicked));
+          });
         });
-      });
+      }
+      catch (err) {
+        $logService.Log('error', err);
+      }
     };
+
 }]);
