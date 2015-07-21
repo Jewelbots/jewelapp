@@ -30,6 +30,7 @@ angular.module('jewelApp.controllers')
       $logService.Log('message', 'entering has friends');
       return UserService.HasFriends();
     }
+    $scope.contacts = [];
     $scope.findFriendsToAdd = function(color) {
       try {
         $logService.Log('message', 'entering find Friends?');

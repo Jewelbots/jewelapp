@@ -39,17 +39,21 @@ angular.module('jewelApp.controllers')
     };
 
     var getAvailableDevices = function () {
+      $logService.Log('message', 'entering getAvailable Devices. Next stop, ionic ready');
       var params = {
         request: true,
         name: 'JewelBot'
       };
       $ionicPlatform.ready()
         .then(function () {
+          $logService.Log('message', 'ionic ready is successful, next stop initialize');
           return $cordovaBluetoothle.initialize(params)
             .then(function (initialized) {
               $logService.Log('message', 'initialized: ' + JSON.stringify(initialized));
               $scope.model.status = 'Bluetooth Initialized!';
               return $cordovaBluetoothle.find(params);
+            }, function (err) {
+              $logService.Log('error', 'Error trying to initialize bluetoothle ' + JSON.stringify(err));
             });
         })
         .then(function (data) {
@@ -79,6 +83,7 @@ angular.module('jewelApp.controllers')
           });
         });
     };
+    $logService.Log('message', 'about to call getAvailableDevices, which should kick off initialize and scanning');
     getAvailableDevices();
 }])
 
