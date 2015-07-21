@@ -6,10 +6,16 @@ angular.module('ngCordova.plugins.contacts');
 angular.module('ngCordova.plugins.bluetoothle');
 angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova', 'jewelbots.utils', 'angular-lodash'])
 
-.run(['$ionicPlatform', '$cordovaBluetoothle','$cordovaContacts', '$logService', '$window',function($ionicPlatform, $cordovaBluetoothle, $cordovaContacts, $logService, $window) {
+.run(['$ionicPlatform', '$cordovaBluetoothle','$cordovaContacts', '$logService' ,function($ionicPlatform, $cordovaBluetoothle, $cordovaContacts, $logService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    if (navigator.contacts !== undefined) {
+      $logService.Log('message', 'cordova contacts works?' + JSON.stringify(navigator.contacts));
+    }
+    else {
+      $logService.Log('message', 'contacts plugin not loaded');
+    }
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
