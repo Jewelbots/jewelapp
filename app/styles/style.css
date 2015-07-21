@@ -64,8 +64,8 @@ i.large-size-icon {
 
 .circle {
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   /* width and height can be anything, as long as they're equal */
 }
 div.footer-circle-menu {
