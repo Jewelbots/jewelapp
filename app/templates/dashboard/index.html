@@ -5,6 +5,17 @@
   <div class="content has-header padding center">
     <ng-if="!hasFriends" ng-include src="'templates/friends/no-friends.html'"></ng-if>
   </div>
-
+  <ion-footer-bar class="bar-light">
+  <div class="footer-circle-menu">
+    <span class="circle circle-red" ng-click="findFriendsToAdd('red')"></span>
+    <span class="circle circle-orange" ng-click="findFriendsToAdd('orange')"></span>
+    <span class="circle circle-yellow" ng-click="findFriendsToAdd('yellow')"></span>
+    <span class="circle circle-green" ng-click="findFriendsToAdd('green')"></span>
+    <span class="circle circle-pink" ng-click="findFriendsToAdd('pink')"></span>
+    <span class="circle circle-blue" ng-click="findFriendsToAdd('blue')"></span>
+    <span class="circle circle-purple" ng-click="findFriendsToAdd('purple')"></span>
+    <span class="circle circle-plum" ng-click="findFriendsToAdd('plum')"></span>
+  </div>
+  </ion-footer-bar>
 </ion-view>
 

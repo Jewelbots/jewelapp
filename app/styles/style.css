@@ -62,4 +62,49 @@ i.large-size-icon {
   margin: auto;
 }
 
+.circle {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  /* width and height can be anything, as long as they're equal */
+}
+div.footer-circle-menu {
+  display: block;
+  width: auto;
+  table-layout:fixed;
+  margin: 0 auto 0 auto;
+}
+div.footer-circle-menu span {
+  display: inline-block;
+  text-align: center;
+  margin: 0 5px 0 5px;
+}
+.circle-red {
+  background-color: red;
+}
+.circle-orange {
+  background-color: orange;
+}
+.circle-yellow {
+  background-color: yellow;
+}
+.circle-green {
+  background-color: green;
+}
+.circle-blue {
+  background-color: blue;
+}
+.circle-purple {
+  background-color: purple;
+}
+.circle-pink {
+  background-color: pink;
+}
+.circle-plum {
+  background-color: #8E4585;
+}
+
+
+
+
 
