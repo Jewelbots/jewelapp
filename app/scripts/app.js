@@ -11,10 +11,16 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (navigator.contacts !== undefined) {
-      $logService.Log('message', 'cordova contacts works?' + JSON.stringify(navigator.contacts));
+      $logService.Log('message', 'cordova contacts works?');
     }
     else {
       $logService.Log('message', 'contacts plugin not loaded');
+    }
+    if (bluetoothle !== undefined) {
+      $logService.Log('message', 'bluetoothle has been loaded');
+    }
+    else {
+      $logService.Log('error', 'bluetoothle has not been loaded; check your cordova plugin installs!');
     }
     if(window.StatusBar) {
       StatusBar.styleDefault();

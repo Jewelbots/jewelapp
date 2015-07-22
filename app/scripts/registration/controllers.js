@@ -68,14 +68,12 @@ angular.module('jewelApp.controllers')
           $scope.model.status = 'Error while scanning.' + JSON.stringify(error);
           return $cordovaBluetoothle.stopScan();
         }, function (notify) {
-          $logService.Log('message', 'still scanning: ' + JSON.stringify(notify));
+          $logService.Log('message', 'notifying scan: ' + JSON.stringify(notify));
         })
         .then(function () {
           $scope.model.status = 'ending scan...';
           return $cordovaBluetoothle.isScanning().then(function(isScanning) {
-            $logService.Log('message', 'chosen device looks like this ' + JSON.stringify($scope.model.chosenDevice));
             $logService.Log('message', 'isScanning returns? ' + JSON.stringify(isScanning));
-
             $scope.model.status = isScanning ? 'Scan Not Ended' : 'Scan Ended';
             if (isScanning) {
               return $cordovaBluetoothle.stopScan();

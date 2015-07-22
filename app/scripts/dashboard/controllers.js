@@ -37,8 +37,15 @@ angular.module('jewelApp.controllers')
         $ionicPlatform.ready().then(function () {
           $logService.Log('message', 'entering we are ready in ionicPlatform');
           $cordovaContacts.find({fields: ['givenName', 'familyName', 'phoneNumbers']}).then(function (contactPicked) {
+            $scope.contacts = _.map(contactPicked, function(p) {
+              return {
+                givenName: p.givenName,
+                familyName: p.familyName.charAt(0)
+              };
+            }, 'id');
             $logService.Log('message', 'contact picked: ' + JSON.stringify(contactPicked));
-          });
+            $logService.Log('message', 'contacts chosen were:' + JSON.stringify($scope.contacts));
+          })
         });
       }
       catch (err) {
