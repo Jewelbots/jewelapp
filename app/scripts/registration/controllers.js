@@ -82,13 +82,18 @@ angular.module('jewelApp.controllers')
         });
     };
     $logService.Log('message', 'about to call getAvailableDevices, which should kick off initialize and scanning');
-    if (!DataService.IsPaired()) {
-      $logService.Log('message', 'Not paired; so calling get availabledevices');
-      getAvailableDevices().then(function() {
-        if (DataService.IsPaired()) {
-          $cordovaBluetoothle.stopScan();
-        }
-      });
+    try {
+      if (!DataService.IsPaired()) {
+        $logService.Log('message', 'Not paired; so calling get availabledevices');
+        getAvailableDevices().then(function () {
+          if (DataService.IsPaired()) {
+            $cordovaBluetoothle.stopScan();
+          }
+        });
+      }
+    }
+    catch (err) {
+      $logService.Log('error', 'error trying to getAvailableDevices: ' + JSON.stringify(err));
     }
 }])
 
