@@ -1,7 +1,6 @@
 'use strict';
 angular.module('jewelApp.services')//Todo: Implement Parse.com calls
   .factory('DataService', ['$localStorage', function($localStorage) {
-    var self = this;
     var service =  {
       IsRegistered : function () {
         return $localStorage.get('IsRegistered', false);
@@ -32,10 +31,10 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         return DataService.GetFriends();
       },
       HasFriends : function () {
-        if (this.GetFriends() > 0) {
+        if (self.GetFriends() > 0) {
           return true; //yes, I know I shouldn't return true; there's more coming.
         }
-        else if (this.IsRegistered()) { //no friends in app; check online in case new app install
+        else if (self.IsRegistered()) { //no friends in app; check online in case new app install
           return DataService.HasFriends();
         }
         else { //can't check online, and locally has no friends. Say no friends.  App should sync with jewelbot after every action; so assume this is up to date
