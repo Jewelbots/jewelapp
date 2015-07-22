@@ -26,7 +26,7 @@ angular.module('jewelApp.controllers')
                 DataService.Pair(address);
                 $logService.Log('message', 'successfully connected to: ' + JSON.stringify(success));
                 $logService.Log('message', 'paired! Now transitioning: ' + JSON.stringify(success));
-                $state.go('pair-success');
+                return $state.go('pair-success');
               })
               .error(function (err) {
                 $scope.model.status = 'Error While Connecting: ' + JSON.stringify(err);
@@ -85,9 +85,10 @@ angular.module('jewelApp.controllers')
     try {
       if (!DataService.IsPaired()) {
         $logService.Log('message', 'Not paired; so calling get availabledevices');
-        getAvailableDevices().then(function () {
-          if (DataService.IsPaired()) {
-            $cordovaBluetoothle.stopScan();
+        getAvailableDevices();
+        $cordovaBluetoothle.isScanning().then(function(isScanning) {
+          if (isScanning) {
+            return $cordovaBluetoothle.stopScan();
           }
         });
       }
