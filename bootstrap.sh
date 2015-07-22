@@ -11,3 +11,4 @@ grunt platform:add:ios
 grunt platform:add:android
 grunt plugin:add:https://github.com/randdusing/BluetoothLE
 grunt plugin:add:org.apache.cordova.dialogs
+ionic plugin add ionic plugin add cordova-plugin-contacts
