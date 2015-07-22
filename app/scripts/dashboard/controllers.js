@@ -21,17 +21,22 @@ angular.module('jewelApp.controllers')
       try {
         $logService.Log('message', 'entering find Friends?' + JSON.stringify(color));
         $ionicPlatform.ready().then(function () {
-          $logService.Log('message', 'entering we are ready in ionicPlatform');
-          $cordovaContacts.find({fields: ['givenName', 'familyName', 'phoneNumbers']}).then(function (contactPicked) {
-            $scope.contacts = _.map(contactPicked, function(p) {
-              return {
-                givenName: p.givenName,
-                familyName: p.familyName.charAt(0)
-              };
-            }, 'id');
-            $logService.Log('message', 'contact picked: ' + JSON.stringify(contactPicked));
-            $logService.Log('message', 'contacts chosen were:' + JSON.stringify($scope.contacts));
-          });
+          $logService.Log('message', 'we entered ionicPlatform ready in find friends');
+          try {
+            $cordovaContacts.find({fields: ['givenName', 'familyName', 'phoneNumbers']}).then(function (contactPicked) {
+              $scope.contacts = _.map(contactPicked, function (p) {
+                return {
+                  givenName: p.givenName,
+                  familyName: p.familyName.charAt(0)
+                };
+              }, 'id');
+              $logService.Log('message', 'contact picked: ' + JSON.stringify(contactPicked));
+              $logService.Log('message', 'contacts chosen were:' + JSON.stringify($scope.contacts));
+            });
+          }
+          catch (err) {
+            $logService.Log('error', 'something went wrong trying to find contacts: ' + JSON.stringify(err));
+          }
         });
       }
       catch (err) {
