@@ -16,7 +16,7 @@ angular.module('jewelbots.utils', ['angular-lodash'])
       }
     };
   }])
-  .factory('$logService',['$localStorage', function($localStorage) {
+  .factory('$logService',['$localStorage', '_', function($localStorage, _) {
     var logKey = 'JewelbotsLogger';
     return {
       Clear: function () {

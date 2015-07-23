@@ -1,12 +1,11 @@
 'use strict';
 angular.module('angular-lodash', []);
-angular.module('angular-lodash').constant('_', window._);
 angular.module('ngCordova', ['ngCordova.plugins']);
-angular.module('ngCordova.plugins.contacts');
 angular.module('ngCordova.plugins.bluetoothle');
+angular.module('ngCordova.plugins.contacts');
 angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova', 'jewelbots.utils', 'angular-lodash'])
-
-.run(['$ionicPlatform', '$cordovaBluetoothle','$cordovaContacts', '$logService' ,function($ionicPlatform, $cordovaBluetoothle, $cordovaContacts, $logService) {
+.constant('_', window._)
+.run(['$ionicPlatform', '$logService' ,function($ionicPlatform, $logService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -22,6 +21,7 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
     else {
       $logService.Log('error', 'bluetoothle has not been loaded; check your cordova plugin installs!');
     }
+
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
@@ -93,8 +93,8 @@ angular.module('jewelApp', ['ionic', 'jewelApp.services', 'jewelApp.controllers'
 
   $urlRouterProvider.otherwise('/home');
 }]);
-angular.module('jewelApp.controllers', ['angular-lodash']);
-angular.module('jewelApp.services', ['ngCordova.plugins.bluetoothle', 'jewelbots.utils']);
+angular.module('jewelApp.controllers', ['angular-lodash', 'ngCordova.plugins.contacts', 'ngCordova.plugins.bluetoothle']);
+angular.module('jewelApp.services', ['jewelbots.utils']);
 
 
 

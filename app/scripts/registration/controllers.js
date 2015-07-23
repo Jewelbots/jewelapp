@@ -13,6 +13,7 @@ angular.module('jewelApp.controllers')
     };
 
     $scope.pairToDevice = function(address) {
+
         $scope.model.pairing = true;
         $logService.Log('message', 'chosen device was: ' + JSON.stringify(address));
         $ionicPlatform.ready()
