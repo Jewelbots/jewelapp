@@ -1,7 +1,6 @@
 'use strict';
 angular.module('lodash', [])
   .factory('_', function() {
-    'use strict';
     return window._;
   });
 angular.module('ngCordova', ['ngCordova.plugins']);
@@ -10,8 +9,6 @@ angular.module('ngCordova.plugins.contacts');
 angular.module('jewelApp', ['ionic', 'lodash', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova', 'jewelbots.utils'])
 .run(['$ionicPlatform', '$logService' ,function($ionicPlatform, $logService) {
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
     if (navigator.contacts !== undefined) {
       $logService.Log('message', 'cordova contacts works?');
     }

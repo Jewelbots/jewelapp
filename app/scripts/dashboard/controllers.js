@@ -12,6 +12,7 @@ angular.module('jewelApp.controllers')
 
 }])
 .controller('DashboardCtrl', ['$scope', '$state', '$ionicPlatform', '$cordovaContacts', '$logService', 'UserService', '_', function($scope, $state, $ionicPlatform, $cordovaContacts, $logService, UserService, _) {
+
     $scope.hasFriends = function() {
       $logService.Log('message', 'entering has friends');
       return UserService.HasFriends();
@@ -19,25 +20,33 @@ angular.module('jewelApp.controllers')
     $scope.model = {
       contacts : []
     };
+    var getFirstName = function (r) {
+      return {
+        givenName: r.name.givenName,
+        familyName: ((typeof r.name.familyName === 'string' || r.name.familyName instanceof String) && r.name.familyName.length > 0) ? r.name.familyName.charAt(0) : ''
+
+      };
+    };
     $scope.findFriendsToAdd = function(color) {
       $logService.Log('message', 'entering find Friends?' + JSON.stringify(color));
-      return $cordovaContacts.find({fields: ['givenName', 'familyName', 'phoneNumbers']}).then(function (success) {
-        try {
-          $logService.Log('message', 'lodash is: ' + JSON.stringify(_));
-          $logService.Log('message', '$cordovaContacts success! ');
-          $scope.model.contacts = _.map(success, function (p) {
-            $logService.Log('p is: ' + JSON.stringify(p));
-            var calculatedFamilyName = p.familyName !== null ? p.familyName.charAt(0) : '';
-            return {
-              givenName: p.givenName,
-              familyName: calculatedFamilyName
-            };
-          }, 'id');
-        }
-        catch (err) {
-          $logService.Log('message', 'error in find contacts? : ' + JSON.stringify(err));
-        }
-        $logService.Log('message', 'exiting; we made it here.' + JSON.stringify($scope));
-      });
+        $ionicPlatform.ready().then( function () {
+          return $cordovaContacts.find({fields: ['givenName', 'familyName', 'phoneNumbers'], multiple:true}).then(function (success) {
+            var contactsPicked = [];
+            try {
+              _.forEach(success, function (p) {
+                $scope.model.contacts.push(getFirstName(p));
+              });
+              $logService.Log('message', 'success is : ' + JSON.stringify($scope.model.contacts));
+            }
+
+            catch (err) {
+              $logService.Log('message', 'error in find contacts? : ' + err.name);
+              $logService.Log('message', 'error in find contacts? : ' + err.message);
+              $logService.Log('message', 'error in find contacts? : ' + err.stack);
+            }
+
+            $logService.Log('message', 'exiting; we made it here.' + JSON.stringify($scope));
+          });
+        });
     };
 }]);
