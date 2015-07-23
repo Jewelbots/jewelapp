@@ -23,11 +23,14 @@ angular.module('jewelApp.controllers')
       $logService.Log('message', 'entering find Friends?' + JSON.stringify(color));
       return $cordovaContacts.find({fields: ['givenName', 'familyName', 'phoneNumbers']}).then(function (success) {
         try {
+          $logService.Log('message', 'lodash is: ' + JSON.stringify(_));
           $logService.Log('message', '$cordovaContacts success! ');
           $scope.model.contacts = _.map(success, function (p) {
+            $logService.Log('p is: ' + JSON.stringify(p));
+            var calculatedFamilyName = p.familyName !== null ? p.familyName.charAt(0) : '';
             return {
               givenName: p.givenName,
-              familyName: p.familyName.charAt(0)
+              familyName: calculatedFamilyName
             };
           }, 'id');
         }

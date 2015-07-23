@@ -1,5 +1,5 @@
 'use strict';
-angular.module('jewelbots.utils', ['angular-lodash'])
+angular.module('jewelbots.utils',[])
   .factory('$localStorage', ['$window', function($window) {
     return {
       set: function(key, value) {
