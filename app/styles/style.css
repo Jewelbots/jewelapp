@@ -50,7 +50,7 @@ i.large-size-icon {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('/images/header_icon.png');
+  background-image: url('images/header_icon.png');
   width: 30px;
   height: 30px;
   background-size: 30px 30px;

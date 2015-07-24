@@ -11,9 +11,14 @@ angular.module('jewelApp.controllers')
     };
 
 }])
-.controller('DashboardCtrl', ['$scope', '$state', '$ionicPlatform', '$cordovaContacts', '$logService', 'UserService', '_', function($scope, $state, $ionicPlatform, $cordovaContacts, $logService, UserService, _) {
-
+.controller('DashboardCtrl', ['$scope', '$state', '$ionicPlatform', '$cordovaContacts', '$logService', 'UserService', '_', '$ionicModal', function($scope, $state, $ionicPlatform, $cordovaContacts, $logService, UserService, _, $ionicModal) {
+    $ionicModal.fromTemplateUrl('templates/friends/add-friends.html', {
+      scope: $scope
+    }).then(function (modal) {
+      $scope.modal = modal;
+    });
     $scope.hasFriends = function() {
+
       $logService.Log('message', 'entering has friends');
       return UserService.HasFriends();
     };
@@ -27,26 +32,30 @@ angular.module('jewelApp.controllers')
 
       };
     };
+    $scope.openModal = function ($event) {
+      $scope.modal.show($event);
+      //$scope.findFriendsToAdd($event);
+    };
+    $scope.closeModal = function () {
+      $scope.modal.hide();
+    };
+    $scope.$on('$destroy', function () {
+      $scope.modal.remove();
+    });
     $scope.findFriendsToAdd = function(color) {
       $logService.Log('message', 'entering find Friends?' + JSON.stringify(color));
         $ionicPlatform.ready().then( function () {
           return $cordovaContacts.find({fields: ['givenName', 'familyName', 'phoneNumbers'], multiple:true}).then(function (success) {
             var contactsPicked = [];
-            try {
+
               _.forEach(success, function (p) {
                 $scope.model.contacts.push(getFirstName(p));
               });
               $logService.Log('message', 'success is : ' + JSON.stringify($scope.model.contacts));
-            }
-
-            catch (err) {
-              $logService.Log('message', 'error in find contacts? : ' + err.name);
-              $logService.Log('message', 'error in find contacts? : ' + err.message);
-              $logService.Log('message', 'error in find contacts? : ' + err.stack);
-            }
-
-            $logService.Log('message', 'exiting; we made it here.' + JSON.stringify($scope));
           });
         });
     };
+    $scope.addFriends = function() {
+      $scope.modal.hide();
+    }
 }]);

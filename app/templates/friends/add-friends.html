@@ -1,0 +1,18 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="Select Color and Friends"></h1>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="c in model.contacts">
+        {{c.givenName + ' ' + c.familyName + '. '}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <ion-footer-bar align-title="center" class="bar-assertive">
+    Select {{numOfFriends || 0}} and add
+    <div class="buttons">
+      <button class="button" ng-click="addFriends()"><i class="arrow-return-right"></i></button>
+    </div>
+  </ion-footer-bar>
+</ion-modal-view>
