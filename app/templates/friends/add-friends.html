@@ -3,8 +3,8 @@
     <h1 class="Select Color and Friends"></h1>
   </ion-header-bar>
   <ion-content>
-    <ion-list ng-model='model.selectedContacts'>
-      <ion-item collection-repeat="c in model.contacts track by $index" class="item-checkbox">
+    <ion-list>
+      <ion-item collection-repeat="c in model.contacts track by $index" class="item-checkbox" ng-model="c.checked">
         <label class="checkbox">
         <input type="checkbox">
         </label>
