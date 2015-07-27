@@ -24,17 +24,15 @@ angular.module('jewelApp.controllers')
       return UserService.HasFriends();
     };
     $scope.model = {
-      contacts : [],
-      selectedContacts : []
+      contacts : []
     };
     var getPhoneNumbers = function (r) {
       var phoneNumbersArray = r.phoneNumbers;
       var phoneNumbers = _.pluck(phoneNumbersArray, 'value');
       return phoneNumbers;
-
-    }
+    };
     var getFirstName = function (r) {
-      if (r.name.givenName === null) return;
+      if (r.name.givenName === null) { return; }
       return {
         givenName: r.name.givenName,
         familyName: ((typeof r.name.familyName === 'string' || r.name.familyName instanceof String) && r.name.familyName.length > 0) ? r.name.familyName.charAt(0) : '',
@@ -57,8 +55,6 @@ angular.module('jewelApp.controllers')
       $logService.Log('message', 'entering find Friends?' + JSON.stringify(color));
         $ionicPlatform.ready().then( function () {
           return $cordovaContacts.find({fields: ['givenName', 'familyName', 'phoneNumbers'], multiple:true}).then(function (success) {
-            var contactsPicked = [];
-
               _.forEach(success, function (p) {
                 $scope.model.contacts.push(getFirstName(p));
               });
@@ -68,14 +64,6 @@ angular.module('jewelApp.controllers')
     };
     $scope.addFriends = function() {
       $scope.modal.hide();
-    }
+    };
 
-    $scope.$watch('model.contacts', function(contacts){
-      $scope.count = 0;
-      angular.forEach(contacts, function(selectedContact){
-        if(selectedContact.checked){
-          $scope.model.count += 1;
-        }
-      })
-    }, true);
 }]);
