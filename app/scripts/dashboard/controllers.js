@@ -27,17 +27,23 @@ angular.module('jewelApp.controllers')
       contacts : [],
       selectedContacts : []
     };
+    var getPhoneNumbers = function (r) {
+      var phoneNumbersArray = r.phoneNumbers;
+      var phoneNumbers = _.pluck(phoneNumbersArray, 'value');
+      return phoneNumbers;
+
+    }
     var getFirstName = function (r) {
       if (r.name.givenName === null) return;
       return {
         givenName: r.name.givenName,
-        familyName: ((typeof r.name.familyName === 'string' || r.name.familyName instanceof String) && r.name.familyName.length > 0) ? r.name.familyName.charAt(0) : ''
+        familyName: ((typeof r.name.familyName === 'string' || r.name.familyName instanceof String) && r.name.familyName.length > 0) ? r.name.familyName.charAt(0) : '',
+        phoneNumbers: getPhoneNumbers(r)
 
       };
     };
     $scope.openModal = function (color) {
       $scope.modal.show();
-      $logService.Log('message', JSON.stringify(color));
       $scope.findFriendsToAdd(color);
     };
     $scope.closeModal = function () {
@@ -63,4 +69,13 @@ angular.module('jewelApp.controllers')
     $scope.addFriends = function() {
       $scope.modal.hide();
     }
+
+    $scope.$watch('model.contacts', function(contacts){
+      $scope.count = 0;
+      angular.forEach(contacts, function(selectedContact){
+        if(selectedContact.checked){
+          $scope.model.count += 1;
+        }
+      })
+    }, true);
 }]);
