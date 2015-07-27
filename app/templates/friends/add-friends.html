@@ -21,10 +21,10 @@
       <span class="circle circle-plum"></span>
     </div>
   </ion-content>
-  <ion-footer-bar align-title="center" class="bar-assertive">
-    Select {{ (model.contacts | filter:{checked: true }).length }} and add
-    <div class="buttons">
-      <button class="button" ng-click="addFriends()"><i class="arrow-return-right"></i></button>
+  <ion-footer-bar class="bar-positive">
+    {{ (model.contacts | filter:{checked: true }).length }} selected
+    <div class="buttons pull-right">
+      <button class="button" ng-click="addFriends()"><i class="ion-ios-arrow-forward"></i></button>
     </div>
   </ion-footer-bar>
 </ion-modal-view>
