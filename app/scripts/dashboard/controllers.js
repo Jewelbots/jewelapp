@@ -16,6 +16,7 @@ angular.module('jewelApp.controllers')
       scope: $scope
     }).then(function (modal) {
       $scope.modal = modal;
+      $logService.Log('modal scope is: ' + JSON.stringify($scope.model));
     });
     $scope.hasFriends = function() {
 
@@ -23,18 +24,21 @@ angular.module('jewelApp.controllers')
       return UserService.HasFriends();
     };
     $scope.model = {
-      contacts : []
+      contacts : [],
+      selectedContacts : []
     };
     var getFirstName = function (r) {
+      if (r.name.givenName === null) return;
       return {
         givenName: r.name.givenName,
         familyName: ((typeof r.name.familyName === 'string' || r.name.familyName instanceof String) && r.name.familyName.length > 0) ? r.name.familyName.charAt(0) : ''
 
       };
     };
-    $scope.openModal = function ($event) {
-      $scope.modal.show($event);
-      //$scope.findFriendsToAdd($event);
+    $scope.openModal = function (color) {
+      $scope.modal.show();
+      $logService.Log('message', JSON.stringify(color));
+      $scope.findFriendsToAdd(color);
     };
     $scope.closeModal = function () {
       $scope.modal.hide();
@@ -43,6 +47,7 @@ angular.module('jewelApp.controllers')
       $scope.modal.remove();
     });
     $scope.findFriendsToAdd = function(color) {
+      $scope.model.color = color;
       $logService.Log('message', 'entering find Friends?' + JSON.stringify(color));
         $ionicPlatform.ready().then( function () {
           return $cordovaContacts.find({fields: ['givenName', 'familyName', 'phoneNumbers'], multiple:true}).then(function (success) {
