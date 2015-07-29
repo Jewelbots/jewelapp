@@ -63,7 +63,8 @@ angular.module('jewelApp.controllers')
         });
     };
     $scope.addFriends = function() {
+      //var selectedContacts = _.where($scope.model.contacts,{ checked : true });
+      //FriendService.AddFriend(contact);
       $scope.modal.hide();
     };
-
 }]);
