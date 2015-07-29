@@ -10,16 +10,7 @@
         {{ item.givenName + ' ' + item.familyName + '. ' }}
       </ion-checkbox>
     </div>
-    <div class="footer-circle-menu">
-      <span class="circle circle-red"></span>
-      <span class="circle circle-orange"></span>
-      <span class="circle circle-yellow"></span>
-      <span class="circle circle-green"></span>
-      <span class="circle circle-pink"></span>
-      <span class="circle circle-blue"></span>
-      <span class="circle circle-purple"></span>
-      <span class="circle circle-plum"></span>
-    </div>
+    <jewelbots-menu bind="selectedMenuItem"></jewelbots-menu>
   </ion-content>
   <ion-footer-bar class="bar-positive">
     {{ (model.contacts | filter:{checked: true }).length }} selected

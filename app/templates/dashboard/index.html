@@ -8,16 +8,7 @@
 
 
   <ion-footer-bar class="bar-light">
-  <div class="footer-circle-menu">
-    <span class="circle circle-red" ng-click="openModal('red')"></span>
-    <span class="circle circle-orange" ng-click="openModal('orange')"></span>
-    <span class="circle circle-yellow" ng-click="openModal('yellow')"></span>
-    <span class="circle circle-green" ng-click="openModal('green')"></span>
-    <span class="circle circle-pink" ng-click="openModal('pink')"></span>
-    <span class="circle circle-blue" ng-click="openModal('blue')"></span>
-    <span class="circle circle-purple" ng-click="openModal('purple')"></span>
-    <span class="circle circle-plum" ng-click="openModal('plum')"></span>
-  </div>
+  <jewelbots-menu bind="model.selectedMenuItem"></jewelbots-menu>
   </ion-footer-bar>
 </ion-view>
 

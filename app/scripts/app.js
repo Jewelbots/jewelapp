@@ -6,7 +6,10 @@ angular.module('lodash', [])
 angular.module('ngCordova', ['ngCordova.plugins']);
 angular.module('ngCordova.plugins.bluetoothle');
 angular.module('ngCordova.plugins.contacts');
-angular.module('jewelApp', ['ionic', 'lodash', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova', 'jewelbots.utils'])
+angular.module('jewelApp.controllers', ['ngCordova.plugins.contacts', 'ngCordova.plugins.bluetoothle']);
+angular.module('jewelApp.services', ['jewelbots.utils']);
+angular.module('jewelApp.directives', []);
+angular.module('jewelApp', ['ionic', 'lodash', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova', 'jewelbots.utils', 'jewelApp.directives'])
 .run(['$ionicPlatform', '$logService' ,function($ionicPlatform, $logService) {
   $ionicPlatform.ready(function() {
     if (navigator.contacts !== undefined) {
@@ -93,8 +96,7 @@ angular.module('jewelApp', ['ionic', 'lodash', 'jewelApp.services', 'jewelApp.co
 
   $urlRouterProvider.otherwise('/home');
 }]);
-angular.module('jewelApp.controllers', ['ngCordova.plugins.contacts', 'ngCordova.plugins.bluetoothle']);
-angular.module('jewelApp.services', ['jewelbots.utils']);
+
 
 
 

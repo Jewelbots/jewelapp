@@ -62,73 +62,103 @@ i.large-size-icon {
   margin: auto;
 }
 
-.circle {
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  /* width and height can be anything, as long as they're equal */
-}
-div.footer-circle-menu {
+#jewelbots-menu-bar {
   display: block;
-  width: auto;
-  table-layout:fixed;
-  margin: 0 auto 0 auto;
-}
-div.footer-circle-menu span {
-  display: inline-block;
+  position: relative;
+  width: 300px;
+  height: 60px;
+  margin: 20px 0 0 0;
+  padding: 0 0 0 0;
+  background-color: #fff;
+
   text-align: center;
-  margin: 0 5px 0 5px;
 }
-.circle-red {
-  height: 25px;
-  width: 25px;
-  border-radius: 50%;
+#jewelbots-menu-bar .circle {
   display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin: 15px 7px 0 7px;
+  padding: 0 0 0 0;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+
+  -webkit-transition: .1s ease-in;
+  -moz-transition: .1s ease-in;
+  -o-transition: .1s ease-in;
+  -ms-transition: .1s ease-in;
+  transition: .1s ease-in;
+
+  font-family: "verdana",sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+  color: rgba(255,255,255,0.0);
+  overflow: hidden;
+
+  cursor: pointer;
+
+  -webkit-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.35);
+  -moz-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.35);
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.35);
+}
+#jewelbots-menu-bar .circle.active {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 10px 2px -5px 2px;
+  padding: 0 0 0 0;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+
+  -webkit-transition: .1s ease-in;
+  -moz-transition: .1s ease-in;
+  -o-transition: .1s ease-in;
+  -ms-transition: .1s ease-in;
+  transition: .1s ease-in;
+
+  font-family: "verdana",sans-serif;
+  font-size: 25px;
+  line-height: 38px;
+  color: rgba(255,255,255,1.0);
+  overflow: hidden;
+
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
+}
+
+#jewelbots-menu-bar .red {
   background-color: red;
 }
-.circle-orange {
-  background-color: orange;
-}
-.circle-yellow {
-  background-color: yellow;
-}
-.circle-green {
-  background-color: green;
-}
-.circle-blue {
+#jewelbots-menu-bar .blue {
   background-color: blue;
 }
-.circle-purple {
+#jewelbots-menu-bar .green {
+  background-color: green;
+}
+#jewelbots-menu-bar .yellow {
+  background-color: yellow;
+}
+#jewelbots-menu-bar .purple {
   background-color: purple;
 }
-.circle-pink {
+#jewelbots-menu-bar .orange {
+  background-color: orange;
+}
+#jewelbots-menu-bar .yellow {
+  background-color: yellow;
+}
+#jewelbots-menu-bar .pink {
   background-color: pink;
 }
-.circle-plum {
+#jewelbots-menu-bar .plum {
   background-color: #8E4585;
 }
 
-
-.jewelbots-menu-item label input {
-  display: none;
-}
-.jewelbots-menu-item label span {
-  text-align: center;
-}
-
-.jewelbots-menu-item [type=checkbox]:checked + span:after {
-  font-size: 10px;
-  font-color: white;
-  content: '\274c';
-  text-align: center;
-  border-radius: 50%;
-  height: 100px;
-  width: 100px;
-}
-
-<label>
- <input type="checkbox" />
-<span class="circle-red"></span>
-                           </label>
 
 
