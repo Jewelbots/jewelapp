@@ -64,22 +64,21 @@ i.large-size-icon {
 
 #jewelbots-menu-bar {
   display: block;
-  position: relative;
-  width: 300px;
-  height: 60px;
-  margin: 20px 0 0 0;
-  padding: 0 0 0 0;
-  background-color: #fff;
+  width: auto;
+  table-layout:fixed;
+  margin: 0 auto 0 auto;
+
 
   text-align: center;
 }
 #jewelbots-menu-bar .circle {
   display: inline-block;
+  text-align: center;
+
+  display: inline-block;
   position: relative;
-  width: 30px;
-  height: 30px;
-  margin: 15px 7px 0 7px;
-  padding: 0 0 0 0;
+
+  margin: 0 5px 0 5px;
 
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -93,7 +92,6 @@ i.large-size-icon {
 
   font-family: "verdana",sans-serif;
   font-size: 20px;
-  line-height: 30px;
   color: rgba(255,255,255,0.0);
   overflow: hidden;
 
