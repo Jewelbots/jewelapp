@@ -10,12 +10,14 @@
         {{ item.givenName + ' ' + item.familyName + '. ' }}
       </ion-checkbox>
     </div>
-    <jewelbots-menu bind="selectedMenuItem"></jewelbots-menu>
+    <jewelbots-menu bind="menu.selectedMenuItem"></jewelbots-menu>
+    <div ng-show="menu.selectedMenuItem">Choose Color</div>
+    <div>{{menu.selectedMenuItem}} is the color that's chosen</div>
   </ion-content>
   <ion-footer-bar class="bar-positive">
     {{ (model.contacts | filter:{checked: true }).length }} selected
     <div class="buttons pull-right">
-      <button class="button" ng-click="addFriends()"><i class="ion-ios-arrow-forward"></i></button>
+      <button class="button" ng-disabled="!menu.selectedMenuItem" ng-click="addFriends()"><i class="ion-ios-arrow-forward"></i></button>
     </div>
   </ion-footer-bar>
 </ion-modal-view>

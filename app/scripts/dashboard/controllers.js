@@ -23,6 +23,9 @@ angular.module('jewelApp.controllers')
       $logService.Log('message', 'entering has friends');
       return UserService.HasFriends();
     };
+    $scope.menu = {
+      selectedMenuItem : ''
+    };
     $scope.model = {
       contacts : []
     };
@@ -53,6 +56,8 @@ angular.module('jewelApp.controllers')
     $scope.findFriendsToAdd = function(color) {
       $scope.model.color = color;
       $logService.Log('message', 'entering find Friends?' + JSON.stringify(color));
+      $logService.Log('message', 'menu.selectedMenuItem is: ' + JSON.stringify($scope.menu.selectedMenuItem));
+      $logService.Log('message', 'selectedMenuItem is: ' + JSON.stringify($scope.selectedMenuItem));
         $ionicPlatform.ready().then( function () {
           return $cordovaContacts.find({fields: ['givenName', 'familyName', 'phoneNumbers'], multiple:true}).then(function (success) {
               _.forEach(success, function (p) {
@@ -65,6 +70,8 @@ angular.module('jewelApp.controllers')
     $scope.addFriends = function() {
       //var selectedContacts = _.where($scope.model.contacts,{ checked : true });
       //FriendService.AddFriend(contact);
+      var selectedItem = $scope.menu.selectedMenuItem;
+      $logService.Log('message', 'selectedMenuItem is: ' + selectedItem);
       $scope.modal.hide();
     };
 }]);

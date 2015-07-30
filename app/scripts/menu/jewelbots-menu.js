@@ -2,9 +2,7 @@ angular.module('jewelApp.directives')
   .directive('jewelbotsMenu', function() {
     return {
       restrict: 'E',
-      scope : {
-        selectedMenuItem : '='
-      },
+      scope :false,
       controller : function ($scope, $element) {
         console.log('element is: ' + $element);
         $scope.addRemoveClassFunction = function (color) {
@@ -23,15 +21,18 @@ angular.module('jewelApp.directives')
             elements[j].classList.add('activated');
             elements[j].classList.add('active');
           }
-          $scope.selectedMenuItem = color;
+          $scope.menu.selectedMenuItem = color;
         };
       },
       template: '<ul id="jewelbots-menu-bar">' +
     '<li class="circle red" ng-click="addRemoveClassFunction(\'red\')">╳</li>' +
+      '<li class="circle orange" ng-click="addRemoveClassFunction(\'orange\')">╳</li>' +
     '<li class="circle blue" ng-click="addRemoveClassFunction(\'blue\')">╳</li>' +
     '<li class="circle green" ng-click="addRemoveClassFunction(\'green\')">╳</li>' +
     '<li class="circle yellow" ng-click="addRemoveClassFunction(\'yellow\')">╳</li>' +
-    '<li class="circle purple" ng-click="addRemoveClassFunction(\'purple\')">╳</li>' +
+    '<li class="circle pink" ng-click="addRemoveClassFunction(\'pink\')">╳</li>' +
+      '<li class="circle plum" ng-click="addRemoveClassFunction(\'plum\')">╳</li>' +
+      '<li class="circle purple" ng-click="addRemoveClassFunction(\'purple\')">╳</li>' +
     '</ul>'
     };
   });
