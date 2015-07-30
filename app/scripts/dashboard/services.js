@@ -20,6 +20,12 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
       },
       Pair : function (address) {
         $localStorage.set('Connection', address);
+      },
+      HasPhoneNumber : function () {
+        return $localStorage.get('PhoneNumber', '').length > 0;
+      },
+      SetPhoneNumber : function (number) {
+        return $localStorage.set('PhoneNumber', number);
       }
     };
     return service;
@@ -44,6 +50,12 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
 
       IsRegistered : function () {
         return DataService.IsRegistered();
+      },
+      HasPhoneNumber : function () {
+        return DataService.HasPhoneNumber();
+      },
+      SetPhoneNumber : function (unHashedNumber) {
+
       }
     };
     return service;

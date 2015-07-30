@@ -3,9 +3,14 @@
       Add your friends to colors so they light up the same when you're close.
     </p>
     <div class="buttons">
-      <button class="button button-icon ion-ios-plus-outline large-size-icon" ng-click="openModal(menu.selectedMenuItem)" id="datbutton">
+      <button ng-disabled="!allowedToAddFriends()" class="button button-icon ion-ios-plus-outline large-size-icon" ng-click="openModal(menu.selectedMenuItem)" id="datbutton">
         Add Friends
       </button>
+    </div>
+    <div ng-show="!allowedToAddFriends()"><em>In order to add friends through the app, you'll need to set up your contact information:</em>
+      <div class="buttons">
+        <button class="button button-positive">Take Me There!</button>
+      </div>
     </div>
 
 

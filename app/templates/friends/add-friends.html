@@ -10,9 +10,9 @@
         {{ item.givenName + ' ' + item.familyName + '. ' }}
       </ion-checkbox>
     </div>
-    <jewelbots-menu bind="menu.selectedMenuItem"></jewelbots-menu>
+
     <div ng-show="menu.selectedMenuItem">Choose Color</div>
-    <div>{{menu.selectedMenuItem}} is the color that's chosen</div>
+    <jewelbots-menu bind="menu.selectedMenuItem"></jewelbots-menu>
   </ion-content>
   <ion-footer-bar class="bar-positive">
     {{ (model.contacts | filter:{checked: true }).length }} selected
