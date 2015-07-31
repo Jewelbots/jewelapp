@@ -55,7 +55,7 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         return DataService.HasPhoneNumber();
       },
       SetPhoneNumber : function (unHashedNumber) {
-
+        DataService.SetPhoneNumber(unHashedNumber);
       }
     };
     return service;

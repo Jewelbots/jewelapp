@@ -11,7 +11,7 @@ angular.module('jewelApp.controllers')
     };
 
 }])
-.controller('DashboardCtrl', ['$scope', '$state', '$ionicPlatform', '$cordovaContacts', '$logService', 'UserService', '_', '$ionicModal','Parse', function($scope, $state, $ionicPlatform, $cordovaContacts, $logService, UserService, _, $ionicModal, Parse) {
+.controller('DashboardCtrl', ['$scope', '$state', '$ionicPlatform', '$cordovaContacts', '$logService', 'UserService', '_', '$ionicModal', function($scope, $state, $ionicPlatform, $cordovaContacts, $logService, UserService, _, $ionicModal) {
 
     $ionicModal.fromTemplateUrl('templates/friends/add-friends.html', {
       scope: $scope
@@ -21,7 +21,7 @@ angular.module('jewelApp.controllers')
     });
     $scope.allowedToAddFriends = function () {
       return UserService.HasPhoneNumber();
-    }
+    };
     $scope.hasFriends = function() {
 
       $logService.Log('message', 'entering has friends');
@@ -73,8 +73,8 @@ angular.module('jewelApp.controllers')
         });
     };
     $scope.addFriends = function() {
-      var selectedContacts = _.where($scope.model.contacts,{ checked : true });
-      Parse.Storage();
+      //var selectedContacts = _.where($scope.model.contacts,{ checked : true });
+      //Parse.Storage();
       var selectedItem = $scope.menu.selectedMenuItem;
       $logService.Log('message', 'selectedMenuItem is: ' + selectedItem);
       $scope.modal.hide();

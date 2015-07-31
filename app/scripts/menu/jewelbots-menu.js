@@ -1,3 +1,4 @@
+'use strict';
 angular.module('jewelApp.directives')
   .directive('jewelbotsMenu', function() {
     return {

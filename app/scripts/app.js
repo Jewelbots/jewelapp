@@ -15,7 +15,7 @@ angular.module('jewelApp.services', ['jewelbots.utils']);
 angular.module('jewelApp.directives', []);
 angular.module('jewelApp', ['ionic', 'lodash', 'Parse', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova', 'jewelbots.utils', 'jewelApp.directives'])
 .run(['$ionicPlatform', '$logService', 'Parse', function($ionicPlatform, $logService, Parse) {
-  Parse.initialize("aRsOu0eubWBbvxFjPiVPOnyXuQjhgHZ1sjpVAvOM", "p8qy8tXJxME6W7Sx5hXiHatfFDrmkNoXWWvqksFW");
+  Parse.initialize('aRsOu0eubWBbvxFjPiVPOnyXuQjhgHZ1sjpVAvOM', 'p8qy8tXJxME6W7Sx5hXiHatfFDrmkNoXWWvqksFW');
   $ionicPlatform.ready(function() {
     if (navigator.contacts !== undefined) {
       $logService.Log('message', 'cordova contacts works?');
