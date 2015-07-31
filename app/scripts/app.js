@@ -7,6 +7,10 @@ angular.module('Parse', [])
   .factory('Parse', function () {
     return window.Parse;
   });
+angular.module('CryptoJS', [])
+  .factory('CryptoJS', function () {
+    return window.CryptoJS;
+  });
 angular.module('ngCordova', ['ngCordova.plugins']);
 angular.module('ngCordova.plugins.bluetoothle');
 angular.module('ngCordova.plugins.contacts');
@@ -14,8 +18,12 @@ angular.module('jewelApp.controllers', ['ngCordova.plugins.contacts', 'ngCordova
 angular.module('jewelApp.services', ['jewelbots.utils']);
 angular.module('jewelApp.directives', []);
 angular.module('jewelApp', ['ionic', 'lodash', 'Parse', 'jewelApp.services', 'jewelApp.controllers', 'ngCordova', 'jewelbots.utils', 'jewelApp.directives'])
-.run(['$ionicPlatform', '$logService', 'Parse', function($ionicPlatform, $logService, Parse) {
+.run(['$ionicPlatform', '$logService', 'Parse', 'DataService', function($ionicPlatform, $logService, Parse, DataService) {
   Parse.initialize('aRsOu0eubWBbvxFjPiVPOnyXuQjhgHZ1sjpVAvOM', 'p8qy8tXJxME6W7Sx5hXiHatfFDrmkNoXWWvqksFW');
+    $logService.Log('message', 'platform is: ' + JSON.stringify(ionic.Platform.platform()) );
+    if (ionic.Platform.platform() === 'macintel' ) {
+      DataService.Pair('AB:CD:EF:GH:IJ:12');
+    }
   $ionicPlatform.ready(function() {
     if (navigator.contacts !== undefined) {
       $logService.Log('message', 'cordova contacts works?');

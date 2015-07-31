@@ -21,18 +21,33 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
       Pair : function (address) {
         $localStorage.set('Connection', address);
       },
+      GetDeviceId : function () {
+        return $localStorage.get('Connection', '');
+      },
       HasPhoneNumber : function () {
         return $localStorage.get('PhoneNumber', '').length > 0;
       },
       SetPhoneNumber : function (number) {
         return $localStorage.set('PhoneNumber', number);
-      }
+      },
+      AgreedToPrivacyPolicy : function () {
+        return $localStorage.get('acceptPrivacyPolicy') === true;
+      },
+      SetPrivacyPolicy : function (valueSet) {
+        $localStorage.set('acceptPrivacyPolicy', valueSet);
+      },
     };
     return service;
   }])
-  .factory('UserService',['$ionicPlatform', '$cordovaBluetoothle', '$timeout', '$logService','SettingsService', 'DataService',  function($ionicPlatform, $cordovaBluetoothle, $timeout, $logService, SettingsService, DataService) {
+  .factory('UserService',['$ionicPlatform', '$cordovaBluetoothle', '$timeout', '$logService','SettingsService', 'DataService', function($ionicPlatform, $cordovaBluetoothle, $timeout, $logService, SettingsService, DataService) {
     var self = this;
     var service = {
+      AgreedToPrivacyPolicy : function () {
+        return DataService.AgreedToPrivacyPolicy();
+      },
+      SetPrivacyPolicy : function (valueSet) {
+        DataService.SetPrivacyPolicy(valueSet);
+      },
       GetFriends : function () {
         return DataService.GetFriends();
       },
@@ -55,7 +70,9 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         return DataService.HasPhoneNumber();
       },
       SetPhoneNumber : function (unHashedNumber) {
-        DataService.SetPhoneNumber(unHashedNumber);
+        //var salt = DataService.GetDeviceId();
+        //var hashedPhoneNumber = CryptoJS.PBKDF2(unHashedNumber, salt, { keySize: 128/32 });
+        //DataService.SetPhoneNumber(unHashedNumber);
       }
     };
     return service;

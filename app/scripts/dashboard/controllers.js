@@ -17,7 +17,6 @@ angular.module('jewelApp.controllers')
       scope: $scope
     }).then(function (modal) {
       $scope.modal = modal;
-      $logService.Log('modal scope is: ' + JSON.stringify($scope.model));
     });
     $scope.allowedToAddFriends = function () {
       return UserService.HasPhoneNumber();
