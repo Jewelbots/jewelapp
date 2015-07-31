@@ -39,7 +39,7 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
     };
     return service;
   }])
-  .factory('UserService',['$ionicPlatform', '$cordovaBluetoothle', '$timeout', '$logService','SettingsService', 'DataService', function($ionicPlatform, $cordovaBluetoothle, $timeout, $logService, SettingsService, DataService) {
+  .factory('UserService',['$ionicPlatform', '$cordovaBluetoothle', '$timeout', '$logService','DataService', function($ionicPlatform, $cordovaBluetoothle, $timeout, $logService, DataService) {
     var self = this;
     var service = {
       AgreedToPrivacyPolicy : function () {
