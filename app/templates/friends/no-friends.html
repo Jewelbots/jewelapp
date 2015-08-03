@@ -7,10 +7,24 @@
         Add Friends
       </button>
     </div>
-    <div ng-show="!allowedToAddFriends()"><em>In order to add friends through the app, you'll need to set up your contact information:</em>
-      <div class="buttons">
-        <button class="button button-positive">Take Me There!</button>
+    <div ng-show="!allowedToAddFriends()"><em>In order to add friends through the app, you'll need to add your phone number:</em>
+      <div class="list card">
+        Text message rates may apply.
+        <label class="item item-input">
+          <a href="#" class="item item-icon-left">
+            <i class="icon ion-ios-telephone"></i>
+            Enter phone number
+          </a>
+          <span class="input-label">Telephone</span>
+          <input type="tel">
+        </label>
       </div>
+      <div class="buttons">
+        <button ng-disabled="!model.telephone" class="button button-positive" ng-click="sendSMS(model.telephone)">Add phone</button>
+      </div>
+    </div>
+    <div>
+      <em>We do not collect or store your phone number in a retrievable format</em>. Read our privacy policy for more information.
     </div>
 
 

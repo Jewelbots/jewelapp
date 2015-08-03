@@ -1,6 +1,16 @@
 'use strict';
 angular.module('jewelApp.services')//Todo: Implement Parse.com calls
-.factory('JewelbotService',['$ionicPlatform', '$cordovaBluetoothle', '$timeout', '$logService',  function($ionicPlatform, $cordovaBluetoothle, $timeout, $logService) {
+.factory('JewelbotService',
+  [ '$cordovaBluetoothle',
+    '$ionicPlatform',
+    '$logService',
+    '$timeout',
+  function(
+    $cordovaBluetoothle,
+    $ionicPlatform,
+    $logService,
+    $timeout
+    ) {
     var service = {
         IsPaired : function() {
             return false; //STUB; replace with Parse.com call. toggle to manually test different states.

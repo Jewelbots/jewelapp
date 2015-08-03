@@ -1,6 +1,16 @@
 'use strict';
 angular.module('jewelApp.controllers')
-  .controller('StartCtrl',['$scope', '$state', 'UserService', 'JewelbotService',  function ($scope, $state, UserService, JewelbotService) {
+  .controller('StartCtrl', [
+  '$scope',
+  '$state',
+  'JewelbotService',
+  'UserService',
+  function (
+  $scope,
+  $state,
+  JewelbotService,
+  UserService
+  ) {
 
     if (!JewelbotService.IsPaired()) {
       console.log('user has not paired device');
@@ -12,7 +22,17 @@ angular.module('jewelApp.controllers')
     }
 
   }])
-  .controller('LoadCtrl', ['$ionicLoading', '$state', '$scope', '$timeout', function($ionicLoading, $state, $scope, $timeout) {
+  .controller('LoadCtrl', [
+  '$ionicLoading',
+  '$scope',
+  '$state',
+  '$timeout',
+  function(
+  $ionicLoading,
+  $scope,
+  $state,
+  $timeout
+  ) {
     $scope.show = function() {
       $ionicLoading.show({
         templateUrl: '/templates/start/load.html'
@@ -48,7 +68,17 @@ angular.module('jewelApp.controllers')
 
 
   }])
-  .controller('PrivacyCtrl', ['$scope', '$state', '$ionicPopup', 'UserService', function($scope, $state, $ionicPopup, UserService) {
+  .controller('PrivacyCtrl', [
+  '$ionicPopup',
+  '$scope',
+  '$state',
+  'UserService',
+  function(
+  $ionicPopup,
+  $scope,
+  $state,
+  UserService
+  ) {
     $scope.checkboxModel = {
       checked : false
     };
@@ -59,7 +89,7 @@ angular.module('jewelApp.controllers')
       }
       else {
         $ionicPopup.alert({
-          template: 'We need to make sure you have read and understood our privacy police. Please read all the way through and tap the checkbox before tapping \'Confirm\'',
+          template: 'We need to make sure you have read and understood our privacy policy. Please read all the way through and tap the checkbox before tapping \'Confirm\'',
           title: 'Please Confirm'
         });
       }

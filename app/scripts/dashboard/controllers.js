@@ -1,6 +1,16 @@
 'use strict';
 angular.module('jewelApp.controllers')
-.controller('HomeCtrl',['$scope', '$window', '$state', 'DataService',  function($scope, $window, $state, DataService) {
+.controller('HomeCtrl',
+ [
+  '$scope',
+  '$state',
+  '$window',
+  'DataService',
+ function(
+  $scope,
+  $state,
+  $window,
+  DataService) {
     $scope.isPaired = function() {
       if (!DataService.IsPaired()) {
         $state.go('pair');
@@ -11,8 +21,33 @@ angular.module('jewelApp.controllers')
     };
 
 }])
-.controller('DashboardCtrl', ['$scope', '$state', '$ionicPlatform', '$cordovaContacts', '$logService', 'UserService', '_', '$ionicModal', function($scope, $state, $ionicPlatform, $cordovaContacts, $logService, UserService, _, $ionicModal) {
-
+.controller('DashboardCtrl',
+ [
+  '$cordovaContacts',
+  '$cordovaDialogs',
+  '$ionicModal',
+  '$ionicPlatform',
+  '$logService',
+  '$scope',
+  '$state',
+  '$stateParams',
+  'UserService',
+  '_',
+ function(
+  $cordovaContacts,
+  $cordovaDialogs,
+  $ionicModal,
+  $ionicPlatform,
+  $logService,
+  $scope,
+  $state,
+  $stateParams,
+  UserService,
+  _
+  ) {
+    if ($stateParams.src === 'phoneVerification') {
+      $cordovaDialogs.alert('', 'Your phone number has been verified', 'OK');
+    }
     $ionicModal.fromTemplateUrl('templates/friends/add-friends.html', {
       scope: $scope
     }).then(function (modal) {
@@ -30,7 +65,8 @@ angular.module('jewelApp.controllers')
       selectedMenuItem : ''
     };
     $scope.model = {
-      contacts : []
+      contacts : [],
+      telephone: ''
     };
     var getPhoneNumbers = function (r) {
       var phoneNumbersArray = r.phoneNumbers;
@@ -78,4 +114,33 @@ angular.module('jewelApp.controllers')
       $logService.Log('message', 'selectedMenuItem is: ' + selectedItem);
       $scope.modal.hide();
     };
+    $scope.sendSMS = function (telephone) {
+      $state.go('send-sms');
+    };
+}])
+.controller('SMSCtrl', [
+ '$scope',
+ '$state',
+ '$stateParams',
+ function (
+ $scope,
+ $state,
+ $stateParams
+ ) {
+   var isVerified = function(code) {
+     //return $stateParams.generatedCode === code;
+     console.log(code);
+     return true;
+   };
+  $scope.sendSMS = function (phoneNumber) {
+    //Twillio.SendSMS($stateParams.phoneNumber);
+    console.log(phoneNumber);
+    $state.go('sms-verification-screen');
+  };
+
+  $scope.verifySMS = function (verificationCode) {
+    if (isVerified(verificationCode)) {
+      $state.go('dashboard', {src: 'phoneVerification'});
+    }
+  };
 }]);

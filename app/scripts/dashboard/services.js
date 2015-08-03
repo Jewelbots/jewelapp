@@ -1,6 +1,9 @@
 'use strict';
 angular.module('jewelApp.services')//Todo: Implement Parse.com calls
-  .factory('DataService', ['$localStorage', function($localStorage) {
+  .factory('DataService', [
+   '$localStorage',
+   function(
+    $localStorage) {
     var service =  {
       IsRegistered : function () {
         return $localStorage.get('IsRegistered', false);
@@ -39,7 +42,18 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
     };
     return service;
   }])
-  .factory('UserService',['$ionicPlatform', '$cordovaBluetoothle', '$timeout', '$logService','DataService', function($ionicPlatform, $cordovaBluetoothle, $timeout, $logService, DataService) {
+  .factory('UserService',
+    ['$cordovaBluetoothle',
+     '$ionicPlatform',
+     '$logService',
+     '$timeout',
+     'DataService',
+     function (
+       $cordovaBluetoothle,
+       $ionicPlatform,
+       $logService,
+       $timeout,
+       DataService) {
     var self = this;
     var service = {
       AgreedToPrivacyPolicy : function () {

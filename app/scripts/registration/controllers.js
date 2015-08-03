@@ -1,6 +1,22 @@
 'use strict';
 angular.module('jewelApp.controllers')
-.controller('PairCtrl',['$scope', '$state', '$timeout', '$logService', '$ionicPlatform', '$cordovaBluetoothle','DataService', function($scope, $state, $timeout, $logService, $ionicPlatform, $cordovaBluetoothle, DataService){
+.controller('PairCtrl',[
+  '$cordovaBluetoothle',
+  '$ionicPlatform',
+  '$logService',
+  '$scope',
+  '$state',
+  '$timeout',
+  'DataService',
+  function(
+  $cordovaBluetoothle,
+  $ionicPlatform,
+  $logService,
+  $scope,
+  $state,
+  $timeout,
+  DataService
+  ){
     $scope.model = {
       status : 'starting...',
       chosenDevice : {},

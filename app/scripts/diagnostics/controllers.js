@@ -1,6 +1,14 @@
 'use strict';
 angular.module('jewelApp.controllers')
-  .controller('DiagnosticCtrl',['$scope', '$window', '$logService', function($scope, $window, $logService) {
+  .controller('DiagnosticCtrl',[
+  '$logService',
+  '$scope',
+  '$window',
+  function(
+  $logService,
+  $scope,
+  $window
+  ) {
     $scope.model = {
       logs : [],
       isPaired : false
