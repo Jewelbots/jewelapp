@@ -1,0 +1,15 @@
+<ion-view>
+  <div class="bar bar-header bar-light">
+    <div class="center-icon"><i class="jewelbots-icon"></i></div>
+  </div>
+  Please enter the verification code we sent you.
+
+  <a href="#" ng-click="noSMS()">Didn't get SMS?</a>
+  <div class="list">
+
+    <label class="item item-input">
+      <span class="input-label">Enter verification code</span>
+      <input type="tel" ng-model="model.verificationCode" ng-change="checkVerifyCode()">
+    </label>
+  </div>
+</ion-view>

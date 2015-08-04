@@ -133,15 +133,12 @@ angular.module('jewelApp',
         controller: 'PrivacyCtrl',
         templateUrl: 'templates/start/privacy.html'
       })
-      .state('send-sms', {
-        url: '/sms/send',
-        controller: 'SMSCtrl'
-      })
       .state('sms-verification-screen', {
         url: '/sms/verify',
         controller : 'SMSCtrl',
         templateUrl: 'templates/sms/verify.html'
       });
+
 
       $urlRouterProvider.otherwise('/home');
 }]);

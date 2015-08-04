@@ -115,8 +115,7 @@ angular.module('jewelApp.controllers')
       $scope.modal.hide();
     };
     $scope.sendSMS = function (telephone) {
-
-      $state.go('send-sms');
+      $state.go('sms-verification-screen', { src: 'telephone'});
     };
 }])
 .controller('SMSCtrl', [
@@ -128,20 +127,21 @@ angular.module('jewelApp.controllers')
  $state,
  $stateParams
  ) {
-   var isVerified = function(code) {
-     //return $stateParams.generatedCode === code;
-     console.log(code);
-     return true;
-   };
-  $scope.sendSMS = function (phoneNumber) {
-    //Twillio.SendSMS($stateParams.phoneNumber);
-    console.log(phoneNumber);
-    $state.go('sms-verification-screen');
-  };
 
-  $scope.verifySMS = function (verificationCode) {
-    if (isVerified(verificationCode)) {
+  $scope.checkVerifyCode = function () {
+    if ($scope.model.verificationCode === $stateParams.verificationCode) {
       $state.go('dashboard', {src: 'phoneVerification'});
     }
-  };
+  }
+
+  if ($stateParams.telephone.length > 0) {
+    console.log($stateParams.telephone);
+    $scope.sendSMS($stateParams.telephone);
+    //Twilio send SMS;
+  }
+
+$scope.noSMS = function () {
+
+};
+
 }]);
