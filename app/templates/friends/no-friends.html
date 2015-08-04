@@ -16,11 +16,11 @@
             Enter phone number
           </a>
           <span class="input-label">Telephone</span>
-          <input type="tel">
+          <input type="tel" ng-model="model.telephone">
         </label>
       </div>
       <div class="buttons">
-        <button ng-disabled="!model.telephone" class="button button-positive" ng-click="sendSMS(model.telephone)">Add phone</button>
+        <button ng-disabled="!model.telephone.length > 0" class="button button-positive" ng-click="sendSMS(model.telephone)">Add phone</button>
       </div>
     </div>
     <div>

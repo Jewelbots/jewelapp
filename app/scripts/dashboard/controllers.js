@@ -115,6 +115,7 @@ angular.module('jewelApp.controllers')
       $scope.modal.hide();
     };
     $scope.sendSMS = function (telephone) {
+
       $state.go('send-sms');
     };
 }])
