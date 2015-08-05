@@ -1,5 +1,5 @@
 'use strict';
-angular.module('jewelApp.services')//Todo: Implement Parse.com calls
+angular.module('jewelApp.services')
 .factory('JewelbotService',
   [ '$cordovaBluetoothle',
     '$ionicPlatform',

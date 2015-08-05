@@ -113,8 +113,5 @@ angular.module('jewelApp.controllers')
     catch (err) {
       $logService.Log('error', 'error trying to getAvailableDevices: ' + JSON.stringify(err));
     }
-}])
+}]);
 
-.controller('RegistrationCtrl', function(){
-
-});

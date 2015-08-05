@@ -1,3 +1,4 @@
+/* global bluetoothle, ionic */
 'use strict';
 angular.module('lodash', [])
   .factory('_', function() {
