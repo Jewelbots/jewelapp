@@ -77,7 +77,7 @@ angular.module('jewelApp',
    $urlRouterProvider) {
      $stateProvider
      .state('dashboard', {
-          url: '/dashboard',
+          url: '/dashboard/:src',
           controller: 'DashboardCtrl',
           templateUrl: 'templates/dashboard/index.html'
      })
@@ -136,7 +136,7 @@ angular.module('jewelApp',
         templateUrl: 'templates/start/privacy.html'
       })
       .state('sms-verification-screen', {
-        url: '/sms/verify',
+        url: '/sms/verify/:telephone',
         controller : 'SMSCtrl',
         templateUrl: 'templates/sms/verify.html'
       });
