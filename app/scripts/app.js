@@ -12,6 +12,7 @@ angular.module('CryptoJS', [])
   .factory('CryptoJS', function () {
     return window.CryptoJS;
   });
+
 angular.module('ngCordova', ['ngCordova.plugins']);
 angular.module('ngCordova.plugins.bluetoothle');
 angular.module('ngCordova.plugins.contacts');
