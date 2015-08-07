@@ -73,7 +73,7 @@ angular.module('jewelApp.controllers')
           return '';
         }
         var firstName = name.givenName;
-        var familyName = ((typeof name.familyName === 'string' || name.familyName instanceof String) && name.familyName.length > 0) ? name.familyName.charAt(0) : '';
+        var familyName = ((typeof name.familyName === 'string' || name.familyName instanceof String) && name.familyName.length > 0) ? name.familyName.charAt(0) + '.' : '';
         return {
           name : (firstName + ' ' + familyName).trim(),
           phoneNumber : name.phoneNumber
