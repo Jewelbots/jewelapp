@@ -5,12 +5,14 @@ angular.module('jewelApp.services')
     '$ionicPlatform',
     '$logService',
     '$timeout',
+    'CryptoJS',
     'DataService',
     function (
       $cordovaBluetoothle,
       $ionicPlatform,
       $logService,
       $timeout,
+      CryptoJS,
       DataService) {
       var self = this;
       var service = {
@@ -43,9 +45,11 @@ angular.module('jewelApp.services')
         },
         SetPhoneNumber : function (unHashedNumber) {
           $logService.Log('message', 'unhashed number is ' + unHashedNumber);
-          //var salt = DataService.GetDeviceId();
-          //var hashedPhoneNumber = CryptoJS.PBKDF2(unHashedNumber, salt, { keySize: 128/32 });
-          //DataService.SetPhoneNumber(unHashedNumber);
+          var salt = DataService.GetDeviceId();
+          $logService.Log('message', 'salt is: ' + JSON.stringify(salt));
+          var hashedPhoneNumber = CryptoJS.PBKDF2(unHashedNumber, salt, { keySize: 128/32 });
+          $logService.Log('message', 'hashed Phone Number is: ' + JSON.stringify(hashedPhoneNumber));
+          DataService.SetPhoneNumber(hashedPhoneNumber);
         }
       };
       return service;
