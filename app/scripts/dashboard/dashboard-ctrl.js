@@ -24,14 +24,19 @@ angular.module('jewelApp.controllers')
       UserService,
       _
     ) {
-      if ($stateParams.src === 'phoneVerification') {
-        $cordovaDialogs.alert('', 'Your phone number has been verified', 'OK');
-      }
-      $ionicModal.fromTemplateUrl('templates/friends/add-friends.html', {
-        scope: $scope
-      }).then(function (modal) {
-        $scope.modal = modal;
-      });
+      $scope.startUp = function () {
+
+        if ($stateParams.src === 'phoneVerification') {
+          $cordovaDialogs.alert('', 'Your phone number has been verified', 'OK');
+          delete $stateParams.src;
+        }
+        $ionicModal.fromTemplateUrl('templates/friends/add-friends.html', {
+          scope: $scope
+        }).then(function (modal) {
+          $scope.modal = modal;
+        });
+      };
+
       $scope.allowedToAddFriends = function () {
         return UserService.HasPhoneNumber();
       };
@@ -98,4 +103,5 @@ angular.module('jewelApp.controllers')
         console.log('telephone is: ' + telephone);
         $state.go('sms-verification-screen', { telephone: telephone});
       };
+      $scope.startUp();
     }]);
