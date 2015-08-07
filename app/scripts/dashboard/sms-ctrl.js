@@ -17,7 +17,7 @@ angular.module('jewelApp.controllers')
   ) {
     Parse.initialize('j5XHG7wZ7z62lWCT4H43220C31slqlbswptPkbbU', '5qEip2ImNHArKNdWDnC3SYNjxFpSQG3vkZ1UOjR6');
   $scope.model = {
-
+    userInputVerificationCode : ''
   };
     $scope.startUp = function () {
       if ($stateParams.hasOwnProperty('telephone') && $stateParams.telephone.length > 0) {
@@ -32,14 +32,14 @@ angular.module('jewelApp.controllers')
       }
     };
     $scope.checkVerifyCode = function () {
-      $logService.Log('message', 'verificationCode : ' + JSON.stringify(verificationCode));
-      if ($scope.model.verificationCode === $scope.model.userInputVerificationCode) {
+      $logService.Log('message', 'verificationCode entered was : ' + JSON.stringify($scope.model.userInputVerificationCode));
+      if ($scope.model.verificationCode.toString() === $scope.model.userInputVerificationCode.toString()) {
         UserService.SetPhoneNumber($scope.model.userEnteredTelephone);
         $state.go('dashboard', {src: 'phoneVerification'});
       }
-      else if ($scope.model.verificationCode !== verificationCode) {
+      else if ($scope.model.verificationCode !== $scope.model.userInputVerificationCode) {
         //Todo: write alert for user
-        $logService.Log('message', 'verificationCode : ' + JSON.stringify(verificationCode) + ' does not equal Model: ' + $scope.model.verificationCode);
+        $logService.Log('message', 'User Input verificationCode : ' + JSON.stringify($scope.model.userInputVerificationCode) + ' does not equal Model: ' + $scope.model.verificationCode);
       }
     };
 
