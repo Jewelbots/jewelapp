@@ -90,7 +90,7 @@ angular.module('jewelApp.controllers')
             $scope.model.contacts = $scope.model.contacts.sort(function (obj1, obj2) {
               return obj1.givenName < obj2.givenName;
             });
-            $scope.model.contacts
+            
             $logService.Log('message', 'success is : ' + JSON.stringify($scope.model.contacts));
           });
         });
