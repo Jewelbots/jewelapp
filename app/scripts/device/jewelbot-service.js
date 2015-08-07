@@ -1,6 +1,16 @@
 'use strict';
-angular.module('jewelApp.services')//Todo: Implement Parse.com calls
-.factory('JewelbotService',['$ionicPlatform', '$cordovaBluetoothle', '$timeout', '$logService',  function($ionicPlatform, $cordovaBluetoothle, $timeout, $logService) {
+angular.module('jewelApp.services')
+.factory('JewelbotService',
+  [ '$cordovaBluetoothle',
+    '$ionicPlatform',
+    '$logService',
+    '$timeout',
+  function(
+    $cordovaBluetoothle,
+    $ionicPlatform,
+    $logService,
+    $timeout
+    ) {
     var service = {
         IsPaired : function() {
             return false; //STUB; replace with Parse.com call. toggle to manually test different states.
@@ -14,18 +24,18 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         Pair : function (device) {
           var result = $cordovaBluetoothle.initialize({'request': true})
           .then(function (response) {
-            $logService.LogMessage('Response was: ' + JSON.stringify(response));
+            $logService.Log('message', 'Response was: ' + JSON.stringify(response));
             if (response.status === 'enabled') {
               var connected = $timeout($cordovaBluetoothle.connect({'address': device.address})
                 .then(function (connectedResponse) {
-                  $logService.LogMessage('connected!: ' + JSON.stringify(connectedResponse));
+                  $logService.Log('message', 'connected!: ' + JSON.stringify(connectedResponse));
                   return true;
                 },
                 function (failed) {
-                  $logService.LogMessage('failed to pair: ' + JSON.stringify(failed));
+                  $logService.Log('error', 'failed to pair: ' + JSON.stringify(failed));
                   return false;
                 }) , 15000);
-              $logService.LogMessage('JSON Connected: ' + JSON.stringify(connected));
+              $logService.Log('error', 'JSON Connected: ' + JSON.stringify(connected));
             }
           });
           return result;

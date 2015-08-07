@@ -35,3 +35,128 @@
 i.large-size-icon {
   font-size: 300%;
 }
+.jewelbots-icon:before {
+}
+.jewelbots-icon:after {
+
+}
+.jewelbots-icon {
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url('../images/header_icon.png');
+  width: 30px;
+  height: 30px;
+  background-size: 30px 30px;
+  margin-top: 5px;
+}
+
+.center-icon {
+  display: block;
+  margin: auto;
+}
+
+#jewelbots-menu-bar {
+  display: block;
+  width: auto;
+  table-layout:fixed;
+  margin: 0 auto 0 auto;
+
+
+  text-align: center;
+}
+#jewelbots-menu-bar .circle {
+  display: inline-block;
+  text-align: center;
+
+  display: inline-block;
+  position: relative;
+
+  margin: 0 5px 0 5px;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+
+  -webkit-transition: .1s ease-in;
+  -moz-transition: .1s ease-in;
+  -o-transition: .1s ease-in;
+  -ms-transition: .1s ease-in;
+  transition: .1s ease-in;
+
+  font-family: "verdana",sans-serif;
+  font-size: 20px;
+  color: rgba(255,255,255,0.0);
+  overflow: hidden;
+
+  cursor: pointer;
+
+  -webkit-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.35);
+  -moz-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.35);
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.35);
+}
+#jewelbots-menu-bar .circle.active {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 10px 2px -5px 2px;
+  padding: 0 0 0 0;
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+
+  -webkit-transition: .1s ease-in;
+  -moz-transition: .1s ease-in;
+  -o-transition: .1s ease-in;
+  -ms-transition: .1s ease-in;
+  transition: .1s ease-in;
+
+  font-family: "verdana",sans-serif;
+  font-size: 25px;
+  line-height: 38px;
+  color: rgba(255,255,255,1.0);
+  overflow: hidden;
+
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
+}
+
+#jewelbots-menu-bar .red {
+  background-color: red;
+}
+#jewelbots-menu-bar .blue {
+  background-color: blue;
+}
+#jewelbots-menu-bar .green {
+  background-color: green;
+}
+#jewelbots-menu-bar .yellow {
+  background-color: yellow;
+}
+#jewelbots-menu-bar .purple {
+  background-color: purple;
+}
+#jewelbots-menu-bar .orange {
+  background-color: orange;
+}
+#jewelbots-menu-bar .yellow {
+  background-color: yellow;
+}
+#jewelbots-menu-bar .pink {
+  background-color: pink;
+}
+#jewelbots-menu-bar .plum {
+  background-color: #8E4585;
+}
+
+
+

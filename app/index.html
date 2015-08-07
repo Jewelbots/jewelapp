@@ -18,6 +18,8 @@
 
     <!-- ionic/angularjs js -->
     <!-- build:js scripts/vendor.js -->
+    <script src="scripts/utils/lodash.js"></script>
+    <script src="scripts/utils/parse-1.5.0.min.js"></script>
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -26,30 +28,41 @@
     <script src="bower_components/ionic/release/js/ionic.js"></script>
     <script src="bower_components/ionic/release/js/ionic-angular.js"></script>
     <script src="bower_components/ngCordova/dist/ng-cordova.js"></script>
+    <script src="bower_components/crypto-js/index.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+    <script src="bower_components/sjcl/sjcl.js"></script>
+    <script src="bower_components/crypto-js/crypto-js.js"></script>
+    <!--<script src="bower_components/crypto-js/core.js"></script>-->
 
+    <!--<script src="bower_components/crypto-js/hmac.js"></script>-->
+    <!--<script src="bower_components/crypto-js/pbkdf2.js"></script>-->
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
     <!-- build:js scripts/scripts.js -->
+
     <script src="scripts/utils/services.js"></script>
     <script src="scripts/app.js"></script>
-    <script src="scripts/start/services.js"></script>
-    <script src="scripts/registration/services.js"></script>
-    <script src="scripts/registration/controllers.js"></script>
-    <script src="scripts/dashboard/controllers.js"></script>
-    <script src="scripts/friends/controllers.js"></script>
-    <script src="scripts/diagnostics/controllers.js"></script>
-    <script src="scripts/start/controllers.js"></script>
+    <script src="scripts/app-storage/data-service.js"></script>
+    <script src="scripts/app-storage/user-service.js"></script>
+    <script src="scripts/device/jewelbot-service.js"></script>
+    <script src="scripts/registration/pair-ctrl.js"></script>
+    <script src="scripts/registration/registration-ctrl.js"></script>
+    <script src="scripts/menu/jewelbots-menu.js"></script>
+    <script src="scripts/dashboard/dashboard-ctrl.js"></script>
+    <script src="scripts/dashboard/home-ctrl.js"></script>
+    <script src="scripts/dashboard/sms-ctrl.js"></script>
+    <script src="scripts/diagnostics/diagnostic-ctrl.js"></script>
+    <script src="scripts/start/birthday-ctrl.js"></script>
+    <script src="scripts/start/load-ctrl.js"></script>
+    <script src="scripts/start/privacy-ctrl.js"></script>
+    <script src="scripts/start/start-ctrl.js"></script>
     <!-- endbuild -->
   </head>
   <body ng-app="jewelApp">
-    <ion-nav-bar class="bar-positive">
 
-    </ion-nav-bar>
-    <ion-nav-title></ion-nav-title>
     <ion-nav-view>
 
     </ion-nav-view>

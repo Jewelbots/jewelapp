@@ -1,18 +1,23 @@
-<ion-nav-view title="dashboard">
-    <div class="bar bar-header bar-light">
-        <i class="jewelbots-icon"></i>
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="Select Color and Friends"></h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <ion-checkbox collection-repeat="item in model.contacts track by $index"
+                    ng-model="item.checked"
+                    ng-checked="item.checked">
+        {{ item.givenName + ' ' + item.familyName + '. ' }}
+      </ion-checkbox>
     </div>
-    <div class="content has-header padding center">
-        <h2>Welcome To Jewelbots!</h2>
-        <p>
-            Add your friends to colors so they light up the same when you're close.
-        </p>
 
-        <p>
-            <i icon-off="ion-ios-plus-outline" icon-on="ion-ios-plus" class="ion-ios-plus-outline large-size-icon" ng-click="addFriends()">
-                Add Friends
-            </i>
-        </p>
+    <div ng-show="menu.selectedMenuItem">Choose Color</div>
+    <jewelbots-menu bind="menu.selectedMenuItem"></jewelbots-menu>
+  </ion-content>
+  <ion-footer-bar class="bar-positive">
+    {{ (model.contacts | filter:{checked: true }).length }} selected
+    <div class="buttons pull-right">
+      <button class="button" ng-disabled="!menu.selectedMenuItem" ng-click="addFriends()"><i class="ion-ios-arrow-forward"></i></button>
     </div>
-</ion-nav-view>
-
+  </ion-footer-bar>
+</ion-modal-view>
