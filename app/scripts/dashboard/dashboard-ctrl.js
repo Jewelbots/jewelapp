@@ -66,6 +66,21 @@ angular.module('jewelApp.controllers')
 
         };
       };
+
+      var collapseNames = function(name) {
+
+        if (name.givenName.length === 0) {
+          return '';
+        }
+        var firstName = name.givenName;
+        var familyName = ((typeof name.familyName === 'string' || name.familyName instanceof String) && name.familyName.length > 0) ? name.familyName.charAt(0) : '';
+        return {
+          name : (firstName + ' ' + familyName).trim(),
+          phoneNumber : name.phoneNumber
+        }
+      };
+
+
       $scope.openModal = function (color) {
         $scope.modal.show();
         $scope.findFriendsToAdd(color);
@@ -85,12 +100,13 @@ angular.module('jewelApp.controllers')
         $ionicPlatform.ready().then( function () {
           return $cordovaContacts.find({fields: ['givenName', 'familyName', 'phoneNumbers'], multiple:true}).then(function (success) {
             _.forEach(success, function (p) {
-              $scope.model.contacts.push(getFirstName(p));
+              $scope.model.contacts.push(collapseNames(p));
             });
-            $scope.model.contacts = $scope.model.contacts.sort(function (obj1, obj2) {
-              return obj1.givenName < obj2.givenName;
+            $scope.model.contacts = $scope.model.contacts.sort(function(a, b){
+              if(a.name < b.name) return -1;
+              if(a.name > b.name) return 1;
+              return 0;
             });
-            
             $logService.Log('message', 'success is : ' + JSON.stringify($scope.model.contacts));
           });
         });
