@@ -37,10 +37,6 @@ angular.module('jewelApp.controllers')
         UserService.SetPhoneNumber($scope.model.userEnteredTelephone);
         $state.go('dashboard', {src: 'phoneVerification'});
       }
-      else if ($scope.model.verificationCode !== $scope.model.userInputVerificationCode) {
-        //Todo: write alert for user
-        $logService.Log('message', 'User Input verificationCode : ' + JSON.stringify($scope.model.userInputVerificationCode) + ' does not equal Model: ' + $scope.model.verificationCode);
-      }
     };
 
     $scope.noSMS = function () {

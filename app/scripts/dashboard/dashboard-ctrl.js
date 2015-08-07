@@ -58,9 +58,9 @@ angular.module('jewelApp.controllers')
         return phoneNumbers;
       };
       var getFirstName = function (r) {
-        if (r.name.givenName === null) { return; }
+        if (r.name.givenName === null || r.name.givenName.length === 0 || r.name.givenName.trim() === '') { return; }
         return {
-          givenName: r.name.givenName,
+          givenName: r.name.givenName.trim(),
           familyName: ((typeof r.name.familyName === 'string' || r.name.familyName instanceof String) && r.name.familyName.length > 0) ? r.name.familyName.charAt(0) : '',
           phoneNumbers: getPhoneNumbers(r)
 
@@ -87,6 +87,10 @@ angular.module('jewelApp.controllers')
             _.forEach(success, function (p) {
               $scope.model.contacts.push(getFirstName(p));
             });
+            $scope.model.contacts = $scope.model.contacts.sort(function (obj1, obj2) {
+              return obj1.givenName < obj2.givenName;
+            });
+            $scope.model.contacts
             $logService.Log('message', 'success is : ' + JSON.stringify($scope.model.contacts));
           });
         });
