@@ -7,7 +7,7 @@
       <ion-checkbox collection-repeat="item in model.contacts track by $index"
                     ng-model="item.checked"
                     ng-checked="item.checked">
-        {{ item.givenName + ' ' + item.familyName + '. ' }}
+        {{ item.name }}
       </ion-checkbox>
     </div>
 
