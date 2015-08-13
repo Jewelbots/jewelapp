@@ -4,16 +4,20 @@ angular.module('jewelApp.services')
   ['$cordovaBluetoothle',
     '$ionicPlatform',
     '$logService',
+    '$q',
     '$timeout',
     'CryptoJS',
     'DataService',
+    'Parse',
     function (
       $cordovaBluetoothle,
       $ionicPlatform,
       $logService,
+      $q,
       $timeout,
       CryptoJS,
-      DataService) {
+      DataService,
+      Parse) {
       var self = this;
       var service = {
         AgreedToPrivacyPolicy : function () {
@@ -36,7 +40,36 @@ angular.module('jewelApp.services')
             return false;
           }
         },
+        SendFriendRequests : function (request) {
+          var q = $q.defer();
+          DataService.GetDailySalt().then(function(salt) {
+            var FriendRequest = Parse.Object.extend('FriendRequests');
+            var requests = [];
+            var requestorDeviceId = DataService.GetDeviceId();
+            var requestorHash = CryptoJS.PBKDF2(DataService.GetPhoneNumber(), salt, {keySize: 256 / 32, iterations: 100000});
+            for (var i = 0; i < request.friends.length; i = i+1) {
+              var r = new FriendRequest();
+              r.set('RequestorHash', requestorHash);
+              r.set('RecipientHash', CryptoJS.PBKDF2(request.friends[i].phoneNumber, salt, {keySize: 256 / 32, iterations: 100000}));
+              r.set('Color', request.color);
+              r.set('RequestorDeviceId', requestorDeviceId);
+              requests.push(r);
+              //send parse.com request
+            }
+            Parse.Object.saveAll(requests, {
+              success : function (objs) {
+                console.table(objs);
+                q.resolve(objs);
+              },
+              error : function (error) {
+                q.reject(error);
+              }
+            });
 
+
+          });
+          return q.promise;
+        },
         IsRegistered : function () {
           return DataService.IsRegistered();
         },
@@ -44,12 +77,7 @@ angular.module('jewelApp.services')
           return DataService.HasPhoneNumber();
         },
         SetPhoneNumber : function (unHashedNumber) {
-          $logService.Log('message', 'unhashed number is ' + unHashedNumber);
-          var salt = DataService.GetDeviceId();
-          $logService.Log('message', 'salt is: ' + JSON.stringify(salt));
-          var hashedPhoneNumber = CryptoJS.PBKDF2(unHashedNumber, salt, { keySize: 128/32 });
-          $logService.Log('message', 'hashed Phone Number is: ' + JSON.stringify(hashedPhoneNumber));
-          DataService.SetPhoneNumber(hashedPhoneNumber);
+          DataService.SetPhoneNumber(unHashedNumber);
         }
       };
       return service;

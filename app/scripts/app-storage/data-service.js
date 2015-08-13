@@ -2,8 +2,14 @@
 angular.module('jewelApp.services')//Todo: Implement Parse.com calls
   .factory('DataService', [
     '$localStorage',
+    '$logService',
+    '$q',
+    'Parse',
     function(
-      $localStorage) {
+      $localStorage,
+      $logService,
+      $q,
+      Parse) {
       var service =  {
         IsRegistered : function () {
           return $localStorage.get('IsRegistered', false);
@@ -26,6 +32,17 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         },
         GetDeviceId : function () {
           return $localStorage.get('Connection', '');
+        },
+        GetDailySalt : function () {
+          var q = $q.defer();
+          Parse.initialize('aRsOu0eubWBbvxFjPiVPOnyXuQjhgHZ1sjpVAvOM', 'p8qy8tXJxME6W7Sx5hXiHatfFDrmkNoXWWvqksFW');
+          Parse.Cloud.run('latestSalt').then(function (result) {
+            q.resolve(result);
+          }, function(error) {
+            $logService.Log('error', 'can\'t get salt');
+            q.reject(error);
+          });
+          return q.promise;
         },
         HasPhoneNumber : function () {
           return $localStorage.get('PhoneNumber', '').length > 0;
