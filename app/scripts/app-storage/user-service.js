@@ -19,6 +19,7 @@ angular.module('jewelApp.services')
       DataService,
       Parse) {
       var self = this;
+
       var service = {
         AgreedToPrivacyPolicy : function () {
           return DataService.AgreedToPrivacyPolicy();
@@ -41,7 +42,9 @@ angular.module('jewelApp.services')
           }
         },
         SendFriendRequests : function (request) {
+          Parse.initialize('aRsOu0eubWBbvxFjPiVPOnyXuQjhgHZ1sjpVAvOM', 'p8qy8tXJxME6W7Sx5hXiHatfFDrmkNoXWWvqksFW');
           var q = $q.defer();
+          $logService.Log('message', 'entering sendFriendRequests' + JSON.stringify(request));
           DataService.GetDailySalt().then(function(salt) {
             var FriendRequest = Parse.Object.extend('FriendRequests');
             var requests = [];
@@ -54,14 +57,14 @@ angular.module('jewelApp.services')
               r.set('Color', request.color);
               r.set('RequestorDeviceId', requestorDeviceId);
               requests.push(r);
-              //send parse.com request
             }
             Parse.Object.saveAll(requests, {
               success : function (objs) {
-                console.table(objs);
+                $logService.Log('message', 'saved succeeded! ' + JSON.stringify(objs));
                 q.resolve(objs);
               },
               error : function (error) {
+                $logService.Log('error', 'error saving requests: ' + JSON.stringify(error));
                 q.reject(error);
               }
             });

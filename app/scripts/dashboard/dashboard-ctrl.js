@@ -41,8 +41,6 @@ angular.module('jewelApp.controllers')
         return UserService.HasPhoneNumber();
       };
       $scope.hasFriends = function() {
-
-        $logService.Log('message', 'entering has friends');
         return UserService.HasFriends();
       };
       $scope.menu = {
@@ -68,14 +66,13 @@ angular.module('jewelApp.controllers')
       //};
 
       var collapseNames = function(person) {
-        $logService.Log('message', 'person is: '+ JSON.stringify(person));
+
         if (person.name.givenName.length === 0) {
            $logService.Log('message', 'wasn\'t a person' + JSON.stringify(person));
           return '';
         }
         var firstName = person.name.givenName;
         var familyName = ((typeof person.name.familyName === 'string' || person.name.familyName instanceof String) && person.name.familyName.length > 0) ? person.name.familyName.charAt(0) + '.' : '';
-        $logService.Log('message', 'is: ' + JSON.stringify(person));
         return {
           name : (firstName + ' ' + familyName).trim(),
           phoneNumber : getPhoneNumbers(person.phoneNumbers)//person.name.phoneNumber[0].value //todo: add all phone numbers
@@ -103,25 +100,24 @@ angular.module('jewelApp.controllers')
               $scope.model.contacts.push(collapseNames(p));
             });
             $scope.model.contacts = $scope.model.contacts.sort(function(a, b){
-              $logService.Log('message', 'a name is: ' + a.name);
-              $logService.Log('message', 'b name is: ' + b.name);
               if(a.name < b.name) { return -1; }
               if(a.name > b.name) { return 1; }
               return 0;
             });
-            $logService.Log('message', 'success is : ' + JSON.stringify($scope.model.contacts));
           });
         });
       };
       $scope.addFriends = function() {
         $scope.model.selectedContacts = _.where($scope.model.contacts,{ checked : true });
-        var phones = _.pluck($scope.model.selectedContacts, 'phoneNumbers');
-        //phonenumber
-        //color;
+        $logService.Log('message', 'selected Contacts are: ' + JSON.stringify($scope.model.selectedContacts));
+        var phones = _.chain($scope.model.selectedContacts)
+          .pluck('phoneNumber')
+          .flatten('phoneNumber')
+          .value(); //todo: alpha: remove + sign from number
+        $logService.Log('message', 'phones selected are: ' + JSON.stringify(phones));
         var selectedItem = $scope.menu.selectedMenuItem;
-        $logService.Log('message', 'selectedMenuItem is: ' + selectedItem);
 
-        UserService.SendFriendRequests({color : $scope.menu.selectedMenuItem, friends : _.map(phones, _.values)}).then(function (success) {
+        UserService.SendFriendRequests({color : $scope.menu.selectedMenuItem, friends : phones}).then(function (success) {
           $logService.Log('message', 'success for Send Friend Requests ' + JSON.stringify(success));
           $scope.modal.hide();
         }, function (error) {
@@ -130,9 +126,6 @@ angular.module('jewelApp.controllers')
 
       };
       $scope.sendSMS = function (telephone) {
-        console.log('model telephone is + ' + $scope.model.telephone);
-        console.log('telephone is: ' + telephone);
-
         $state.go('sms-verification-screen', { telephone: telephone});
       };
       $scope.startUp();

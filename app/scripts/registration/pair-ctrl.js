@@ -31,18 +31,13 @@ angular.module('jewelApp.controllers')
     $scope.pairToDevice = function(address) {
 
         $scope.model.pairing = true;
-        $logService.Log('message', 'chosen device was: ' + JSON.stringify(address));
         $ionicPlatform.ready()
           .then(function () {
-            $logService.Log('message', 'inside pairToDevice: ');
             return $cordovaBluetoothle.connect({address: address})
               .then( function (success) {
-                $scope.model.status = 'Successfully connected!';
                 $scope.model.pairing = false;
                 $scope.model.isPaired = true;
                 DataService.Pair(address);
-                $logService.Log('message', 'successfully connected to: ' + JSON.stringify(success));
-                $logService.Log('message', 'paired! Now transitioning: ' + JSON.stringify(success));
                 return $state.go('pair-success');
               })
               .error(function (err) {
@@ -56,17 +51,14 @@ angular.module('jewelApp.controllers')
     };
 
     var getAvailableDevices = function () {
-      $logService.Log('message', 'entering getAvailable Devices. Next stop, ionic ready');
       var params = {
         request: true,
         name: 'JewelBot'
       };
       $ionicPlatform.ready()
         .then(function () {
-          $logService.Log('message', 'ionic ready is successful, next stop initialize');
           return $cordovaBluetoothle.initialize(params)
             .then(function (initialized) {
-              $logService.Log('message', 'initialized: ' + JSON.stringify(initialized));
               $scope.model.status = 'Bluetooth Initialized!';
               return $cordovaBluetoothle.find(params);
             }, function (err) {
@@ -77,7 +69,6 @@ angular.module('jewelApp.controllers')
           $scope.model.status = 'Scanning...';
           if (data.status === 'scanResult') {
             $scope.model.status = 'Found device: ' + data.name;
-            $logService.Log('message', 'pushing new data: ' + JSON.stringify(data));
             $scope.model.devices.push(data);
             return $cordovaBluetoothle.stopScan();
           }
@@ -90,7 +81,6 @@ angular.module('jewelApp.controllers')
         .then(function () {
           $scope.model.status = 'ending scan...';
           return $cordovaBluetoothle.isScanning().then(function(isScanning) {
-            $logService.Log('message', 'isScanning returns? ' + JSON.stringify(isScanning));
             $scope.model.status = isScanning ? 'Scan Not Ended' : 'Scan Ended';
             if (isScanning) {
               return $cordovaBluetoothle.stopScan();
@@ -98,10 +88,9 @@ angular.module('jewelApp.controllers')
           });
         });
     };
-    $logService.Log('message', 'about to call getAvailableDevices, which should kick off initialize and scanning');
+
     try {
       if (!DataService.IsPaired()) {
-        $logService.Log('message', 'Not paired; so calling get availabledevices');
         getAvailableDevices();
         $cordovaBluetoothle.isScanning().then(function(isScanning) {
           if (isScanning) {

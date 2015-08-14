@@ -23,7 +23,6 @@ angular.module('jewelApp.controllers')
       if ($stateParams.hasOwnProperty('telephone') && $stateParams.telephone.length > 0) {
         $scope.model.userEnteredTelephone = $stateParams.telephone;
           Parse.Cloud.run('sendVerification', { phoneNumber: $stateParams.telephone, verificationCode: $scope.model.verificationCode }).then(function (response) {
-            $logService.Log('message', 'sent SMS; Response: ' + JSON.stringify(response));
             $scope.model.verificationCode = response;
           }, function (error) {
             $logService.Log('error', 'something bad happened! ' + JSON.stringify(error));
@@ -32,7 +31,6 @@ angular.module('jewelApp.controllers')
       }
     };
     $scope.checkVerifyCode = function () {
-      $logService.Log('message', 'verificationCode entered was : ' + JSON.stringify($scope.model.userInputVerificationCode));
       if ($scope.model.verificationCode.toString() === $scope.model.userInputVerificationCode.toString()) {
         UserService.SetPhoneNumber($scope.model.userEnteredTelephone);
         $state.go('dashboard', {src: 'phoneVerification'});

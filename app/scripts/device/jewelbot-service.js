@@ -24,18 +24,14 @@ angular.module('jewelApp.services')
         Pair : function (device) {
           var result = $cordovaBluetoothle.initialize({'request': true})
           .then(function (response) {
-            $logService.Log('message', 'Response was: ' + JSON.stringify(response));
             if (response.status === 'enabled') {
               var connected = $timeout($cordovaBluetoothle.connect({'address': device.address})
                 .then(function (connectedResponse) {
-                  $logService.Log('message', 'connected!: ' + JSON.stringify(connectedResponse));
                   return true;
                 },
                 function (failed) {
-                  $logService.Log('error', 'failed to pair: ' + JSON.stringify(failed));
                   return false;
                 }) , 15000);
-              $logService.Log('error', 'JSON Connected: ' + JSON.stringify(connected));
             }
           });
           return result;

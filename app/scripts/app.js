@@ -50,16 +50,10 @@ angular.module('jewelApp',
       DataService.Pair('AB:CD:EF:GH:IJ:12');
     }
   $ionicPlatform.ready(function() {
-    if (navigator.contacts !== undefined) {
-      $logService.Log('message', 'cordova contacts works?');
-    }
-    else {
+    if (navigator.contacts === undefined) {
       $logService.Log('message', 'contacts plugin not loaded');
     }
-    if (bluetoothle !== undefined) {
-      $logService.Log('message', 'bluetoothle has been loaded');
-    }
-    else {
+    if (bluetoothle === undefined) {
       $logService.Log('error', 'bluetoothle has not been loaded; check your cordova plugin installs!');
     }
 
