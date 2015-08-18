@@ -42,36 +42,51 @@ angular.module('jewelApp.services')
           }
         },
         SendFriendRequests : function (request) {
-          Parse.initialize('aRsOu0eubWBbvxFjPiVPOnyXuQjhgHZ1sjpVAvOM', 'p8qy8tXJxME6W7Sx5hXiHatfFDrmkNoXWWvqksFW');
-          var q = $q.defer();
-          $logService.Log('message', 'entering sendFriendRequests' + JSON.stringify(request));
-          DataService.GetDailySalt().then(function(salt) {
-            var FriendRequest = Parse.Object.extend('FriendRequests');
-            var requests = [];
-            var requestorDeviceId = DataService.GetDeviceId();
-            var requestorHash = CryptoJS.PBKDF2(DataService.GetPhoneNumber(), salt, {keySize: 256 / 32, iterations: 100000});
-            for (var i = 0; i < request.friends.length; i = i+1) {
-              var r = new FriendRequest();
-              r.set('RequestorHash', requestorHash);
-              r.set('RecipientHash', CryptoJS.PBKDF2(request.friends[i].phoneNumber, salt, {keySize: 256 / 32, iterations: 100000}));
-              r.set('Color', request.color);
-              r.set('RequestorDeviceId', requestorDeviceId);
-              requests.push(r);
-            }
-            Parse.Object.saveAll(requests, {
-              success : function (objs) {
-                $logService.Log('message', 'saved succeeded! ' + JSON.stringify(objs));
-                q.resolve(objs);
-              },
-              error : function (error) {
-                $logService.Log('error', 'error saving requests: ' + JSON.stringify(error));
-                q.reject(error);
-              }
-            });
-
-
-          });
-          return q.promise;
+         try {
+           Parse.initialize('aRsOu0eubWBbvxFjPiVPOnyXuQjhgHZ1sjpVAvOM', 'p8qy8tXJxME6W7Sx5hXiHatfFDrmkNoXWWvqksFW');
+           var q = $q.defer();
+           var requests = [];
+           $logService.Log('message', 'entering sendFriendRequests' + JSON.stringify(request));
+           DataService.GetDailySalt().then(function (result) {
+             $logService.Log('message', 'inside of then for dailySalt ' + JSON.stringify(result));
+             var FriendRequest = Parse.Object.extend('FriendRequests');
+             var salt = result;
+             var requestorDeviceId = DataService.GetDeviceId();
+             $logService.Log('message', 'inside of requestorDeviceId ' + JSON.stringify(requestorDeviceId));
+             var requestorHash = CryptoJS.PBKDF2(DataService.GetPhoneNumber(), salt, {
+               keySize: 256 / 32,
+               iterations: 10
+             });
+             for (var i = 0; i < request.friends.length; i = i + 1) {
+               $logService.Log('message', 'Entering loop to send friends');
+               var r = new FriendRequest();
+               r.set('RequestorHash', requestorHash.toString());
+               $logService.Log('message', 'Entered Loop: requestorHash '+ JSON.stringify(requestorHash));
+               r.set('RecipientHash', CryptoJS.PBKDF2(request.friends[i], salt, {
+                 keySize: 256 / 32,
+                 iterations: 10
+               }));
+               r.set('Color', request.color);
+               r.set('RequestorDeviceId', requestorDeviceId);
+               requests.push(r);
+             }
+           }).then(function () {
+             Parse.Object.saveAll(requests, {
+               success: function (objs) {
+                 $logService.Log('message', 'saved succeeded! ' + JSON.stringify(objs));
+                 q.resolve(objs);
+               },
+               error: function (error) {
+                 $logService.Log('error', 'error saving requests: ' + JSON.stringify(error));
+                 q.reject(error);
+               }
+             });
+           });
+           return q.promise;
+         }
+         catch (error) {
+          $logService.Log('had error sending friends: ' + JSON.stringify(error));
+         }
         },
         IsRegistered : function () {
           return DataService.IsRegistered();

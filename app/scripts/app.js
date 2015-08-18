@@ -20,7 +20,7 @@ angular.module('jewelApp.controllers', [
   'ngCordova.plugins.bluetoothle',
   'ngCordova.plugins.contacts'
   ]);
-angular.module('jewelApp.services', ['jewelbots.utils', 'CryptoJS']);
+angular.module('jewelApp.services', ['jewelbots.utils', 'CryptoJS', 'Parse']);
 angular.module('jewelApp.directives', []);
 angular.module('jewelApp',
  [
@@ -48,6 +48,7 @@ angular.module('jewelApp',
     $logService.Log('message', 'platform is: ' + JSON.stringify(ionic.Platform.platform()) );
     if (ionic.Platform.platform() === 'macintel' ) {
       DataService.Pair('AB:CD:EF:GH:IJ:12');
+      DataService.SetPhoneNumber('7039157702');
     }
   $ionicPlatform.ready(function() {
     if (navigator.contacts === undefined) {

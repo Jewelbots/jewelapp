@@ -91,11 +91,24 @@ angular.module('jewelApp.controllers')
         $scope.modal.remove();
       });
       $scope.findFriendsToAdd = function(color) {
+        $scope.model.selectedMenuItem = color;
+        if (ionic.Platform.platform() === 'macintel' ) {
+          return $scope.model.contacts.push(
+            {name: 'Billy B.', phoneNumber: ['7031111323', '7045111111'], checked: true},
+            {name: 'Mary S.', phoneNumber: ['17034443333', '9702502579'], checked: true},
+            {name: 'TJ', phoneNumber: ['7035551212'], checked: true}
+          );
+        }
 
-        $scope.model.color = color;
         $ionicPlatform.ready().then( function () {
           return $cordovaContacts.find({fields: ['givenName', 'familyName', 'phoneNumbers'], multiple:true}).then(function (success) {
             $logService.Log('message', 'number of contacts: ' + success.length.toString());
+            $logService.Log('message', '100 is: '+ JSON.stringify(success[99]));
+            $logService.Log('message', '***************************************');
+            $logService.Log('message', '1 is: '+ JSON.stringify(success[0]));
+            $logService.Log('message', '***************************************');
+            $logService.Log('message', '25 is: '+ JSON.stringify(success[25]));
+            $logService.Log('message', '***************************************');
             _.forEach(success, function (p) {
               $scope.model.contacts.push(collapseNames(p));
             });
@@ -115,7 +128,6 @@ angular.module('jewelApp.controllers')
           .flatten('phoneNumber')
           .value(); //todo: alpha: remove + sign from number
         $logService.Log('message', 'phones selected are: ' + JSON.stringify(phones));
-        var selectedItem = $scope.menu.selectedMenuItem;
 
         UserService.SendFriendRequests({color : $scope.menu.selectedMenuItem, friends : phones}).then(function (success) {
           $logService.Log('message', 'success for Send Friend Requests ' + JSON.stringify(success));

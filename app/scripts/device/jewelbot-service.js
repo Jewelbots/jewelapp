@@ -5,11 +5,13 @@ angular.module('jewelApp.services')
     '$ionicPlatform',
     '$logService',
     '$timeout',
+    'DataService',
   function(
     $cordovaBluetoothle,
     $ionicPlatform,
     $logService,
-    $timeout
+    $timeout,
+    DataService
     ) {
     var service = {
         IsPaired : function() {
@@ -25,11 +27,13 @@ angular.module('jewelApp.services')
           var result = $cordovaBluetoothle.initialize({'request': true})
           .then(function (response) {
             if (response.status === 'enabled') {
-              var connected = $timeout($cordovaBluetoothle.connect({'address': device.address})
+              $timeout($cordovaBluetoothle.connect({'address': device.address})
                 .then(function (connectedResponse) {
+                  DataService.Pair(connectedResponse.address);
                   return true;
                 },
                 function (failed) {
+                  $logService.Log('error', 'failed to connect: ' + JSON.stringify(failed));
                   return false;
                 }) , 15000);
             }

@@ -37,7 +37,7 @@ angular.module('jewelApp.controllers')
               .then( function (success) {
                 $scope.model.pairing = false;
                 $scope.model.isPaired = true;
-                DataService.Pair(address);
+                DataService.Pair(success.address);
                 return $state.go('pair-success');
               })
               .error(function (err) {
@@ -58,7 +58,7 @@ angular.module('jewelApp.controllers')
       $ionicPlatform.ready()
         .then(function () {
           return $cordovaBluetoothle.initialize(params)
-            .then(function (initialized) {
+            .then(function () {
               $scope.model.status = 'Bluetooth Initialized!';
               return $cordovaBluetoothle.find(params);
             }, function (err) {

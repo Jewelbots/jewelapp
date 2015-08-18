@@ -35,20 +35,29 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         },
         GetDailySalt : function () {
           var q = $q.defer();
-          Parse.initialize('aRsOu0eubWBbvxFjPiVPOnyXuQjhgHZ1sjpVAvOM', 'p8qy8tXJxME6W7Sx5hXiHatfFDrmkNoXWWvqksFW');
-          Parse.Cloud.run('latestSalt').then(function (result) {
-            q.resolve(result);
-          }, function(error) {
-            $logService.Log('error', 'can\'t get salt');
-            q.reject(error);
-          });
-          return q.promise;
+          try {
+            Parse.initialize('j5XHG7wZ7z62lWCT4H43220C31slqlbswptPkbbU', '5qEip2ImNHArKNdWDnC3SYNjxFpSQG3vkZ1UOjR6');
+            Parse.Cloud.run('latestSalt').then(function (result) {
+              $logService.Log('message', 'got salt! ' + JSON.stringify(result));
+              q.resolve(result[0].get('salt'));
+            }, function(error) {
+              $logService.Log('error', 'can\'t get salt');
+              q.reject(error);
+            });
+            return q.promise;
+          }
+          catch(err) {
+            $logService.Log('error', 'failed to run salt ' + JSON.stringify(err));
+          }
         },
         HasPhoneNumber : function () {
           return $localStorage.get('PhoneNumber', '').length > 0;
         },
         SetPhoneNumber : function (number) {
           return $localStorage.set('PhoneNumber', number);
+        },
+        GetPhoneNumber : function () {
+          return $localStorage.get('PhoneNumber', '');
         },
         AgreedToPrivacyPolicy : function () {
           return $localStorage.get('acceptPrivacyPolicy') === true;
