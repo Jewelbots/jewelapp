@@ -18,3 +18,4 @@ git init
 git remote add origin git@github.com:Jewelbots/jewelapp.git
 git fetch --all
 git reset --hard origin/master
+sudo chmod +X ./bootstrap.sh
