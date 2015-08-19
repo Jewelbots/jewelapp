@@ -46,26 +46,30 @@ angular.module('jewelApp.services')
            Parse.initialize('aRsOu0eubWBbvxFjPiVPOnyXuQjhgHZ1sjpVAvOM', 'p8qy8tXJxME6W7Sx5hXiHatfFDrmkNoXWWvqksFW');
            var q = $q.defer();
            var requests = [];
+           var saltId = '';
+           var Salt = Parse.Object.extend('Salts');
            $logService.Log('message', 'entering sendFriendRequests' + JSON.stringify(request));
            DataService.GetDailySalt().then(function (result) {
              $logService.Log('message', 'inside of then for dailySalt ' + JSON.stringify(result));
              var FriendRequest = Parse.Object.extend('FriendRequests');
              var salt = result;
              var requestorDeviceId = DataService.GetDeviceId();
+             saltId = salt.id;
              $logService.Log('message', 'inside of requestorDeviceId ' + JSON.stringify(requestorDeviceId));
-             var requestorHash = CryptoJS.PBKDF2(DataService.GetPhoneNumber(), salt, {
+             var requestorHash = CryptoJS.PBKDF2(DataService.GetPhoneNumber(), salt.salt, {
                keySize: 256 / 32,
                iterations: 10
-             });
+             }).toString();
              for (var i = 0; i < request.friends.length; i = i + 1) {
                $logService.Log('message', 'Entering loop to send friends');
                var r = new FriendRequest();
                r.set('RequestorHash', requestorHash.toString());
-               $logService.Log('message', 'Entered Loop: requestorHash '+ JSON.stringify(requestorHash));
-               r.set('RecipientHash', CryptoJS.PBKDF2(request.friends[i], salt, {
+               var recipientHash = CryptoJS.PBKDF2(request.friends[i], salt.salt, {
                  keySize: 256 / 32,
                  iterations: 10
-               }));
+               }).toString();
+               $logService.Log('message', 'Entered Loop: requestorHash '+ JSON.stringify(requestorHash));
+               r.set('RecipientHash', recipientHash.toString());
                r.set('Color', request.color);
                r.set('RequestorDeviceId', requestorDeviceId);
                requests.push(r);
@@ -73,7 +77,11 @@ angular.module('jewelApp.services')
            }).then(function () {
              Parse.Object.saveAll(requests, {
                success: function (objs) {
-                 $logService.Log('message', 'saved succeeded! ' + JSON.stringify(objs));
+                 for (var i = 0; i < objs.length; i=i+1) {
+                  var salt = new Salt({id: saltId});
+                  objs[i].set("Salts", salt);
+                  objs[i].save();
+                 }
                  q.resolve(objs);
                },
                error: function (error) {
