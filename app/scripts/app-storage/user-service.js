@@ -41,6 +41,30 @@ angular.module('jewelApp.services')
             return false;
           }
         },
+        CheckFriendRequests : function () {
+          Parse.initialize('aRsOu0eubWBbvxFjPiVPOnyXuQjhgHZ1sjpVAvOM', 'p8qy8tXJxME6W7Sx5hXiHatfFDrmkNoXWWvqksFW');
+          var q = $q.defer();
+          var phoneNumber = DataService.GetPhoneNumber();
+          DataService.GetAllSalts().then(function (result) {
+            var hashedPossibles = [];
+            for (var i = 0; i < result.length; i = i + 1) {
+              hashedPossibles.push(CryptoJS.PBKDF2(phoneNumber, result[i], {
+                keySize: 256 / 32,
+                iterations: 10
+              }).toString());
+            }
+            var params = {
+              recipientHashes : hashedPossibles
+            };
+            Parse.Cloud.run('outstandingRequests', params).then(function (result) {
+              q.resolve(result);
+            }, function (error) {
+              q.reject(error);
+            }); //TODO: success/fail
+          });
+          return q.promise;
+
+        },
         SendFriendRequests : function (request) {
          try {
            Parse.initialize('aRsOu0eubWBbvxFjPiVPOnyXuQjhgHZ1sjpVAvOM', 'p8qy8tXJxME6W7Sx5hXiHatfFDrmkNoXWWvqksFW');
@@ -104,6 +128,9 @@ angular.module('jewelApp.services')
         },
         SetPhoneNumber : function (unHashedNumber) {
           DataService.SetPhoneNumber(unHashedNumber);
+        },
+        GetPhoneNumber : function () {
+          return DataService.GetPhoneNumber();
         }
       };
       return service;

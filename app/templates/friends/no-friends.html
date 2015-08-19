@@ -23,9 +23,12 @@
         <button ng-disabled="!model.telephone.length > 0" class="button button-positive" ng-click="sendSMS(model.telephone)">Add phone</button>
       </div>
     </div>
+
     <div>
       <em>We do not collect or store your phone number in a retrievable format</em>. Read our privacy policy for more information.
     </div>
+    <div>Your phone number is {{model.phoneNumber }}</div>
+    <div>You have  {{model.outstandingFriendRequests || 0 }} outstanding friend requests</div>
 
 
 

@@ -53,6 +53,21 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
             $logService.Log('error', 'failed to run salt ' + JSON.stringify(err));
           }
         },
+        GetAllSalts : function () {
+          var q = $q.defer();
+          Parse.initialize('j5XHG7wZ7z62lWCT4H43220C31slqlbswptPkbbU', '5qEip2ImNHArKNdWDnC3SYNjxFpSQG3vkZ1UOjR6');
+          Parse.Cloud.run('allSalts').then(function (result) {
+          var salts = [];
+          for (var i = 0; i < result.length; i=i+1) {
+            salts.push(result[i].get('salt'));
+          }
+            q.resolve(salts);
+          }, function(error) {
+            $logService.Log('error', 'can\'t get salt');
+            q.reject(error);
+          });
+          return q.promise;
+        },
         HasPhoneNumber : function () {
           return $localStorage.get('PhoneNumber', '').length > 0;
         },

@@ -35,6 +35,8 @@ angular.module('jewelApp.controllers')
         }).then(function (modal) {
           $scope.modal = modal;
         });
+        $scope.model.phoneNumber = UserService.GetPhoneNumber();
+        $scope.checkFriendRequests();
       };
 
       $scope.allowedToAddFriends = function () {
@@ -90,13 +92,22 @@ angular.module('jewelApp.controllers')
       $scope.$on('$destroy', function () {
         $scope.modal.remove();
       });
+
+      $scope.checkFriendRequests = function () {
+        UserService.CheckFriendRequests().then(function (results){
+          $scope.model.outstandingFriendRequests = results.length;
+        });
+
+      }
+
       $scope.findFriendsToAdd = function(color) {
         $scope.model.selectedMenuItem = color;
         if (ionic.Platform.platform() === 'macintel' ) {
-          return $scope.model.contacts.push(
-            {name: 'Billy B.', phoneNumber: ['7031111323', '7045111111'], checked: true},
-            {name: 'Mary S.', phoneNumber: ['17034443333', '9702502579'], checked: true},
-            {name: 'TJ', phoneNumber: ['7035551212'], checked: true}
+          $scope.model.contacts.push(
+            {name: 'Billy B.', phoneNumber: ['7031111323', '7045111111']},
+            {name: 'Mary S.', phoneNumber: ['17034443333', '9702502579']},
+            {name: 'TJ', phoneNumber: ['7035551212']},
+            {name: 'George S', phoneNumber: ['7039157702']}
           );
         }
 
