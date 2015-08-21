@@ -6,20 +6,58 @@ angular.module('jewelApp.services')
     '$logService',
     '$q',
     '$timeout',
+    'ContactsService',
     'CryptoJS',
     'DataService',
     'Parse',
+    '_',
     function (
       $cordovaBluetoothle,
       $ionicPlatform,
       $logService,
       $q,
       $timeout,
+      ContactsService,
       CryptoJS,
       DataService,
-      Parse) {
+      Parse,
+      _) {
       var self = this;
+      var getContactsFromOutstandingRequests = function (outstandingRequests) {
 
+        return ContactsService.GetContacts().then(function (contacts) {
+          var q = $q.defer();
+          var actualContacts = [];
+          var salts = _.pluck(outstandingRequests, 'salt');
+          var hashedContacts = [];
+          $logService.Log('message', 'returned Contacts are: ' + JSON.stringify(contacts));
+          _.forEach(contacts, function (contact) {
+            $logService.Log('message', 'each contact is: ' + JSON.stringify(contact));
+            _.forEach(contact.phoneNumber, function (phone) {
+              $logService.Log('message', 'each phoneNumber is: ' + JSON.stringify(phone));
+              _.forEach(salts, function (salt) {
+                $logService.Log('message', 'each salt is: ' + JSON.stringify(salt));
+                hashedContacts.push({
+                  name: contact.name,
+                  hashedPhone: CryptoJS.PBKDF2(phone, salt, {
+                    keySize: 256 / 32,
+                    iterations: 10
+                  }).toString()
+                });
+              });
+            });
+          });
+          _.forEach(hashedContacts, function(c) {
+            var contacts = _.where(outstandingRequests, {'requestorPhoneHash' : c.hashedPhone});
+            if (contacts.length > 0) {
+              actualContacts.push(contacts);
+            }
+          });
+          q.resolve(actualContacts);
+        }, function (error) {
+          q.reject(error);
+        });
+      };
       var service = {
         AgreedToPrivacyPolicy : function () {
           return DataService.AgreedToPrivacyPolicy();
@@ -54,24 +92,26 @@ angular.module('jewelApp.services')
               }).toString());
             }
             var params = {
-              recipientHashes : hashedPossibles
+              recipientHashes: hashedPossibles
             };
             Parse.Cloud.run('outstandingRequests', params).then(function (result) {
-            var outstandingRequests = [];
-            for (var i = 0; i < result.length; i = i + 1) {
-              outstandingRequests.push({
-                requestorPhoneHash : result[i].get("RequestorHash"),
-                salt : result[i].get("Salts").get("salt"),
-                recipientPhoneHash : result[i].get("RecipientHash")
-              });
-            }
-              q.resolve(outstandingRequests);
-            }, function (error) {
-              q.reject(error);
-            }); //TODO: success/fail
+              var outstandingRequests = [];
+              for (var i = 0; i < result.length; i = i + 1) {
+                outstandingRequests.push({
+                  requestorPhoneHash: result[i].get('RequestorHash'),
+                  salt: result[i].get('Salts').get('salt'),
+                  recipientPhoneHash: result[i].get('RecipientHash'),
+                  color: result[i].get('Color')
+                });
+              }
+             return getContactsFromOutstandingRequests(outstandingRequests).then(function (results) {
+                q.resolve(results);
+              }, function (error) {
+                q.reject(error);
+              }); //TODO: success/fail
+            });
           });
           return q.promise;
-
         },
         SendFriendRequests : function (request) {
          try {
@@ -111,7 +151,7 @@ angular.module('jewelApp.services')
                success: function (objs) {
                  for (var i = 0; i < objs.length; i=i+1) {
                   var salt = new Salt({id: saltId});
-                  objs[i].set("Salts", salt);
+                  objs[i].set('Salts', salt);
                   objs[i].save();
                  }
                  q.resolve(objs);

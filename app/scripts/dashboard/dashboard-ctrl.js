@@ -2,7 +2,6 @@
 angular.module('jewelApp.controllers')
 .controller('DashboardCtrl',
   [
-    '$cordovaContacts',
     '$cordovaDialogs',
     '$ionicModal',
     '$ionicPlatform',
@@ -10,10 +9,10 @@ angular.module('jewelApp.controllers')
     '$scope',
     '$state',
     '$stateParams',
+    'ContactsService',
     'UserService',
     '_',
     function(
-      $cordovaContacts,
       $cordovaDialogs,
       $ionicModal,
       $ionicPlatform,
@@ -21,9 +20,11 @@ angular.module('jewelApp.controllers')
       $scope,
       $state,
       $stateParams,
+      ContactsService,
       UserService,
       _
-    ) {
+    )
+     {
       $scope.startUp = function () {
 
         if ($stateParams.src === 'phoneVerification') {
@@ -66,33 +67,7 @@ angular.module('jewelApp.controllers')
         selectedContacts : [],
         telephone: ''
       };
-      var getPhoneNumbers = function (r) {
-        var phoneNumbers = _.pluck(r, 'value');
-        return phoneNumbers;
-      };
-      //var getFirstName = function (r) {
-      //  if (r.name.givenName === null || r.name.givenName.length === 0 || r.name.givenName.trim() === '') { return; }
-      //  return {
-      //    givenName: r.name.givenName.trim(),
-      //    familyName: ((typeof r.name.familyName === 'string' || r.name.familyName instanceof String) && r.name.familyName.length > 0) ? r.name.familyName.charAt(0) : '',
-      //    phoneNumbers: getPhoneNumbers(r)
-      //
-      //  };
-      //};
 
-      var collapseNames = function(person) {
-
-        if (person.name.givenName.length === 0) {
-           $logService.Log('message', 'wasn\'t a person' + JSON.stringify(person));
-          return '';
-        }
-        var firstName = person.name.givenName;
-        var familyName = ((typeof person.name.familyName === 'string' || person.name.familyName instanceof String) && person.name.familyName.length > 0) ? person.name.familyName.charAt(0) + '.' : '';
-        return {
-          name : (firstName + ' ' + familyName).trim(),
-          phoneNumber : getPhoneNumbers(person.phoneNumbers)//person.name.phoneNumber[0].value //todo: add all phone numbers
-        };
-      };
 
 //      <div class="card" ng-repeat="friendRequest in model.outstandingFriendRequests">
 //        <div class="item">
@@ -107,7 +82,7 @@ angular.module('jewelApp.controllers')
 
 
       $scope.openModal = function (index) {
-        if(index == 1) {
+        if(+index === 1) {
           $scope.modal1.show();
           $scope.findFriendsToAdd($scope.selectedMenuItem);
         }
@@ -116,10 +91,12 @@ angular.module('jewelApp.controllers')
         }
       };
       $scope.closeModal = function (index) {
-        if (index == 1) {
+        if (+index === 1) {
           $scope.modal1.hide();
         }
-        else $scope.modal2.hide();
+        else {
+          $scope.modal2.hide();
+        }
       };
       $scope.$on('$destroy', function () {
         $scope.modal1.remove();
@@ -132,37 +109,19 @@ angular.module('jewelApp.controllers')
           $scope.model.outstandingFriendRequests.count = results.length;
         });
 
-      }
+      };
+
+      //var hashContactPhones = function (contacts) {
+      //  var contactsWithHashedPhones = [];
+      //  _.foreach(contacts, function (c) {
+      //
+      //  })
+      //};
 
       $scope.findFriendsToAdd = function(color) {
         $scope.model.selectedMenuItem = color;
-        if (ionic.Platform.platform() === 'macintel' ) {
-          $scope.model.contacts.push(
-            {name: 'Billy B.', phoneNumber: ['7031111323', '7045111111']},
-            {name: 'Mary S.', phoneNumber: ['17034443333', '9702502579']},
-            {name: 'TJ', phoneNumber: ['7035551212']},
-            {name: 'George S', phoneNumber: ['7039157702']}
-          );
-        }
-
-        $ionicPlatform.ready().then( function () {
-          return $cordovaContacts.find({fields: ['givenName', 'familyName', 'phoneNumbers'], multiple:true}).then(function (success) {
-            $logService.Log('message', 'number of contacts: ' + success.length.toString());
-            $logService.Log('message', '100 is: '+ JSON.stringify(success[99]));
-            $logService.Log('message', '***************************************');
-            $logService.Log('message', '1 is: '+ JSON.stringify(success[0]));
-            $logService.Log('message', '***************************************');
-            $logService.Log('message', '25 is: '+ JSON.stringify(success[25]));
-            $logService.Log('message', '***************************************');
-            _.forEach(success, function (p) {
-              $scope.model.contacts.push(collapseNames(p));
-            });
-            $scope.model.contacts = $scope.model.contacts.sort(function(a, b){
-              if(a.name < b.name) { return -1; }
-              if(a.name > b.name) { return 1; }
-              return 0;
-            });
-          });
+        ContactsService.GetContacts().then(function (contacts) {
+          $scope.model.contacts = contacts;
         });
       };
       $scope.addFriends = function() {

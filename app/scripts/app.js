@@ -20,7 +20,7 @@ angular.module('jewelApp.controllers', [
   'ngCordova.plugins.bluetoothle',
   'ngCordova.plugins.contacts'
   ]);
-angular.module('jewelApp.services', ['jewelbots.utils', 'CryptoJS', 'Parse']);
+angular.module('jewelApp.services', ['jewelbots.utils', 'CryptoJS', 'Parse', 'ionic']);
 angular.module('jewelApp.directives', []);
 angular.module('jewelApp',
  [
