@@ -31,12 +31,21 @@ angular.module('jewelApp.controllers')
           delete $stateParams.src;
         }
         $ionicModal.fromTemplateUrl('templates/friends/add-friends.html', {
-          scope: $scope
+          id: '1',
+          scope: $scope,
+          animation: 'slide-in-up'
         }).then(function (modal) {
-          $scope.modal = modal;
+          $scope.modal1 = modal;
         });
         $scope.model.phoneNumber = UserService.GetPhoneNumber();
         $scope.checkFriendRequests();
+        $ionicModal.fromTemplateUrl('templates/friends/friend-requests.html', {
+          id: '2',
+          scope: $scope,
+          animation: 'slide-in-up'
+        }).then(function (modal) {
+          $scope.modal2 = modal;
+        });
       };
 
       $scope.allowedToAddFriends = function () {
@@ -47,6 +56,10 @@ angular.module('jewelApp.controllers')
       };
       $scope.menu = {
         selectedMenuItem : ''
+      };
+
+      $scope.showFriendRequests = function () {
+        $scope.modal2.show();
       };
       $scope.model = {
         contacts : [],
@@ -81,21 +94,42 @@ angular.module('jewelApp.controllers')
         };
       };
 
+//      <div class="card" ng-repeat="friendRequest in model.outstandingFriendRequests">
+//        <div class="item">
+//        <div class="request-{{friendRequest.color}}">
+//        <span class="requestor-name">{{friendRequest.name}}</span>
+//    <span class="friend-request-button">Accept</span>
+//  <span ng-click="dismissRequest(friendRequest.id)">X</span>
+//</div>
+//</div>
+//</div>
 
-      $scope.openModal = function (color) {
-        $scope.modal.show();
-        $scope.findFriendsToAdd(color);
+
+
+      $scope.openModal = function (index) {
+        if(index == 1) {
+          $scope.modal1.show();
+          $scope.findFriendsToAdd($scope.selectedMenuItem);
+        }
+        else {
+          $scope.modal2.show();
+        }
       };
-      $scope.closeModal = function () {
-        $scope.modal.hide();
+      $scope.closeModal = function (index) {
+        if (index == 1) {
+          $scope.modal1.hide();
+        }
+        else $scope.modal2.hide();
       };
       $scope.$on('$destroy', function () {
-        $scope.modal.remove();
+        $scope.modal1.remove();
+        $scope.modal2.remove();
       });
 
       $scope.checkFriendRequests = function () {
         UserService.CheckFriendRequests().then(function (results){
-          $scope.model.outstandingFriendRequests = results.length;
+          $scope.model.outstandingFriendRequests = results;
+          $scope.model.outstandingFriendRequests.count = results.length;
         });
 
       }

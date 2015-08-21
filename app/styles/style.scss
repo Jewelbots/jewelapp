@@ -67,14 +67,22 @@ i.large-size-icon {
   width: auto;
   table-layout:fixed;
   margin: 0 auto 0 auto;
-
-
+  text-align: center;
+}
+.attach-to-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 50px;
+  bottom: 25px;
+  overflow:hidden;
+  background-color: white;
+  padding: 5px;
   text-align: center;
 }
 #jewelbots-menu-bar .circle {
   display: inline-block;
   text-align: center;
-
   display: inline-block;
   position: relative;
 

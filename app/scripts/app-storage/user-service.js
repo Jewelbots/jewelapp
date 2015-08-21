@@ -57,7 +57,15 @@ angular.module('jewelApp.services')
               recipientHashes : hashedPossibles
             };
             Parse.Cloud.run('outstandingRequests', params).then(function (result) {
-              q.resolve(result);
+            var outstandingRequests = [];
+            for (var i = 0; i < result.length; i = i + 1) {
+              outstandingRequests.push({
+                requestorPhoneHash : result[i].get("RequestorHash"),
+                salt : result[i].get("Salts").get("salt"),
+                recipientPhoneHash : result[i].get("RecipientHash")
+              });
+            }
+              q.resolve(outstandingRequests);
             }, function (error) {
               q.reject(error);
             }); //TODO: success/fail

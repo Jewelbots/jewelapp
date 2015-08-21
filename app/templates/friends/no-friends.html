@@ -3,7 +3,7 @@
       Add your friends to colors so they light up the same when you're close.
     </p>
     <div class="buttons">
-      <button ng-disabled="!allowedToAddFriends()" class="button button-icon ion-ios-plus-outline large-size-icon" ng-click="openModal(menu.selectedMenuItem)" id="datbutton">
+      <button ng-disabled="!allowedToAddFriends()" class="button button-icon ion-ios-plus-outline large-size-icon" ng-click="openModal(1)" id="datbutton">
         Add Friends
       </button>
     </div>
@@ -28,7 +28,8 @@
       <em>We do not collect or store your phone number in a retrievable format</em>. Read our privacy policy for more information.
     </div>
     <div>Your phone number is {{model.phoneNumber }}</div>
-    <div>You have  {{model.outstandingFriendRequests || 0 }} outstanding friend requests</div>
+
+
 
 
 
