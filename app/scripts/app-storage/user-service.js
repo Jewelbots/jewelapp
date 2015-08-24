@@ -24,9 +24,8 @@ angular.module('jewelApp.services')
       _) {
       var self = this;
       var getContactsFromOutstandingRequests = function (outstandingRequests) {
-
-        return ContactsService.GetContacts().then(function (contacts) {
-          var q = $q.defer();
+        var q = $q.defer();
+        ContactsService.GetContacts().then(function (contacts) {
           var actualContacts = [];
           var salts = _.pluck(outstandingRequests, 'salt');
           var hashedContacts = [];
@@ -57,6 +56,7 @@ angular.module('jewelApp.services')
         }, function (error) {
           q.reject(error);
         });
+        return q.promise;
       };
       var service = {
         AgreedToPrivacyPolicy : function () {
@@ -104,7 +104,7 @@ angular.module('jewelApp.services')
                   color: result[i].get('Color')
                 });
               }
-             return getContactsFromOutstandingRequests(outstandingRequests).then(function (results) {
+             getContactsFromOutstandingRequests(outstandingRequests).then(function (results) {
                 q.resolve(results);
               }, function (error) {
                 q.reject(error);
