@@ -40,6 +40,106 @@ i.large-size-icon {
 .jewelbots-icon:after {
 
 }
+.circle {
+  display: inline-block;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  margin: 0 5px 0 5px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.circle .circle-red {
+  background-color: red;
+}
+.circle .circle-yellow {
+  background-color: yellow;
+}
+.circle .circle-orange {
+  background-color: orange;
+}
+.circle .circle-green {
+  background-color: green;
+}
+.circle .circle-blue {
+  background-color: blue;
+}
+.circle .circle-pink {
+  background-color: pink;
+}
+.circle .circle-purple {
+  background-color: purple;
+}
+.circle .circle-plum {
+  background-color: #8E4585;
+}
+
+.requestor-name {
+  font-family: "Lucida Grande", "Trebuchet MS", sans-serif;
+  font-size: 200%;
+}
+.requestor-name .requestor-red {
+  background-color: red;
+}
+.requestor-name .requestor-yellow {
+  background-color: yellow;
+}
+.requestor-name .requestor-orange {
+  background-color: orange;
+}
+.requestor-name .requestor-green {
+  background-color: green;
+}
+.requestor-name .requestor-blue {
+  background-color: blue;
+}
+.requestor-name .requestor-pink {
+  background-color: pink;
+}
+.requestor-name .requestor-purple {
+  background-color: purple;
+}
+.requestor-name .circle-plum {
+  background-color: #8E4585;
+}
+// <span class="circle circle-{{friendRequest.color}}"></span>
+//<span class="requestor-name requestor-{{friendRequest.color}}">{{friendRequest.name}}</span>
+//<span class="request-button request-{{friendRequest.color}}">Accept</span>
+//<span ng-click="dismissRequest(friendRequest.id)">X</span>
+.request-button {
+  border-radius: 35px;
+  -moz-border-radius: 35px;
+  -webkit-border-radius: 35px;
+  border: 0px solid #800000;
+  text-align: center;
+  content: 'Accept';
+}
+.request-button .request-red {
+  background-color: red;
+}
+.request-button .request-yellow {
+  background-color: yellow;
+}
+.request-button .request-green {
+  background-color: green;
+}
+.request-button .request-blue {
+  background-color: blue;
+}
+.request-button .request-plum {
+  background-color: #8E4585;
+}
+.request-button .request-pink {
+  background-color: pink;
+}
+.request-button .request-orange {
+  background-color: orange;
+}
+.request-button .request-purple {
+  background-color: purple;
+}
+
 .jewelbots-icon {
   display: inline-block;
   font-style: normal;

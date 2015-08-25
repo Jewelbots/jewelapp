@@ -111,13 +111,6 @@ angular.module('jewelApp.controllers')
 
       };
 
-      //var hashContactPhones = function (contacts) {
-      //  var contactsWithHashedPhones = [];
-      //  _.foreach(contacts, function (c) {
-      //
-      //  })
-      //};
-
       $scope.findFriendsToAdd = function(color) {
         $scope.model.selectedMenuItem = color;
         ContactsService.GetContacts().then(function (contacts) {
