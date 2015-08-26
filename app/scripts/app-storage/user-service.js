@@ -49,8 +49,9 @@ angular.module('jewelApp.services')
           _.forEach(hashedContacts, function(c) {
             var contacts = _.where(outstandingRequests, {'requestorPhoneHash' : c.hashedPhone});
             if (contacts.length > 0) {
-              var mergedContact = _.merge(contacts, c);
-              actualContacts.push(mergedContact);
+              _.forEach(contacts, function(con) {
+                actualContacts.push(_.merge(con, c));
+              });
             }
           });
           q.resolve(actualContacts);
