@@ -81,10 +81,15 @@ angular.module('jewelApp',
       controller: 'HomeCtrl',
       templateUrl: 'templates/home.html'
     })
+    .state('settings', {
+      url: '/settings',
+      controller: 'SettingsCtrl',
+      templateUrl: 'templates/settings/settings.html'
+    })
       .state('pair', {
         url: '/pair',
         controller: 'PairCtrl',
-        templateUrl: 'templates/pair.html'
+        templateUrl: 'templates/settings/pair.html'
       })
       .state('pair-success', {
         url: '/pair-success',

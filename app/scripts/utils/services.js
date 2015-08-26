@@ -27,7 +27,7 @@ angular.module('jewelbots.utils',[])
         if (!log.hasOwnProperty('Messages')) {
           log.Messages = [];
         }
-        log.Messages.push({Type: type, Message: message, Timestamp: Date.now()});
+        log.Messages.push({Type: type, Message: message, Timestamp: new Date().toUTCString()});
         $localStorage.setObject(logKey, log);
       },
       Get : function (type) {

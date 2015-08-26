@@ -53,7 +53,7 @@ describe('DashboardControllers', function(){
             jewelbotServiceStub.IsPaired = jasmine.createSpy('IsPaired').and.returnValue(false);
       $scope.isPaired();
 
-      $httpBackend.when('GET', 'templates/pair.html').respond(200);
+      $httpBackend.when('GET', 'templates/settings/pair.html').respond(200);
       $scope.$apply();
       $httpBackend.flush();
       expect($state.current.name).toBe('pair');

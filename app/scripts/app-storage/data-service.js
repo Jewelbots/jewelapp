@@ -83,6 +83,12 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         SetPrivacyPolicy : function (valueSet) {
           $localStorage.set('acceptPrivacyPolicy', valueSet);
         },
+        SetSettings : function (settings) {
+          $localStorage.setObject('settings', settings);
+        },
+        GetSettings : function () {
+          return $localStorage.getObject('settings', {});
+        }
       };
       return service;
     }]);
