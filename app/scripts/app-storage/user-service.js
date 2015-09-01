@@ -166,6 +166,24 @@ angular.module('jewelApp.services')
           $logService.Log('had error sending friends: ' + JSON.stringify(error));
          }
         },
+        AcceptFriendRequest : function (friendRequest) {
+          return DataService.AddFriend(friendRequest);
+        },
+        RejectFriendRequest : function (friendRequest) {
+          Parse.initialize('j5XHG7wZ7z62lWCT4H43220C31slqlbswptPkbbU', '5qEip2ImNHArKNdWDnC3SYNjxFpSQG3vkZ1UOjR6');
+          var params = {
+            recipientPhoneHash: friendRequest.recipientPhoneHash,
+            requestorPhoneHash: friendRequest.requestorPhoneHash,
+            color : friendRequest.color
+          };
+          var q = $q.defer();
+          Parse.Cloud.run('rejectRequest', params).then(function (result) {
+            q.resolve(result);
+          }, function (error) {
+            q.reject(error);
+          });
+          return q.promise;
+        },
         IsRegistered : function () {
           return DataService.IsRegistered();
         },
