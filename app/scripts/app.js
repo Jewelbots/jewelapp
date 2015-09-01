@@ -46,10 +46,6 @@ angular.module('jewelApp',
   ) {
     Parse.initialize('aRsOu0eubWBbvxFjPiVPOnyXuQjhgHZ1sjpVAvOM', 'p8qy8tXJxME6W7Sx5hXiHatfFDrmkNoXWWvqksFW');
     $logService.Log('message', 'platform is: ' + JSON.stringify(ionic.Platform.platform()) );
-    if (ionic.Platform.platform() === 'macintel' ) {
-      DataService.Pair('AB:CD:EF:GH:IJ:12');
-      DataService.SetPhoneNumber('7039157702');
-    }
   $ionicPlatform.ready(function() {
     if (navigator.contacts === undefined) {
       $logService.Log('message', 'contacts plugin not loaded');
