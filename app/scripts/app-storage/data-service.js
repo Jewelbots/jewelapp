@@ -14,15 +14,25 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         IsRegistered : function () {
           return $localStorage.get('IsRegistered', false);
         },
-        SetRegistered : function () {
-          $localStorage.set('IsRegistered', true);
-        },
         HasFriends : function () {
-
-          return Object.keys($localStorage.getObject('HasFriends')).length !== 0;
+          return $localStorage.getObject('Friends').length > 0;
         },
         GetFriends: function () {
-          return $localStorage.getObject('Friends').friends || [];
+          return $localStorage.getObject('Friends') || [];
+        },
+        AddFriend : function (friendRequest) {
+          var q = $q.defer();
+          try {
+            //todo: add friendRequest.Address to device
+            var friends = $localStorage.getObject('Friends', []);
+            q.resolve($localStorage.setObject('Friends', friends.push(friendRequest)));
+          }
+          catch (error) {
+            q.reject(error);
+          }
+          return q.promise;
+
+
         },
         IsPaired : function () {
           return $localStorage.get('Connection', '').length > 0;
