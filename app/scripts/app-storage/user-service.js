@@ -27,7 +27,7 @@ angular.module('jewelApp.services')
         var q = $q.defer();
         ContactsService.GetContacts().then(function (contacts) {
           var actualContacts = [];
-          var salts = _.pluck(outstandingRequests, 'salt');
+          var salts = _.chain(outstandingRequests).pluck('salt').unique().value();
           var hashedContacts = [];
           $logService.Log('message', 'returned Contacts are: ' + JSON.stringify(contacts));
           _.forEach(contacts, function (contact) {
@@ -50,7 +50,9 @@ angular.module('jewelApp.services')
             var contacts = _.where(outstandingRequests, {'requestorPhoneHash' : c.hashedPhone});
             if (contacts.length > 0) {
               _.forEach(contacts, function(con) {
-                actualContacts.push(_.merge(con, c));
+                var contactWithName = con;
+                contactWithName.name = c.name;
+                actualContacts.push(contactWithName);
               });
             }
           });
@@ -60,6 +62,8 @@ angular.module('jewelApp.services')
         });
         return q.promise;
       };
+
+
       var service = {
         AgreedToPrivacyPolicy : function () {
           return DataService.AgreedToPrivacyPolicy();
@@ -71,15 +75,7 @@ angular.module('jewelApp.services')
           return DataService.GetFriends();
         },
         HasFriends : function () {
-          if (self.GetFriends() > 0) {
-            return true; //yes, I know I shouldn't return true; there's more coming.
-          }
-          else if (self.IsRegistered()) { //no friends in app; check online in case new app install
-            return DataService.HasFriends();
-          }
-          else { //can't check online, and locally has no friends. Say no friends.  App should sync with jewelbot after every action; so assume this is up to date
-            return false;
-          }
+          return self.GetFriends().length > 0;
         },
         CheckFriendRequests : function () {
           Parse.initialize('aRsOu0eubWBbvxFjPiVPOnyXuQjhgHZ1sjpVAvOM', 'p8qy8tXJxME6W7Sx5hXiHatfFDrmkNoXWWvqksFW');
