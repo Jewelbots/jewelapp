@@ -111,6 +111,20 @@ angular.module('jewelApp.controllers')
 
       };
 
+      $scope.acceptFriendRequest = function (friendRequest) {
+        UserService.AcceptFriendRequest(friendRequest).then (function (result) {
+          $logService.Log(JSON.stringify(result));
+        }, function (error) {
+          $logService.Log('error', 'unable to accept friend request: ' + JSON.stringify(error));
+        });
+      };
+      $scope.dismissRequest = function (friendRequest) {
+        UserService.RejectFriendRequest(friendRequest).then (function (result) {
+        }, function (error) {
+          $logService.Log('error', 'unable to clear friend request: ' + JSON.stringify(error));
+        });
+      }
+
       $scope.findFriendsToAdd = function(color) {
         $scope.model.selectedMenuItem = color;
         ContactsService.GetContacts().then(function (contacts) {
