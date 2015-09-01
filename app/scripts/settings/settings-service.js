@@ -22,18 +22,18 @@ angular.module('jewelApp.services')
       DataService,
       Parse,
       _) {
+      var self = this;
       var options = {
         mockBle : false,
         mockTelephone : false,
         telephoneNumber : undefined,
         bleAddress : undefined
       };
-      var self = this;
       var service = {
         GetSettings : function () {
-          var settings = _.merge({},DataService.GetSettings(), options);
-          settings.telephoneNumber = self.GetPhoneNumber();
-          settings.bleAddress = self.GetDevice();
+          var settings = _.merge({},options, DataService.GetSettings());
+          settings.telephoneNumber = this.GetPhoneNumber();
+          settings.bleAddress = this.GetDevice();
           return settings;
         },
         SetSettings : function (settings) {
@@ -52,7 +52,7 @@ angular.module('jewelApp.services')
           DataService.SetPhoneNumber(telephone);
         },
         GetPhoneNumber : function () {
-          DataService.GetPhoneNumber();
+          return DataService.GetPhoneNumber();
         },
         Get : function() {
           return DataService.GetSettings();
@@ -61,7 +61,7 @@ angular.module('jewelApp.services')
           DataService.Pair(bleAddress);
         },
         GetDevice : function () {
-          return DataService.GetDeviceId;
+          return DataService.GetDeviceId();
         }
       };
       return service;
