@@ -128,7 +128,7 @@ angular.module('jewelApp.controllers')
 
         UserService.SendFriendRequests({color : $scope.menu.selectedMenuItem, friends : phones}).then(function (success) {
           $logService.Log('message', 'success for Send Friend Requests ' + JSON.stringify(success));
-          $scope.modal.hide();
+          $scope.closeModal(1);
         }, function (error) {
           $logService.Log('error', 'could not add friends: ' + JSON.stringify(error));
         });
