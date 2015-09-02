@@ -15,7 +15,6 @@ angular.module('jewelApp.controllers')
     Parse,
     UserService
   ) {
-    Parse.initialize('j5XHG7wZ7z62lWCT4H43220C31slqlbswptPkbbU', '5qEip2ImNHArKNdWDnC3SYNjxFpSQG3vkZ1UOjR6');
   $scope.model = {
     userInputVerificationCode : ''
   };
