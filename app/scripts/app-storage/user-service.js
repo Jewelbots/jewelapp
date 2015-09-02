@@ -78,7 +78,6 @@ angular.module('jewelApp.services')
           return self.GetFriends().length > 0;
         },
         CheckFriendRequests : function () {
-          Parse.initialize('aRsOu0eubWBbvxFjPiVPOnyXuQjhgHZ1sjpVAvOM', 'p8qy8tXJxME6W7Sx5hXiHatfFDrmkNoXWWvqksFW');
           var q = $q.defer();
           var phoneNumber = DataService.GetPhoneNumber();
           DataService.GetAllSalts().then(function (result) {
@@ -113,7 +112,6 @@ angular.module('jewelApp.services')
         },
         SendFriendRequests : function (request) {
          try {
-           Parse.initialize('aRsOu0eubWBbvxFjPiVPOnyXuQjhgHZ1sjpVAvOM', 'p8qy8tXJxME6W7Sx5hXiHatfFDrmkNoXWWvqksFW');
            var q = $q.defer();
            var requests = [];
            var saltId = '';
@@ -167,17 +165,30 @@ angular.module('jewelApp.services')
          }
         },
         AcceptFriendRequest : function (friendRequest) {
-          return DataService.AddFriend(friendRequest);
+          var params = {
+            recipientPhoneHash: friendRequest.recipientPhoneHash,
+            requestorPhoneHash: friendRequest.requestorPhoneHash,
+            color : friendRequest.color
+          };
+          Parse.Cloud.run('removeRequest', params).then(function (result) {
+            DataService.AddFriend(friendRequest).then(function (friendAdd) {
+              q.resolve(friendAdd);
+            }, function (err) {
+              q.reject(err);
+            });
+          }, function (error) {
+            q.reject(error);
+          });
+          return q.promise;
         },
         RejectFriendRequest : function (friendRequest) {
-          Parse.initialize('j5XHG7wZ7z62lWCT4H43220C31slqlbswptPkbbU', '5qEip2ImNHArKNdWDnC3SYNjxFpSQG3vkZ1UOjR6');
           var params = {
             recipientPhoneHash: friendRequest.recipientPhoneHash,
             requestorPhoneHash: friendRequest.requestorPhoneHash,
             color : friendRequest.color
           };
           var q = $q.defer();
-          Parse.Cloud.run('rejectRequest', params).then(function (result) {
+          Parse.Cloud.run('removeRequest', params).then(function (result) {
             q.resolve(result);
           }, function (error) {
             q.reject(error);
