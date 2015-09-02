@@ -6,17 +6,17 @@
     <ng-if="!hasFriends" ng-include src="'templates/friends/no-friends.html'"></ng-if>
   </div>
 
-  <div ng-show="model.outstandingFriendRequests.count > 0">
+  <div ng-show="model.outstandingFriendRequests.length > 0">
     <div class="attach-to-footer">
       <jewelbots-menu bind="model.selectedItem"></jewelbots-menu>
     </div>
     <ion-footer-bar class="bar-balanced" ng-click="openModal(2)">
     <div class="title">
-      {{model.outstandingFriendRequests.count || 0 }} Color Request{{ model.outstandingFriendRequests.count > 1 ? "s" : "" }}
+      {{model.outstandingFriendRequests.length || 0 }} Color Request{{ model.outstandingFriendRequests.length > 1 ? "s" : "" }}
       </div>
     </ion-footer-bar>
   </div>
-  <div ng-show="model.outstandingFriendRequests.count == 0">
+  <div ng-show="model.outstandingFriendRequests.length == 0">
   <ion-footer-bar class="bar-light">
 
     <jewelbots-menu bind="model.selectedMenuItem"></jewelbots-menu>
