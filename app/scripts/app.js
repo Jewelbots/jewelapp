@@ -44,7 +44,7 @@ angular.module('jewelApp',
   DataService,
   Parse
   ) {
-    Parse.initialize('aRsOu0eubWBbvxFjPiVPOnyXuQjhgHZ1sjpVAvOM', 'p8qy8tXJxME6W7Sx5hXiHatfFDrmkNoXWWvqksFW');
+    Parse.initialize('j5XHG7wZ7z62lWCT4H43220C31slqlbswptPkbbU', '5qEip2ImNHArKNdWDnC3SYNjxFpSQG3vkZ1UOjR6');
     $logService.Log('message', 'platform is: ' + JSON.stringify(ionic.Platform.platform()) );
   $ionicPlatform.ready(function() {
     if (navigator.contacts === undefined) {
