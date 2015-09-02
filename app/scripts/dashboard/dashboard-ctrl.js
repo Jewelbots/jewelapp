@@ -106,13 +106,16 @@ angular.module('jewelApp.controllers')
       $scope.checkFriendRequests = function () {
         UserService.CheckFriendRequests().then(function (results){
           $scope.model.outstandingFriendRequests = results;
-          $scope.model.outstandingFriendRequests.count = results.length;
         });
 
       };
 
       $scope.acceptFriendRequest = function (friendRequest) {
         UserService.AcceptFriendRequest(friendRequest).then (function (result) {
+          _.remove($scope.model.outstandingFriendRequests, friendRequest);
+          if ($scope.model.outstandingFriendRequests.length === 0) {
+            $scope.closeModal(2);
+          }
           $logService.Log(JSON.stringify(result));
         }, function (error) {
           $logService.Log('error', 'unable to accept friend request: ' + JSON.stringify(error));
@@ -120,10 +123,15 @@ angular.module('jewelApp.controllers')
       };
       $scope.dismissRequest = function (friendRequest) {
         UserService.RejectFriendRequest(friendRequest).then (function (result) {
+          console.log(result);
+          _.remove($scope.model.outstandingFriendRequests, friendRequest);
+          if ($scope.model.outstandingFriendRequests.length === 0) {
+            $scope.closeModal(2);
+          }
         }, function (error) {
           $logService.Log('error', 'unable to clear friend request: ' + JSON.stringify(error));
         });
-      }
+      };
 
       $scope.findFriendsToAdd = function(color) {
         $scope.model.selectedMenuItem = color;
