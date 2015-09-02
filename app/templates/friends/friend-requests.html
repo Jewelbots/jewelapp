@@ -12,10 +12,10 @@
     <div class="card" ng-repeat="friendRequest in model.outstandingFriendRequests">
       <div class="item">
         <div>
-          <span class="circle circle-{{friendRequest.color}}"></span>
-          <span class="requestor-name requestor-{{friendRequest.color}}">{{friendRequest.name}}</span>
-          <span class="request-button request-{{friendRequest.color}}">Accept</span>
-          <span ng-click="dismissRequest(friendRequest.id)">X</span>
+          <div class="circle circle-{{friendRequest.color}}"></div>
+          <div class="requestor-name requestor-{{friendRequest.color}}">{{friendRequest.name}}</div>
+          <button class="button request-button request-{{friendRequest.color}}" ng-click="acceptFriendRequest(friendRequest)">Accept</button>
+          <button class="button" ng-click="dismissRequest(friendRequest)">X</button>
         </div>
       </div>
     </div>
