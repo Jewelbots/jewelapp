@@ -47,6 +47,7 @@ angular.module('jewelApp.controllers')
         }).then(function (modal) {
           $scope.modal2 = modal;
         });
+        $scope.getFriends();
       };
 
       $scope.allowedToAddFriends = function () {
@@ -57,6 +58,9 @@ angular.module('jewelApp.controllers')
       };
       $scope.menu = {
         selectedMenuItem : ''
+      };
+      $scope.getFriends = function () {
+        $scope.model.friends = UserService.GetFriends();
       };
 
       $scope.showFriendRequests = function () {
