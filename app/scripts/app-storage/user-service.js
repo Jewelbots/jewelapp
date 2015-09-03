@@ -75,7 +75,7 @@ angular.module('jewelApp.services')
           return DataService.GetFriends();
         },
         HasFriends : function () {
-          return self.GetFriends().length > 0;
+          return this.GetFriends().length > 0;
         },
         CheckFriendRequests : function () {
           var q = $q.defer();
@@ -165,12 +165,13 @@ angular.module('jewelApp.services')
          }
         },
         AcceptFriendRequest : function (friendRequest) {
+          var q = $q.defer();
           var params = {
             recipientPhoneHash: friendRequest.recipientPhoneHash,
             requestorPhoneHash: friendRequest.requestorPhoneHash,
             color : friendRequest.color
           };
-          Parse.Cloud.run('removeRequest', params).then(function (result) {
+          Parse.Cloud.run('removeRequest', params).then(function () {
             DataService.AddFriend(friendRequest).then(function (friendAdd) {
               q.resolve(friendAdd);
             }, function (err) {
@@ -179,6 +180,7 @@ angular.module('jewelApp.services')
           }, function (error) {
             q.reject(error);
           });
+
           return q.promise;
         },
         RejectFriendRequest : function (friendRequest) {
