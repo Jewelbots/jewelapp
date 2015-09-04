@@ -66,7 +66,8 @@
       "id": "com.randdusing.bluetoothle"
     },
     "org.apache.cordova.dialogs",
-    "cordova-plugin-contacts"
+    "cordova-plugin-contacts",
+    "phonegap-plugin-push"
   ],
   "cordovaPlatforms": []
 }

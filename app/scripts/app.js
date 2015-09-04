@@ -47,11 +47,23 @@ angular.module('jewelApp',
     Parse.initialize('j5XHG7wZ7z62lWCT4H43220C31slqlbswptPkbbU', '5qEip2ImNHArKNdWDnC3SYNjxFpSQG3vkZ1UOjR6');
     $logService.Log('message', 'platform is: ' + JSON.stringify(ionic.Platform.platform()) );
   $ionicPlatform.ready(function() {
+    var push = PushNotification.init({
+      "ios": {}
+    });
+    push.on('registration', function (data) {
+      $logService.Log('message', 'registration event: ' + JSON.stringify(data));
+    });
+    push.on('notification', function (data) {
+      $logService.Log('message', 'received push notification, data is: '+ JSON.stringify(data));
+    });
+    push.on('error', function (error) {
+      $logService.Log('error', 'something went wrong with push notifications: ' + JSON.stringify(error));
+    });
     if (navigator.contacts === undefined) {
-      $logService.Log('message', 'contacts plugin not loaded');
+      //$logService.Log('message', 'contacts plugin not loaded');
     }
     if (bluetoothle === undefined) {
-      $logService.Log('error', 'bluetoothle has not been loaded; check your cordova plugin installs!');
+      //$logService.Log('error', 'bluetoothle has not been loaded; check your cordova plugin installs!');
     }
 
     if(window.StatusBar) {
@@ -136,8 +148,6 @@ angular.module('jewelApp',
         controller : 'SMSCtrl',
         templateUrl: 'templates/sms/verify.html'
       });
-
-
       $urlRouterProvider.otherwise('/home');
 }]);
 
