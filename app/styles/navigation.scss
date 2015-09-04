@@ -1,0 +1,20 @@
+body {
+  cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+
+ion-top-menu {
+  position: absolute;
+  height: 0px;
+  width: 100%;
+  background: #333;
+  color: white;
+  z-index: 10;
+  transition: all .5s; }
+ion-pane {
+  position: absolute;
+  transition: all .5s !important; }
+
+ion-top-menu .item {
+  background: none;
+  border-color: #222;
+  color: white; }

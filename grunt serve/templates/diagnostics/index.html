@@ -1,0 +1,12 @@
+<ion-view can-swipe-back="true" view-title="Diagnostics" hide-back-button="true">
+  <ion-content class="content has-header padding">
+    <ion-refresher on-refresh="getLoggingInfo()" pulling-text="Pull to refresh...">
+    </ion-refresher>
+    <div ng-repeat="l in model.logs track by $index">
+        <p>
+          {{l.Message}}
+          {{l.Timestamp}}
+        </p>
+     </div>
+  </ion-content>
+</ion-view>
