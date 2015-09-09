@@ -68,12 +68,10 @@
     "org.apache.cordova.dialogs",
     "cordova-plugin-contacts",
     "org.apache.cordova.console",
-    "org.apache.cordova.console",
     "org.apache.cordova.device",
-    "org.apache.cordova.dialogs",
     "cordova-plugin-contacts",
     "com.ionic.keyboard",
-    "com.ionic.keyboard"
+    "phonegap-plugin-push"
   ],
   "cordovaPlatforms": [
     "ios"

@@ -117,6 +117,7 @@ angular.module('jewelApp.controllers')
       $scope.acceptFriendRequest = function (friendRequest) {
         UserService.AcceptFriendRequest(friendRequest).then (function (result) {
           _.remove($scope.model.outstandingFriendRequests, friendRequest);
+          $scope.getFriends();
           if ($scope.model.outstandingFriendRequests.length === 0) {
             $scope.closeModal(2);
           }

@@ -10,22 +10,33 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
       $logService,
       $q,
       Parse) {
+      var self = this;
       var service =  {
         IsRegistered : function () {
           return $localStorage.get('IsRegistered', false);
         },
         HasFriends : function () {
-          return $localStorage.getObject('Friends').length > 0;
+          var friendsObject = $localStorage.getObject('Friends');
+          return !(Object.keys(friendsObject).length === 0 || friendsObject.friends.length === 0);
         },
         GetFriends: function () {
-          return $localStorage.getObject('Friends') || [];
+          var friendsObject = $localStorage.getObject('Friends');
+          if (Object.keys(friendsObject).length === 0) {
+            return [];
+          }
+          return friendsObject.friends;
         },
         AddFriend : function (friendRequest) {
           var q = $q.defer();
           try {
             //todo: add friendRequest.Address to device
-            var friends = $localStorage.getObject('Friends', []);
-            q.resolve($localStorage.setObject('Friends', friends.push(friendRequest)));
+            var friends = this.GetFriends();
+            var friendsObject=  {
+              friends : friends
+            };
+            friendsObject.friends.push(friendRequest);
+            $localStorage.setObject('Friends', friendsObject);
+            q.resolve(friendRequest);
           }
           catch (error) {
             q.reject(error);
