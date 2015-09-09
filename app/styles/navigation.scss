@@ -17,4 +17,18 @@ ion-pane {
 ion-top-menu .item {
   background: none;
   border-color: #222;
-  color: white; }
+  color: white;
+}
+ion-top-menu .toggled {
+  height: 300px;
+}
+ion-pane .toggled {
+  top: 300px;
+}
+ion-top-menu .notToggled {
+  height: 0px;
+  top: 0px;
+}
+ion-pane .notToggled {
+  top: 0px;
+}

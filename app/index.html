@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
 
     <!-- build:css styles/vendor.css -->
@@ -46,7 +46,6 @@
 
     <script src="scripts/utils/services.js"></script>
     <script src="scripts/app.js"></script>
-    <script src="scripts/navigation.js"></script>
     <script src="scripts/app-storage/data-service.js"></script>
     <script src="scripts/app-storage/user-service.js"></script>
     <script src="scripts/settings/settings-service.js"></script>
@@ -55,6 +54,7 @@
     <script src="scripts/device/contacts-service.js"></script>
     <script src="scripts/registration/pair-ctrl.js"></script>
     <script src="scripts/registration/registration-ctrl.js"></script>
+    <script src="scripts/menu/top-menu.js"></script>
     <script src="scripts/menu/jewelbots-menu.js"></script>
     <script src="scripts/dashboard/dashboard-ctrl.js"></script>
     <script src="scripts/dashboard/home-ctrl.js"></script>
@@ -66,36 +66,19 @@
     <script src="scripts/start/start-ctrl.js"></script>
     <!-- endbuild -->
   </head>
-  <body ng-app="jewelApp" ng-controller="MyCtrl">
-	<ion-top-menu>
-	      <ion-scroll style="width:100%;height:100%">
-	        <div class="list">
-	          <div class="item">
-	            Home
-	          </div>
-			<div class="item">
-	            Add Friend
-	          </div>
-			<div class="item">
-	            Mods
-	          </div>
-			<div class="item">
-	            Settings
-	          </div>
-	        </div>
-	      </ion-scroll>
-	    </ion-top-menu>
+  <body ng-app="jewelApp">
+      <jewelbots-top-menu></jewelbots-top-menu>
 	    <ion-pane>
 	      <ion-header-bar class="bar bar-header bar-light">
 	        <div class="buttons">
-			    <div style="left:50%; position: absolute;"><i class="jewelbots-icon" ng-click="toggleTopMenu()"></i></div>
+            <div style="left:50%; position: absolute;"><i class="jewelbots-icon" ng-click="toggleTopMenu()"></i></div>
 	        </div>
 	      </ion-header-bar>
-	      <ion-content>
+
 	        <ion-nav-view>
 
 		    </ion-nav-view>
-	      </ion-content>
+
 	    </ion-pane>
 
   </body>

@@ -15,7 +15,7 @@ angular.module('jewelApp.services')
     ) {
     var service = {
         IsPaired : function() {
-            return false; //STUB; replace with Parse.com call. toggle to manually test different states.
+            return DataService.IsPaired(); //STUB; replace with Parse.com call. toggle to manually test different states.
         },
         GetAppId : function (stubId) {
           return stubId || '';

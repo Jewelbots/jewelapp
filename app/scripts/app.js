@@ -138,7 +138,7 @@ angular.module('jewelApp',
       });
 
 
-      $urlRouterProvider.otherwise('/home');
+      $urlRouterProvider.otherwise('/load');
 }]);
 
 
