@@ -34,13 +34,17 @@ angular.module('jewelApp',
   'jewelApp.directives'
   ])
 .run(
- ['$ionicPlatform',
+ ['$cordovaSplashscreen',
+  '$ionicPlatform',
   '$logService',
+  '$timeout',
    'DataService',
    'Parse',
   function (
+  $cordovaSplashscreen,
   $ionicPlatform,
   $logService,
+  $timeout,
   DataService,
   Parse
   ) {
@@ -48,7 +52,11 @@ angular.module('jewelApp',
     $logService.Log('message', 'platform is: ' + JSON.stringify(ionic.Platform.platform()) );
   $ionicPlatform.ready(function() {
     var push = PushNotification.init({
-      "ios": {}
+      "ios": {
+        "badge" : true,
+        "sound" : true,
+        "alert" : true
+      }
     });
     push.on('registration', function (data) {
       $logService.Log('message', 'registration event: ' + JSON.stringify(data));
@@ -69,6 +77,9 @@ angular.module('jewelApp',
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    $timeout(function() {
+        $cordovaSplashscreen.hide()
+    }, 5000);
   });
 }])
 
@@ -148,7 +159,7 @@ angular.module('jewelApp',
         controller : 'SMSCtrl',
         templateUrl: 'templates/sms/verify.html'
       });
-      $urlRouterProvider.otherwise('/load');
+      $urlRouterProvider.otherwise('/start');
 }]);
 
 

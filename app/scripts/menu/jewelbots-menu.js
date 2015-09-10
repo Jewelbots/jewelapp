@@ -5,9 +5,7 @@ angular.module('jewelApp.directives')
       restrict: 'E',
       scope :false,
       controller : function ($scope, $element) {
-        console.log('element is: ' + $element);
         $scope.addRemoveClassFunction = function (color) {
-          console.log('clicked!');
           var a = angular.element(document.getElementsByTagName('li')),
             i = 0;
           // loop through all 'a' elements

@@ -58,22 +58,24 @@
     "org.apache.cordova.device",
     "org.apache.cordova.console",
     "com.ionic.keyboard",
-    "org.apache.cordova.device",
-    "org.apache.cordova.console",
-    "com.ionic.keyboard",
     {
       "locator": "https://github.com/randdusing/BluetoothLE",
       "id": "com.randdusing.bluetoothle"
     },
     "org.apache.cordova.dialogs",
     "cordova-plugin-contacts",
-    "org.apache.cordova.console",
-    "org.apache.cordova.device",
-    "cordova-plugin-contacts",
     "com.ionic.keyboard",
-    "phonegap-plugin-push"
+    "org.apache.cordova.splashscreen",
+    "phonegap-plugin-push",
+    "org.apache.cordova.console",
+    "org.apache.cordova.splashscreen",
+    "org.apache.cordova.device",
+    "org.apache.cordova.dialogs",
+    "com.ionic.keyboard",
+    "com.ionic.keyboard"
   ],
   "cordovaPlatforms": [
-    "ios"
+    "ios",
+    "android"
   ]
 }
