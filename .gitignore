@@ -10,6 +10,7 @@ plugins
 *.swo
 *.log
 *.DS_Store
+platforms
 *.pbxuser
 !default.pbxuser
 *.mode1v3
