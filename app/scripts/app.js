@@ -14,7 +14,7 @@ angular.module('CryptoJS', [])
   });
 
 angular.module('ngCordova', ['ngCordova.plugins']);
-angular.module('ngCordova.plugins.bluetoothle');
+angular.module('ngCordovaBluetoothle');
 angular.module('ngCordova.plugins.contacts');
 angular.module('jewelApp.controllers', [
   'ngCordova.plugins.bluetoothle',
