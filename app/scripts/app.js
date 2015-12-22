@@ -167,6 +167,11 @@ angular.module('jewelApp',
         url: '/sms/verify/:telephone',
         controller : 'SMSCtrl',
         templateUrl: 'templates/sms/verify.html'
+      })
+      .state('demo', {
+        url: '/demo',
+        controller: 'DemoCtrl',
+        templateUrl: 'templates/demo/index.html'
       });
       $urlRouterProvider.otherwise('/start');
 }]);
