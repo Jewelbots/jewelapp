@@ -170,9 +170,37 @@ angular.module('jewelApp',
       })
       .state('demo', {
         url: '/demo',
-        controller: 'DemoCtrl',
-        templateUrl: 'templates/demo/index.html'
-      });
+        abstract: true,
+        templateUrl: 'templates/demo/tabs.html'
+      })
+      .state('demo.select', {
+        url: '/select',
+        views: {
+          'demo-select': {
+            templateUrl: 'templates/demo/select.html',
+            controller: 'DemoCtrl'
+          }
+        }
+      })
+      .state('demo.control', {
+        url: '/control',
+        views: {
+          'demo-control': {
+            templateUrl: 'templates/demo/control.html',
+            controller: 'DemoCtrl'
+          }
+        }
+      })
+      .state('demo.weather', {
+        url: '/weather',
+        views: {
+          'demo-weather': {
+            templateUrl: 'templates/demo/weather.html',
+            controller: 'DemoCtrl'
+          }
+        }
+      })
+      ;
       $urlRouterProvider.otherwise('/start');
 }]);
 
