@@ -1,19 +1,22 @@
 'use strict';
-angular.module('jewelApp.controllers')
+angular
+	.module('jewelApp.controllers')
 	.controller('DemoCtrl', [
 		'$scope',
-		'$window',
-		function($logService, $scope, $window) {
+		'$cordovaBluetoothle',
+		function($scope, $cordovaBluetoothle) {
 			$scope.model = {
 				pairedDevices: [ ],
+				detectedDevices: [ ],
+				numDetected: 0,
 			};
-			$scope.getLoggingInfo = function() {
-				var logs = 'hi'
-				$window.console.log(logs);
-				$scope.$broadcast('scroll.refreshComplete');
-			};
-			$scope.clearLog = function () {
-				$logService.Clear();
+			$scope.devices = [ ];
+			$scope.scanForDevices = function scanForDevices() {
+
+				// scan for nearby BLE devices here, ones with JWB_ prefix
+				setTimeout(function() {
+					$scope.$broadcast('scroll.refreshComplete');
+				}, 1000);
 			};
 		}
 	])
