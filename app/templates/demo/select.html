@@ -1,0 +1,31 @@
+<ion-view view-title="Select Jewelbots to Control">
+	<ion-content class="has-header">
+		<ion-refresher
+			pulling-text="Pull to refresh..."
+			on-refresh="scanForDevices()">
+		</ion-refresher>
+		<ion-list>
+			<ion-item class="bar-positive" ng-repeat="device in devices" ng-click="selectJewelbot()" on-hold="holdJewelbot(device, $index)">
+				<i class="ion-ios-arrow-right"></i> Name: {{device.name}}
+				<ion-option-button class="button button-positive button-right">Select</ion-option-button>
+			</ion-item>
+		</ion-list>
+		<div class="card">
+			<div class="item item-divider">
+				Can't find your Jewelbot?
+			</div>
+			<div class="item item-text-wrap">
+			Pull down to refresh the list of nearby Jewelbots.
+			</div>
+		</div>
+	</ion-content>
+	<ion-footer-bar align-title="left" class="bar-calm">
+		<div class="title">{{
+			model.numDetected == 0 ?
+				"No devices found" :
+				model.numDetected == 1 ?
+					"1 device found" :
+					model.numDetected + " devices found"
+		}}</div>
+	</ion-footer-bar>
+</ion-view>
