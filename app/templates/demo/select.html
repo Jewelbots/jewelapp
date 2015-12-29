@@ -48,14 +48,15 @@
 			<i class="ion-ios-arrow-forward"></i> Pull down to refresh the list of nearby Jewelbots.
 			</div>
 		</div>
+
 	</ion-content>
 	<ion-footer-bar align-title="left" class="bar-calm">
 		<div class="title">{{
-			model.numDetected == 0 ?
+			numDetected == 0 ?
 				"No devices found" :
-				model.numDetected == 1 ?
+				numDetected == 1 ?
 					"1 device found" :
-					model.numDetected + " devices found"
+					numDetected + " devices found"
 		}}</div>
 	</ion-footer-bar>
 </ion-view>
