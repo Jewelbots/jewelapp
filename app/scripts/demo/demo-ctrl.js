@@ -23,9 +23,26 @@ angular
 			$scope.scanForDevices = function scanForDevices() {
 
 				// scan for nearby BLE devices here, ones with JWB_ prefix
-				setTimeout(function() {
-					$scope.$broadcast('scroll.refreshComplete');
-				}, 1000);
+
+				$ionicPlatform.ready().then(function doScan() {
+					return $cordovaBluetoothle.initialize($scope.params)
+					.then(function () {
+						return $cordovaBluetoothle.find($scope.params)
+					}, function (err) {
+						$logService.log('error', 'Error initializing BTLE in DemoCtrl.');
+					});
+				}).then(function scanResults(data) {
+					if(data.status === "scanResult") {
+						$scope.devices.detected.push(data);
+						stopRefresh();
+						return $cordovaBluetoothle.stopScan();
+					}
+				}, function scanError(error) {
+					$logService.log('error', 'Error scanning for BLE devices in DemoCtrl.');
+					stopRefresh();
+					return $cordovaBluetoothle.stopScan();
+				});
+
 			};
 		}
 	])
