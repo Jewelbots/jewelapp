@@ -13,7 +13,19 @@
 				<i class="ion-bluetooth"></i> <em>{{device.name}}</em>
 			</ion-item>
 		</ion-list>
-		<div class="card">
+
+		<div class="card" ng-hide="numDetected">
+			<div class="item item-divider">
+				<h1><i class="ion-ios-search"></i> No Jewelbots Detected</h1>
+			</div>
+			<div class="item item-text-wrap">
+				Nearby Jewelbots will appear here.
+			</div>
+		</div>
+
+		<div class="padding"></div>
+
+		<div class="card" ng-show="numDetected">
 			<div class="item item-divider">
 				Can't find your Jewelbot?
 			</div>
