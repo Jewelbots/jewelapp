@@ -67,7 +67,11 @@ angular
 					}
 				});
 			}
-			function stopRefresh() { $scope.$broadcast('scroll.refreshComplete'); }
+			function stopRefresh() {
+				$scope.numSelected = $scope.devices.selected.length;
+				$scope.numDetected = $scope.devices.detected.length;
+				$scope.$broadcast('scroll.refreshComplete');
+			}
 		}
 	])
 ;
