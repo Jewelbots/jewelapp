@@ -4,10 +4,13 @@
 			pulling-text="Pull to refresh..."
 			on-refresh="scanForDevices()">
 		</ion-refresher>
-		<ion-list>
-			<ion-item class="bar-positive" ng-repeat="device in devices" ng-click="selectJewelbot()" on-hold="holdJewelbot(device, $index)">
-				<i class="ion-ios-arrow-right"></i> Name: {{device.name}}
-				<ion-option-button class="button button-positive button-right">Select</ion-option-button>
+
+		<ion-list ng-show="numDetected" type="card" can-swipe="false">
+			<div class="item item-divider">
+				<h1><i class="ion-ios-search-strong"></i> Nearby Jewelbots</h1>
+			</div>
+			<ion-item ng-class="getDeviceColor(device)" ng-repeat="device in devices.detected" ng-click="selectDevice(device)">
+				<i class="ion-bluetooth"></i> <em>{{device.name}}</em>
 			</ion-item>
 		</ion-list>
 		<div class="card">
