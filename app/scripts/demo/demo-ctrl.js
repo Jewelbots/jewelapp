@@ -44,6 +44,25 @@ angular
 				});
 
 			};
+			$scope.getDeviceColor = function getDeviceColor(device) {
+				return isSelected(device) ? "item-calm" : "item-light";
+			}
+
+			function isSelected(device) {
+				var sel = $scope.devices.selected.filter(function(item) {
+					if(device.name == item.name) { return true; }
+					return false;
+				});
+				return !!sel.length;
+			}
+			function unselectDevice(device) {
+				$scope.devices.selected.forEach(function(item, i) {
+					if(item.name == device.name) {
+						$scope.devices.selected.splice(i, 1);
+					}
+				});
+			}
+			function stopRefresh() { $scope.$broadcast('scroll.refreshComplete'); }
 		}
 	])
 ;
