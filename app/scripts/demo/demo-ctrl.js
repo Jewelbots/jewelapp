@@ -27,7 +27,9 @@ angular
 			}
 
 			$scope.selectDevice = function(device) {
-				console.log('Selecting device ' + device.name);
+				if(DeviceService.isSelected(device)) {
+					return DeviceService.deselectDevice(device);
+				}
 				DeviceService.selectDevice(device);
 			}
 			function isSelected(device) {
