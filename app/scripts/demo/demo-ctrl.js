@@ -9,12 +9,11 @@ angular
 		'DeviceService',
 		function($scope, $cordovaBluetoothle, $logService, DeviceService) {
 			$scope.devices = {
-				detected: [ ],
-				selected: [ ],
-				paired: [ ]
+				detected: function() { return DeviceService.devices.detected; },
+				selected: function() { return DeviceService.devices.selected; }
 			}
-			$scope.numDetected = 0;
-			$scope.numSelected = 0;
+			$scope.numDetected = function() { return DeviceService.numDetected; }
+			$scope.numSelected = function() { return DeviceService.numSelected; }
 
 			$scope.selectDevice = function selectDevice(device) {
 
