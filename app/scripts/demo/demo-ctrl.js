@@ -24,9 +24,6 @@ angular
 					stopRefresh();
 					return $cordovaBluetoothle.stopScan();
 				});
-			};
-			$scope.getDeviceColor = function getDeviceColor(device) {
-				return isSelected(device) ? "item-calm" : "item-light";
 			}
 
 			$scope.selectDevice = function(device) {
@@ -47,6 +44,10 @@ angular
 					}
 				});
 			}
+			$scope.getDeviceColor = function(device) {
+				return DeviceService.isSelected(device) ? "item-calm" : "item-light";
+			}
+
 			function stopRefresh() {
 				$scope.numSelected = $scope.devices.selected.length;
 				$scope.numDetected = $scope.devices.detected.length;
