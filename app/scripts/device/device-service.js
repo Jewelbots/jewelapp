@@ -8,12 +8,16 @@ angular.module('jewelApp.services')
 		'$q',
 		function($cordovaBluetoothle, $ionicPlatform, $logService, $timeout, $q) {
 			var svc = { };
+			var defaults = {
+			  scanDuration : 5000,
+			  request : true
+			};
 			svc.devices = {
 				detected: [ ],
 				selected: [ ],
 				paired: [ ],
 			}
-			var fakeBluetooth = true;
+			var fakeBluetooth = false;
 			svc.numSelected = 0;
 			svc.numDetected = 0;
 
@@ -22,12 +26,14 @@ angular.module('jewelApp.services')
 					console.log('Faking');
 					return fakeScan();
 				}
+				var scanParams = params || defaults;
+
 				return $ionicPlatform.ready().then(function doScan() {
-					return $cordovaBluetoothle.initialize(params)
+					return $cordovaBluetoothle.initialize(scanParams)
 					.then(function () {
-						return $cordovaBluetoothle.find(params)
+						return $cordovaBluetoothle.startScan(scanParams)
 					}, function (err) {
-						$logService.log('error', 'Error initializing BLE in DemoCtrl.');
+						$logService.log('error', 'Error initializing BLE in DemoCtrl: ' + JSON.stringify(err));
 					});
 				}).then(function scanResults(data) {
 					if(data.status === "scanResult") {
