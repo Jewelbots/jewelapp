@@ -28,12 +28,10 @@ angular
 			$scope.getDeviceColor = function getDeviceColor(device) {
 				return isSelected(device) ? "item-calm" : "item-light";
 			}
-			function fakeScan() {
-				$scope.devices.detected = [ ];
-				$scope.devices.detected.push({ name: 'JWB_001LOL', address: "A1:B2:C3:D4:E5:F6" });
-				$scope.devices.detected.push({ name: 'JWB_002WAT', address: "A2:B3:C4:D5:E6:F0" });
-				console.log($scope.devices.detected);
-				stopRefresh();
+
+			$scope.selectDevice = function(device) {
+				console.log('Selecting device ' + device.name);
+				DeviceService.selectDevice(device);
 			}
 			function isSelected(device) {
 				var sel = $scope.devices.selected.filter(function(item) {
