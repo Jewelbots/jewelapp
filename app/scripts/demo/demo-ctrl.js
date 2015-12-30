@@ -32,20 +32,7 @@ angular
 				}
 				DeviceService.selectDevice(device);
 			}
-			function isSelected(device) {
-				var sel = $scope.devices.selected.filter(function(item) {
-					if(device.name == item.name) { return true; }
-					return false;
-				});
-				return !!sel.length;
-			}
-			function unselectDevice(device) {
-				$scope.devices.selected.forEach(function(item, i) {
-					if(item.name == device.name) {
-						$scope.devices.selected.splice(i, 1);
-					}
-				});
-			}
+
 			$scope.getDeviceColor = function(device) {
 				return DeviceService.isSelected(device) ? "item-calm" : "item-light";
 			}
