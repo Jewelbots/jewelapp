@@ -1,5 +1,97 @@
 <ion-view view-title="Control Jewelbots">
 	<ion-content class="has-header">
-		<h1>test</h1>
+
+
+		<!-- Global Commands -->
+
+		<div class="card">
+			<div class="item item-divider">
+				<h2><i class="ion-ios-world-outline"></i> Global Commands</h2>
+			</div>
+			<div class="item item-text-wrap text-center">
+				<button class="button button-small button-stable" ng-click="globalPair()">
+					<i class="ion-loop"></i> Pairing
+				</button>
+				<button class="button button-small button-calm" ng-click="globalNewFriend()">
+					<i class="ion-person-add"></i> Success
+				</button>
+				<button class="button button-small button-balanced" ng-click="globalFriendsNear()">
+					<i class="ion-person-stalker"></i> Proximity
+				</button>
+			</div>
+			<div class="item item-text-wrap text-center">
+				<button class="button button-small button-assertive" ng-click="globalMessage()">
+					<i class="ion-chatbubble-working"></i> Alert
+				</button>
+				<button class="button button-small button-royal" ng-click="globalParty()">
+					<i class="ion-happy-outline"></i> Party Mode
+				</button>
+				<button class="button button-small button-energized" ng-click="globalReset()">
+					<i class="ion-power"></i> Reset
+				</button>
+			</div>
+		</div>
+
+		<!-- Linked Commands -->
+
+		<div class="card">
+			<div class="item item-divider">
+				<h2><i class="ion-link"></i> Linked Commands</h2>
+			</div>
+			<div class="item item-text-wrap text-center">
+				<button class="button button-small button-stable" ng-click="linkedPair()">
+					<i class="ion-loop"></i> Pairing
+				</button>
+				<button class="button button-small button-calm" ng-click="linkedNewFriend()">
+					<i class="ion-person-add"></i> Success
+				</button>
+				<button class="button button-small button-balanced" ng-click="linkedFriendsNear()">
+					<i class="ion-person-stalker"></i> Proximity
+				</button>
+			</div>
+			<div class="item item-text-wrap text-center">
+				<button class="button button-small button-assertive" ng-click="globalMessage()">
+					<i class="ion-chatbubble-working"></i> Alert
+				</button>
+				<button class="button button-small button-royal" ng-click="linkedParty()">
+					<i class="ion-happy-outline"></i> Party Mode
+				</button>
+			</div>
+		</div>
+
+		<!-- Individual Commands -->
+
+		<div class="card" ng-repeat="device in devices.selected()">
+			<div class="item item-divider">
+				<h2><i class="ion-bluetooth"></i> {{device.name}}</h2>
+			</div>
+			<div class="item item-text-wrap text-center">
+				<button class="button button-small button-stable" ng-click="singlePair(device)">
+					<i class="ion-loop"></i> Pairing
+				</button>
+				<button class="button button-small button-calm" ng-click="singleNewFriend(device)">
+					<i class="ion-person-add"></i> Success
+				</button>
+				<button class="button button-small button-balanced" ng-click="singleFriendsNear(device)">
+				<i class="ion-person-stalker"></i> Proximity
+				</button>
+			</div>
+			<div class="item item-text-wrap text-center">
+				<button class="button button-small button-assertive" ng-click="globalMessage()">
+					<i class="ion-chatbubble-working"></i> Alert
+				</button>
+				<button class="button button-small button-royal" ng-click="singleParty(device)">
+					<i class="ion-happy-outline"></i> Party Mode
+				</button>
+				<button class="button button-small button-energized" ng-click="singleReset(device)">
+					<i class="ion-power"></i> Reset
+				</button>
+				<button class="button button-small button-dark" ng-click="toggleLink(device)">
+					<i class="ion-link"></i> Link
+				</button>
+
+			</div>
+		</div>
+
 	</ion-content>
 </ion-view>
