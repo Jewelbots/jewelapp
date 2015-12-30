@@ -15,30 +15,12 @@ angular
 			$scope.numDetected = function() { return DeviceService.numDetected; }
 			$scope.numSelected = function() { return DeviceService.numSelected; }
 
-			$scope.selectDevice = function selectDevice(device) {
-
-				if(isSelected(device)) { return unselectDevice(device); }
-				$scope.devices.selected.push(device);
-				$scope.numSelected = $scope.devices.selected.length;
-			}
-			$scope.scanForDevices = function scanForDevices() {
-				if(fakeBluetooth) { return fakeScan(); }
-				// scan for nearby BLE devices here, ones with JWB_ prefix
-				$ionicPlatform.ready().then(function doScan() {
-					return $cordovaBluetoothle.initialize($scope.params)
-					.then(function () {
-						return $cordovaBluetoothle.find($scope.params)
-					}, function (err) {
-						$logService.log('error', 'Error initializing BTLE in DemoCtrl.');
-					});
-				}).then(function scanResults(data) {
-					if(data.status === "scanResult") {
-						$scope.devices.detected.push(data);
-						stopRefresh();
-						return $cordovaBluetoothle.stopScan();
-					}
-				}, function scanError(error) {
-					$logService.log('error', 'Error scanning for BLE devices in DemoCtrl.');
+			$scope.scanForDevices = function() {
+				var scan = DeviceService.scanForDevices().then(function() {
+					console.log('Scanned.');
+					stopRefresh();
+				}, function() {
+					console.log('Failed.');
 					stopRefresh();
 					return $cordovaBluetoothle.stopScan();
 				});
