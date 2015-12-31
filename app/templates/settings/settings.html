@@ -39,7 +39,7 @@
 </ul>
 
   </div>
-  <ion-scroll>
+  <ion-scroll direction="y" delegate-handle="mapScroll">
     <div class="row" ng-repeat="logMessage in model.messages">
       <div class="col-10">
         <i class="ion-ios-information-empty" ng-show="logMessage.Type == 'message'"></i>
