@@ -49,12 +49,11 @@ angular
             .then(function (data) {
               var i;
               $logService.Log('message', 'data was: ' + JSON.stringify(data));
-              if (data.status === 'scanResult') {
-                for (i = 0; i < data.length; i=i+1) {
-                  $scope.devices.detected.push(data[i]);
-                  $logService.Log('detected devices are: ' + JSON.stringify($scope.devices.detected));
-                }
-                return $cordovaBluetoothle.stopScan();
+              for (i = 0; i < data.length; i=i+1) {
+                  if (data.status === 'scanResult') {
+                    $scope.devices.detected.push(data[i]);
+                    $logService.Log('detected devices are: ' + JSON.stringify($scope.devices.detected));
+                  }
               }
             }, function (error) {
               $logService.Log('error', 'Error while scanning.' + JSON.stringify(error));
