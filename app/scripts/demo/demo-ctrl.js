@@ -29,7 +29,8 @@ angular
 
       var getAvailableDevices = function () {
         var params = {
-          request: true
+          request: true,
+          scanDuration : 10000
         };
         $ionicPlatform.ready( function () {
             $logService.Log('message', 'entered ionic ready');
@@ -41,12 +42,16 @@ angular
                 $logService.Log('error', 'Error trying to initialize bluetoothle ' + JSON.stringify(err));
               })
               .then(function (data) {
+                var i;
                 $logService.Log('message', 'data was: ' + JSON.stringify(data));
                 if (data.status === 'scanResult') {
-                  $logService.Log('message', 'devices found: ' + JSON.stringify(data));
-                  $scope.devices.detected.push(data);
-                  return $cordovaBluetoothle.stopScan();
+                  for (i = 0; i < data.length; i = i + 1) {
+                    if (data[i].slice(0, 3).toLowerCase() === 'jwb' || data[i].slice(0, 3).toLowerCase() === 'jew') {
+                      $scope.devices.detected.push(data[i]);
+                    }
+                  }
                 }
+                return $cordovaBluetoothle.stopScan();
               }, function (error) {
                 $logService.Log('error', 'Error while scanning.' + JSON.stringify(error));
                 return $cordovaBluetoothle.stopScan();
