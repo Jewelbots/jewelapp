@@ -1,3 +1,4 @@
+/* global ionic */
 'use strict';
 angular.module('jewelApp.services')
   .factory('ContactsService',

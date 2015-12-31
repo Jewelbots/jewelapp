@@ -54,19 +54,25 @@ angular.module('jewelApp',
   ) {
     Parse.initialize('j5XHG7wZ7z62lWCT4H43220C31slqlbswptPkbbU', '5qEip2ImNHArKNdWDnC3SYNjxFpSQG3vkZ1UOjR6');
     $logService.Log('message', 'platform is: ' + JSON.stringify(ionic.Platform.platform()) );
-  var pushNotification;
   $ionicPlatform.ready(function() {
+    if (!bluetoothle) {
+      $logService.Log('message', 'No bluetoothle');
+    }
+    else {
+      $logService.Log('message','bluetoothle is: ' + JSON.stringify(bluetoothle));
+    }
     $cordovaPushV5.initialize({
-      "ios": {
-        "badge" : true,
-        "sound" : true,
-        "alert" : true,
-        "parseKeys" : {
-          "applicationKey" : "j5XHG7wZ7z62lWCT4H43220C31slqlbswptPkbbU",
-          "iosSdkKey" : "5qEip2ImNHArKNdWDnC3SYNjxFpSQG3vkZ1UOjR6"
+     'ios': {
+        'badge' : true,
+        'sound' : true,
+        'alert' : true,
+        'parseKeys' : {
+          'applicationKey' : 'j5XHG7wZ7z62lWCT4H43220C31slqlbswptPkbbU',
+          'iosSdkKey' : '5qEip2ImNHArKNdWDnC3SYNjxFpSQG3vkZ1UOjR6'
         }
       }
     }).then(function(push) {
+      $logService.Log('message', 'This is push: ' + JSON.stringify(push));
       return $cordovaPushV5.register();
     }).then(function (registration) {
       $logService.Log('message', 'we were registered: ' + JSON.stringify(registration));
@@ -80,14 +86,14 @@ angular.module('jewelApp',
       //$logService.Log('message', 'contacts plugin not loaded');
     }
     if (bluetoothle === undefined) {
-      //$logService.Log('error', 'bluetoothle has not been loaded; check your cordova plugin installs!');
+      $logService.Log('error', 'bluetoothle has not been loaded; check your cordova plugin installs!');
     }
 
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
     $timeout(function() {
-        $cordovaSplashscreen.hide()
+        $cordovaSplashscreen.hide();
     }, 5000);
   });
 }])

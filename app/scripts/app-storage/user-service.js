@@ -22,7 +22,6 @@ angular.module('jewelApp.services')
       DataService,
       Parse,
       _) {
-      var self = this;
       var getContactsFromOutstandingRequests = function (outstandingRequests) {
         var q = $q.defer();
         ContactsService.GetContacts().then(function (contacts) {

@@ -10,7 +10,6 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
       $logService,
       $q,
       Parse) {
-      var self = this;
       var service =  {
         IsRegistered : function () {
           return $localStorage.get('IsRegistered', false);

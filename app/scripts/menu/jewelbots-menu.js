@@ -4,7 +4,7 @@ angular.module('jewelApp.directives')
     return {
       restrict: 'E',
       scope :false,
-      controller : function ($scope, $element) {
+      controller : function ($scope) {
         $scope.addRemoveClassFunction = function (color) {
           var a = angular.element(document.getElementsByTagName('li')),
             i = 0;
