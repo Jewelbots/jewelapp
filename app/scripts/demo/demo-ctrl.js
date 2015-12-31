@@ -6,7 +6,6 @@ angular
 		'$cordovaBluetoothle',
 		'$ionicPlatform',
 		'$logService',
-		'DeviceService',
 		function($scope, $cordovaBluetoothle, $ionicPlatform, $logService) {
 
       $scope.devices = {
@@ -30,11 +29,9 @@ angular
 
       var getAvailableDevices = function () {
         var params = {
-          request: true,
-          name: 'JewelBot'
+          request: true
         };
-        $ionicPlatform.ready()
-          .then(function () {
+        $ionicPlatform.ready( function () {
             $logService.Log('message', 'entered ionic ready');
             return $cordovaBluetoothle.initialize(params)
               .then(function () {
@@ -42,22 +39,21 @@ angular
                 return $cordovaBluetoothle.startScan(params);
               }, function (err) {
                 $logService.Log('error', 'Error trying to initialize bluetoothle ' + JSON.stringify(err));
-              });
-          })
-          .then(function (data) {
-            $logService.Log('message', 'data was: ' + JSON.stringify(data));
-            if (data.status === 'scanResult') {
-              $logService.Log('message', 'devices found: ' + JSON.stringify(data));
-              $scope.devices.detected.push(data);
-              return $cordovaBluetoothle.stopScan();
-            }
-          }, function (error) {
-            $logService.Log('error', 'Error while scanning.' + JSON.stringify(error));
-            return $cordovaBluetoothle.stopScan();
-          }, function (notify) {
-            $logService.Log('message', 'notifying scan: ' + JSON.stringify(notify));
-          })
-          .then(function () {
+              })
+              .then(function (data) {
+                $logService.Log('message', 'data was: ' + JSON.stringify(data));
+                if (data.status === 'scanResult') {
+                  $logService.Log('message', 'devices found: ' + JSON.stringify(data));
+                  $scope.devices.detected.push(data);
+                  return $cordovaBluetoothle.stopScan();
+                }
+              }, function (error) {
+                $logService.Log('error', 'Error while scanning.' + JSON.stringify(error));
+                return $cordovaBluetoothle.stopScan();
+              }, function (notify) {
+                $logService.Log('message', 'notifying scan: ' + JSON.stringify(notify));
+              })
+              .then(function () {
             $logService.Log('message', 'ending scan...');
             return $cordovaBluetoothle.isScanning().then(function(isScanning) {
               if (isScanning) {
@@ -65,11 +61,15 @@ angular
               }
             });
           });
+        });
       };
 
 			$scope.scanForDevices = function() {
-			    getAvailableDevices();
-					stopRefresh();
+			    getAvailableDevices().then(function (success) {
+			      $logService.Log('message', 'got to success for getAvailableDevices: ' + JSON.stringify(success));
+            stopRefresh();
+			    });
+
 			};
 
 			$scope.selectDevice = function(device) {
@@ -79,7 +79,7 @@ angular
 			$scope.deselectDevice = function(deselected) {
         $scope.devices.selected.forEach(function(device, i) {
           if(device.name === deselected.name) {
-            $scope.model.devices.selected.splice(i, 1);
+            $scope.devices.selected.splice(i, 1);
           }
         });
       };
@@ -87,7 +87,7 @@ angular
 			$scope.getDeviceColor = function(device) {
 				return isSelected(device) ? 'item-calm' : 'item-light';
 			};
-
+      getAvailableDevices();
 
 		}
 	])
