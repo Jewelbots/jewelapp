@@ -1,13 +1,15 @@
 <ion-view view-title="Select Jewelbots to Control">
-	<ion-content class="has-header">
+
+	<ion-content class="has-header has-subheader">
+
 		<ion-refresher
 			pulling-text="Pull to refresh..."
 			on-refresh="scanForDevices()">
 		</ion-refresher>
 
-		<ion-list ng-show="devices.detected.length > 0" type="card" can-swipe="false">
+		<ion-list ng-show="devices.detected" type="card" can-swipe="false">
 			<div class="item item-divider">
-				<h1><i class="ion-ios-search-strong"></i> Nearby Jewelbots</h1>
+				<i class="ion-ios-search-strong"></i> Nearby Jewelbots
 			</div>
 			<ion-item
 				ng-repeat="device in devices.detected"
@@ -18,18 +20,17 @@
 			</ion-item>
 		</ion-list>
 
-		<div class="card" ng-hide="devices.detected.length > 0">
+		<div class="card" ng-hide="devices.detected">
 			<div class="item item-divider">
-				<h1><i class="ion-ios-search"></i> No Jewelbots Detected</h1>
+				<i class="ion-ios-search"></i> No Jewelbots Detected
 			</div>
 			<div class="item item-text-wrap">
 				Nearby Jewelbots will appear here.
 			</div>
 		</div>
 
-		<div class="padding"></div>
 
-		<div class="card" ng-show="devices.detected.length > 0">
+		<div class="card" ng-show="devices.detected">
 			<div class="item item-divider">
 			<i class="ion-ios-lightbulb-outline"></i> Jewelbots PROTIP
 			</div>
@@ -41,9 +42,9 @@
 			</div>
 		</div>
 
-		<div class="card" ng-hide="devices.detected.length < 1">
+		<div class="card" ng-hide="devices.detected">
 			<div class="item item-divider">
-			<i class="ion-ios-lightbulb-outline"> Jewelbots PROTIP</i>
+			<i class="ion-ios-lightbulb-outline"></i> Jewelbots PROTIP
 			</div>
 			<div class="item item-text-wrap">
 			<i class="ion-ios-arrow-forward"></i> New Jewelbots may take up to a minute to appear.

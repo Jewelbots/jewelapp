@@ -1,12 +1,20 @@
-<ion-view view-title="Control Jewelbots">
-	<ion-content class="has-header">
+<ion-view view-title="Jewelbots Remote Control">
+	<ion-content class="has-header has-subheader">
 
+		<div class="card" ng-hide="numSelected()">
+			<div class="item item-divider">
+				<i class="ion-alert-circled"></i> No Jewelbots Selected
+			</div>
+			<div class="item item-text-wrap">
+				<i class="ion-ios-arrow-forward"></i> Return to the <b>Select</b> tab to choose which Jewelbots you wish to control.
+			</div>
+		</div>
 
 		<!-- Global Commands -->
 
-		<div class="card">
+		<div class="card" ng-show="numSelected()">
 			<div class="item item-divider">
-				<h2><i class="ion-ios-world-outline"></i> Global Commands</h2>
+				<i class="ion-ios-world-outline"></i> Global Commands
 			</div>
 			<div class="item item-text-wrap text-center">
 				<button class="button button-small button-stable" ng-click="globalPair()">
@@ -21,7 +29,7 @@
 			</div>
 			<div class="item item-text-wrap text-center">
 				<button class="button button-small button-assertive" ng-click="globalMessage()">
-					<i class="ion-chatbubble-working"></i> Alert
+					<i class="ion-chatbubble-working"></i> Message
 				</button>
 				<button class="button button-small button-royal" ng-click="globalParty()">
 					<i class="ion-happy-outline"></i> Party Mode
@@ -34,9 +42,9 @@
 
 		<!-- Linked Commands -->
 
-		<div class="card">
+		<div class="card" ng-show="numSelected()">
 			<div class="item item-divider">
-				<h2><i class="ion-link"></i> Linked Commands</h2>
+				<i class="ion-link"></i> Linked Commands
 			</div>
 			<div class="item item-text-wrap text-center">
 				<button class="button button-small button-stable" ng-click="linkedPair()">
@@ -51,7 +59,7 @@
 			</div>
 			<div class="item item-text-wrap text-center">
 				<button class="button button-small button-assertive" ng-click="globalMessage()">
-					<i class="ion-chatbubble-working"></i> Alert
+					<i class="ion-chatbubble-working"></i> Message
 				</button>
 				<button class="button button-small button-royal" ng-click="linkedParty()">
 					<i class="ion-happy-outline"></i> Party Mode
@@ -63,7 +71,7 @@
 
 		<div class="card" ng-repeat="device in devices.selected()">
 			<div class="item item-divider">
-				<h2><i class="ion-bluetooth"></i> {{device.name}}</h2>
+				<i class="ion-bluetooth"></i> {{device.name}}
 			</div>
 			<div class="item item-text-wrap text-center">
 				<button class="button button-small button-stable" ng-click="singlePair(device)">
@@ -78,7 +86,7 @@
 			</div>
 			<div class="item item-text-wrap text-center">
 				<button class="button button-small button-assertive" ng-click="globalMessage()">
-					<i class="ion-chatbubble-working"></i> Alert
+					<i class="ion-chatbubble-working"></i> Message
 				</button>
 				<button class="button button-small button-royal" ng-click="singleParty(device)">
 					<i class="ion-happy-outline"></i> Party Mode

@@ -265,11 +265,6 @@ i.large-size-icon {
 #jewelbots-menu-bar .plum {
   background-color: #8E4585;
 }
-// TODO: figure out why this is necessary?
-// views inside of tabs that also have headers + sub-headers display improperly.
-ion-content {
-  padding-top: 43px !important;
-}
 ion-scroll {
   height: 400px;
 }

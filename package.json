@@ -61,23 +61,15 @@
     "test": "grunt test"
   },
   "cordovaPlugins": [
-    "org.apache.cordova.device",
     "org.apache.cordova.console",
-    "com.ionic.keyboard",
+    "org.apache.cordova.device",
+    "org.apache.cordova.dialogs",
+    "org.apache.cordova.splashscreen",
+    "cordova-plugin-contacts",
     {
       "locator": "https://github.com/randdusing/BluetoothLE",
       "id": "com.randdusing.bluetoothle"
     },
-    "org.apache.cordova.dialogs",
-    "cordova-plugin-contacts",
-    "com.ionic.keyboard",
-    "org.apache.cordova.splashscreen",
-    "org.apache.cordova.console",
-    "org.apache.cordova.splashscreen",
-    "org.apache.cordova.device",
-    "org.apache.cordova.dialogs",
-    "com.ionic.keyboard",
-    "com.ionic.keyboard",
     {
       "locator": "https://github.com/Jewelbots/phonegap-plugin-push-mirror.git",
       "id": "phonegap-plugin-push"
