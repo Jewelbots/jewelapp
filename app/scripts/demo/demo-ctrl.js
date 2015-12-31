@@ -1,45 +1,94 @@
 'use strict';
-var fakeBluetooth = false;
 angular
 	.module('jewelApp.controllers')
 	.controller('DemoCtrl', [
 		'$scope',
 		'$cordovaBluetoothle',
+		'$ionicPlatform',
 		'$logService',
 		'DeviceService',
-		function($scope, $cordovaBluetoothle, $logService, DeviceService) {
-			$scope.devices = {
-				detected: function() { return DeviceService.devices.detected; },
-				selected: function() { return DeviceService.devices.selected; }
-			}
-			$scope.numDetected = function() { return DeviceService.numDetected; }
-			$scope.numSelected = function() { return DeviceService.numSelected; }
+		function($scope, $cordovaBluetoothle, $ionicPlatform, $logService) {
+
+      $scope.devices = {
+        detected: [],
+        selected: []
+      };
+      var isSelected = function(device) {
+        var sel = $scope.devices.selected.filter(function (item) {
+          if (device.name === item.name) {
+            return true;
+          }
+        });
+        return !!sel.length;
+      };
+      var stopRefresh = function() {
+        $scope.$broadcast('scroll.refreshComplete');
+      };
+
+      $scope.numDetected = function() { return $scope.devices.detected.length; };
+      $scope.numSelected = function() { return $scope.devices.selected.length; };
+
+      var getAvailableDevices = function () {
+        var params = {
+          request: true,
+          name: 'JewelBot'
+        };
+        $ionicPlatform.ready()
+          .then(function () {
+            $logService.Log('message', 'entered ionic ready');
+            return $cordovaBluetoothle.initialize(params)
+              .then(function () {
+                $logService.Log('message', 'entered pre-start scan');
+                return $cordovaBluetoothle.startScan(params);
+              }, function (err) {
+                $logService.Log('error', 'Error trying to initialize bluetoothle ' + JSON.stringify(err));
+              });
+          })
+          .then(function (data) {
+            $logService.Log('message', 'data was: ' + JSON.stringify(data));
+            if (data.status === 'scanResult') {
+              $logService.Log('message', 'devices found: ' + JSON.stringify(data));
+              $scope.devices.detected.push(data);
+              return $cordovaBluetoothle.stopScan();
+            }
+          }, function (error) {
+            $logService.Log('error', 'Error while scanning.' + JSON.stringify(error));
+            return $cordovaBluetoothle.stopScan();
+          }, function (notify) {
+            $logService.Log('message', 'notifying scan: ' + JSON.stringify(notify));
+          })
+          .then(function () {
+            $logService.Log('message', 'ending scan...');
+            return $cordovaBluetoothle.isScanning().then(function(isScanning) {
+              if (isScanning) {
+                return $cordovaBluetoothle.stopScan();
+              }
+            });
+          });
+      };
 
 			$scope.scanForDevices = function() {
-				var scan = DeviceService.scanForDevices().then(function() {
-					console.log('Scanned.');
+			    getAvailableDevices();
 					stopRefresh();
-				}, function() {
-					console.log('Failed.');
-					stopRefresh();
-					return $cordovaBluetoothle.stopScan();
-				});
-			}
+			};
 
 			$scope.selectDevice = function(device) {
-				if(DeviceService.isSelected(device)) {
-					return DeviceService.deselectDevice(device);
-				}
-				DeviceService.selectDevice(device);
-			}
+          if(isSelected(device)) { return; }
+          $scope.devices.selected.push(device);
+			};
+			$scope.deselectDevice = function(deselected) {
+        $scope.devices.selected.forEach(function(device, i) {
+          if(device.name === deselected.name) {
+            $scope.model.devices.selected.splice(i, 1);
+          }
+        });
+      };
 
 			$scope.getDeviceColor = function(device) {
-				return DeviceService.isSelected(device) ? "item-calm" : "item-light";
-			}
+				return isSelected(device) ? 'item-calm' : 'item-light';
+			};
 
-			function stopRefresh() {
-				$scope.$broadcast('scroll.refreshComplete');
-			}
+
 		}
 	])
 ;

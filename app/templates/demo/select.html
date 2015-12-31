@@ -5,20 +5,20 @@
 			on-refresh="scanForDevices()">
 		</ion-refresher>
 
-		<ion-list ng-show="numDetected()" type="card" can-swipe="false">
+		<ion-list ng-show="devices.detected.length > 0" type="card" can-swipe="false">
 			<div class="item item-divider">
 				<h1><i class="ion-ios-search-strong"></i> Nearby Jewelbots</h1>
 			</div>
 			<ion-item
-				ng-class="getDeviceColor(device)"
-				ng-repeat="device in devices.detected()"
+				ng-repeat="device in devices.detected"
 				ng-click="selectDevice(device)"
+        ng-class="getDeviceColor(device)"
 			>
 				<i class="ion-bluetooth"></i> <em>{{device.name}}</em>
 			</ion-item>
 		</ion-list>
 
-		<div class="card" ng-hide="numDetected()">
+		<div class="card" ng-hide="devices.detected.length > 0">
 			<div class="item item-divider">
 				<h1><i class="ion-ios-search"></i> No Jewelbots Detected</h1>
 			</div>
@@ -29,7 +29,7 @@
 
 		<div class="padding"></div>
 
-		<div class="card" ng-show="numDetected()">
+		<div class="card" ng-show="devices.detected.length > 0">
 			<div class="item item-divider">
 			<i class="ion-ios-lightbulb-outline"></i> Jewelbots PROTIP
 			</div>
@@ -41,7 +41,7 @@
 			</div>
 		</div>
 
-		<div class="card" ng-hide="numDetected()">
+		<div class="card" ng-hide="devices.detected.length < 1">
 			<div class="item item-divider">
 			<i class="ion-ios-lightbulb-outline"> Jewelbots PROTIP</i>
 			</div>
@@ -56,11 +56,11 @@
 	</ion-content>
 	<ion-footer-bar align-title="left" class="bar-calm">
 		<div class="title">{{
-			numDetected() == 0 ?
+			devices.detected.length == 0 ?
 				"No devices found" :
-				numDetected() == 1 ?
+				devices.detected.length == 1 ?
 					"1 device found" :
-					numDetected() + " devices found"
+					devices.detected.length + " devices found"
 		}}</div>
 	</ion-footer-bar>
 </ion-view>
