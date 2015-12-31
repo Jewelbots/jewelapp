@@ -50,7 +50,7 @@ angular
               var i;
               $logService.Log('message', 'data was: ' + JSON.stringify(data));
               for (i = 0; i < data.length; i=i+1) {
-                  if (data.status === 'scanResult') {
+                  if (data[i].status === 'scanResult') {
                     $scope.devices.detected.push(data[i]);
                     $logService.Log('detected devices are: ' + JSON.stringify($scope.devices.detected));
                   }
