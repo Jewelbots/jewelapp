@@ -101,7 +101,9 @@ angular
 			$scope.getDeviceColor = function(device) {
 				return isSelected(device) ? 'item-calm' : 'item-light';
 			};
-			getAvailableDevices();
+      if ($scope.devices.detected === 0) {
+        getAvailableDevices();
+      }
 		}
 	])
 ;
