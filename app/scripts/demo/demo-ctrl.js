@@ -37,7 +37,11 @@ angular
             return $cordovaBluetoothle.initialize(params)
               .then(function () {
                 $logService.Log('message', 'entered pre-start scan');
-                return $cordovaBluetoothle.startScan(params);
+                return $cordovaBluetoothle.isScanning().then(function (isScanning) {
+                  if (!isScanning) {
+                    return $cordovaBluetoothle.startScan(params);
+                  }
+                });
               }, function (err) {
                 $logService.Log('error', 'Error trying to initialize bluetoothle ' + JSON.stringify(err));
               })
@@ -46,8 +50,9 @@ angular
                 $logService.Log('message', 'data was: ' + JSON.stringify(data));
                 if (data.status === 'scanResult') {
                   for (i = 0; i < data.length; i = i + 1) {
-                    if (data[i].slice(0, 3).toLowerCase() === 'jwb' || data[i].slice(0, 3).toLowerCase() === 'jew') {
+                    if (data[i].name.slice(0, 3).toLowerCase() === 'jwb' || data[i].name.slice(0, 3).toLowerCase() === 'jew') {
                       $scope.devices.detected.push(data[i]);
+                      $logService.Log('detected devices are: ' + JSON.stringify($scope.devices.detected));
                     }
                   }
                 }
@@ -92,8 +97,6 @@ angular
 			$scope.getDeviceColor = function(device) {
 				return isSelected(device) ? 'item-calm' : 'item-light';
 			};
-      getAvailableDevices();
-
 		}
 	])
 ;
