@@ -50,11 +50,9 @@ angular
               var i;
               $logService.Log('message', 'data was: ' + JSON.stringify(data));
               if (data.status === 'scanResult') {
-                for (i = 0; i < data.length; i = i + 1) {
-                  if (data[i].name.slice(0, 3).toLowerCase() === 'jwb' || data[i].name.slice(0, 3).toLowerCase() === 'jew') {
-                    $scope.devices.detected.push(data[i]);
-                    $logService.Log('detected devices are: ' + JSON.stringify($scope.devices.detected));
-                  }
+                for (i = 0; i < data.length; i=i+1) {
+                  $scope.devices.detected.push(data[i]);
+                  $logService.Log('detected devices are: ' + JSON.stringify($scope.devices.detected));
                 }
                 return $cordovaBluetoothle.stopScan();
               }
@@ -78,7 +76,7 @@ angular
             });
         });
       };
-      
+
 			$scope.scanForDevices = function() {
 			  if (!currentlyScanning) {
           getAvailableDevices().then(function (success) {
