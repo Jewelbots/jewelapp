@@ -33,7 +33,7 @@ angular.module('jewelApp.services')
 
 			var params = {
 				request: true,
-				scanDuration: 10000
+				scanDuration: 5000
 			};
 
 			svc.getAvailableDevices = function () {
