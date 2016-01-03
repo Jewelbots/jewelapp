@@ -39,50 +39,30 @@ angular
         DeviceService.selectDevice(device);
       }
 
-      $scope.globalPair = function () {
-      };
-      $scope.globalNewFriend = function() {
-
-      };
-      $scope.globalFriendsNear = function () {
-
-      };
-      $scope.globalMessage = function () {
-
-      };
-      $scope.global Party = function () {
-
-      };
-      $scope.globalReset = function () {
-
-      };
-      //<!-- Linked Commands -->
-
-      $scope.linkedPair = function () {
-
-      };
-      $scope.linkedNewFriend = function () {
-
-      };
-      $scope.linkedFriendsNear = function () {
-
-      };
-      $scope.globalMessage = function () {
-
-      };
-      $scope.linkedParty = function () {
-
+      $scope.numDetected = function() {
+        return DeviceService.numDetected;
       };
 
-       // <!-- Individual Commands -->
+      $scope.numSelected = function() {
+        return DeviceService.numDetected;
+      };
 
-      $scope.singlePair = function (device) {};
-      $scope.singleNewFriend = function (device){};
-      $scope.singleFriendsNear = function (device) {};
-      $scope.singleParty = function (device) {};
-      $scope.singleReset = function (device) {};
-      $scope.toggleLink = function (device) {};
+     	$scope.getDeviceColor = function(device) {
+				return DeviceService.isSelected(device) ? 'item-calm' : 'item-light';
+			};
 
-		}
+      $scope.display = function(device) {
+        return device.name || 'unnamed device' + ' ' + device.address;
+      }
+
+      function update() {
+        $scope.devices.detected = DeviceService.devices.detected;
+        $scope.devices.selected = DeviceService.devices.selected;
+      }
+
+      var stopRefresh = function() {
+        $scope.$broadcast('scroll.refreshComplete');
+      };
+  	}
 	])
 ;
