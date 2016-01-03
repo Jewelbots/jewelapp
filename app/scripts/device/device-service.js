@@ -1,12 +1,20 @@
 'use strict';
 angular.module('jewelApp.services')
-	.factory('DeviceService', [
+	.factory(
+		'DeviceService', [
 		'$cordovaBluetoothle',
+		'SettingsService',
 		'$ionicPlatform',
 		'$logService',
 		'$timeout',
 		'$q',
-		function($cordovaBluetoothle, $ionicPlatform, $logService, $timeout, $q) {
+		function(
+		$cordovaBluetoothle,
+		SettingsService,
+		$ionicPlatform,
+		$logService,
+		$timeout,
+		$q) {
 
 			var fakeBluetooth = false;
 			var svc = { };
