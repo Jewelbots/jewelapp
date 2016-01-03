@@ -18,7 +18,7 @@ angular
       }
 
       $scope.target = null;
-      $scope.serviceUuid = undefined;
+      $scope.serviceUuids = [ ];
       $scope.characteristicUuid = undefined;
       $scope.devices.selected = DeviceService.devices.selected;
 
