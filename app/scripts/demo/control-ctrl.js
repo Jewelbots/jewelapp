@@ -18,7 +18,8 @@ angular
       }
 
       $scope.target = null;
-
+      $scope.serviceUuid = undefined;
+      $scope.characteristicUuid = undefined;
       $scope.devices.selected = DeviceService.devices.selected;
 
       var connectStack = $scope.devices.selected;
