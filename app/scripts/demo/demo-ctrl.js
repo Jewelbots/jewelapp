@@ -32,33 +32,11 @@ angular
           .then(stopRefresh);
       };
 
-			$scope.scanForDevices = function() {
-			  if (!currentlyScanning) {
-          getAvailableDevices().then(function (success) {
-            $logService.Log('message', 'got to success for getAvailableDevices: ' + JSON.stringify(success));
-            stopRefresh();
-          });
+      $scope.selectDevice = function(device) {
+        if (DeviceService.isSelected(device)) {
+          return DeviceService.deselectDevices(device);
         }
-
-			};
-
-			$scope.selectDevice = function(device) {
-          if(isSelected(device)) { return; }
-          $scope.devices.selected.push(device);
-			};
-			$scope.deselectDevice = function(deselected) {
-        $scope.devices.selected.forEach(function(device, i) {
-          if(device.name === deselected.name) {
-            $scope.devices.selected.splice(i, 1);
-          }
-        });
-      };
-
-			$scope.getDeviceColor = function(device) {
-				return isSelected(device) ? 'item-calm' : 'item-light';
-			};
-      if ($scope.devices.detected === 0) {
-        getAvailableDevices();
+        DeviceService.selectDevice(device);
       }
 
       $scope.globalPair = function () {
