@@ -44,18 +44,18 @@ angular.module('jewelApp.services')
 				;
 			};
 
-			svc.selectDevice = function(selected) {
-				if(already(selected)) { return; }
+			svc.selectDevice = function (selected) {
+				if(svc.isSelected(selected)) { return; }
 				svc.devices.selected.push(selected);
 				$logService.log(
 					'message',
 					'Selecting device: ', device.address
 				);
 				tally();
-			}
+			};
 
 			svc.deselectDevice = function(deselected) {
-				svc.devices.selected.forEach(function(device, i) {
+				svc.devices.selected.forEach(function (device, i) {
 					if(device.name === deselected.name) {
 						svc.devices.selected.splice(i, 1);
 						$logService.log(
