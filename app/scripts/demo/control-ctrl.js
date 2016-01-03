@@ -54,19 +54,23 @@ angular
                 console.log('Requesting:');
                 console.log(charRequest);
                 $cordovaBluetoothle.characteristics(charRequest).then(function(chars) {
-                  console.log('Characteristics:');
-                  console.log(chars);
-                  $cordovaBluetoothle.descriptors({
-                    address: device.address,
+                  var cmd = 0x01;
+                  var bytes = $cordovaBluetoothle.stringToBytes(cmd);
+                  var enc = $cordovaBluetoothle.bytesToEncodedString(bytes);
+
+                  var writeParams = {
+                    value: enc,
                     serviceUuid: $scope.serviceUuids[device.address],
-                    characteristicUuid: chars.characteristics[0].characteristicUuid
-                  }).then(function(desc) {
-                    console.log('Descriptors');
-                    console.log(desc);
+                    characteristicUuid: SET_LED,
+                    address: device.address
+                  }
+                  $cordovaBluetoothle.write(writeParams).then(function(resp) {
+                    console.log('Write success')
+                    console.log(resp);
                   }, function(err) {
-                    console.log('Error with descriptors');
+                    console.log('Write error');
                     console.log(err);
-                  })
+                  });
                 }, function(err) {
                   console.log('Error retrieving characteristics:');
                   console.log(err);
