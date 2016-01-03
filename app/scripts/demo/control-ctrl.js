@@ -54,6 +54,17 @@ angular
                 $cordovaBluetoothle.characteristics(charRequest).then(function(chars) {
                   console.log('Characteristics:');
                   console.log(chars);
+                  $cordovaBluetoothle.descriptors({
+                    address: device.address,
+                    serviceUuid: $scope.serviceUuids[device.address],
+                    characteristicUuid: chars.characteristics[0].characteristicUuid
+                  }).then(function(desc) {
+                    console.log('Descriptors');
+                    console.log(desc);
+                  }, function(err) {
+                    console.log('Error with descriptors');
+                    console.log(err);
+                  })
                 }, function(err) {
                   console.log('Error retrieving characteristics:');
                   console.log(err);
