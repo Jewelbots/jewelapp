@@ -6,30 +6,25 @@ angular
 		'$cordovaBluetoothle',
 		'$ionicPlatform',
 		'$logService',
-		function($scope, $cordovaBluetoothle, $ionicPlatform, $logService) {
-      var currentlyScanning = false;
-      $scope.devices = {
-        detected: [],
-        selected: []
-      };
-      var isSelected = function (device) {
-        var sel = $scope.devices.selected.filter(function (item) {
-          if (device.name === item.name) {
-            return true;
-          }
-        });
-        return !!sel.length;
-      };
-      var stopRefresh = function () {
-        $scope.$broadcast('scroll.refreshComplete');
+    '$state',
+    'DeviceService',
+		function(
+    $scope,
+    $cordovaBluetoothle,
+    $ionicPlatform,
+    $logService,
+    $state,
+    DeviceService) {
+      var params = {
+        request: true,
+        scanDuration: 15000,
+        name: 'JWB_'
       };
 
-      $scope.numDetected = function () {
-        return $scope.devices.detected.length;
-      };
-      $scope.numSelected = function () {
-        return $scope.devices.selected.length;
-      };
+      $scope.devices = {
+        detected: [ ],
+        selected: [ ]
+      }
 
       var getAvailableDevices = function () {
         var params = {
