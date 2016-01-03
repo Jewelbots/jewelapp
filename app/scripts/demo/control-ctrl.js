@@ -1,5 +1,4 @@
 'use strict';
-var fakeBluetooth = false;
 angular
 	.module('jewelApp.controllers')
 	.controller('ControlCtrl', [
