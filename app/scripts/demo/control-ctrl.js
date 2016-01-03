@@ -71,11 +71,28 @@ angular
         $scope.target = device;
         return write(0x01);
       };
-      $scope.singleNewFriend = function(device){ };
-      $scope.singleFriendsNear = function(device) { };
-      $scope.singleParty = function(device) { };
-      $scope.singleReset = function(device) { };
-      $scope.toggleLink = function(device) { };
+      $scope.singleNewFriend = function(device){
+        $scope.target = device;
+        return write(0x02);
+      };
+      $scope.singleFriendsNear = function(device) {
+        $scope.target = device;
+        return write(0x03);
+      };
+      $scope.singleParty = function(device) {
+        $scope.target = device;
+        return write(0x05)
+      };
+      $scope.singleReset = function(device) {
+        // TODO: what is best here? disconnect/reconnect? Probably.
+      };
+      $scope.singleMessage = function(device) {
+        $scope.target = device;
+        return write(0x04);
+      };
+      $scope.toggleLink = function(device) {
+
+      };
 
       // Global Commands
       $scope.globalPair = function() { };
