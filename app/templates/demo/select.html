@@ -2,9 +2,7 @@
 
 	<ion-content class="has-tabs has-header has-subheader has-footer">
 
-		<ion-refresher
-			pulling-text="Pull to refresh..."
-			on-refresh="scanForDevices()">
+		<ion-refresher pulling-text="Pull to refresh..." on-refresh="scanForDevices()">
 		</ion-refresher>
 
 		<ion-list ng-show="numDetected()" type="card" can-swipe="false">
@@ -14,7 +12,7 @@
 			<ion-item
 				ng-repeat="device in devices.detected"
 				ng-click="selectDevice(device)"
-        ng-class="getDeviceColor(device)"
+        		ng-class="getDeviceColor(device)"
 			>
 				<i class="ion-bluetooth"></i> <em>{{device.name}}</em>
 			</ion-item>
