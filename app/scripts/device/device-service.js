@@ -37,18 +37,12 @@ angular.module('jewelApp.services')
 			};
 
 			svc.getAvailableDevices = function () {
-				return $ionicPlatform.ready(function() {
-					$logService.log(
-						'message',
-						'Ionic platform ready. Initializing BLE.'
-					);
-					return $cordovaBluetoothle.initialize(params)
-						.then(startScan, initializeError)
-						.then(processResults, scanError)
-						.then(endScan)
-					;
-				});
-			}
+				return $ionicPlatform.ready()
+					.then(initialize)
+					.then(processResults, scanError)
+					.then(endScan)
+				;
+			};
 
 			svc.selectDevice = function(selected) {
 				if(already(selected)) { return; }
