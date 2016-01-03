@@ -7,85 +7,130 @@ angular.module('jewelApp.services')
 		'$timeout',
 		'$q',
 		function($cordovaBluetoothle, $ionicPlatform, $logService, $timeout, $q) {
+
+			var fakeBluetooth = false;
 			var svc = { };
 			var defaults = {
-        request : true,
-			  scanDuration : 5000
+				request : true,
+				scanDuration : 5000
 			};
 			svc.devices = {
 				detected: [ ],
 				selected: [ ],
 				paired: [ ],
 			};
-			var fakeBluetooth = false;
 			svc.numSelected = 0;
 			svc.numDetected = 0;
+			svc.isScanning = false;
 
-			svc.scanForDevices = function scanForDevices(params) {
-				if(fakeBluetooth) {
-					console.log('Faking');
-					return fakeScan();
-				}
-				var scanParams = params || defaults;
-
-				return $ionicPlatform.ready()
-				  .then(function doScan() {
-				    $logService.Log('message', 'got into initialize for scan');
-					  return $cordovaBluetoothle.initialize(scanParams)
-					    .then(function () {
-                $logService.Log('message', 'got into start scan');
-						    return $cordovaBluetoothle.startScan(scanParams);
-					  }, function (err) {
-						  $logService.Log('message', 'Error initializing BLE in DemoCtrl: ' + JSON.stringify(err));
-					  });
-				}).then(function scanResults(data) {
-				  $logService.Log('message', 'found device! : ' + JSON.stringify(data));
-					if(data.status === 'scanResult') {
-						svc.devices.detected.push(data);
-						return $cordovaBluetoothle.stopScan();
-					}
-				}, function scanError(error) {
-					$logService.Log('error', 'Error scanning for BLE devices in DemoCtrl.' + JSON.stringify(error));
-					//stopRefresh();
-					return $cordovaBluetoothle.stopScan();
-				},function (notify) {
-				  $logService.Log('message', 'Begun Scanning ' + JSON.stringify(notify));
-				});
+			var params = {
+				request: true,
+				scanDuration: 10000
 			};
 
-			svc.isSelected = function isSelected(device) {
-				var sel = svc.devices.selected.filter(function(item) {
-					if (device.name === item.name) { return true; }
+			svc.getAvailableDevices = function () {
+				return $ionicPlatform.ready(function() {
+					$logService.log(
+						'message',
+						'Ionic platform ready. Initializing BLE.'
+					);
+					return $cordovaBluetoothle.initialize(params)
+						.then(startScan, initializeError)
+						.then(processResults, scanError)
+						.then(endScan)
+					;
 				});
-				return !!sel.length;
-			};
+			}
 
-			svc.selectDevice = function selectDevice(selected) {
-				if(svc.isSelected(selected)) { return; }
+			svc.selectDevice = function(selected) {
+				if(already(selected)) { return; }
 				svc.devices.selected.push(selected);
-				svc.numSelected = svc.devices.selected.length;
-			};
+				$logService.log(
+					'message',
+					'Selecting device: ', device.address
+				);
+				tally();
+			}
 
-			svc.deselectDevice = function deselectDevice(deselected) {
+			svc.deselectDevice = function(deselected) {
 				svc.devices.selected.forEach(function(device, i) {
 					if(device.name === deselected.name) {
 						svc.devices.selected.splice(i, 1);
+						$logService.log(
+							'message',
+							'Deselecting device: ' +
+							deselected.address
+						);
 					}
+					else {
+						$logService.log(
+							'message',
+							'Attempted to deselect unselected device: ' +
+							deselected.address
+						);
+					}
+					tally();
 				});
-				svc.numSelected = svc.devices.selected.length;
-			};
-
-			function fakeScan() {
-				var dfd = $q.defer();
-				svc.devices.detected = [ ];
-				svc.devices.detected.push({ name: 'JWB_001LOL', address: 'A1:B2:C3:D4:E5:F6' });
-				svc.devices.detected.push({ name: 'JWB_002WAT', address: 'A2:B3:C4:D5:E6:F0' });
-				svc.numDetected = svc.devices.detected.length;
-				setTimeout(function() {
-					dfd.resolve();
-				}, 1500);
-				return dfd.promise;
 			}
+
+			function startScan() {
+				$logService.log('message', 'BLE Initialized. Starting scan.');
+				svc.isScanning = true;
+				return $cordovaBluetoothle.startScan(params);
+			}
+
+			function endScan() {
+				$logService.log('message', 'Ending BLE scan.');
+				return $cordovaBluetoothle.isScanning().then(function(scanning) {
+					if(scanning) {
+						return $cordovaBluetoothle.stopScan().then(function() {
+							svc.isScanning = false;
+						});
+					}
+					else { svc.isScanning = false; }
+				});
+			}
+
+			function processResults(dat) {
+				$logService.log('message', 'Raw data:');
+				$logService.log('message', JSON.stringify(dat));
+
+				dat.forEach(function parseResult(device) {
+					if(device.status !== 'scanResult') { return; }
+					addDevice(device);
+					$logService.log(
+						'message',
+						'Detected ' + device.address + '.'
+					);
+				});
+
+				$logService.log(
+					'message',
+					'Total of ' +  svc.devices.detected.length + ' devices.'
+				);
+			}
+
+			function error(type, err) {
+				$logService.log(
+					'error',
+					'Error ' + type + ' BLE.'
+				);
+				$logService.log('error', JSON.stringify(err));
+			}
+
+			function initializeError(err) { error('initializing', err); }
+			function scanError(err) { error('scanning', err); }
+			function tally() {
+				svc.numSelected = svc.devices.selected.length;
+				svc.numDetected = svc.devices.detected.length;
+			}
+			function already(selected) {
+				var found = svc.devices.selected.filter(function(device) {
+					if(device.name === selected.name) { return true; }
+				});
+				return !!found.length;
+			}
+
 			return svc;
 		}
 	])
