@@ -34,10 +34,44 @@ angular
 
         var address = { address: device.address };
 
-        $cordovaBluetoothle.isConnected(address).then(function() {
-          console.log('already connected');
-        }, function() {
-          console.log('not connected');
+        $cordovaBluetoothle.connect(address).then(function(conn) {
+
+          if(conn.status === "connected") {
+
+            console.log('Device is connected');
+            $cordovaBluetoothle.services(address).then(function(service) {
+
+              if(service && service.serviceUuids) {
+
+                $scope.serviceUuids[address] = service.serviceUuids[0];
+                var charRequest = {
+                  address: device.address,
+                  serviceUuid: $scope.serviceUuids[address]
+                }
+                console.log('Obtained service UUID.');
+                console.log('Requesting:');
+                console.log(charRequest);
+                $cordovaBluetoothle.characteristics(charRequest).then(function(chars) {
+                  console.log('Characteristics:');
+                  console.log(chars);
+                }, function(err) {
+                  console.log('Error retrieving characteristics:');
+                  console.log(err);
+                })
+              }
+              else {
+                console.log('Unexpected results from services request');
+              }
+              console.log(service);
+            });
+          }
+          else if(conn.status === "connecting") {
+            // TODO: wait?
+            console.log('Device is connecting...');
+          }
+          else {
+            console.log('Device is not connected.');
+          }
         });
 
         function connected(device) {
