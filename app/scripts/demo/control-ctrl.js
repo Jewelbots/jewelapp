@@ -101,6 +101,7 @@ angular
       $scope.numSelected = function() {
         return DeviceService.numSelected;
       }
+
       // <!-- Individual Commands -->
       $scope.singlePair = function(device) {
         $scope.target = device;
