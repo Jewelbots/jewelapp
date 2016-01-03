@@ -73,6 +73,20 @@ angular.module('jewelApp.services')
 					}
 					tally();
 				});
+			};
+
+			svc.isSelected = function(selected) {
+				var sel = svc.devices.selected.filter(function (device) {
+					if(device.name === selected.name) { return true; }
+				});
+				return !!sel.length;
+			}
+
+			function initialize() {
+				console.log('Ionic platform ready. Initializing BLE.');
+				return $cordovaBluetoothle.initialize()
+					.then(startScan, initializeError)
+				;
 			}
 
 			function startScan() {
@@ -112,6 +126,15 @@ angular.module('jewelApp.services')
 				);
 			}
 
+			function addDevice(detected) {
+				var det = svc.devices.detected.filter(function (device) {
+					if(device.name === detected.name) { return true; }
+				});
+				if(det.length) { return; }
+				svc.devices.detected.push(detected);
+				tally();
+			}
+
 			function error(type, err) {
 				$logService.log(
 					'error',
@@ -125,12 +148,6 @@ angular.module('jewelApp.services')
 			function tally() {
 				svc.numSelected = svc.devices.selected.length;
 				svc.numDetected = svc.devices.detected.length;
-			}
-			function already(selected) {
-				var found = svc.devices.selected.filter(function(device) {
-					if(device.name === selected.name) { return true; }
-				});
-				return !!found.length;
 			}
 
 			return svc;
