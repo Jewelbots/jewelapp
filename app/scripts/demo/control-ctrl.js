@@ -178,6 +178,10 @@ angular
       function ble(method, device) {
         return $cordovaBluetoothle[method]({ address: device.address });
       }
+
+      function writable(elm) {
+        return elm.properties && elm.properties.write;
+      }
 		}
 	])
 ;
