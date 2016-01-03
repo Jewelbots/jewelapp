@@ -43,10 +43,10 @@ angular
 
               if(service && service.serviceUuids) {
 
-                $scope.serviceUuids[address] = service.serviceUuids[0];
+                $scope.serviceUuids[device.address] = service.serviceUuids[0];
                 var charRequest = {
                   address: device.address,
-                  serviceUuid: $scope.serviceUuids[address]
+                  serviceUuid: $scope.serviceUuids[device.address]
                 }
                 console.log('Obtained service UUID.');
                 console.log('Requesting:');
