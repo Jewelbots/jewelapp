@@ -116,7 +116,7 @@ angular
       $scope.globalMessage = function () {
 
       };
-      $scope.globalParty = function () {
+      $scope.global Party = function () {
 
       };
       $scope.globalReset = function () {
