@@ -7,7 +7,7 @@
 			on-refresh="scanForDevices()">
 		</ion-refresher>
 
-		<ion-list ng-show="devices.detected" type="card" can-swipe="false">
+		<ion-list ng-show="devices.detected > 0" type="card" can-swipe="false">
 			<div class="item item-divider">
 				<i class="ion-ios-search-strong"></i> Nearby Jewelbots
 			</div>
@@ -20,7 +20,7 @@
 			</ion-item>
 		</ion-list>
 
-		<div class="card" ng-hide="devices.detected">
+		<div class="card" ng-hide="devices.detected > 0">
 			<div class="item item-divider">
 				<i class="ion-ios-search"></i> No Jewelbots Detected
 			</div>
@@ -30,7 +30,7 @@
 		</div>
 
 
-		<div class="card" ng-show="devices.detected">
+		<div class="card" ng-show="devices.detected > 0">
 			<div class="item item-divider">
 			<i class="ion-ios-lightbulb-outline"></i> Jewelbots PROTIP
 			</div>
@@ -42,7 +42,7 @@
 			</div>
 		</div>
 
-		<div class="card" ng-hide="devices.detected">
+		<div class="card" ng-hide="devices.detected > 0">
 			<div class="item item-divider">
 			<i class="ion-ios-lightbulb-outline"></i> Jewelbots PROTIP
 			</div>

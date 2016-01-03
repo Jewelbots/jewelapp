@@ -104,6 +104,51 @@ angular
       if ($scope.devices.detected === 0) {
         getAvailableDevices();
       }
+
+      $scope.globalPair = function () {
+      };
+      $scope.globalNewFriend = function() {
+
+      };
+      $scope.globalFriendsNear = function () {
+
+      };
+      $scope.globalMessage = function () {
+
+      };
+      $scope.globalParty = function () {
+
+      };
+      $scope.globalReset = function () {
+
+      };
+      //<!-- Linked Commands -->
+
+      $scope.linkedPair = function () {
+
+      };
+      $scope.linkedNewFriend = function () {
+
+      };
+      $scope.linkedFriendsNear = function () {
+
+      };
+      $scope.globalMessage = function () {
+
+      };
+      $scope.linkedParty = function () {
+
+      };
+
+       // <!-- Individual Commands -->
+
+      $scope.singlePair = function (device) {};
+      $scope.singleNewFriend = function (device){};
+      $scope.singleFriendsNear = function (device) {};
+      $scope.singleParty = function (device) {};
+      $scope.singleReset = function (device) {};
+      $scope.toggleLink = function (device) {};
+
 		}
 	])
 ;

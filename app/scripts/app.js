@@ -193,7 +193,7 @@ angular.module('jewelApp',
         views: {
           'demo-control': {
             templateUrl: 'templates/demo/control.html',
-            controller: 'ControlCtrl'
+            controller: 'DemoCtrl'
           }
         }
       })

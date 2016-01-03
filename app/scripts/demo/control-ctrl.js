@@ -11,9 +11,9 @@ angular
 			$scope.devices = {
 				detected: function() { return DeviceService.devices.detected; },
 				selected: function() { return DeviceService.devices.selected; }
-			}
-			$scope.numDetected = function() { return DeviceService.numDetected; }
-			$scope.numSelected = function() { return DeviceService.numSelected; }
+			};
+			$scope.numDetected = function() { return DeviceService.numDetected; };
+			$scope.numSelected = function() { return DeviceService.numSelected; };
 
 
 		}
