@@ -54,16 +54,18 @@ angular
                 console.log('Requesting:');
                 console.log(charRequest);
                 $cordovaBluetoothle.characteristics(charRequest).then(function(chars) {
-                  var cmd = 0x01;
-                  var bytes = $cordovaBluetoothle.stringToBytes(cmd);
-                  var enc = $cordovaBluetoothle.bytesToEncodedString(bytes);
-
+                  console.log('Received characteristics:');
+                  console.log(chars);
+                  var bytes = new Uint8Array(1);
+                  bytes[0] = 1;
                   var writeParams = {
-                    value: enc,
+                    value: bluetoothle.bytesToEncodedString(bytes),
                     serviceUuid: $scope.serviceUuids[device.address],
                     characteristicUuid: SET_LED,
                     address: device.address
                   }
+                  console.log('Write data:');
+                  console.log(writeParams);
                   $cordovaBluetoothle.write(writeParams).then(function(resp) {
                     console.log('Write success')
                     console.log(resp);
