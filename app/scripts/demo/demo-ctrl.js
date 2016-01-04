@@ -1,35 +1,33 @@
+/* global ionic */
 'use strict';
 angular
 	.module('jewelApp.controllers')
 	.controller('DemoCtrl', [
 		'$scope',
 		'$cordovaBluetoothle',
-		'$ionicPlatform',
+		'ionicReady',
 		'$logService',
     '$state',
     'DeviceService',
 		function(
     $scope,
     $cordovaBluetoothle,
-    $ionicPlatform,
+    ionicReady,
     $logService,
     $state,
     DeviceService) {
-      var params = {
-        request: true,
-        scanDuration: 15000,
-        name: 'JWB_'
-      };
 
       $scope.devices = {
         detected: [ ],
         selected: [ ]
-      }
+      };
 
       $scope.scanForDevices = function() {
-        DeviceService.getAvailableDevices()
-          .then(update)
-          .then(stopRefresh);
+        ionicReady().then(function () {
+          DeviceService.getAvailableDevices()
+            .then(update)
+            .then(stopRefresh);
+        });
       };
 
       $scope.selectDevice = function(device) {
@@ -37,7 +35,7 @@ angular
           return DeviceService.deselectDevices(device);
         }
         DeviceService.selectDevice(device);
-      }
+      };
 
       $scope.numDetected = function() {
         return DeviceService.numDetected;
@@ -53,7 +51,7 @@ angular
 
       $scope.display = function(device) {
         return device.name || 'unnamed device' + ' ' + device.address;
-      }
+      };
 
       function update() {
         $scope.devices.detected = DeviceService.devices.detected;
