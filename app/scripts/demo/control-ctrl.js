@@ -56,23 +56,7 @@ angular
                 $cordovaBluetoothle.characteristics(charRequest).then(function(chars) {
                   console.log('Received characteristics:');
                   console.log(chars);
-                  var bytes = new Uint8Array(1);
-                  bytes[0] = 1;
-                  var writeParams = {
-                    value: bluetoothle.bytesToEncodedString(bytes),
-                    serviceUuid: $scope.serviceUuids[device.address],
-                    characteristicUuid: SET_LED,
-                    address: device.address
-                  }
-                  console.log('Write data:');
-                  console.log(writeParams);
-                  $cordovaBluetoothle.write(writeParams).then(function(resp) {
-                    console.log('Write success')
-                    console.log(resp);
-                  }, function(err) {
-                    console.log('Write error');
-                    console.log(err);
-                  });
+
                 }, function(err) {
                   console.log('Error retrieving characteristics:');
                   console.log(err);
@@ -166,11 +150,23 @@ angular
 
       // TODO: wrap in isConnected/connect/reconnect logic
       function write(data) {
-        return $cordovaBluetoothle.write({
-          value: data,
-          serviceUuid: $scope.serviceUuid,
-          characteristicUuid: $scope.characteristicUuid,
-        });
+        console.log('Writing', data);
+        var bytes = new Uint8Array(1);
+        console.log('Allocating array');
+        var address = $target.address;
+        console.log('Setting address');
+        var serviceUuid = $scope.serviceUuids[address];
+        console.log('Setting service UUID');
+        bytes[0] = data;
+        console.log('Filling bytes.');
+        var writeParams = {
+          value: bluetoothle.bytesToEncodedString(bytes),
+          serviceUuid: serviceUuid,
+          characteristicUuid: SET_LED,
+          address: address
+        }
+        console.log('Writing', data, 'to', address);
+        return $cordovaBluetoothle.write(writeParams);
       }
 
       function isConnected() { return ble('isConnected', $scope.target); }
