@@ -129,7 +129,9 @@ angular
       };
       $scope.singleReset = function(device) {
         // TODO: what is best here? disconnect/reconnect? Probably.
-        console.log('Resetting... JK LOL, TODO.')
+        console.log('Resetting');
+
+        $cordovaBluetoothle.disconnect
       };
       $scope.singleMessage = function(device) {
         console.log('single message');
@@ -157,10 +159,11 @@ angular
 
       // TODO: wrap in isConnected/connect/reconnect logic
       function write(data) {
+
         console.log('Writing', data);
         var bytes = new Uint8Array(1);
         console.log('Allocating array');
-        var address = $target.address;
+        var address = $scope.target.address;
         console.log('Setting address');
         var serviceUuid = $scope.serviceUuids[address];
         console.log('Setting service UUID');
@@ -172,8 +175,39 @@ angular
           characteristicUuid: SET_LED,
           address: address
         }
-        console.log('Writing', data, 'to', address);
-        return $cordovaBluetoothle.write(writeParams);
+
+        $cordovaBluetoothle
+          .connect({ address: $target.address })
+          .then(doWrite, reconnect)
+        ;
+
+        function reconnect() {
+          console.log('Attempting to reconnect...');
+          $cordovaBluetoothle
+            .reconnect({ address: $target.address })
+            .then(writeIfReconnected, reconError)
+          ;
+        }
+
+        function doWrite() {
+          console.log('Writing', data, 'to', address);
+          return $cordovaBluetoothle.write(writeParams);
+        }
+
+        function writeIfReconnected(recon) {
+          if(recon.status === 'connected') {
+            console.log('Device has been reconnected.');
+            doWrite();
+          }
+          else {
+            console.log('Error reconnecting, status:', recon.status);
+          }
+        }
+
+        function reconError(err) {
+          console.log('Error reconnecting:');
+          console.log(err);
+        }
       }
 
       function isConnected() { return ble('isConnected', $scope.target); }
