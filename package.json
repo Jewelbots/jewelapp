@@ -74,15 +74,7 @@
       "locator": "https://github.com/Jewelbots/phonegap-plugin-push-mirror.git",
       "id": "phonegap-plugin-push"
     },
-    "org.apache.cordova.device",
-    "org.apache.cordova.console",
-    "org.apache.cordova.console",
-    "org.apache.cordova.splashscreen",
-    "org.apache.cordova.dialogs",
-    "org.apache.cordova.splashscreen",
-    "com.ionic.keyboard",
-    "com.ionic.keyboard",
-    "cordova-plugin-contacts"
+    "com.ionic.keyboard"
   ],
   "cordovaPlatforms": [
     "ios",
