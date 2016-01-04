@@ -27,7 +27,7 @@ angular.module('jewelbots.utils',[])
         if (!log.hasOwnProperty('Messages')) {
           log.Messages = [];
         }
-        if (obj !== undefined) {
+        if (obj !== undefined || obj !== null) {
           message = message + JSON.stringify(obj);
         }
         log.Messages.push({Type: type, Message: message, Timestamp: new Date().toUTCString()});
