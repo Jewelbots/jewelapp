@@ -4,7 +4,7 @@ angular.module('jewelApp.controllers')
   [
     '$cordovaDialogs',
     '$ionicModal',
-    '$ionicPlatform',
+    'ionicReady',
     '$logService',
     '$scope',
     '$state',
@@ -15,7 +15,7 @@ angular.module('jewelApp.controllers')
     function(
       $cordovaDialogs,
       $ionicModal,
-      $ionicPlatform,
+      ionicReady,
       $logService,
       $scope,
       $state,

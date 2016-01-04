@@ -59,7 +59,7 @@ angular
                   var bytes = new Uint8Array(1);
                   bytes[0] = 1;
                   var writeParams = {
-                    value: bluetoothle.bytesToEncodedString(bytes),
+                    value: $cordovaBluetoothle.bytesToEncodedString(bytes),
                     serviceUuid: $scope.serviceUuids[device.address],
                     characteristicUuid: SET_LED,
                     address: device.address

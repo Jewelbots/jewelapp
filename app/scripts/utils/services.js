@@ -22,10 +22,13 @@ angular.module('jewelbots.utils',[])
       Clear: function () {
         $localStorage.setObject(logKey, {});
       },
-      Log : function (type, message) {
+      Log : function (type, message, obj) {
         var log = $localStorage.getObject(logKey);
         if (!log.hasOwnProperty('Messages')) {
           log.Messages = [];
+        }
+        if (obj !== undefined) {
+          message = message + JSON.stringify(obj);
         }
         log.Messages.push({Type: type, Message: message, Timestamp: new Date().toUTCString()});
         $localStorage.setObject(logKey, log);
@@ -38,4 +41,14 @@ angular.module('jewelbots.utils',[])
         return logs.Messages;
       }
     };
+  }])
+  .factory('ionicReady', ['$ionicPlatform', function ($ionicPlatform) {
+    var readyPromise;
+
+    return function () {
+      if (!readyPromise) {
+        readyPromise = $ionicPlatform.ready();
+      }
+      return readyPromise;
+    }
   }]);

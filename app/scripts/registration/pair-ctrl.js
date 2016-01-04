@@ -2,7 +2,7 @@
 angular.module('jewelApp.controllers')
 .controller('PairCtrl',[
   '$cordovaBluetoothle',
-  '$ionicPlatform',
+  'ionicReady',
   '$logService',
   '$scope',
   '$state',
@@ -10,7 +10,7 @@ angular.module('jewelApp.controllers')
   'DataService',
   function(
   $cordovaBluetoothle,
-  $ionicPlatform,
+  ionicReady,
   $logService,
   $scope,
   $state,
@@ -31,7 +31,7 @@ angular.module('jewelApp.controllers')
     $scope.pairToDevice = function(address) {
 
         $scope.model.pairing = true;
-        $ionicPlatform.ready()
+        ionicReady()
           .then(function () {
             return $cordovaBluetoothle.connect({address: address})
               .then( function (success) {
@@ -55,7 +55,7 @@ angular.module('jewelApp.controllers')
         request: true,
         name: 'JewelBot'
       };
-      $ionicPlatform.ready()
+      ionicReady()
         .then(function () {
           return $cordovaBluetoothle.initialize(params)
             .then(function () {

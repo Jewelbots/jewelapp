@@ -38,15 +38,16 @@ angular.module('jewelApp',
 .run(
  ['$cordovaSplashscreen',
   '$cordovaPushV5',
-  '$ionicPlatform',
+   'ionicReady',
   '$logService',
   '$timeout',
    'DataService',
    'Parse',
+   'ionicReady',
   function (
   $cordovaSplashscreen,
   $cordovaPushV5,
-  $ionicPlatform,
+  ionicReady,
   $logService,
   $timeout,
   DataService,
@@ -54,7 +55,7 @@ angular.module('jewelApp',
   ) {
     Parse.initialize('j5XHG7wZ7z62lWCT4H43220C31slqlbswptPkbbU', '5qEip2ImNHArKNdWDnC3SYNjxFpSQG3vkZ1UOjR6');
     $logService.Log('message', 'platform is: ' + JSON.stringify(ionic.Platform.platform()) );
-  $ionicPlatform.ready(function() {
+  ionicReady().then(function() {
     if (!bluetoothle) {
       $logService.Log('message', 'No bluetoothle');
     }

@@ -2,7 +2,7 @@
 angular.module('jewelApp.services')
   .factory('SettingsService',
   ['$cordovaBluetoothle',
-    '$ionicPlatform',
+    'ionicReady',
     '$logService',
     '$q',
     '$timeout',
@@ -13,7 +13,7 @@ angular.module('jewelApp.services')
     '_',
     function (
       $cordovaBluetoothle,
-      $ionicPlatform,
+      ionicReady,
       $logService,
       $q,
       $timeout,
