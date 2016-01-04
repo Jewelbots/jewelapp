@@ -3,7 +3,7 @@
 angular.module('jewelApp.services')
   .factory('ContactsService',
    ['$cordovaContacts',
-    '$ionicPlatform',
+    'ionicReady',
     '$logService',
     '$q',
     'CryptoJS',
@@ -12,7 +12,7 @@ angular.module('jewelApp.services')
     '_',
     function (
       $cordovaContacts,
-      $ionicPlatform,
+      ionicReady,
       $logService,
       $q,
       $timeout,
@@ -53,7 +53,7 @@ angular.module('jewelApp.services')
             q.resolve(fakeContacts);
           }
           else {
-            $ionicPlatform.ready().then(function () {
+            ionicReady().then(function () {
               $cordovaContacts.find({
                 fields: ['givenName', 'familyName', 'phoneNumbers'],
                 multiple: true
