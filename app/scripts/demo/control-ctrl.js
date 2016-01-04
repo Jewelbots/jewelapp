@@ -14,7 +14,8 @@ angular
 
       $scope.devices = {
         detected: [ ],
-        selected: [ ]
+        selected: [ ],
+        linked: [ ],
       }
 
       var SET_LED = "2a50152c-412b-49c9-e57e-520dfd5ea929";
