@@ -1,4 +1,3 @@
-/* global ionic */
 'use strict';
 angular
 	.module('jewelApp.controllers')
@@ -32,7 +31,7 @@ angular
 
       $scope.selectDevice = function(device) {
         if (DeviceService.isSelected(device)) {
-          return DeviceService.deselectDevices(device);
+          return DeviceService.deselectDevice(device);
         }
         DeviceService.selectDevice(device);
       };

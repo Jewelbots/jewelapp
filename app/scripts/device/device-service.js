@@ -5,23 +5,18 @@ angular.module('jewelApp.services')
 		'$cordovaBluetoothle',
 		'SettingsService',
 		'$ionicPlatform',
-		'$logService',
-		'$timeout',
-		'$q',
 		function(
 		$cordovaBluetoothle,
 		SettingsService,
-		$ionicPlatform,
-		$logService,
-		$timeout,
-		$q) {
+		$ionicPlatform
+		) {
 
-			var fakeBluetooth = false;
+			//var fakeBluetooth = false;
 			var svc = { };
-			var defaults = {
-				request : true,
-				scanDuration : 5000
-			};
+			//var defaults = {
+			//	request : true,
+			//	scanDuration : 5000
+			//};
 			svc.devices = {
 				detected: [ ],
 				selected: [ ],
@@ -47,7 +42,7 @@ angular.module('jewelApp.services')
 			svc.selectDevice = function (selected) {
 				if(svc.isSelected(selected)) { return; }
 				svc.devices.selected.push(selected);
-				console.log('Selecting device: ', device.address);
+				console.log('Selecting device: ', selected.address);
 				tally();
 			};
 
@@ -72,7 +67,7 @@ angular.module('jewelApp.services')
 					if(device.name === selected.name) { return true; }
 				});
 				return !!sel.length;
-			}
+			};
 
 			function initialize() {
 				console.log('Ionic platform ready. Initializing BLE.');
