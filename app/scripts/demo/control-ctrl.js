@@ -108,27 +108,33 @@ angular
 
       // <!-- Individual Commands -->
       $scope.singlePair = function(device) {
+        console.log('single pair');
         $scope.target = device;
-        return write(0x01);
+        return write(1);
       };
       $scope.singleNewFriend = function(device){
+        console.log('single new friend');
         $scope.target = device;
-        return write(0x02);
+        return write(2);
       };
       $scope.singleFriendsNear = function(device) {
+        console.log('single friends near');
         $scope.target = device;
-        return write(0x03);
+        return write(3);
       };
       $scope.singleParty = function(device) {
+        console.log('single party mode');
         $scope.target = device;
-        return write(0x05)
+        return write(5)
       };
       $scope.singleReset = function(device) {
         // TODO: what is best here? disconnect/reconnect? Probably.
+        console.log('Resetting... JK LOL, TODO.')
       };
       $scope.singleMessage = function(device) {
+        console.log('single message');
         $scope.target = device;
-        return write(0x04);
+        return write(4);
       };
       $scope.toggleLink = function(device) {
 
