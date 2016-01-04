@@ -4,17 +4,24 @@ angular.module('jewelApp.services')
 		'DeviceService', [
 		'$cordovaBluetoothle',
 		'SettingsService',
+		'$ionicPlatform',
 		'$logService',
-		'ionicReady',
+		'$timeout',
+		'$q',
 		function(
 		$cordovaBluetoothle,
 		SettingsService,
+		$ionicPlatform,
 		$logService,
-		ionicReady
-) {
+		$timeout,
+		$q) {
 
+			var fakeBluetooth = false;
 			var svc = { };
-
+			var defaults = {
+				request : true,
+				scanDuration : 5000
+			};
 			svc.devices = {
 				detected: [ ],
 				selected: [ ],
@@ -24,18 +31,23 @@ angular.module('jewelApp.services')
 			svc.numDetected = 0;
 			svc.isScanning = false;
 
+			var params = {
+				request: true,
+				scanDuration: 5000
+			};
+
 			svc.getAvailableDevices = function () {
-				return ionicReady()
-          .then(initialize)
+				return $ionicPlatform.ready()
+					.then(initialize)
 					.then(processResults, scanError)
 					.then(endScan)
-					;
+				;
 			};
 
 			svc.selectDevice = function (selected) {
 				if(svc.isSelected(selected)) { return; }
 				svc.devices.selected.push(selected);
-				$logService.Log('message', 'Selecting device: ', selected.address);
+				console.log('Selecting device: ', device.address);
 				tally();
 			};
 
@@ -43,10 +55,13 @@ angular.module('jewelApp.services')
 				svc.devices.selected.forEach(function (device, i) {
 					if(device.name === deselected.name) {
 						svc.devices.selected.splice(i, 1);
-						$logService.Log('message', 'Deselecting device: ' + deselected.address);
+						console.log('Deselecting device: ' + deselected.address);
 					}
 					else {
-						$logService.Log('message', 'Attempted to deselect unselected device: ' +	deselected.address);
+						console.log(
+							'Attempted to deselect unselected device: ' +
+							deselected.address
+						);
 					}
 					tally();
 				});
@@ -57,22 +72,23 @@ angular.module('jewelApp.services')
 					if(device.name === selected.name) { return true; }
 				});
 				return !!sel.length;
-			};
+			}
 
 			function initialize() {
-				$logService.Log('message', 'Ionic platform ready. Initializing BLE.');
+				console.log('Ionic platform ready. Initializing BLE.');
 				return $cordovaBluetoothle.initialize()
-					.then(startScan, initializeError);
+					.then(startScan, initializeError)
+				;
 			}
 
 			function startScan() {
-				$logService.Log('message', 'BLE Initialized. Starting scan.');
+				console.log('BLE Initialized. Starting scan.');
 				svc.isScanning = true;
 				return $cordovaBluetoothle.startScan(params);
 			}
 
 			function endScan() {
-				$logService.Log('message', 'Ending BLE scan.');
+				console.log('Ending BLE scan.');
 				return $cordovaBluetoothle.isScanning().then(function (scanning) {
 					if(scanning) {
 						return $cordovaBluetoothle.stopScan().then(function() {
@@ -88,12 +104,12 @@ angular.module('jewelApp.services')
 				dat.forEach(function parseResult(device) {
 					if(device.status !== 'scanResult') { return; }
 					addDevice(device);
-					$logService.Log('message',
+					console.log(
 						'Detected ' + device.address + '.'
 					);
 				});
 
-				$logService.Log('message',
+				console.log(
 					'Total of ' +  svc.devices.detected.length + ' devices.'
 				);
 			}
@@ -108,10 +124,10 @@ angular.module('jewelApp.services')
 			}
 
 			function error(type, err) {
-				$logService.Log('message',
+				console.log(
 					'Error ' + type + ' BLE.'
 				);
-				$logService.Log('message', err);
+				console.log(err);
 			}
 
 			function initializeError(err) { error('initializing', err); }
