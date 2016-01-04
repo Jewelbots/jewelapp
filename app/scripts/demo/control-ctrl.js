@@ -176,10 +176,12 @@ angular
           address: address
         }
 
-        $cordovaBluetoothle
-          .connect({ address: $target.address })
-          .then(doWrite, reconnect)
-        ;
+        doWrite();
+
+        // $cordovaBluetoothle
+        //   .connect({ address: $target.address })
+        //   .then(doWrite, reconnect)
+        // ;
 
         function reconnect() {
           console.log('Attempting to reconnect...');
