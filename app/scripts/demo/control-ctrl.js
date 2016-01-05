@@ -211,19 +211,6 @@ angular
           }
           $logService.Log(err);
         }
-        try {
-          $cordovaBluetoothle
-            .isConnected({ address: address })
-            .then(connected, disconnected)
-          ;
-        }
-        catch(e) {
-          $logService.Log('OH GOD');
-          $logService.Log(e);
-        }
-
-
-
 
         function reconSuccess(results) {
           $logService.Log('Reconnect call successful');
