@@ -6,11 +6,15 @@ angular
 		'$cordovaBluetoothle',
 		'$logService',
 		'DeviceService',
+    'ionicReady',
+    '$timeout',
 		function(
     $scope,
     $cordovaBluetoothle,
     $logService,
-    DeviceService) {
+    DeviceService,
+    ionicReady,
+    $timeout) {
 
       $scope.devices = {
         detected: [ ],
