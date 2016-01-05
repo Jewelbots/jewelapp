@@ -13,7 +13,7 @@ angular.module('jewelApp.controllers')
    $scope.deleteLog = function () {
     $logService.Clear();
     $scope.model.messages = $logService.Get('all');
-   }
+   };
    $scope.updateSettings = function () {
     SettingsService.SetSettings($scope.model.settings);
    };

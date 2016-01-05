@@ -55,7 +55,7 @@ angular
 
         $logService.Log('Starting promise chain, weeeeee~!1');
         initializeTheDeviceAt(thisAddress)
-          .then(areWeStillConnected, errorHandler)
+          //.then(areWeStillConnected, errorHandler)
           .then(discoverWhatItCanDo, errorHandler)
           .then(writeTheDataToItNow, errorHandler)
           .then(disconnectFromItNow, errorHandler)
