@@ -216,23 +216,23 @@ angular
       // <!-- Individual Commands -->
       $scope.singlePair = function(device) {
         $logService.Log('single pair');
-        return write(modes.successPair, device);
+        return send(modes.pairing, device);
       };
       $scope.singleNewFriend = function(device){
         $logService.Log('single new friend');
-        return write(modes.successPair, device);
+        return send(modes.successPair, device);
       };
       $scope.singleFriendsNear = function(device) {
         $logService.Log('single friends near');
-        return write(modes.friendInProximity, device);
+        return send(modes.friendInProximity, device);
       };
       $scope.singleParty = function(device) {
         $logService.Log('single party mode');
-        return write(modes.rainbow, device);
+        return send(modes.rainbow, device);
       };
       $scope.singleMessage = function(device) {
         $logService.Log('single message');
-        return write(modes.messaging, device);
+        return send(modes.messaging, device);
       };
       $scope.singleReset = function(device) {
         // TODO: what is best here? disconnect/reconnect? Probably.
@@ -247,32 +247,32 @@ angular
       // Global Commands
       $scope.globalPair = function() {
         $scope.devices.selected.forEach(function (device, i) {
-          write(modes.pairing, device);
+          return send(modes.pairing, device);
         });
       };
       $scope.globalNewFriend = function() {
         $scope.devices.selected.forEach(function (device, i) {
-          write(modes.successPair, device);
+          return send(modes.successPair, device);
         });
       };
       $scope.globalFriendsNear = function() {
         $scope.devices.selected.forEach(function (device, i) {
-          write(modes.friendInProximity, device);
+          return send(modes.friendInProximity, device);
         });
       };
       $scope.globalMessage = function() {
         $scope.devices.selected.forEach(function (device, i) {
-          write(modes.messaging, device);
+          return send(modes.messaging, device);
         });
       };
       $scope.globalParty = function() {
         $scope.devices.selected.forEach(function (device, i) {
-          write(modes.rainbow, device);
+          return send(modes.rainbow, device);
         });
       };
       $scope.globalReset = function() {
         $scope.devices.selected.forEach(function (device, i) {
-          write(modes.weatherSunny, device);
+          return send(modes.weatherSunny, device);
         });
       };
 
