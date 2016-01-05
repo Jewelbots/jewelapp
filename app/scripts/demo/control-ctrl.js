@@ -49,71 +49,31 @@ angular
 
         var address = { address: device.address };
 
-        $cordovaBluetoothle.connect(address).then(function(conn) {
+        return $cordovaBluetoothle.connect(address).then(function(conn) {
 
           if(conn.status === 'connected') {
 
             $logService.Log('Device is connected');
-            $cordovaBluetoothle.services(address).then(function(service) {
-
-              if(service && service.serviceUuids) {
-
-                $logService.Log('Device has ' + service.serviceUuids.length, ' services');
-                $logService.Log(device.serviceUuids);
-                $scope.serviceUuids[device.address] = service.serviceUuids[0];
-                var charRequest = {
-                  address: device.address,
-                  serviceUuid: $scope.serviceUuids[device.address]
-                };
-                $logService.Log('Obtained service UUID.');
-                $logService.Log('Requesting:');
-                $logService.Log(charRequest);
-                $cordovaBluetoothle.characteristics(charRequest).then(function(chars) {
-                  $logService.Log('Received characteristics:');
-                  $logService.Log(chars);
-
-                }, function(err) {
-                  $logService.Log('Error retrieving characteristics:');
-                  $logService.Log(err);
-                });
-              }
-              else {
-                $logService.Log('Unexpected results from services request');
-              }
-              $logService.Log(service);
-            });
-          }
-          else if(conn.status === 'connecting') {
-            // TODO: wait?
-            $logService.Log('Device is connecting...');
+            return $cordovaBluetoothle.discover(address);
           }
           else {
             $logService.Log('Device is not connected.');
           }
+        }).then(function(results) {
+          if(results.status === 'discovered') {
+            $logService.Log('Device has been discovered:');
+            $logService.Log('Services:');
+            $logService.Log(results.services);
+
+            $scope.serviceUuids[device.address] = results.services[0].serviceUuid;
+          }
+        }, function(error) {
+          $logService.Log('Discovery FAILURE:');
+          $logService.Log(error);
+
+        }).then(function() {
+          $cordovaBluetoothle.disconnect(address);
         });
-
-        function connected(device) {
-          $logService.Log('Connected to', device.address);
-          return services()
-            .then(serviced, svcErr)
-          ;
-        }
-
-        function serviced(svc) {
-          $logService.Log('Found services', svc);
-          return characteristics()
-            .then(characters, charErr)
-          ;
-        }
-
-        function characters(char) {
-          $logService.Log('Received characteristics');
-          $logService.Log(char);
-        }
-
-        function connErr(err) { $logService.Log('Error connecting to ', device.address); }
-        function charErr(err) { $logService.Log('Error getting characteristics from ', device.address); }
-        function svcErr(err) { $logService.Log('Error getting services from ', device.address); }
       }
 
       $scope.numSelected = function() {
