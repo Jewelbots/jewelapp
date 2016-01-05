@@ -27,10 +27,21 @@ angular.module('jewelbots.utils',[])
         if (!log.hasOwnProperty('Messages')) {
           log.Messages = [];
         }
-        if (obj !== undefined) {
-          message = message + JSON.stringify(obj);
+        if (typeof type === 'string' && message === undefined && obj === undefined) { //console.log('')
+          log.Messages.push({Type: 'message', Message: type, Timestamp: new Date().toUTCString()});
         }
-        log.Messages.push({Type: type, Message: message, Timestamp: new Date().toUTCString()});
+        else if (typeof type === 'object' && message === undefined && obj === undefined) { //console.log(obj);
+          console.log(type);
+          log.Messages.push({Type: 'message', Message: JSON.stringify(type), Timestamp: new Date().toUTCString()});
+        }
+        else if (obj !== undefined) {
+          console.log(message, obj);
+          message = message + JSON.stringify(obj);
+          log.Messages.push({Type: 'message', Message: JSON.stringify(message), Timestamp: new Date().toUTCString()});
+        }
+        else  {
+          log.Messages.push({Type: type, Message: message, Timestamp: new Date().toUTCString()});
+        }
         $localStorage.setObject(logKey, log);
       },
       Get : function (type) {
