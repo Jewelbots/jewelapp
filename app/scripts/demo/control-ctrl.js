@@ -25,7 +25,7 @@ angular
       var SET_LED = '2a50152c-412b-49c9-e57e-520dfd5ea929';
 
       $scope.target = null;
-      $scope.serviceUuids = [ ];
+      $scope.serviceUuids = { };
       $scope.characteristicUuid = undefined;
       $scope.devices.selected = DeviceService.devices.selected;
 
@@ -33,6 +33,38 @@ angular
 
       $scope.familiarize = function() {
         familiarize(connectStack[0]);
+      };
+
+      $scope.getPaired = function() {
+
+        var uuids = [ ];
+        var val = $q.defer();
+
+        for(var id in $scope.serviceUuids) {
+          uuids.push($scope.serviceUuids[id]);
+        }
+        console.log('Asking about these services:');
+        console.log(uuids);
+        $cordovaBluetoothle.retrieveConnected({
+          serviceUuids: uuids
+        }).then(function(res) {
+          console.log('show Paired call succeeded:');
+          console.log(res);
+          $q.resolve(res);
+        }, function(err) {
+          console.log('show Paired call failed.');
+          console.log(err);
+          $q.reject(res);
+        });
+
+        return $q.promise;
+      };
+
+      $scope.isPaired = function(device) {
+        var uuids = [ ];
+        var val = $q.defer();
+
+
       }
 
       function familiarize(device) {
@@ -50,6 +82,8 @@ angular
 
               if(service && service.serviceUuids) {
 
+                console.log('Device has', service.serviceUuids.length, 'sevices');
+                console.log(device.serviceUuids);
                 $scope.serviceUuids[device.address] = service.serviceUuids[0];
                 var charRequest = {
                   address: device.address,
