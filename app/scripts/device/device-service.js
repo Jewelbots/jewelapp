@@ -73,7 +73,7 @@ angular.module('jewelApp.services')
 
 			function initialize() {
 				$logService.Log('message', 'Ionic platform ready. Initializing BLE.');
-				return $cordovaBluetoothle.initialize()
+				return $cordovaBluetoothle.initialize(params)
 					.then(startScan, initializeError)
 				;
 			}
