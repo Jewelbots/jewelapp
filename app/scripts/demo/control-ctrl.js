@@ -58,7 +58,6 @@ angular
           $logService.Log(err);
           $q.reject(err);
         });
-
         return $q.promise;
       };
 
