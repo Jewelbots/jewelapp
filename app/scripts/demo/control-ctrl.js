@@ -328,9 +328,11 @@ angular
         }
       }
 
-      function isConnected() { return ble('isConnected', $scope.target); }
-      function connect() { return ble('connect', $scope.target); }
-      function services() { return ble('services', $scope.target); }
+      function characteristics(dev) { return ble('characteristics', dev); }
+      function isConnected(dev) { return ble('isConnected', dev); }
+      function disconnect(dev) { return ble('disconnect', dev); }
+      function services(dev) { return ble('services', dev); }
+      function connect(dev) { return ble('connect', dev); }
 
       function ble(method, device) {
         return $cordovaBluetoothle[method]({ address: device.address });
