@@ -285,6 +285,12 @@ angular
         function writeError(err) {
           $logService.Log('Write error:');
           $logService.Log(err);
+
+          if(err.error === 'service') {
+            // rediscover
+            $logService.Log('Services have not been discovered');
+          }
+          disconnect();
         }
         function writeIfReconnected(recon) {
           if(recon.status === 'connected') {
