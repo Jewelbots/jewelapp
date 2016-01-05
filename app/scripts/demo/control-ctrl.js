@@ -265,7 +265,7 @@ angular
         function reconnect() {
           console.log('Attempting to reconnect...');
           $cordovaBluetoothle
-            .reconnect({ address: $target.address })
+            .reconnect({ address: device.address })
             .then(writeIfReconnected, reconError)
           ;
         }
