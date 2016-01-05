@@ -218,12 +218,49 @@ angular
           console.log(e);
         }
 
-        doWrite();
+        function connected(conn) {
+          console.log('isConnected call successful...');
+          console.log(conn);
+          if(conn.isConnected) {
+            console.log('Device is supposedly connected.');
+            return doWrite();
+          }
+          else {
+            console.log('Device is not connected.');
+            $cordovaBluetoothle.reconnect({ address: address })
+              .then(reconSuccess, reconFailure);
+          }
+        }
+        function disconnected(err) {
+          // whoops, connect for the first time maybe?
+          console.log('Call to isConnected failed.');
+          console.log(err);
+        }
 
-        // $cordovaBluetoothle
-        //   .connect({ address: $target.address })
-        //   .then(doWrite, reconnect)
-        // ;
+        function reconSuccess(results) {
+          console.log('Reconnect call successful');
+          console.log(results);
+          if(results.status === 'connected') {
+            console.log('Device is connected now.');
+            discover();
+            // doWrite();
+          }
+          else if(results.status === 'connecting') {
+            // TODO: max retries. UI alert when failed.
+            console.log('Device isn\'t yet connected. Trying again in 500ms.');
+            $timeout(function() {
+              write(data, device);
+            }, 500);
+          }
+          else { // disconnected
+            console.log('Device is not connected/connecting...');
+            console.log(results);
+          }
+        }
+        function reconFailure(err) {
+            console.log('Call to reconnect failed.');
+            console.log(err);
+        }
 
         function reconnect() {
           console.log('Attempting to reconnect...');
@@ -232,7 +269,39 @@ angular
             .then(writeIfReconnected, reconError)
           ;
         }
+        function disconnect() {
+          console.log('Received disconnect call...');
+          return $cordovaBluetoothle.disconnect({ address: address})
+            .then(function(status) {
+              console.log('Disconnect call successful:');
+              console.log(status);
+            }, function(error) {
+              console.log('Couldn\'t disconnect.');
+              console.log(error);
+            }
+          );
+        }
 
+        function discover() {
+          return $cordovaBluetoothle.services({ address: address })
+            .then(function(res) {
+              var charRequest = {
+                address: address,
+                serviceUuid: serviceUuid
+              };
+              return $cordovaBluetoothle.characteristics(charRequest);
+            }, function(err) {
+              console.log('Discovering services failed.');
+              console.log(err);
+            }).then(function(results) {
+              console.log('Discovered characteristics.');
+              console.log(results);
+              doWrite();
+            }, function(error) {
+              console.log('Error with characteristics.');
+              console.log(error);
+            });
+        }
         function doWrite() {
           console.log('Writing', data, 'to', address);
           return $cordovaBluetoothle.write(writeParams)
