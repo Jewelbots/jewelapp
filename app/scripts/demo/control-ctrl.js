@@ -190,6 +190,25 @@ angular
         function disconnected(err) {
           // whoops, connect for the first time maybe?
           $logService.Log('Call to isConnected failed.');
+
+          if(err.error === 'neverConnected') {
+            $logService.Log('Never connected to device.');
+            $cordovaBluetoothle.connect({ address: address })
+              .then(function(conn) {
+                if(conn.status === 'connected') {
+                  $timeout(function() {
+                    write(data, device);
+                  }, 500);
+                }
+                else {
+                  $logService.Log('Connect had some trouble:');
+                  $logService.Log(conn);
+                }
+              }, function(err) {
+                $logService.Log('Connect error:');
+                $logService.Log(err);
+              });
+          }
           $logService.Log(err);
         }
         try {
