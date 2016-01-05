@@ -160,6 +160,12 @@ angular
         console.log('serviceUuid:');
         console.log(serviceUuid);
         bytes[0] = data;
+
+        $cordovaBluetoothle
+          .isConnected({ address: address })
+          .then(connected, disconnected)
+        ;
+
         function connected(conn) {
           $logService.Log('isConnected call successful...');
           $logService.Log(conn);
