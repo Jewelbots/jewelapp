@@ -107,6 +107,7 @@ angular
           var a = $q.defer();
           $logService.Log(SEPARATOR);
           $logService.Log('areWeStillConnected called...');
+          $logService.Log('formal address for  are we still connected: ' + JSON.stringify(formalAddress));
           $cordovaBluetoothle.isConnected(formalAddress).then(function(res) {
             $logService.Log('areWeStillConnected succeeded: ' + JSON.stringify(res));
             if(res.isConnected) {
