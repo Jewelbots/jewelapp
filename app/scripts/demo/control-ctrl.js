@@ -156,7 +156,8 @@ angular
         var bytes = new Uint8Array(1);
         var address = device.address;
         var serviceUuid = $scope.serviceUuids[address];
-
+        console.log('serviceUuid:');
+        console.log(serviceUuid);
         bytes[0] = data;
         function connected(conn) {
           $logService.Log('isConnected call successful...');
