@@ -191,19 +191,16 @@ angular
       $scope.linkedParty = function() { };
 
       // TODO: wrap in isConnected/connect/reconnect logic
-      function write(data) {
-
-        console.log('Writing', data);
-        var bytes = new Uint8Array(1);
+      function write(data, device) {
         console.log('Allocating array');
-        var address = $scope.target.address;
-        console.log('Setting address');
+        var bytes = new Uint8Array(1);
+        var address = device.address;
         var serviceUuid = $scope.serviceUuids[address];
         console.log('Setting service UUID');
         bytes[0] = data;
         console.log('Filling bytes.');
         var writeParams = {
-          value: bluetoothle.bytesToEncodedString(bytes),
+          value: $cordovaBluetoothle.bytesToEncodedString(bytes),
           serviceUuid: serviceUuid,
           characteristicUuid: SET_LED,
           address: address
@@ -226,7 +223,12 @@ angular
 
         function doWrite() {
           console.log('Writing', data, 'to', address);
-          return $cordovaBluetoothle.write(writeParams);
+          return $cordovaBluetoothle.write(writeParams)
+            .then(disconnect, writeError);
+        }
+        function writeError(err) {
+          console.log('Write error:');
+          console.log(err);
         }
 
         function writeIfReconnected(recon) {
