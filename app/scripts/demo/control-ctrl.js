@@ -204,6 +204,18 @@ angular
           serviceUuid: serviceUuid,
           characteristicUuid: SET_LED,
           address: address
+        };
+        console.log('Write parameters:');
+        console.log(writeParams);
+        try {
+          $cordovaBluetoothle
+            .isConnected({ address: address })
+            .then(connected, disconnected)
+          ;
+        }
+        catch(e) {
+          console.log('OH GOD');
+          console.log(e);
         }
 
         doWrite();
