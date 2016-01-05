@@ -17,7 +17,15 @@ angular
     ionicReady,
     $timeout,
     $q) {
-
+      var modes = {
+        pairing : 1,
+        successPair : 2,
+        friendInProximity: 3,
+        messaging : 4,
+        rainbow: 5,
+        weatherSunny : 6,
+        weatherRainy: 7
+      };
       $scope.devices = {
         detected: [ ],
         selected: [ ],
@@ -146,23 +154,23 @@ angular
       // <!-- Individual Commands -->
       $scope.singlePair = function(device) {
         $logService.Log('single pair');
-        return write(1, device);
+        return write(modes.successPair, device);
       };
       $scope.singleNewFriend = function(device){
         $logService.Log('single new friend');
-        return write(2, device);
+        return write(modes.successPair, device);
       };
       $scope.singleFriendsNear = function(device) {
         $logService.Log('single friends near');
-        return write(3, device);
+        return write(modes.friendInProximity, device);
       };
       $scope.singleParty = function(device) {
         $logService.Log('single party mode');
-        return write(5, device);
+        return write(modes.rainbow, device);
       };
       $scope.singleMessage = function(device) {
         $logService.Log('single message');
-        return write(4, device);
+        return write(modes.messaging, device);
       };
       $scope.singleReset = function(device) {
         // TODO: what is best here? disconnect/reconnect? Probably.
@@ -175,12 +183,36 @@ angular
       };
 
       // Global Commands
-      $scope.globalPair = function() { };
-      $scope.globalNewFriend = function() { };
-      $scope.globalFriendsNear = function() { };
-      $scope.globalMessage = function() { };
-      $scope.globalParty = function() { };
-      $scope.globalReset = function() { };
+      $scope.globalPair = function() {
+        $scope.devices.selected.forEach(function (device, i) {
+          write(modes.pairing, device);
+        });
+      };
+      $scope.globalNewFriend = function() {
+        $scope.devices.selected.forEach(function (device, i) {
+          write(modes.successPair, device);
+        });
+      };
+      $scope.globalFriendsNear = function() {
+        $scope.devices.selected.forEach(function (device, i) {
+          write(modes.friendInProximity, device);
+        });
+      };
+      $scope.globalMessage = function() {
+        $scope.devices.selected.forEach(function (device, i) {
+          write(modes.messaging, device);
+        });
+      };
+      $scope.globalParty = function() {
+        $scope.devices.selected.forEach(function (device, i) {
+          write(modes.rainbow, device);
+        });
+      };
+      $scope.globalReset = function() {
+        $scope.devices.selected.forEach(function (device, i) {
+          write(modes.weatherSunny, device);
+        });
+      };
 
       //<!-- Linked Commands -->
       $scope.linkedPair = function() { };
