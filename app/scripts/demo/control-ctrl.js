@@ -108,7 +108,7 @@ angular
           $logService.Log(SEPARATOR);
           $logService.Log('areWeStillConnected called...');
           $cordovaBluetoothle.isConnected(formalAddress).then(function(res) {
-            $logService.Log('areWeStillConnected succeeded.');
+            $logService.Log('areWeStillConnected succeeded: ' + JSON.stringify(res));
             if(res.isConnected) {
               $logService.Log('CONNECTED');
               a.resolve(device);
@@ -219,24 +219,24 @@ angular
         return send(modes.pairing, device);
       };
       $scope.singleNewFriend = function(device){
-        $logService.Log('single new friend');
+        $logService.Log('single new friend ');
         return send(modes.successPair, device);
       };
       $scope.singleFriendsNear = function(device) {
-        $logService.Log('single friends near');
+        $logService.Log('single friends near ');
         return send(modes.friendInProximity, device);
       };
       $scope.singleParty = function(device) {
-        $logService.Log('single party mode');
+        $logService.Log('single party mode ');
         return send(modes.rainbow, device);
       };
       $scope.singleMessage = function(device) {
-        $logService.Log('single message');
+        $logService.Log('single message ');
         return send(modes.messaging, device);
       };
       $scope.singleReset = function(device) {
         // TODO: what is best here? disconnect/reconnect? Probably.
-        $logService.Log('Resetting');
+        $logService.Log('Resetting ');
 
         // $cordovaBluetoothle.disconnect
       };

@@ -44,7 +44,7 @@ angular.module('jewelApp.services')
 			svc.selectDevice = function (selected) {
 				if(svc.isSelected(selected)) { return; }
 				svc.devices.selected.push(selected);
-				$logService.Log('message', 'Selecting device: ', selected.address);
+				$logService.Log('message', 'Selecting device: ' + selected.address + 'Name: ' + selected.name);
 				tally();
 			};
 
