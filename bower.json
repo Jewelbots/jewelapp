@@ -4,7 +4,7 @@
   "dependencies": {
     "crypto-js": "~3.1.5",
     "ionic": "v1.0.0-rc.3",
-    "ng-cordova-bluetoothle": "https://github.com/Jewelbots/ng-cordova-bluetoothle.git#multiple-scan",
+    "ng-cordova-bluetoothle": "https://github.com/Jewelbots/ng-cordova-bluetoothle.git",
     "ngCordova": "https://github.com/gortok/ng-cordova.git#phonegap-push-plugin-addition"
   },
   "devDependencies": {
@@ -14,6 +14,7 @@
   },
   "resolutions": {
     "angular": ">= 1.3.6",
-    "ngCordova":"phonegap-push-plugin-addition"
+    "ngCordova":"phonegap-push-plugin-addition",
+    "ng-cordova-bluetoothle": ">=0.1.5"
   }
 }
