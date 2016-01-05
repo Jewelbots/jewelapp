@@ -8,13 +8,15 @@ angular
 		'DeviceService',
     'ionicReady',
     '$timeout',
+    '$q',
 		function(
     $scope,
     $cordovaBluetoothle,
     $logService,
     DeviceService,
     ionicReady,
-    $timeout) {
+    $timeout,
+    $q) {
 
       $scope.devices = {
         detected: [ ],
@@ -43,18 +45,18 @@ angular
         for(var id in $scope.serviceUuids) {
           uuids.push($scope.serviceUuids[id]);
         }
-        console.log('Asking about these services:');
-        console.log(uuids);
+        $logService.Log('Asking about these services:');
+        $logService.Log(uuids);
         $cordovaBluetoothle.retrieveConnected({
           serviceUuids: uuids
         }).then(function(res) {
-          console.log('show Paired call succeeded:');
-          console.log(res);
+          $logService.Log('show Paired call succeeded:');
+          $logService.Log(res);
           $q.resolve(res);
         }, function(err) {
-          console.log('show Paired call failed.');
-          console.log(err);
-          $q.reject(res);
+          $logService.Log('show Paired call failed.');
+          $logService.Log(err);
+          $q.reject(err);
         });
 
         return $q.promise;
@@ -63,12 +65,10 @@ angular
       $scope.isPaired = function(device) {
         var uuids = [ ];
         var val = $q.defer();
-
-
-      }
+      };
 
       function familiarize(device) {
-        console.log('Familiarizing ourselves with', device.address);
+        $logService.Log('Familiarizing ourselves with', device.address);
         $scope.target = device;
 
         var address = { address: device.address };
@@ -77,67 +77,67 @@ angular
 
           if(conn.status === 'connected') {
 
-            console.log('Device is connected');
+            $logService.Log('Device is connected');
             $cordovaBluetoothle.services(address).then(function(service) {
 
               if(service && service.serviceUuids) {
 
-                console.log('Device has', service.serviceUuids.length, 'sevices');
-                console.log(device.serviceUuids);
+                $logService.Log('Device has ' + service.serviceUuids.length, ' services');
+                $logService.Log(device.serviceUuids);
                 $scope.serviceUuids[device.address] = service.serviceUuids[0];
                 var charRequest = {
                   address: device.address,
                   serviceUuid: $scope.serviceUuids[device.address]
                 };
-                console.log('Obtained service UUID.');
-                console.log('Requesting:');
-                console.log(charRequest);
+                $logService.Log('Obtained service UUID.');
+                $logService.Log('Requesting:');
+                $logService.Log(charRequest);
                 $cordovaBluetoothle.characteristics(charRequest).then(function(chars) {
-                  console.log('Received characteristics:');
-                  console.log(chars);
+                  $logService.Log('Received characteristics:');
+                  $logService.Log(chars);
 
                 }, function(err) {
-                  console.log('Error retrieving characteristics:');
-                  console.log(err);
+                  $logService.Log('Error retrieving characteristics:');
+                  $logService.Log(err);
                 });
               }
               else {
-                console.log('Unexpected results from services request');
+                $logService.Log('Unexpected results from services request');
               }
-              console.log(service);
+              $logService.Log(service);
             });
           }
           else if(conn.status === 'connecting') {
             // TODO: wait?
-            console.log('Device is connecting...');
+            $logService.Log('Device is connecting...');
           }
           else {
-            console.log('Device is not connected.');
+            $logService.Log('Device is not connected.');
           }
         });
 
         function connected(device) {
-          console.log('Connected to', device.address);
+          $logService.Log('Connected to', device.address);
           return services()
             .then(serviced, svcErr)
           ;
         }
 
         function serviced(svc) {
-          console.log('Found services', svc);
+          $logService.Log('Found services', svc);
           return characteristics()
             .then(characters, charErr)
           ;
         }
 
         function characters(char) {
-          console.log('Received characteristics');
-          console.log(char);
+          $logService.Log('Received characteristics');
+          $logService.Log(char);
         }
 
-        function connErr(err) { console.log('Error connecting to', device.address); }
-        function charErr(err) { console.log('Error getting characteristics from', device.address); }
-        function svcErr(err) { console.log('Error getting services from', device.address); }
+        function connErr(err) { $logService.Log('Error connecting to ', device.address); }
+        function charErr(err) { $logService.Log('Error getting characteristics from ', device.address); }
+        function svcErr(err) { $logService.Log('Error getting services from ', device.address); }
       }
 
       $scope.numSelected = function() {
@@ -146,28 +146,28 @@ angular
 
       // <!-- Individual Commands -->
       $scope.singlePair = function(device) {
-        console.log('single pair');
+        $logService.Log('single pair');
         return write(1, device);
       };
       $scope.singleNewFriend = function(device){
-        console.log('single new friend');
+        $logService.Log('single new friend');
         return write(2, device);
       };
       $scope.singleFriendsNear = function(device) {
-        console.log('single friends near');
+        $logService.Log('single friends near');
         return write(3, device);
       };
       $scope.singleParty = function(device) {
-        console.log('single party mode');
+        $logService.Log('single party mode');
         return write(5, device);
       };
       $scope.singleMessage = function(device) {
-        console.log('single message');
+        $logService.Log('single message');
         return write(4, device);
       };
       $scope.singleReset = function(device) {
         // TODO: what is best here? disconnect/reconnect? Probably.
-        console.log('Resetting');
+        $logService.Log('Resetting');
 
         // $cordovaBluetoothle.disconnect
       };
@@ -192,12 +192,25 @@ angular
 
       // TODO: wrap in isConnected/connect/reconnect logic
       function write(data, device) {
-        console.log('Allocating array');
+        $logService.Log('Allocating array');
         var bytes = new Uint8Array(1);
         var address = device.address;
         var serviceUuid = $scope.serviceUuids[address];
 
         bytes[0] = data;
+        function connected(conn) {
+          $logService.Log('isConnected call successful...');
+          $logService.Log(conn);
+          if(conn.isConnected) {
+            $logService.Log('Device is supposedly connected.');
+            return doWrite();
+          }
+          else {
+            $logService.Log('Device is not connected.');
+            $cordovaBluetoothle.reconnect({ address: address })
+              .then(reconSuccess, reconFailure);
+          }
+        }
 
         var writeParams = {
           value: $cordovaBluetoothle.bytesToEncodedString(bytes),
@@ -205,8 +218,13 @@ angular
           characteristicUuid: SET_LED,
           address: address
         };
-        console.log('Write parameters:');
-        console.log(writeParams);
+        $logService.Log('Write parameters:');
+        $logService.Log(writeParams);
+        function disconnected(err) {
+          // whoops, connect for the first time maybe?
+          $logService.Log('Call to isConnected failed.');
+          $logService.Log(err);
+        }
         try {
           $cordovaBluetoothle
             .isConnected({ address: address })
@@ -214,70 +232,54 @@ angular
           ;
         }
         catch(e) {
-          console.log('OH GOD');
-          console.log(e);
+          $logService.Log('OH GOD');
+          $logService.Log(e);
         }
 
-        function connected(conn) {
-          console.log('isConnected call successful...');
-          console.log(conn);
-          if(conn.isConnected) {
-            console.log('Device is supposedly connected.');
-            return doWrite();
-          }
-          else {
-            console.log('Device is not connected.');
-            $cordovaBluetoothle.reconnect({ address: address })
-              .then(reconSuccess, reconFailure);
-          }
-        }
-        function disconnected(err) {
-          // whoops, connect for the first time maybe?
-          console.log('Call to isConnected failed.');
-          console.log(err);
-        }
+
+
 
         function reconSuccess(results) {
-          console.log('Reconnect call successful');
-          console.log(results);
+          $logService.Log('Reconnect call successful');
+          $logService.Log(results);
           if(results.status === 'connected') {
-            console.log('Device is connected now.');
+            $logService.Log('Device is connected now.');
             discover();
             // doWrite();
           }
           else if(results.status === 'connecting') {
             // TODO: max retries. UI alert when failed.
-            console.log('Device isn\'t yet connected. Trying again in 500ms.');
+            $logService.Log('Device isn\'t yet connected. Trying again in 500ms.');
             $timeout(function() {
               write(data, device);
             }, 500);
           }
           else { // disconnected
-            console.log('Device is not connected/connecting...');
-            console.log(results);
+            $logService.Log('Device is not connected/connecting...');
+            $logService.Log(results);
           }
         }
         function reconFailure(err) {
-            console.log('Call to reconnect failed.');
-            console.log(err);
+          $logService.Log('Call to reconnect failed.');
+          $logService.Log(err);
         }
 
         function reconnect() {
-          console.log('Attempting to reconnect...');
+          $logService.Log('Attempting to reconnect...');
           $cordovaBluetoothle
             .reconnect({ address: device.address })
             .then(writeIfReconnected, reconError)
           ;
         }
         function disconnect() {
-          console.log('Received disconnect call...');
+          $logService.Log('Received disconnect call...');
           return $cordovaBluetoothle.disconnect({ address: address})
             .then(function(status) {
-              console.log('Disconnect call successful:');
-              console.log(status);
+              $logService.Log('Disconnect call successful:');
+              $logService.Log(status);
             }, function(error) {
-              console.log('Couldn\'t disconnect.');
-              console.log(error);
+              $logService.Log('Couldn\'t disconnect.');
+              $logService.Log(error);
             }
           );
         }
@@ -291,39 +293,39 @@ angular
               };
               return $cordovaBluetoothle.characteristics(charRequest);
             }, function(err) {
-              console.log('Discovering services failed.');
-              console.log(err);
+              $logService.Log('Discovering services failed.');
+              $logService.Log(err);
             }).then(function(results) {
-              console.log('Discovered characteristics.');
-              console.log(results);
+              $logService.Log('Discovered characteristics.');
+              $logService.Log(results);
               doWrite();
             }, function(error) {
-              console.log('Error with characteristics.');
-              console.log(error);
+              $logService.Log('Error with characteristics.');
+              $logService.Log(error);
             });
         }
         function doWrite() {
-          console.log('Writing', data, 'to', address);
+          $logService.Log('Writing ' + data + ' to ' + address);
           return $cordovaBluetoothle.write(writeParams)
             .then(disconnect, writeError);
         }
         function writeError(err) {
-          console.log('Write error:');
-          console.log(err);
+          $logService.Log('Write error:');
+          $logService.Log(err);
         }
         function writeIfReconnected(recon) {
           if(recon.status === 'connected') {
-            console.log('Device has been reconnected.');
+            $logService.Log('Device has been reconnected.');
             doWrite();
           }
           else {
-            console.log('Error reconnecting, status:', recon.status);
+            $logService.Log('Error reconnecting, status:', recon.status);
           }
         }
 
         function reconError(err) {
-          console.log('Error reconnecting:');
-          console.log(err);
+          $logService.Log('Error reconnecting:');
+          $logService.Log(err);
         }
       }
 
