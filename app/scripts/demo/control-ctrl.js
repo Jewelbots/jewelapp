@@ -34,7 +34,6 @@ angular
 
       var SET_LED = '2a50152c-412b-49c9-e57e-520dfd5ea929';
 
-      $scope.target = null;
       $scope.serviceUuids = { };
       $scope.characteristicUuid = undefined;
       $scope.devices.selected = DeviceService.devices.selected;
@@ -47,7 +46,6 @@ angular
 
       function familiarize(device) {
         $logService.Log('Familiarizing ourselves with', device.address);
-        $scope.target = device;
 
         var address = { address: device.address };
 
