@@ -58,7 +58,6 @@ angular
           console.log(err);
           $q.reject(res);
         });
-
         return $q.promise;
       };
 
