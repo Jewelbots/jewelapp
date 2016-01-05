@@ -32,8 +32,10 @@ angular
         linked: [ ],
       };
 
-      var SET_LED = '2a50152c-412b-49c9-e57e-520dfd5ea929';
+      var previouslyConnectedDevices = { };
 
+      var SET_LED = '2a50152c-412b-49c9-e57e-520dfd5ea929';
+      var SEPARATOR = '--------------------------------------------------------';
       $scope.serviceUuids = { };
       $scope.characteristicUuid = undefined;
       $scope.devices.selected = DeviceService.devices.selected;
