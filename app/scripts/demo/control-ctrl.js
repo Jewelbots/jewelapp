@@ -152,6 +152,7 @@ angular
 
       // TODO: wrap in isConnected/connect/reconnect logic
       function write(data, device) {
+
         $logService.Log('Allocating array');
         var bytes = new Uint8Array(1);
         var address = device.address;
@@ -172,7 +173,6 @@ angular
               .then(reconSuccess, reconFailure);
           }
         }
-
         var writeParams = {
           value: $cordovaBluetoothle.bytesToEncodedString(bytes),
           serviceUuid: serviceUuid,
