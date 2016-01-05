@@ -147,34 +147,29 @@ angular
       // <!-- Individual Commands -->
       $scope.singlePair = function(device) {
         console.log('single pair');
-        $scope.target = device;
-        return write(1);
+        return write(1, device);
       };
       $scope.singleNewFriend = function(device){
         console.log('single new friend');
-        $scope.target = device;
-        return write(2);
+        return write(2, device);
       };
       $scope.singleFriendsNear = function(device) {
         console.log('single friends near');
-        $scope.target = device;
-        return write(3);
+        return write(3, device);
       };
       $scope.singleParty = function(device) {
         console.log('single party mode');
-        $scope.target = device;
-        return write(5)
+        return write(5, device);
+      };
+      $scope.singleMessage = function(device) {
+        console.log('single message');
+        return write(4, device);
       };
       $scope.singleReset = function(device) {
         // TODO: what is best here? disconnect/reconnect? Probably.
         console.log('Resetting');
 
-        $cordovaBluetoothle.disconnect
-      };
-      $scope.singleMessage = function(device) {
-        console.log('single message');
-        $scope.target = device;
-        return write(4);
+        // $cordovaBluetoothle.disconnect
       };
       $scope.toggleLink = function(device) {
 
