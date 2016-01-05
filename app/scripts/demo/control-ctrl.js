@@ -66,8 +66,17 @@ angular
         var uuids = [ ];
         var val = $q.defer();
 
-
-      }
+        $scope.getPaired().then(function(res) {
+          console.log('Got results from getPaired');
+          var match = res.filter(function(dev) {
+            if(dev.address === device.address) { return true; }
+          });
+          $q.resolve(!!match.length);
+        }, function(err) {
+          val.reject(null);
+        });
+        return $q.promise;
+      };
 
       function familiarize(device) {
         console.log('Familiarizing ourselves with', device.address);
