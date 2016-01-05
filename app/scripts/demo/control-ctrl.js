@@ -45,46 +45,6 @@ angular
         familiarize(connectStack[0]);
       };
 
-      $scope.getPaired = function() {
-
-        var uuids = [ ];
-        var val = $q.defer();
-
-        for(var id in $scope.serviceUuids) {
-          uuids.push($scope.serviceUuids[id]);
-        }
-        $logService.Log('Asking about these services:');
-        $logService.Log(uuids);
-        $cordovaBluetoothle.retrieveConnected({
-          serviceUuids: uuids
-        }).then(function(res) {
-          $logService.Log('show Paired call succeeded:');
-          $logService.Log(res);
-          $q.resolve(res);
-        }, function(err) {
-          $logService.Log('show Paired call failed.');
-          $logService.Log(err);
-          $q.reject(err);
-        });
-        return $q.promise;
-      };
-
-      $scope.isPaired = function(device) {
-        var uuids = [ ];
-        var val = $q.defer();
-
-        $scope.getPaired().then(function(res) {
-          console.log('Got results from getPaired');
-          var match = res.filter(function(dev) {
-            if(dev.address === device.address) { return true; }
-          });
-          $q.resolve(!!match.length);
-        }, function(err) {
-          val.reject(null);
-        });
-        return $q.promise;
-      };
-
       function familiarize(device) {
         $logService.Log('Familiarizing ourselves with', device.address);
         $scope.target = device;
