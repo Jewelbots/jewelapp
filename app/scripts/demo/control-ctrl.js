@@ -20,9 +20,9 @@ angular
         detected: [ ],
         selected: [ ],
         linked: [ ],
-      }
+      };
 
-      var SET_LED = "2a50152c-412b-49c9-e57e-520dfd5ea929";
+      var SET_LED = '2a50152c-412b-49c9-e57e-520dfd5ea929';
 
       $scope.target = null;
       $scope.serviceUuids = [ ];
@@ -43,7 +43,7 @@ angular
 
         $cordovaBluetoothle.connect(address).then(function(conn) {
 
-          if(conn.status === "connected") {
+          if(conn.status === 'connected') {
 
             console.log('Device is connected');
             $cordovaBluetoothle.services(address).then(function(service) {
@@ -54,7 +54,7 @@ angular
                 var charRequest = {
                   address: device.address,
                   serviceUuid: $scope.serviceUuids[device.address]
-                }
+                };
                 console.log('Obtained service UUID.');
                 console.log('Requesting:');
                 console.log(charRequest);
@@ -65,7 +65,7 @@ angular
                 }, function(err) {
                   console.log('Error retrieving characteristics:');
                   console.log(err);
-                })
+                });
               }
               else {
                 console.log('Unexpected results from services request');
@@ -73,7 +73,7 @@ angular
               console.log(service);
             });
           }
-          else if(conn.status === "connecting") {
+          else if(conn.status === 'connecting') {
             // TODO: wait?
             console.log('Device is connecting...');
           }
