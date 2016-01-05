@@ -196,9 +196,9 @@ angular
         var bytes = new Uint8Array(1);
         var address = device.address;
         var serviceUuid = $scope.serviceUuids[address];
-        console.log('Setting service UUID');
+
         bytes[0] = data;
-        console.log('Filling bytes.');
+
         var writeParams = {
           value: $cordovaBluetoothle.bytesToEncodedString(bytes),
           serviceUuid: serviceUuid,
@@ -311,7 +311,6 @@ angular
           console.log('Write error:');
           console.log(err);
         }
-
         function writeIfReconnected(recon) {
           if(recon.status === 'connected') {
             console.log('Device has been reconnected.');
