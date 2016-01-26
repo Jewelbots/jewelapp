@@ -32,3 +32,5 @@ DerivedData
 *.xcuserstate
 
 app/scripts/configuration.js
+
+build/
