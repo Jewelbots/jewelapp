@@ -567,4 +567,42 @@ module.exports = function (grunt) {
     'karma:continuous',
     'compress'
   ]);
+
+  grunt.registerTask('ios-clean', function() {
+    var done = this.async();
+    return del([
+      `${__dirname}/build/**`,
+    ]).then(done);
+  });
+
+  grunt.registerTask('ios-export', function() {
+    grunt.task.requires('ios-clean');
+    var xcodeproj = `${__dirname}/platforms/ios/Jewelapp.xcodeproj`;
+
+    var app = new xFiles('Jewelapp', xcodeproj);
+    var done = this.async();
+    var id = uuid.v1();
+
+    var archivePath = `${__dirname}/build/${id}`;
+    var ipaPath = `${__dirname}/build/Jewelapp`;
+
+    app.createArchive(archivePath)
+    .then(function(arch) {
+      grunt.log.ok(`Archive created: build/${path.basename(arch)}`);
+      return app.exportArchive(archivePath, ipaPath);
+    }, function(error) {
+      grunt.log.error('Creating archive failed.');
+      grunt.log.error(error);
+      done(false);
+    })
+    .then(function(ipa) {
+      grunt.log.ok(`IPA Created: build/${path.basename(ipa)}`);
+      done(true);
+    }, function(error) {
+      grunt.log.error('Exporting archive failed.');
+      grunt.log.error(error);
+      done(false);
+    })
+  });
+  grunt.registerTask('ios-build', [ 'ios-clean', 'ios-export' ]);
 };
