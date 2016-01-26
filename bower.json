@@ -1,6 +1,6 @@
 {
   "name": "Jewelapp",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "dependencies": {
     "crypto-js": "~3.1.5",
     "ionic": "v1.0.0-rc.3",
