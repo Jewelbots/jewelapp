@@ -5,7 +5,10 @@ var _ = require('lodash');
 var path = require('path');
 var cordovaCli = require('cordova');
 var spawn = process.platform === 'win32' ? require('win-spawn') : require('child_process').spawn;
-
+var xFiles = require('x-files');
+var path = require('path');
+var uuid = require('uuid');
+var del = require('del');
 module.exports = function (grunt) {
 
   // Load grunt tasks automatically
