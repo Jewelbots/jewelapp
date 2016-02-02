@@ -67,7 +67,10 @@
     "node": "^4.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "patch": "grunt bump:patch",
+    "minor": "grunt bump:minor",
+    "major": "grunt bump:major"
   },
   "cordovaPlugins": [
     "org.apache.cordova.console",
