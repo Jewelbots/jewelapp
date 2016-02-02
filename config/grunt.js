@@ -1,5 +1,19 @@
 module.exports = {
-
+  bump: {
+    options: {
+      files: ['package.json', 'bower.json', 'config.xml'],
+      updateConfigs: [],
+      commit: true,
+      commitMessage: 'Release %VERSION%',
+      commitFiles: ['package.json', 'bower.json', 'config.xml'],
+      createTag: true,
+      tagName: '%VERSION%',
+      tagMessage: 'Version %VERSION%',
+      push: false,
+      pushTo: 'upstream',
+      gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d'
+    }
+  },
   // Project settings
   yeoman: {
     // configurable paths
