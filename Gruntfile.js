@@ -90,7 +90,7 @@ module.exports = function (grunt) {
   // Wrap ionic-cli commands
   grunt.registerTask('ionic', function() {
     var done = this.async();
-    var script = resolveUp(path.resolve('./node_modules/ionic/bin/', 'ionic');
+    var script = path.resolve('./node_modules/ionic/bin/', 'ionic');
     var flags = process.argv.splice(3);
     var child = spawn(script, this.args.concat(flags), { stdio: 'inherit' });
     child.on('close', function (code) {
