@@ -11,7 +11,7 @@ angular.module('jewelApp.controllers')
       $state,
       $window,
       DataService) {
-      $scope.isPaired = function() {
+      /*$scope.isPaired = function() {
         if (!DataService.IsPaired()) {
           $state.go('pair');
         }
@@ -19,4 +19,5 @@ angular.module('jewelApp.controllers')
           $state.go('dashboard');
         }
       };
+      */
 }]);

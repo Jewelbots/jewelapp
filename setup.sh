@@ -39,5 +39,7 @@ else
 	echo
 	echo "Done. Firing it up!"
 	echo
+	npm link ionic
+	npm link osenv
 	grunt serve
 fi

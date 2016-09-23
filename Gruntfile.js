@@ -25,7 +25,7 @@ module.exports = function (grunt) {
     grunt.registerTask(name, function () {
       this.args.unshift(name.replace('cordova:', ''));
       // Handle URL's being split up by Grunt because of `:` characters
-      if (_.contains(this.args, 'http') || _.contains(this.args, 'https')) {
+      if (_.isMatch(this.args, 'http') || _.isMatch(this.args, 'https')) {
         this.args = this.args.slice(0, -2).concat(_.last(this.args, 2).join(':'));
       }
       var done = this.async();
@@ -90,7 +90,7 @@ module.exports = function (grunt) {
   // Wrap ionic-cli commands
   grunt.registerTask('ionic', function() {
     var done = this.async();
-    var script = path.resolve('./node_modules/ionic/bin/', 'ionic');
+    var script = resolveUp(path.resolve('./node_modules/ionic/bin/', 'ionic');
     var flags = process.argv.splice(3);
     var child = spawn(script, this.args.concat(flags), { stdio: 'inherit' });
     child.on('close', function (code) {

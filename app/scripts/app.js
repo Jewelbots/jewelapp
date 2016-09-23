@@ -210,8 +210,3 @@ angular.module('jewelApp',
       ;
       $urlRouterProvider.otherwise('/start');
 }]);
-
-
-
-
-
