@@ -1,74 +1,33 @@
 {
-  "name": "Jewelapp",
-  "version": "1.0.0",
-  "private": true,
-  "dependencies": {},
+  "name": "jewelapp2",
+  "version": "1.1.1",
+  "description": "jewelapp2: An Ionic project",
+  "dependencies": {
+    "gulp": "^3.5.6",
+    "gulp-sass": "^2.0.4",
+    "gulp-concat": "^2.2.0",
+    "gulp-minify-css": "^0.3.0",
+    "gulp-rename": "^1.2.0"
+  },
   "devDependencies": {
-    "angular-mocks": "1.3.15",
-    "cordova": "^6.3.1",
-    "del": "2.2.0",
-    "elementtree": "0.1.6",
-    "glob": "7.1.0",
-    "grunt": "latest",
-    "grunt-autoprefixer": "latest",
-    "grunt-bump-cordova": "latest",
-    "grunt-concurrent": "latest",
-    "grunt-contrib-clean": "latest",
-    "grunt-contrib-compass": "latest",
-    "grunt-contrib-concat": "latest",
-    "grunt-contrib-connect": "latest",
-    "grunt-contrib-copy": "latest",
-    "grunt-contrib-cssmin": "latest",
-    "grunt-contrib-htmlmin": "latest",
-    "grunt-contrib-jshint": "latest",
-    "grunt-contrib-uglify": "latest",
-    "grunt-contrib-watch": "latest",
-    "grunt-newer": "latest",
-    "grunt-ng-annotate": "latest",
-    "grunt-ng-constant": "latest",
-    "grunt-replace": "latest",
-    "grunt-usemin": "latest",
-    "grunt-wiredep": "latest",
-    "jshint-stylish": "2.2.1",
-    "load-grunt-tasks": "3.1.0",
-    "lodash": "4.16.1",
-    "mkdirp": "0.5.0",
-    "mocha": "2.2.4",
-    "ncp": "2.0.0",
-    "orchestrator": "0.3.7",
-    "plist": "2.0.1",
-    "time-grunt": "1.4.0",
-    "uuid": "2.0.1",
-    "win-spawn": "2.0.0",
-    "x-files": "0.0.3"
-  },
-  "engines": {
-    "node": "^4.0"
-  },
-  "scripts": {
-    "test": "grunt test",
-    "patch": "grunt bump:patch",
-    "minor": "grunt bump:minor",
-    "major": "grunt bump:major"
+    "bower": "^1.3.3",
+    "gulp-util": "^2.2.14",
+    "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-    "org.apache.cordova.console",
-    "org.apache.cordova.device",
-    "org.apache.cordova.dialogs",
-    "org.apache.cordova.splashscreen",
-    "cordova-plugin-contacts",
-    {
-      "locator": "https://github.com/randdusing/BluetoothLE",
-      "id": "com.randdusing.bluetoothle"
-    },
-    {
-      "locator": "https://github.com/Jewelbots/phonegap-plugin-push-mirror.git",
-      "id": "phonegap-plugin-push"
-    },
-    "com.ionic.keyboard"
+    "cordova-plugin-device",
+    "cordova-plugin-console",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-statusbar",
+    "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [
     "ios",
-    "android"
+    {
+      "platform": "ios",
+      "version": "",
+      "locator": "ios"
+    }
   ]
 }
