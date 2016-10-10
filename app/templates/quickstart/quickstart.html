@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- css - (↓) -->
+<link type="text/css" rel="stylesheet" href="../../styles/style-reset.css"            media="screen" /><!-- CSS - reset -->
+<link type="text/css" rel="stylesheet" href="../../styles/style.css"                  media="screen, projection" /><!-- CSS - iPad (1024) -->
+<!-- css - (↑) -->
+</head>
+<body>
+
+<ion-view can-swipe-back="false" hide-nav-bar="true" hide-back-button="true">
+	<div class="quickstart">
+		<a class="close">
+			<img src="../../images/icon__(x)_white.svg" />
+		</a>
+		<div class="info">
+			<img src="../../images/image__quickstart_1.png" />
+			<h1>Welcome to Jewelbots</h1>
+			<p>
+				Some quick-start message should go here. Could be a simple walkthrough of the app.
+			</p>
+		</div>
+		<div class="interface">
+			<ul>
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<a class="next" href="">Next</a>
+			<a class="skip" href="">Skip</a>
+		</div>
+	</div>
+	<style>
+		.quickstart {
+			display:  block;
+			position: relative;
+			width:    100%;
+			height:   100%;
+			margin:   0 0 0 0;
+			padding:  0 0 90px 0;
+
+			background-color: rgba(030,035,040,0.9);
+		}
+
+		.quickstart a.close {
+			display:    block;
+			position:   absolute;
+			width:      60px;
+			height:     60px;
+			top:        0px;
+			right:      0px;
+			margin:     0 0 0 0;
+			padding:    0 0 0 0;
+		}
+		.quickstart a.close:hover {
+			opacity: 0.6;
+		}
+		.quickstart a.close img {
+			display:    block;
+			position:   relative;
+			width:      30px;
+			min-height: 30px;
+			top:        15px;
+			left:       15px;
+			margin:     0 0 0 0;
+			padding:    0 0 0 0;
+		}
+
+		.quickstart .info {
+			display:  block;
+			position: relative;
+			width:    300px;
+			height:   auto;
+			margin:   0 auto 0 auto;
+			padding:  60px 0 0 0;
+		}
+		.quickstart .info img {
+			display:  block;
+			position: relative;
+			width:    300px;
+			height:   auto;
+			margin:   0 auto -25px auto;
+			padding:  0 0 0 0;
+		}
+		.quickstart .info h1 {
+			display:  block;
+			position: relative;
+			width:    auto;
+			height:   auto;
+			margin:   0 0 10px 0;
+			padding:  0 0 0 0;
+
+			font-family:    "opensans",sans-serif;
+			font-style:     normal;
+			font-size:      24px;
+			letter-spacing: 1px;
+			line-height:    20px;
+			text-indent:    0px;
+			text-align:     center;
+			text-transform: none;
+			color:          rgba(255,255,255,1.0);
+		}
+		.quickstart .info p {
+			display:  block;
+			position: relative;
+			width:    auto;
+			height:   auto;
+			margin:   0 0 40px 0;
+			padding:  0 0 0 0;
+
+			font-family:    "opensans",sans-serif;
+			font-style:     normal;
+			font-size:      17px;
+			letter-spacing: 1px;
+			line-height:    25px;
+			text-indent:    0px;
+			text-align:     center;
+			text-transform: none;
+			color:          rgba(255,255,255,1.0);
+		}
+
+		.quickstart .interface {
+			display:  block;
+			position: relative;
+			width:    180px;
+			height:   auto;
+			margin:   0 auto 0 auto;
+			padding:  0 0 0 0;
+		}
+		.quickstart .interface ul {
+			display:  block;
+			position: relative;
+			width:    68px;
+			height:   auto;
+			margin:   0 auto 30px auto;
+			padding:  0 0 0 0;
+		}
+		.quickstart .interface ul li {
+			display:  inline-block;
+			position: relative;
+			width:    12px;
+			height:   12px;
+			margin:   0 4px 0 4px;
+			padding:  0 0 0 0;
+
+			background-color: rgba(105,110,115,1.0);
+
+                    border-radius: 30px;
+               -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+		}
+		.quickstart .interface ul li.active {
+			background-color: rgba(040,205,230,1.0);
+		}
+		.quickstart .interface a.next {
+			display:  block;
+			position: relative;
+			width:    180px;
+			height:   60px;
+			margin:   0 auto 30px auto;
+			padding:  0 0 0 0;
+
+			background-color: rgba(040,205,230,1.0);
+
+                    border-radius: 30px;
+               -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+
+			font-family:    "opensans",sans-serif;
+			font-style:     normal;
+			font-size:      20px;
+			letter-spacing: 1px;
+			line-height:    60px;
+			text-indent:    0px;
+			text-align:     center;
+			text-transform: uppercase;
+			color:          rgba(255,255,255,1.0);
+		}
+		.quickstart .interface a.skip {
+			display:  block;
+			position: relative;
+			width:    auto;
+			height:   auto;
+			margin:   0 0 0 0;
+			padding:  0 0 0 0;
+
+			font-family:    "opensans",sans-serif;
+			font-style:     normal;
+			font-size:      15px;
+			letter-spacing: 1px;
+			line-height:    25px;
+			text-indent:    0px;
+			text-align:     center;
+			text-transform: uppercase;
+			color:          rgba(255,255,255,1.0);
+		}
+		.quickstart .interface a.skip:hover {
+			opacity: 0.6;
+		}
+	</style>
+</ion-view>
+
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>
