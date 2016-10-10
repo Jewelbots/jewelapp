@@ -1,0 +1,361 @@
+<ion-footer-bar class="bar-light color_group_select"><!--[has_friendrequests/has_friendsselected/error/red..pink]-->
+	<div class="banner_error no_friends_selected">
+		<img src="../../images/icon__error.svg" />
+		<p>
+			Select at least one friend and a color below.
+		</p>
+	</div>
+
+	<jewelbots-menu bind="model.selectedMenuItem"></jewelbots-menu>
+
+	<div class="friend_requests">
+		<div class="friend_requests_header">
+			<a class="close">
+				<img src="../../images/icon__(x)_white.svg" />
+			</a>
+			<div class="badge">
+				<div class="number">
+					4123
+				</div>
+				<p>YOU HAVE FRIEND REQUESTS</p>
+				
+			</div>
+		</div>
+	</div>
+	<a class="button_add_friends">2 friends selected</a><!--[red,orange..pink]-->
+	<style>
+		/* color circles */
+		.color_group_select {
+			display:  block;
+			position: absolute;
+			width:    100%;
+			height:   90px;
+			left:     0;
+			bottom:   0;
+			margin:   0 0 0 0;
+			padding:  0 0 0 0;
+
+			background-color: rgba(255,255,255,1.0);
+
+			-webkit-box-shadow: 0px -3px 5px 0px rgba(100,110,120,0.25);
+			   -moz-box-shadow: 0px -3px 5px 0px rgba(100,110,120,0.25);
+			        box-shadow: 0px -3px 5px 0px rgba(100,110,120,0.25);
+
+					-webkit-transition: .6s ease-in-out;
+					   -moz-transition: .6s ease-in-out;
+					     -o-transition: .6s ease-in-out;
+					    -ms-transition: .6s ease-in-out;
+					        transition: .6s ease-in-out;
+		}
+		ul.color_list {
+			display:  block;
+			position: relative;
+			width:    320px;
+			height:   30px;
+			margin:   30px auto 0 auto;
+			padding:  0 0 0 0;
+		}
+		ul.color_list li {
+			display:  inline-block;
+			position: relative;
+			float:    left;
+			width:    30px;
+			height:   30px;
+			margin:   0 5px 0 5px;
+			padding:  0 0 0 0;
+		}
+		ul.color_list li a {
+			display:  block;
+			position: relative;
+			width:    30px;
+			height:   30px;
+			margin:   0 0 0 0;
+			padding:  0 0 0 0;
+		}
+		ul.color_list li a img {
+			display:  block;
+			position: relative;
+			width:    30px;
+			height:   30px;
+			margin:   0 0 0 0;
+			padding:  0 0 0 0;
+		}
+		ul.color_list li a.red img {
+			content:  url("../../images/icon__color_small_red_off.svg");
+		}
+		ul.color_list li a.orange img {
+			content:  url("../../images/icon__color_small_orange_off.svg");
+		}
+		ul.color_list li a.yellow img {
+			content:  url("../../images/icon__color_small_yellow_off.svg");
+		}
+		ul.color_list li a.green img {
+			content:  url("../../images/icon__color_small_green_off.svg");
+		}
+		ul.color_list li a.teal img {
+			content:  url("../../images/icon__color_small_teal_off.svg");
+		}
+		ul.color_list li a.blue img {
+			content:  url("../../images/icon__color_small_blue_off.svg");
+		}
+		ul.color_list li a.purple img {
+			content:  url("../../images/icon__color_small_purple_off.svg");
+		}
+		ul.color_list li a.pink img {
+			content:  url("../../images/icon__color_small_pink_off.svg");
+		}
+		ul.color_list li a.red.active img {
+			content:  url("../../images/icon__color_small_red_on.svg");
+		}
+		ul.color_list li a.orange.active  img {
+			content:  url("../../images/icon__color_small_orange_on.svg");
+		}
+		ul.color_list li a.yellow.active  img {
+			content:  url("../../images/icon__color_small_yellow_on.svg");
+		}
+		ul.color_list li a.green.active  img {
+			content:  url("../../images/icon__color_small_green_on.svg");
+		}
+		ul.color_list li a.teal.active  img {
+			content:  url("../../images/icon__color_small_teal_on.svg");
+		}
+		ul.color_list li a.blue.active  img {
+			content:  url("../../images/icon__color_small_blue_on.svg");
+		}
+		ul.color_list li a.purple.active  img {
+			content:  url("../../images/icon__color_small_purple_on.svg");
+		}
+		ul.color_list li a.pink.active  img {
+			content:  url("../../images/icon__color_small_pink_on.svg");
+		}
+
+		/* friends_selected */
+		.color_group_select.has_friendrequests {
+			height:   140px;
+		}
+		.color_group_select .friend_requests_header {
+			display:    none;
+		}
+		.color_group_select.has_friendrequests .friend_requests_header {
+			display:    block;
+			position:   relative;
+			width:      100%;
+			height:     auto;
+			min-height: 50px;
+			margin:     30px 0 0 0;
+			padding:    0 0 0 0;
+
+			border-top:       solid 2px rgba(205,110,000,1.0);
+			border-left:      solid 2px rgba(205,110,000,1.0);
+			border-right:     solid 2px rgba(205,110,000,1.0);
+			background-color:           rgba(255,140,000,1.0);
+
+			            border-top-left-radius: 15px;
+			        -moz-border-radius-topleft: 15px;
+			    -webkit-border-top-left-radius: 15px;
+
+			           border-top-right-radius: 15px;
+			       -moz-border-radius-topright: 15px;
+			   -webkit-border-top-right-radius: 15px;
+
+			        border-bottom-right-radius: 0px;
+			    -moz-border-radius-bottomright: 0px;
+			-webkit-border-bottom-right-radius: 0px;
+
+			         border-bottom-left-radius: 0px;
+			     -moz-border-radius-bottomleft: 0px;
+			 -webkit-border-bottom-left-radius: 0px;
+		}
+		.color_group_select.has_friendrequests .friend_requests_header .badge {
+			display:  block;
+			position: relative;
+			width:    260px;
+			height:   auto;
+			margin:   0 auto 0 auto;
+			padding:  10px 0 0 0;
+		}
+		.color_group_select.has_friendrequests .friend_requests_header .badge .number {
+			display:   inline-block;
+			position:  relative;
+			width:     auto;
+			min-width: 24px;
+			height:    24px;
+			margin:    0 0 0 0;
+			padding:   0 5px 0 5px;
+
+			background: rgba(255,255,255,1.0);
+
+			font-family:    "open_sansbold",sans-serif;
+			font-style:     normal;
+			font-weight:    700;
+			font-size:      12px;
+			letter-spacing: 0.75px;
+			line-height:    24px;
+			text-indent:    0px;
+			text-align:     center;
+			color:          rgba(50,80,115,1.0);
+			text-transform: uppercase;
+
+			            border-top-left-radius: 24px;
+			        -moz-border-radius-topleft: 24px;
+			    -webkit-border-top-left-radius: 24px;
+
+			           border-top-right-radius: 24px;
+			       -moz-border-radius-topright: 24px;
+			   -webkit-border-top-right-radius: 24px;
+
+			        border-bottom-right-radius: 24px;
+			    -moz-border-radius-bottomright: 24px;
+			-webkit-border-bottom-right-radius: 24px;
+
+			         border-bottom-left-radius: 24px;
+			     -moz-border-radius-bottomleft: 24px;
+			 -webkit-border-bottom-left-radius: 24px;
+		}
+		.color_group_select.has_friendrequests .friend_requests_header .badge p {
+			display:  inline-block;
+			position: relative;
+			width:    auto;
+			height:   auto;
+			margin:   0 0 0 5px;
+			padding:  0 0 0 0;
+
+			font-family:    "open_sansbold",sans-serif;
+			font-style:     normal;
+			font-weight:    700;
+			font-size:      12px;
+			letter-spacing: 0.75px;
+			line-height:    24px;
+			text-indent:    0px;
+			text-align:     left;
+			color:          rgba(255,255,255,1.0);
+			text-transform: uppercase;
+		}
+		.color_group_select.has_friendrequests .friend_requests_header a.close {
+			display: none;
+		}
+
+		/* friends_selected */
+		.color_group_select.has_friendsselected {
+			height:   160px;
+		}
+		.color_group_select a.button_add_friends {
+			display: none;
+		}
+		.color_group_select.has_friendsselected a.button_add_friends {
+			display:   block;
+			position:  relative;
+			width:     auto;
+			max-width: 345px;
+			height:    60px;
+			margin:    25px auto 0 auto;
+			padding:   0 0 0 0;
+
+			border: solid 2px rgba(190,195,200,1.0);
+			background-color: rgba(255,255,255,1.0);
+
+			        border-radius: 5px;
+		       -moz-border-radius: 5px;
+		    -webkit-border-radius: 5px;
+
+			font-family:    "open_sansbold",sans-serif;
+			font-style:     normal;
+			font-weight:    700;
+			font-size:      13px;
+			letter-spacing: 0.25px;
+			line-height:    56px;
+			text-indent:    0px;
+			text-align:     center;
+			color:          rgba(160,165,170,1.0);
+			text-transform: uppercase;
+		}
+		.color_group_select.has_friendsselected.red a.button_add_friends {
+			border: solid 2px rgba(255,045,045,1.0);
+			background-color: rgba(255,175,190,1.0);
+			color:            rgba(190,045,050,1.0);
+		}
+		.color_group_select.has_friendsselected.orange a.button_add_friends {
+			border: solid 2px rgba(255,160,050,1.0);
+			background-color: rgba(255,215,170,1.0);
+			color:            rgba(225,145,060,1.0);
+		}
+		.color_group_select.has_friendsselected.yellow a.button_add_friends {
+			border: solid 2px rgba(250,225,040,1.0);
+			background-color: rgba(255,250,210,1.0);
+			color:            rgba(225,195,035,1.0);
+		}
+		.color_group_select.has_friendsselected.green a.button_add_friends {
+			border: solid 2px rgba(140,230,110,1.0);
+			background-color: rgba(190,255,170,1.0);
+			color:            rgba(100,205,105,1.0);
+		}
+		.color_group_select.has_friendsselected.teal a.button_add_friends {
+			border: solid 2px rgba(090,230,225,1.0);
+			background-color: rgba(165,225,250,1.0);
+			color:            rgba(000,200,195,1.0);
+		}
+		.color_group_select.has_friendsselected.blue a.button_add_friends {
+			border: solid 2px rgba(035,195,245,1.0);
+			background-color: rgba(160,235,255,1.0);
+			color:            rgba(000,170,215,1.0);
+		}
+		.color_group_select.has_friendsselected.purple a.button_add_friends {
+			border: solid 2px rgba(190,100,255,1.0);
+			background-color: rgba(220,175,255,1.0);
+			color:            rgba(180,40,255,1.0);
+		}
+		.color_group_select.has_friendsselected.pink a.button_add_friends {
+			border: solid 2px rgba(255,000,255,1.0);
+			background-color: rgba(255,150,255,1.0);
+			color:            rgba(200,000,200,1.0);
+		}
+
+		/* error_message */
+		.color_group_select.has_friendsselected.error {
+			height:   220px;
+		}
+		.color_group_select.has_friendsselected.error .banner_error {
+			display:    block;
+			position:   relative;
+			width:      100%;
+			height:     auto;
+			min-height: 60px;
+			margin:     0 0 0 0;
+			padding:    0 0 0 0;
+
+			border-bottom:    solid 2px rgba(190,0,0,1.0);
+			background-color: rgba(255,70,100,1.0);
+		}
+		.color_group_select .banner_error {
+			display:    none;
+		}
+		.color_group_select.has_friendsselected.error .banner_error img {
+			display:  block;
+			position: absolute;
+			width:    42px;
+			height:   38px;
+			margin:   13px 0 0 13px;
+			padding:  0 0 0 0;
+		}
+		.color_group_select.has_friendsselected.error .banner_error p {
+			display:  block;
+			position: relative;
+
+			width:   75%;
+			height:  auto;
+			margin:  0 0 10px 70px;
+			padding: 13px 0 0 0;
+
+			font-family:    "open_sansbold",sans-serif;
+			font-style:     normal;
+			font-weight:    700;
+			font-size:      12px;
+			letter-spacing: 0.75px;
+			line-height:    17px;
+			text-indent:    0px;
+			text-align:     left;
+			color:          rgba(255,255,255,1.0);
+			text-transform: uppercase;
+		}
+	</style>
+</ion-footer-bar>

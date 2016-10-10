@@ -1,11 +1,43 @@
 <ion-view can-swipe-back="false" hide-nav-bar="true" hide-back-button="true">
-<ion-content class="center">
-  <div class="row">
-    <div class="col">
-      <img src="images/header_icon.png" />
-    </div>
-  </div>
-</ion-content>
+<!--<ion-content class="center">-->
+	<div class="start">
+		<div class="background">
+			<img class="logo" src="../../images/icon__logo.png" />
+		</div><!--/background -->
+	</div>
+
+	<style>
+		/* styles ar kept locally for now so we can easily copy and paste --> will clean up in the end */
+		.start {
+			display:  block;
+			position: relative;
+			width:    100%;
+			height:   100%;
+			margin:   0 0 0 0;
+			padding:  0 0 0 0;
+		}
+		.start .background {
+			display:  block;
+			position: relative;
+			width:    100%;
+			height:   100%;
+			margin:   0 0 0 0;
+			padding:  0 0 0 0;
+
+			background-color: rgb(105,200,230);
+			background-image: url(../../images/background__start.png);
+			background-size:  645px 675px;
+		}
+		.start .background .logo {
+			display:  block;
+			position: relative;
+			width:    175px;
+			height:   auto;
+			left:     50%;
+			top:      36%;
+			margin:   0 0 0 -88px;
+			padding:  0 0 0 0;
+		}
+	</style>
+<!--</ion-content>-->
 </ion-view>
-
-
