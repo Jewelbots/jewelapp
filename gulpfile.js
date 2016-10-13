@@ -11,11 +11,17 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['scripts', 'templates', 'sass', 'assets']);
+gulp.task('default', ['scripts', 'templates', 'sass', 'assets', 'fonts']);
 gulp.task('scripts', function (done) {
   gulp.src('app/scripts/**/*', { base: 'app/scripts'} )
   .pipe(gulp.dest('www/scripts'))
   .on('end', done);
+});
+
+gulp.task('fonts', function (done) {
+  gulp.src('app/fonts/**/*', { base: 'app/fonts'} )
+    .pipe(gulp.dest('www/fonts'))
+    .on('end', done);
 });
 
 gulp.task('templates', function (done) {
