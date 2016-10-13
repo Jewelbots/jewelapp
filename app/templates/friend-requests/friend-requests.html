@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <!-- css - (↓) -->
-<link type="text/css" rel="stylesheet" href="../../styles/style-reset.css"            media="screen" /><!-- CSS - reset -->
-<link type="text/css" rel="stylesheet" href="../../styles/style.css"                  media="screen, projection" /><!-- CSS - iPad (1024) -->
+<link type="text/css" rel="stylesheet" href="/css/style-reset.css"            media="screen" /><!-- CSS - reset -->
+<link type="text/css" rel="stylesheet" href="/css/style.css"                  media="screen, projection" /><!-- CSS - iPad (1024) -->
 <!-- css - (↑) -->
 </head>
 <body>
@@ -13,27 +13,27 @@
 
 		<div class="friend_requests_header">
 			<a class="close">
-				<img src="../../images/icon__(x)_white.svg" />
+				<img src="/images/icon__(x)_white.svg" />
 			</a>
 			<div class="badge">
 				<div class="number">
 					4123
 				</div>
 				<p>YOU HAVE FRIEND REQUESTS</p>
-				
+
 			</div>
 		</div>
 		<br />
 		<div class="friend_requests_header open">
 			<a class="close">
-				<img src="../../images/icon__(x)_white.svg" />
+				<img src="/images/icon__(x)_white.svg" />
 			</a>
 			<div class="badge">
 				<div class="number">
 					4
 				</div>
 				<p>YOU HAVE FRIEND REQUESTS</p>
-				
+
 			</div>
 		</div>
 
@@ -46,8 +46,8 @@
 					<div class="name">
 						<span class="name_first">First</span> <br /><span class="name_last">L.</span>
 					</div>
-					<a class="accept"><img src="../../images/icon__(y)_white.svg" /></a>
-					<a class="deny"><img src="../../images/icon__(x)_white.svg" /></a>
+					<a class="accept"><img src="/images/icon__(y)_white.svg" /></a>
+					<a class="deny"><img src="/images/icon__(x)_white.svg" /></a>
 				</div>
 				<div class="bottom">
 
@@ -74,8 +74,8 @@
 					<div class="name">
 						<span class="name_first">First</span> <br /><span class="name_last">L.</span>
 					</div>
-					<a class="accept"><img src="../../images/icon__(y)_white.svg" /></a>
-					<a class="deny"><img src="../../images/icon__(x)_white.svg" /></a>
+					<a class="accept"><img src="/images/icon__(y)_white.svg" /></a>
+					<a class="deny"><img src="/images/icon__(x)_white.svg" /></a>
 				</div>
 				<div class="bottom">
 
@@ -103,8 +103,8 @@
 					<div class="name">
 						<span class="name_first">First</span> <br /><span class="name_last">L.</span>
 					</div>
-					<a class="accept"><img src="../../images/icon__(y)_white.svg" /></a>
-					<a class="deny"><img src="../../images/icon__(x)_white.svg" /></a>
+					<a class="accept"><img src="/images/icon__(y)_white.svg" /></a>
+					<a class="deny"><img src="/images/icon__(x)_white.svg" /></a>
 				</div>
 				<div class="bottom">
 
@@ -124,7 +124,7 @@
 					<a class="instruction">SEND INVITE TO <span>First</span>.</a>
 				</div>
 			</div>
-			
+
 			<!--default-->
 			<div class="request blue"><!--[red/orange/yellow/green/teal/blue/purple/pink // request_different_color // different_color_requested ]-->
 				<div class="top">
@@ -132,8 +132,8 @@
 					<div class="name">
 						<span class="name_first">First</span> <br /><span class="name_last">L.</span>
 					</div>
-					<a class="accept"><img src="../../images/icon__(y)_white.svg" /></a>
-					<a class="deny"><img src="../../images/icon__(x)_white.svg" /></a>
+					<a class="accept"><img src="/images/icon__(y)_white.svg" /></a>
+					<a class="deny"><img src="/images/icon__(x)_white.svg" /></a>
 				</div>
 				<div class="bottom">
 
@@ -157,586 +157,6 @@
 		</div>
 
 	</div>
-	<style>
-		/* requests header */
-		.friend_requests_header {
-			display:    block;
-			position:   relative;
-			width:      100%;
-			height:     auto;
-			min-height: 50px;
-			margin:     0 0 0 0;
-			padding:    0 0 0 0;
-
-			border-top:       solid 2px rgba(205,110,000,1.0);
-			border-left:      solid 2px rgba(205,110,000,1.0);
-			border-right:     solid 2px rgba(205,110,000,1.0);
-			background-color:           rgba(255,140,000,1.0);
-
-			            border-top-left-radius: 15px;
-			        -moz-border-radius-topleft: 15px;
-			    -webkit-border-top-left-radius: 15px;
-
-			           border-top-right-radius: 15px;
-			       -moz-border-radius-topright: 15px;
-			   -webkit-border-top-right-radius: 15px;
-
-			        border-bottom-right-radius: 0px;
-			    -moz-border-radius-bottomright: 0px;
-			-webkit-border-bottom-right-radius: 0px;
-
-			         border-bottom-left-radius: 0px;
-			     -moz-border-radius-bottomleft: 0px;
-			 -webkit-border-bottom-left-radius: 0px;
-		}
-		.friend_requests_header .badge {
-			display:  block;
-			position: relative;
-			width:    260px;
-			height:   auto;
-			margin:   0 auto 0 auto;
-			padding:  10px 0 0 0;
-		}
-		.friend_requests_header .badge .number {
-			display:   inline-block;
-			position:  relative;
-			width:     auto;
-			min-width: 24px;
-			height:    24px;
-			margin:    0 0 0 0;
-			padding:   0 5px 0 5px;
-
-			background: rgba(255,255,255,1.0);
-
-			font-family:    "open_sanssemibold",sans-serif;
-			font-style:     normal;
-			font-weight:    700;
-			font-size:      12px;
-			letter-spacing: 0.75px;
-			line-height:    24px;
-			text-indent:    0px;
-			text-align:     center;
-			color:          rgba(50,80,115,1.0);
-			text-transform: uppercase;
-
-			            border-top-left-radius: 24px;
-			        -moz-border-radius-topleft: 24px;
-			    -webkit-border-top-left-radius: 24px;
-
-			           border-top-right-radius: 24px;
-			       -moz-border-radius-topright: 24px;
-			   -webkit-border-top-right-radius: 24px;
-
-			        border-bottom-right-radius: 24px;
-			    -moz-border-radius-bottomright: 24px;
-			-webkit-border-bottom-right-radius: 24px;
-
-			         border-bottom-left-radius: 24px;
-			     -moz-border-radius-bottomleft: 24px;
-			 -webkit-border-bottom-left-radius: 24px;
-		}
-		.friend_requests_header .badge p {
-			display:  inline-block;
-			position: relative;
-			width:    auto;
-			height:   auto;
-			margin:   0 0 0 5px;
-			padding:  0 0 0 0;
-
-			font-family:    "open_sansbold",sans-serif;
-			font-style:     normal;
-			font-weight:    700;
-			font-size:      12px;
-			letter-spacing: 0.75px;
-			line-height:    24px;
-			text-indent:    0px;
-			text-align:     left;
-			color:          rgba(255,255,255,1.0);
-			text-transform: uppercase;
-		}
-		.friend_requests_header a.close {
-			display: none;
-		}
-		/* when user clicks to see requests add a close to header */
-		.friend_requests_header.open {
-			border: solid 2px rgba(205,110,000,1.0);
-			background-color: rgba(255,140,000,1.0);
-		}
-		.friend_requests_header.open a.close {
-			display:    block;
-			position:   absolute;
-			width:      48px;
-			height:     auto;
-			min-height: 48px;
-			top:        0px;
-			right:      0px;
-			margin:     0 0 0 0;
-			padding:    0 0 0 0;
-
-			background-color: rgba(205,110,000,1.0);
-
-			           border-top-right-radius: 13px;
-			       -moz-border-radius-topright: 13px;
-			   -webkit-border-top-right-radius: 13px;
-		}
-		.friend_requests_header.open a.close:hover {
-			opacity: 0.6;
-		}
-		.friend_requests_header.open a.close img {
-			display:    block;
-			position:   relative;
-			width:      30px;
-			min-height: 30px;
-			top:        8px;
-			left:       9px;
-			margin:     0 0 0 0;
-			padding:    0 0 0 0;
-		}
-
-		/* indivudual requests and states*/
-		.friend_requests_list {
-			display:    block;
-			position:   relative;
-			width:      100%;
-			height:     auto;
-			min-height: 500px;
-			margin:     0 0 0 0;
-			padding:    15px 15px 30px 15px;
-
-			border-left:      solid 2px rgba(205,110,000,1.0);
-			border-right:     solid 2px rgba(205,110,000,1.0);
-			background-color:           rgba(255,140,000,1.0);
-		}
-		.friend_requests_list .request {
-			display:    block;
-			position:   relative;
-			width:      100%;
-			height:     auto;
-			min-height: 110px;
-			margin:     0 auto 10px auto;
-			padding:    0 0 0 0;
-		}
-		.friend_requests_list .request .top {
-			display:    block;
-			position:   relative;
-			width:      100%;
-			height:     auto;
-			min-height: 70px;
-			margin:     0 0 0 0;
-			padding:    0 0 0 0;
-
-			background-color: rgba(255,255,255,1.0);
-
-			            border-top-left-radius: 10px;
-			           border-top-right-radius: 10px;
-			        border-bottom-right-radius: 10px;
-			         border-bottom-left-radius: 0px;
-
-			        -moz-border-radius-topleft: 10px;
-			       -moz-border-radius-topright: 10px;
-			    -moz-border-radius-bottomright: 10px;
-			     -moz-border-radius-bottomleft: 0px;
-
-			    -webkit-border-top-left-radius: 10px;
-			   -webkit-border-top-right-radius: 10px;
-			-webkit-border-bottom-right-radius: 10px;
-			 -webkit-border-bottom-left-radius: 0px;
-
-			-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.25);
-			   -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.25);
-			        box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.25);
-
-			z-index: 2;
-		}
-		.friend_requests_list .request .top .color {
-			display:    block;
-			position:   absolute;
-			width:      50px;
-			height:     50px;
-			top:        10px;
-			left:       10px;
-			margin:     0 0 0 0;
-			padding:    0 0 0 0;
-
-			            border-top-left-radius: 25px;
-			           border-top-right-radius: 25px;
-			        border-bottom-right-radius: 25px;
-			         border-bottom-left-radius: 25px;
-
-			        -moz-border-radius-topleft: 25px;
-			       -moz-border-radius-topright: 25px;
-			    -moz-border-radius-bottomright: 25px;
-			     -moz-border-radius-bottomleft: 25px;
-
-			    -webkit-border-top-left-radius: 25px;
-			   -webkit-border-top-right-radius: 25px;
-			-webkit-border-bottom-right-radius: 25px;
-			 -webkit-border-bottom-left-radius: 25px;
-		}
-
-		.friend_requests_list .request.red .top .color {
-			border: solid 3px rgba(255,045,045,1.0);
-			background-color: rgba(255,175,190,1.0);
-		}
-		.friend_requests_list .request.orange .top .color {
-			border: solid 3px rgba(255,160,050,1.0);
-			background-color: rgba(255,215,170,1.0);
-		}
-		.friend_requests_list .request.yellow .top .color {
-			border: solid 3px rgba(250,225,040,1.0);
-			background-color: rgba(255,250,210,1.0);
-		}
-		.friend_requests_list .request.green .top .color {
-			border: solid 3px rgba(140,230,110,1.0);
-			background-color: rgba(190,255,170,1.0);
-		}
-		.friend_requests_list .request.teal .top .color {
-			border: solid 3px rgba(090,230,225,1.0);
-			background-color: rgba(165,255,250,1.0);
-		}
-		.friend_requests_list .request.blue .top .color {
-			border: solid 3px rgba(035,195,245,1.0);
-			background-color: rgba(160,235,255,1.0);
-		}
-		.friend_requests_list .request.purple .top .color {
-			border: solid 3px rgba(190,100,255,1.0);
-			background-color: rgba(220,175,255,1.0);
-		}
-		.friend_requests_list .request.pink .top .color {
-			border: solid 3px rgba(255,000,255,1.0);
-			background-color: rgba(255,150,255,1.0);
-		}
-
-		.friend_requests_list .request .top .name {
-			display:  block;
-			position: absolute;
-			width:    auto;
-			height:   auto;
-			left: 75px;
-			top: 15px;
-			margin:   0 0 0 0;
-			padding:  0 0 0 0;
-
-			font-family:   "open_sanssemibold",sans-serif;
-			font-style:     normal;
-			font-weight:    600;
-			font-size:      17px;
-			line-height:    20px;
-			text-indent:    0px;
-			text-align:     left;
-			color:          rgba(050,080,115,1.0);
-			text-transform: uppercase;
-		}
-
-		.friend_requests_list .request .top a.accept {
-			display:    block;
-			position:   absolute;
-			width:      50px;
-			height:     auto;
-			min-height: 70px;
-			top:        0px;
-			right:      48px;
-			margin:     0 0 0 0;
-			padding:    0 0 0 0;
-
-			border: solid 2px rgba(255,255,255,1.0);
-			background-color: rgba(120,195,055,1.0);
-
-			            border-top-left-radius: 10px;
-			           border-top-right-radius: 0px;
-			        border-bottom-right-radius: 0px;
-			         border-bottom-left-radius: 10px;
-
-			        -moz-border-radius-topleft: 10px;
-			       -moz-border-radius-topright: 0px;
-			    -moz-border-radius-bottomright: 0px;
-			     -moz-border-radius-bottomleft: 10px;
-
-			    -webkit-border-top-left-radius: 10px;
-			   -webkit-border-top-right-radius: 0px;
-			-webkit-border-bottom-right-radius: 0px;
-			 -webkit-border-bottom-left-radius: 10px;
-		}
-		.friend_requests_list .request .top a.accept:hover {
-			opacity: 0.6;
-		}
-		.friend_requests_list .request .top a.accept img {
-			display:    block;
-			position:   relative;
-			width:      30px;
-			min-height: 30px;
-			top:        16px;
-			left:       8px;
-			margin:     0 0 0 0;
-			padding:    0 0 0 0;
-		}
-		.friend_requests_list .request .top a.deny {
-			display:    block;
-			position:   absolute;
-			width:      50px;
-			height:     auto;
-			min-height: 70px;
-			top:        0px;
-			right:      0px;
-			margin:     0 0 0 0;
-			padding:    0 0 0 0;
-
-			border: solid 2px rgba(255,255,255,1.0);
-			background-color: rgba(255,0,070,1.0);
-
-			            border-top-left-radius: 0px;
-			           border-top-right-radius: 10px;
-			        border-bottom-right-radius: 10px;
-			         border-bottom-left-radius: 0px;
-
-			        -moz-border-radius-topleft: 0px;
-			       -moz-border-radius-topright: 10px;
-			    -moz-border-radius-bottomright: 10px;
-			     -moz-border-radius-bottomleft: 0px;
-
-			    -webkit-border-top-left-radius: 0px;
-			   -webkit-border-top-right-radius: 10px;
-			-webkit-border-bottom-right-radius: 10px;
-			 -webkit-border-bottom-left-radius: 0px;
-		}
-		.friend_requests_list .request .top a.deny:hover {
-			opacity: 0.6;
-		}
-		.friend_requests_list .request .top a.deny img {
-			display:    block;
-			position:   relative;
-			width:      30px;
-			min-height: 30px;
-			top:        16px;
-			left:       8px;
-			margin:     0 0 0 0;
-			padding:    0 0 0 0;
-		}
-
-		.friend_requests_list .request .bottom {
-			display:    block;
-			position:   relative;
-			width:      100%;
-			height:     auto;
-			min-height: 110px;
-			top:        0px;
-			left:       0px;
-			margin:     -70px 0 0 0;
-			padding:    0 0 0 0;
-
-			background-color: rgba(255,255,255,1.0);
-
-			            border-top-left-radius: 10px;
-			           border-top-right-radius: 10px;
-			        border-bottom-right-radius: 10px;
-			         border-bottom-left-radius: 10px;
-
-			        -moz-border-radius-topleft: 10px;
-			       -moz-border-radius-topright: 10px;
-			    -moz-border-radius-bottomright: 10px;
-			     -moz-border-radius-bottomleft: 10px;
-
-			    -webkit-border-top-left-radius: 10px;
-			   -webkit-border-top-right-radius: 10px;
-			-webkit-border-bottom-right-radius: 10px;
-			 -webkit-border-bottom-left-radius: 10px;
-
-			-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.25);
-			   -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.25);
-			        box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.25);
-
-					-webkit-transition: .6s ease-in-out;
-					   -moz-transition: .6s ease-in-out;
-					     -o-transition: .6s ease-in-out;
-					    -ms-transition: .6s ease-in-out;
-					        transition: .6s ease-in-out;
-
-			z-index: 1;
-		}
-		.friend_requests_list .request .bottom ul.color_list {
-			display:  none;
-			position: relative;
-			width:    336px;
-			height:   30px;
-			top:      90px;
-			margin:   0 auto 0 auto;
-			padding:  0 15px 0 15px;
-		}
-		.friend_requests_list .request .bottom ul.color_list li {
-			display:  inline-block;
-			position: relative;
-			float:    left;
-			width:    30px;
-			height:   30px;
-			margin:   0 4px 0 4px;
-			padding:  0 0 0 0;
-		}
-		.friend_requests_list .request .bottom ul.color_list li a {
-			display:  block;
-			position: relative;
-			width:    30px;
-			height:   30px;
-			margin:   0 0 0 0;
-			padding:  0 0 0 0;
-		}
-		.friend_requests_list .request .bottom ul.color_list li a img {
-			display:  block;
-			position: relative;
-			width:    30px;
-			height:   30px;
-			margin:   0 0 0 0;
-			padding:  0 0 0 0;
-		}
-		.friend_requests_list .request .bottom ul.color_list li a.red img {
-			content:  url("../../images/icon__color_small_red_off.svg");
-		}
-		.friend_requests_list .request .bottom ul.color_list li a.orange img {
-			content:  url("../../images/icon__color_small_orange_off.svg");
-		}
-		.friend_requests_list .request .bottom ul.color_list li a.yellow img {
-			content:  url("../../images/icon__color_small_yellow_off.svg");
-		}
-		.friend_requests_list .request .bottom ul.color_list li a.green img {
-			content:  url("../../images/icon__color_small_green_off.svg");
-		}
-		.friend_requests_list .request .bottom ul.color_list li a.teal img {
-			content:  url("../../images/icon__color_small_teal_off.svg");
-		}
-		.friend_requests_list .request .bottom ul.color_list li a.blue img {
-			content:  url("../../images/icon__color_small_blue_off.svg");
-		}
-		.friend_requests_list .request .bottom ul.color_list li a.purple img {
-			content:  url("../../images/icon__color_small_purple_off.svg");
-		}
-		.friend_requests_list .request .bottom ul.color_list li a.pink img {
-			content:  url("../../images/icon__color_small_pink_off.svg");
-		}
-		.friend_requests_list .request .bottom ul.color_list li a.red.active img {
-			content:  url("../../images/icon__color_small_red_on.svg");
-		}
-		.friend_requests_list .request .bottom ul.color_list li a.orange.active img {
-			content:  url("../../images/icon__color_small_orange_on.svg");
-		}
-		.friend_requests_list .request .bottom ul.color_list li a.yellow.active img {
-			content:  url("../../images/icon__color_small_yellow_on.svg");
-		}
-		.friend_requests_list .request .bottom ul.color_list li a.green.active img {
-			content:  url("../../images/icon__color_small_green_on.svg");
-		}
-		.friend_requests_list .request .bottom ul.color_list li a.teal.active img {
-			content:  url("../../images/icon__color_small_teal_on.svg");
-		}
-		.friend_requests_list .request .bottom ul.color_list li a.blue.active img {
-			content:  url("../../images/icon__color_small_blue_on.svg");
-		}
-		.friend_requests_list .request .bottom ul.color_list li a.purple.active img {
-			content:  url("../../images/icon__color_small_purple_on.svg");
-		}
-		.friend_requests_list .request .bottom ul.color_list li a.pink.active img {
-			content:  url("../../images/icon__color_small_pink_on.svg");
-		}
-
-		.friend_requests_list .request .bottom a.suggest {
-			display:    block;
-			position:   absolute;
-			width:      100%;
-			height:     auto;
-			bottom: 	10px;
-			margin:     0 auto 0 auto;
-			padding:    0 0 0 0;
-
-			font-family:    "open_sanssemibold",sans-serif;
-			font-style:      normal;
-			font-weight:     600;
-			font-size:       12px;
-			line-height:     20px;
-			text-indent:     1px;
-			text-align:      center;
-			color:           rgba(050,080,115,0.6);
-			text-transform:  uppercase;
-			text-decoration: underline;
-		}
-		.friend_requests_list .request .bottom a.suggest:hover {
-			opacity: 0.6;
-		}
-		.friend_requests_list .request .bottom a.instruction {
-			display:    none;
-			position:   absolute;
-			width:      100%;
-			height:     auto;
-			bottom: 	10px;
-			margin:     0 auto 0 auto;
-			padding:    0 0 0 0;
-
-			font-family:    "open_sanssemibold",sans-serif;
-			font-style:      normal;
-			font-weight:     600;
-			font-size:       12px;
-			line-height:     20px;
-			text-indent:     1px;
-			text-align:      center;
-			color:           rgba(050,080,115,0.6);
-			text-transform:  uppercase;
-			text-decoration: underline;
-		}
-		.friend_requests_list .request .bottom a.instruction:hover {
-			opacity: 0.6;
-		}
-		.friend_requests_list .request .bottom p.confirmation {
-			display:    none;
-			position:   absolute;
-			width:      100%;
-			height:     auto;
-			bottom: 	10px;
-			margin:     0 auto 0 auto;
-			padding:    0 0 0 0;
-
-			font-family:    "open_sanssemibold",sans-serif;
-			font-style:      normal;
-			font-weight:     600;
-			font-size:       12px;
-			line-height:     20px;
-			text-indent:     1px;
-			text-align:      center;
-			color:           rgba(050,080,115,0.6);
-			text-transform:  uppercase;
-			text-decoration: none;
-		}
-
-		/* bottom request_different_color */
-		.friend_requests_list .request.request_different_color .bottom {
-			min-height: 170px;
-		}
-		.friend_requests_list .request.request_different_color .bottom a.suggest {
-			display: none;
-		}
-		.friend_requests_list .request.open .bottom p.confirmation {
-			display: none;
-		}
-		.friend_requests_list .request.request_different_color .bottom a.instruction {
-			display: block;
-		}
-		.friend_requests_list .request.request_different_color .bottom ul.color_list {
-			display:  block;
-		}
-
-		/* bottom different_color_requested */
-		.friend_requests_list .request.different_color_requested .bottom {
-			height: 110px;
-		}
-		.friend_requests_list .request.different_color_requested .bottom a.suggest {
-			display: none;
-		}
-		.friend_requests_list .request.different_color_requested .bottom p.confirmation {
-			display: block;
-		}
-		.friend_requests_list .request.different_color_requested .bottom a.instruction {
-			display: none;
-		}
-		.friend_requests_list .request.different_color_requested .bottom ul.color_list {
-			display:  none;
-		}
-	</style>
 </ion-view>
 
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
