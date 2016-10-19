@@ -19,5 +19,5 @@ angular.module('jewelApp.controllers')
           $state.go('dashboard');
         }
       };
-
+      $scope.isPaired();
 }]);

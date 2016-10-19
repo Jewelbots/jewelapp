@@ -164,7 +164,10 @@ angular.module('jewelApp',
 			templateUrl: 'templates/error_messages/error_nocolorselected.html'
 		})
 
-
+    .state('debug-start', {
+      url: '/debug-start',
+      templateUrl: 'templates/debug-start.html'
+    })
     .state('home', {
       url: '/home',
       controller: 'HomeCtrl',
@@ -248,5 +251,5 @@ angular.module('jewelApp',
         }
       })
       ;
-      $urlRouterProvider.otherwise('/home');
+      $urlRouterProvider.otherwise('/debug-start');
 }]);
