@@ -103,4 +103,3 @@ angular.module('jewelApp.controllers')
       $logService.Log('error', 'error trying to getAvailableDevices: ' + JSON.stringify(err));
     }
 }]);
-
