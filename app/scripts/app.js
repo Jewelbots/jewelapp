@@ -131,7 +131,7 @@ angular.module('jewelApp',
 		})
 		.state('dashboard', {
 			url: '/dashboard/:src',
-			//controller: 'DashboardCtrl',
+			controller: 'DashboardCtrl',
 			templateUrl: 'templates/dashboard/index.html'
 		})
 		//-- 5__templates/friends/friend_editmodal.html --> clicked on friend on dashboard, opens this modal to 1) change color, delete as friend

@@ -22,7 +22,7 @@
 		</label>
 	</div>
 	<div class="buttons">
-		<button ng-disabled="!model.telephone.length > 0" class="button button-positive" ng-click="sendSMS(model.telephone)">Add phone</button>
+		<button class="button" ng-class="model.telephone.length > 0 ? 'button-positive' : 'button-stable'" ng-click="sendSMS(model.telephone);">Add phone</button>
 	</div>
 </div>
 <p class="note">
