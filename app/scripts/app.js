@@ -106,11 +106,75 @@ angular.module('jewelApp',
    $stateProvider,
    $urlRouterProvider) {
      $stateProvider
-     .state('dashboard', {
-          url: '/dashboard/:src',
-          controller: 'DashboardCtrl',
-          templateUrl: 'templates/dashboard/index.html'
-     })
+
+		//-- 1__templates/start/load.html --> App Slpash Screen
+		.state('load', {
+			url: '/load',
+			//controller: 'LoadCtrl',
+			templateUrl: 'templates/start/load.html'
+		})
+		.state('privacy', {
+			url: '/privacy',
+			//controller: 'LoadCtrl',
+			templateUrl: 'templates/start/privacy.html'
+		})
+		.state('birthday', {
+			url: '/birthday',
+			//controller: 'LoadCtrl',
+			templateUrl: 'templates/start/birthday.html'
+		})
+		//-- 2__templates/quickstart/news_1.html /news_2.html /news_3.html --> Showed on first load / ...after App update
+		.state('quickstart_news_1', {
+			url: '/quickstart/news_1',
+			//controller: 'NewsCtrl',
+			templateUrl: 'templates/quickstart/news_1.html'
+		})
+		.state('quickstart_news_2', {
+			url: '/quickstart/news_2',
+			//controller: 'NewsCtrl',
+			templateUrl: 'templates/quickstart/news_2.html'
+		})
+		.state('quickstart_news_3', {
+			url: '/quickstart/news_3',
+			//controller: 'NewsCtrl',
+			templateUrl: 'templates/quickstart/news_3.html'
+		})
+		.state('dashboard', {
+			url: '/dashboard/:src',
+			//controller: 'DashboardCtrl',
+			templateUrl: 'templates/dashboard/index.html'
+		})
+		//-- 5__templates/friends/friend_editmodal.html --> clicked on friend on dashboard, opens this modal to 1) change color, delete as friend
+		.state('friend_editmodal', {
+			url: '/friend_editmodal',
+			//controller: 'friend_editmodalCtrl',
+			templateUrl: 'templates/friends/friend_editmodal.html'
+		})
+		//-- 6__templates/friend_requests/friend_requests.html --> preferred
+		.state('friend_requests', {
+			url: '/friend_requests',
+			//controller: 'friend_editmodalCtrl',
+			templateUrl: 'templates/friend_requests/friend_requests.html'
+		})
+		.state('friend_requests_alt', {
+			url: '/friend_requests_alt',
+			//controller: 'friend_editmodalCtrl',
+			templateUrl: 'templates/friend_requests/friend_requests_alt.html'
+		})
+		//-- 7__templates/contact_list/contact_list.html --> add states to listed friends to activate etc.. need sleep
+		.state('contact_list', {
+			url: '/contact_list',
+			//controller: 'friend_editmodalCtrl',
+			templateUrl: 'templates/contact_list/contact_list.html'
+		})
+		//-- 9__templates/error_messages/error_nocolorselected.html --> 
+		.state('error_nocolorselected', {
+			url: '/error_nocolorselected',
+			//controller: 'friend_editmodalCtrl',
+			templateUrl: 'templates/error_messages/error_nocolorselected.html'
+		})
+
+
     .state('home', {
       url: '/home',
       controller: 'HomeCtrl',
@@ -151,25 +215,14 @@ angular.module('jewelApp',
         controller: 'DiagnosticCtrl',
         templateUrl: 'templates/diagnostics/index.html'
       })
-      .state('load', {
-        url: '/load',
-        controller: 'LoadCtrl',
-        templateUrl: 'templates/start/load.html'
-      })
+      
       .state('start', {
         url: '/start',
         controller: 'StartCtrl'
       })
-      .state('birthday', {
-        url: '/start/birthday',
-        controller: 'BirthdayCtrl',
-        templateUrl: 'templates/start/birthday.html'
-      })
-      .state('privacy',{
-        url: '/start/privacy',
-        controller: 'PrivacyCtrl',
-        templateUrl: 'templates/start/privacy.html'
-      })
+
+
+
       .state('sms-verification-screen', {
         url: '/sms/verify/:telephone',
         controller : 'SMSCtrl',
@@ -208,5 +261,5 @@ angular.module('jewelApp',
         }
       })
       ;
-      $urlRouterProvider.otherwise('/start');
+      $urlRouterProvider.otherwise('/home');
 }]);
