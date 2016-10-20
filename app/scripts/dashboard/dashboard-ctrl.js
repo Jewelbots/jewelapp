@@ -72,19 +72,6 @@ angular.module('jewelApp.controllers')
         telephone: ''
       };
 
-
-//      <div class="card" ng-repeat="friendRequest in model.outstandingFriendRequests">
-//        <div class="item">
-//        <div class="request-{{friendRequest.color}}">
-//        <span class="requestor-name">{{friendRequest.name}}</span>
-//    <span class="friend-request-button">Accept</span>
-//  <span ng-click="dismissRequest(friendRequest.id)">X</span>
-//</div>
-//</div>
-//</div>
-
-
-
       $scope.openModal = function (index) {
         if(+index === 1) {
           $scope.modal1.show();
@@ -94,6 +81,7 @@ angular.module('jewelApp.controllers')
           $scope.modal2.show();
         }
       };
+
       $scope.closeModal = function (index) {
         if (+index === 1) {
           $scope.modal1.hide();
@@ -102,6 +90,7 @@ angular.module('jewelApp.controllers')
           $scope.modal2.hide();
         }
       };
+
       $scope.$on('$destroy', function () {
         $scope.modal1.remove();
         $scope.modal2.remove();
@@ -111,7 +100,6 @@ angular.module('jewelApp.controllers')
         UserService.CheckFriendRequests().then(function (results){
           $scope.model.outstandingFriendRequests = results;
         });
-
       };
 
       $scope.acceptFriendRequest = function (friendRequest) {
@@ -126,6 +114,7 @@ angular.module('jewelApp.controllers')
           $logService.Log('error', 'unable to accept friend request: ' + JSON.stringify(error));
         });
       };
+
       $scope.dismissRequest = function (friendRequest) {
         UserService.RejectFriendRequest(friendRequest).then (function (result) {
           console.log(result);
@@ -144,6 +133,7 @@ angular.module('jewelApp.controllers')
           $scope.model.contacts = contacts;
         });
       };
+
       $scope.addFriends = function() {
         $scope.model.selectedContacts = _.where($scope.model.contacts,{ checked : true });
         $logService.Log('message', 'selected Contacts are: ' + JSON.stringify($scope.model.selectedContacts));
@@ -161,8 +151,12 @@ angular.module('jewelApp.controllers')
         });
 
       };
+
       $scope.sendSMS = function (telephone) {
+        console.log('We got to sendSMS()');
+        $logService.Log('sending SMS to number: ' + JSON.stringify(telephone));
         $state.go('sms-verification-screen', { telephone: telephone});
       };
+
       $scope.startUp();
     }]);

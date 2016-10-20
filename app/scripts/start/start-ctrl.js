@@ -10,11 +10,11 @@ angular.module('jewelApp.controllers')
    JewelbotService) {
 
     if (!JewelbotService.IsPaired()) {
-      console.log('user has not paired device');
+      $logService.Log('message', 'User has Not Paired Device');
       $state.transitionTo('home');
     }
     else {
-      console.log('paired-> to dashboard!');
+      $logService.Log('message', 'paired-> to dashboard!');
       $state.transitionTo('dashboard');
     }
 

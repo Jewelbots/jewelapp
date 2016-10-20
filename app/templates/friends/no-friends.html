@@ -16,13 +16,13 @@
 	<div class="list card">
 		Text message rates may apply.
 		<label class="item item-input">
-			<a href="#" class="item item-icon-left"><i class="icon ion-ios-telephone"></i>Enter phone number</a>
-			<span class="input-label">Telephone</span>
+		<i class="icon ion-ios-telephone"></i>
+			<span class="input-label">Enter phone number</span>
 			<input type="tel" ng-model="model.telephone">
 		</label>
 	</div>
 	<div class="buttons">
-		<button ng-disabled="!model.telephone.length > 0" class="button button-positive" ng-click="sendSMS(model.telephone)">Add phone</button>
+		<button class="button" ng-class="model.telephone.length > 0 ? 'button-positive' : 'button-stable'" ng-click="sendSMS(model.telephone);">Add phone</button>
 	</div>
 </div>
 <p class="note">

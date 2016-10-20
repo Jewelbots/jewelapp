@@ -109,15 +109,31 @@ angular.module('jewelApp',
 
 		//-- SECTION 1
 		//-- 1__templates/start/load.html --> App Slpash Screen
+<<<<<<< HEAD
+		.state('load', {
+			url: '/load',
+			//controller: 'LoadCtrl',
+			templateUrl: 'templates/start/load.html'
+		})
 		//-- 1__templates/start/load.html --> App Slpash Screen
+=======
+>>>>>>> wed-work-bluetooth
 		.state('privacy', {
 			url: '/privacy',
 			controller: 'PrivacyCtrl',
 			templateUrl: 'templates/start/privacy.html'
 		})
+<<<<<<< HEAD
 		//-- 1__templates/start/load.html --> App Slpash Screen
+		.state('birthday', {
+			url: '/birthday',
+			//controller: 'LoadCtrl',
+			templateUrl: 'templates/start/birthday.html'
+		})
 
 		//-- SECTION 2
+=======
+>>>>>>> wed-work-bluetooth
 		//-- 2__templates/quickstart/news_1.html /news_2.html /news_3.html --> Showed on first load / ...after App update
 		.state('quickstart_news_1', {
 			url: '/quickstart/news_1',

@@ -1,11 +1,19 @@
 <ion-content class="center has-header">
-  <div class="row">
-    <div class="col">
-      Pair
+<<<<<<< HEAD
+
+	<h1>APP</h1>
+
 	<a class="home" ui-sref="load">Start App</a>
 	<a class="home" ui-sref="dashboard">Dashboard</a>
 	<a class="home" ui-sref="diagnostics">Diagnostics</a>
 	<a class="home" ui-sref="settings">Settings</a>
+
+	<br />
+	<hr />
+	<br />
+
+	<h1>STATES</h1>
+
 	<a class="home" ui-sref="load">1 - /templates/start/load.html</a>
 	<a class="home" ui-sref="privacy">1 - /templates/start/privacy.html</a>
 	<a class="home" ui-sref="birthday">1 - /templates/start/birthday.html</a>
@@ -23,6 +31,8 @@
 	<a class="home" ui-sref="friend_requests_alt">6 - /templates/friend_requests/friend_requests_alt.html</a>
 	<a class="home" ui-sref="contact_list">7 - /templates/contact_list/contact_list.html</a>
 	<a class="home" ui-sref="error_nocolorselected">9 - /templates/error_messages/error_nocolorselected.html</a>
+	
+
 	<style>
 		h1 {
 			display:  block;
@@ -64,4 +74,11 @@
 			color: rgba(80,100,120,1.0);
 		}
 	</style>
+=======
+  <div class="row">
+    <div class="col">
+      Pair
+    </div>
+  </div>
+>>>>>>> wed-work-bluetooth
 </ion-content>
