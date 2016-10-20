@@ -9,6 +9,9 @@ html, body {
 	overflow: visible;
 }
 
+a {
+	text-decoration: none;
+}
 .clear { /* makes sure to canceal out floated lists */
 	clear: both;
 	line-height: 0px;
@@ -167,7 +170,7 @@ html, body {
 
 	background-image:  url(../images/background__app_icons.jpg);
 	background-size:   645px 675px;
-	background-repeat: repeat-y;
+	background-repeat: repeat-y repeat-x;
 	overflow: visible;
 }
 .privacy .content {
@@ -287,7 +290,7 @@ html, body {
 
 	background-image:  url(../images/background__app_icons.jpg);
 	background-size:   645px 675px;
-	background-repeat: repeat-y;
+	background-repeat: repeat-y repeat-x;
 	overflow: visible;
 }
 .birthday .content {
@@ -406,6 +409,7 @@ html, body {
 
 
 /* @end */
+
 /* @group ----- 2__templates/quickstart/news_1..2..3.html ----------------- */
 .quickstart {
 	display:  block;
@@ -578,6 +582,1227 @@ html, body {
 
 
 /* @end */
+
+/* @group ----- 4__tempaltes/dashboard/dashboard_nofriends.html ----------- */
+.dashboard.nofriends {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   100%;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	background-image: url(../images/background__app_icons.jpg);
+	background-size:  645px 675px;
+}
+.dashboard.nofriends .content {}
+
+.dashboard.nofriends .content .friendlist {
+	display:   block;
+	position:  relative;
+	width:     100%;
+	max-width: 320px;
+	height:    auto;
+	margin:    0 auto 0 auto;
+	padding:   60px 15px 120px 15px;
+}
+
+.dashboard.nofriends .content .friendlist h2 {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  20px 0 10px 0;
+
+	font-family: 'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 24px;
+	line-height: 30px;
+	letter-spacing: 0px;
+	text-align: center;
+	text-indent: 0;
+	text-transform: none;
+	color: rgba(80,100,120,1.0);
+}
+.dashboard.nofriends .content .friendlist p {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	font-family: 'open_sanssemibold', Arial, "MS Trebuchet", sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 0px;
+	text-align: center;
+	text-indent: 0;
+	text-transform: none;
+	color: rgba(80,100,120,1.0);
+}
+.dashboard.nofriends .content .friendlist p a {
+	font-family:    'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	text-transform: underline;
+	color:          rgba(80,100,120,1.0);
+}
+
+.dashboard.nofriends .content .friendlist .circle.add.centered {
+	float:  none;
+	margin: 0 auto 0 auto;
+}
+.dashboard.nofriends .content .friendlist h3 {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  20px 0 10px 0;
+
+	font-family: 'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height:    30px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+.dashboard.nofriends .content .friendlist h3 img {
+	display:  block;
+	position: relative;
+	width:    19px;
+	height:   21px;
+	margin:   0 auto 0 auto;
+	padding:  0 0 0 0;
+}
+.dashboard.nofriends .content .friendlist p.note {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	font-family:    'open_sanssemibold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      11px;
+	line-height:    14px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+
+.dashboard.nofriends .content .friendlist .circle {
+	display:  block;
+	position: relative;
+	float:    left;
+	width:    130px;
+	height:   130px;
+	margin:   7px 7px 7px 7px;
+	padding:  0 0 0 0;
+
+	border:           solid 5px rgba(245,245,245,1.0);
+	background-color: rgba(255,255,255,1.0);
+
+	-webkit-border-radius: 100%;
+	   -moz-border-radius: 100%;
+	        border-radius: 100%;
+}
+.dashboard.nofriends .content .friendlist .circle .name {
+	display:  block;
+	position: absolute;
+	width:    98px;
+	height:   98px;
+	left:     11px;
+	top:      50%;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	border:           solid 1px rgba(215,220,225,1.0);
+	background-color: rgba(255,255,255,1.0);
+
+	            border-top-left-radius: 100%;
+	           border-top-right-radius: 100%;
+	        border-bottom-right-radius: 100%;
+	         border-bottom-left-radius: 100%;
+
+	        -moz-border-radius-topleft: 100%;
+	       -moz-border-radius-topright: 100%;
+	    -moz-border-radius-bottomright: 100%;
+	     -moz-border-radius-bottomleft: 100%;
+
+	    -webkit-border-top-left-radius: 100%;
+	   -webkit-border-top-right-radius: 100%;
+	-webkit-border-bottom-right-radius: 100%;
+	 -webkit-border-bottom-left-radius: 100%;
+
+	-webkit-box-shadow: 0px 0px 14px 0px rgba(0,000,000,000.15);
+	   -moz-box-shadow: 0px 0px 14px 0px rgba(0,000,000,000.15);
+	        box-shadow: 0px 0px 14px 0px rgba(0,000,000,000.15);
+
+	font-family:    "open-sans",sans-serif;
+	font-style:     normal;
+	font-weight:    600;
+	font-size:      15px;
+	line-height:    98px;
+	text-indent:    0px;
+	text-align:     center;
+	color:          rgba(50,80,115,1.0);
+	text-transform: uppercase;
+	transform:      translateY(-50%);
+
+	z-index: 2;
+}
+.dashboard.nofriends .content .friendlist .circle .color {
+	display:  block;
+	position: absolute;
+	width:    120px;
+	height:   120px;
+	left:     0px;
+	top:      0px;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	border:           solid 4px rgba(255,255,255,1.0);
+	background-color: rgba(255,255,255,1.0);
+
+	-webkit-border-radius: 100%;
+	   -moz-border-radius: 100%;
+	        border-radius: 100%;
+
+	z-index: 1;
+}
+
+.dashboard.nofriends .content .friendlist .circle.add {
+	background-color: rgba(255,255,255,000.0);
+	border: solid 0px;
+	border-color: rgba(245,245,245,1.0);
+}
+.dashboard.nofriends .content .friendlist .circle.add img {
+	display: block;
+	position: relative;
+	width: auto;
+	height: auto;
+	margin: 0 0 0 0;
+	padding: 11px 0 0 11px;
+}
+.dashboard.nofriends .content .friendlist .circle.add:hover {
+	opacity: 0.5;
+}
+
+
+/* @end */
+/* @group ----- 4__tempaltes/dashboard/dashboard_nofriends_addphone.html -- */
+.dashboard.addphone {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   100%;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	background-image: url(../../images/background__app_icons.jpg);
+	background-size:  645px 675px;
+}
+
+.dashboard.addphone .content {
+	display:   block;
+	position:  relative;
+	width:     100%;
+	max-width: 320px;
+	height:    auto;
+	margin:    0 auto 0 auto;
+	padding:   60px 15px 120px 15px;
+}
+.dashboard.addphone .content h2 {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  20px 0 10px 0;
+
+	font-family:    'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      24px;
+	line-height:    30px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+.dashboard.addphone .content p {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	font-family:   'open_sanssemibold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      14px;
+	line-height:    20px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+.dashboard.addphone .content p a {
+	font-family:    'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	text-transform: underline;
+	color:          rgba(80,100,120,1.0);
+}
+
+.dashboard.addphone .content .circle.add.centered {
+	float:  none;
+	margin: 0 auto 0 auto;
+}
+
+.dashboard.addphone .content .circle {
+	display:  block;
+	position: relative;
+	float:    left;
+	width:    130px;
+	height:   130px;
+	margin:   7px 7px 7px 7px;
+	padding:  0 0 0 0;
+
+	border:           solid 5px rgba(245,245,245,1.0);
+	background-color: rgba(255,255,255,1.0);
+
+	-webkit-border-radius: 100%;
+	   -moz-border-radius: 100%;
+	        border-radius: 100%;
+}
+.dashboard.addphone .content .circle.add {
+	background-color: rgba(255,255,255,000.0);
+	border: solid 0px;
+	border-color: rgba(245,245,245,1.0);
+}
+.dashboard.addphone .content .circle.add img {
+	display: block;
+	position: relative;
+	width: auto;
+	height: auto;
+	margin: 0 0 0 0;
+	padding: 11px 0 0 11px;
+}
+.dashboard.addphone .content .circle.add:hover {
+	opacity: 0.5;
+}
+
+.dashboard.addphone .content label {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   60px;
+	margin:   30px auto 0 auto;
+	padding:  0 0 0 0;
+
+	background-color: transparent;
+    border:           solid 0px #000;
+}
+.dashboard.addphone .content label span {
+	display:  block;
+	position: absolute;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	font-family:    'open_sanssemibold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      13px;
+	line-height:    58px;
+	letter-spacing: 0px;
+	text-align:     left;
+	text-indent:    0;
+	text-transform: uppercase;
+	color:          rgba(80,100,120,1.0);
+}
+.dashboard.addphone .content label input {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   60px;
+	margin:   0 auto 0 auto;
+	padding:  0 15px 0 15px;
+
+	border:        solid 0px rgba(190,195,200,1.0);
+	border-bottom: solid 2px rgba(190,195,200,1.0);
+	background-color:        rgba(255,255,255,0.0);
+	outline:                 none;
+
+	font-family:    'open_sanssemibold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      24px;
+	line-height:    58px;
+	letter-spacing: 1px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+
+
+/* @end */
+/* @group ----- 4__tempaltes/dashboard/dashboard_addphone_error.html ------ */
+.dashboard.addphone_error {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   100%;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	background-image: url(../images/background__app_icons.jpg);
+	background-size:  645px 675px;
+}
+.dashboard.addphone_error .content {}
+
+.dashboard.addphone_error .content .friendlist {
+	display:   block;
+	position:  relative;
+	width:     100%;
+	max-width: 320px;
+	height:    auto;
+	margin:    0 auto 0 auto;
+	padding:   60px 15px 120px 15px;
+}
+.dashboard.addphone_error .content .friendlist h2 {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  20px 0 10px 0;
+
+	font-family:    'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      24px;
+	line-height:    30px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+.dashboard.addphone_error .content .friendlist p {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	font-family:    'open_sanssemibold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      14px;
+	line-height:    20px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+.dashboard.addphone_error .content .friendlist p a {
+	font-family:    'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	text-transform: underline;
+	color:          rgba(80,100,120,1.0);
+}
+
+.dashboard.addphone_error .content .friendlist img.add_friend_error {
+	display:  block;
+	position: relative;
+	width:    130px;
+	height:   130px;
+	margin:   60px auto 30px auto;
+	padding:  0 0 0 0;
+}
+
+.dashboard.addphone_error .content .friendlist a.ask_permission {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   60px;
+	margin:   30px 0 0 0;
+	padding:  10px 0 0 0;
+
+	border: solid 2px rgba(020,185,210,1.0);
+	background-color: rgba(040,205,230,1.0);
+	        border-radius: 15px;
+       -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+
+	font-family:    'open_sanssemibold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    600;
+	font-size:      13px;
+	line-height:    18px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: uppercase;
+	color:          rgba(255,255,255,1.0);
+}
+.dashboard.addphone_error .content .friendlist a.ask_permission:hover {
+	opacity: 0.5;
+}
+.dashboard.addphone_error .content .friendlist a.try_again {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   60px;
+	margin:   15px 0 0 0;
+	padding:  0 0 0 0;
+
+	border: solid 2px rgba(190,195,200,1.0);
+	background-color: rgba(255,255,255,1.0);
+	        border-radius: 15px;
+       -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+
+	font-family:    'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      13px;
+	line-height:    56px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: uppercase;
+	color:          rgba(160,165,170,1.0);
+}
+.dashboard.addphone_error .content .friendlist a.try_again:hover {
+	opacity: 0.5;
+}
+.dashboard.addphone_error .content .friendlist a.try_again img {
+	display:  block;
+	position: absolute;
+	width:    21px;
+	height:   25px;
+	top:      17px;
+	left:     15px;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+}
+
+
+/* @end */
+/* @group ----- 4__tempaltes/dashboard/dashboard_send_SMS.html ------------ */
+.dashboard.send_SMS {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   100%;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	background-image: url(../../images/background__app_icons.jpg);
+	background-size:  645px 675px;
+}
+
+.dashboard.send_SMS .content {
+	display:   block;
+	position:  relative;
+	width:     100%;
+	max-width: 320px;
+	height:    auto;
+	margin:    0 auto 0 auto;
+	padding:   60px 15px 120px 15px;
+}
+.dashboard.send_SMS .content h2 {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  20px 0 10px 0;
+
+	font-family:    'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    700;
+	font-size:      24px;
+	line-height:    30px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+.dashboard.send_SMS .content p {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 40px 0;
+	padding:  0 0 0 0;
+
+	font-family:   'open_sanssemibold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      14px;
+	line-height:    20px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+.dashboard.send_SMS .content h3.name {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  10px 0 10px 0;
+
+	border-bottom: solid 1px rgba(210,215,220,1.0);
+
+	font-family:    'open_sanssemibold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      20px;
+	line-height:    30px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+.dashboard.send_SMS .content h3.name span.phone {
+	padding: 0 0 0 10px;
+
+	font-family: 'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 30px;
+	letter-spacing: 0px;
+	text-align: center;
+	text-indent: 0;
+	text-transform: none;
+	color: rgba(80,100,120,1.0);
+}
+.dashboard.send_SMS .content h3.name:last-of-type {
+	margin:   0 0 40px 0;
+
+	border-bottom: solid 0px rgba(210,215,220,1.0);
+}
+
+.dashboard.send_SMS .content ul.confirmation_code {
+	display:  block;
+	position: relative;
+	width:    236px;
+	height:   60;
+	margin:   15px auto 0 auto;
+	padding:  0 0 0 0;
+}
+.dashboard.send_SMS .content ul.confirmation_code li {
+	display:  inline-block;
+	position: relative;
+	width:    auto;
+	height:   auto;
+	margin:   0 0 0 0 ;
+	padding:  0 0 0 0;
+}
+.dashboard.send_SMS .content ul.confirmation_code li input {
+	display:  inline-block;
+	position: relative;
+	width:    50px;
+	height:   60px;
+	margin:   0 3px 0 3px;
+	padding:  0 0 0 0;
+
+	border: solid 2px rgba(190,195,200,1.0);
+	background-color: rgba(255,255,255,1.0);
+
+	            border-top-left-radius: 5px;
+	           border-top-right-radius: 5px;
+	        border-bottom-right-radius: 5px;
+	         border-bottom-left-radius: 5px;
+
+	        -moz-border-radius-topleft: 5px;
+	       -moz-border-radius-topright: 5px;
+	    -moz-border-radius-bottomright: 5px;
+	     -moz-border-radius-bottomleft: 5px;
+
+	    -webkit-border-top-left-radius: 5px;
+	   -webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	 -webkit-border-bottom-left-radius: 5px;
+
+	font-family:    'open_sanssemibold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      24px;
+	line-height:    58px;
+	letter-spacing: 1px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+
+.dashboard.send_SMS .content a.cancel {
+	display:  block;
+	position: relative;
+	float:    left;
+	width:    140px;
+	height:   60px;
+	margin:   30px 0 0 0;
+	padding:  0 0 0 0;
+
+	border: solid 2px rgba(190,195,200,1.0);
+	background-color: rgba(255,255,255,1.0);
+	        border-radius: 15px;
+       -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+
+	font-family:    'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      13px;
+	line-height:    56px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: uppercase;
+	color:          rgba(160,165,170,1.0);
+}
+.dashboard.send_SMS .content a.cancel:hover {
+	opacity: 0.5;
+}
+.dashboard.send_SMS .content a.continue {
+	display:  block;
+	position: relative;
+	float:    right;
+	width:    140px;
+	height:   60px;
+	margin:   30px 0 0 0;
+	padding:  0 0 0 0;
+
+	border: solid 2px rgba(020,185,210,1.0);
+	background-color: rgba(040,205,230,1.0);
+	        border-radius: 15px;
+       -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+
+	font-family:    'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      13px;
+	line-height:    56px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: uppercase;
+	color:          rgba(255,255,255,1.0);
+}
+.dashboard.send_SMS .content a.continue:hover {
+	opacity: 0.5;
+}
+
+
+/* @end */
+/* @group ----- 4__tempaltes/dashboard/dashboard_confirm_SMS.html --------- */
+.dashboard.confirm_SMS {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   100%;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	background-image: url(../../images/background__app_icons.jpg);
+	background-size:  645px 675px;
+}
+
+.dashboard.confirm_SMS .content {
+	display:   block;
+	position:  relative;
+	width:     100%;
+	max-width: 320px;
+	height:    auto;
+	margin:    0 auto 0 auto;
+	padding:   60px 15px 120px 15px;
+}
+.dashboard.confirm_SMS .content h2 {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  20px 0 10px 0;
+
+	font-family:    'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      24px;
+	line-height:    30px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+.dashboard.confirm_SMS .content p {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	font-family:   'open_sanssemibold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      14px;
+	line-height:    20px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+.dashboard.confirm_SMS .content h3.name {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  40px 0 10px 0;
+
+	font-family:    'open_sanssemibold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      20px;
+	line-height:    30px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+
+.dashboard.confirm_SMS .content ul.confirmation_code {
+	display:  block;
+	position: relative;
+	width:    236px;
+	height:   60;
+	margin:   15px auto 0 auto;
+	padding:  0 0 0 0;
+}
+.dashboard.confirm_SMS .content ul.confirmation_code li {
+	display:  inline-block;
+	position: relative;
+	width:    auto;
+	height:   auto;
+	margin:   0 0 0 0 ;
+	padding:  0 0 0 0;
+}
+.dashboard.confirm_SMS .content ul.confirmation_code li input {
+	display:  inline-block;
+	position: relative;
+	width:    50px;
+	height:   60px;
+	margin:   0 3px 0 3px;
+	padding:  0 0 0 0;
+
+	border: solid 2px rgba(190,195,200,1.0);
+	background-color: rgba(255,255,255,1.0);
+
+	            border-top-left-radius: 5px;
+	           border-top-right-radius: 5px;
+	        border-bottom-right-radius: 5px;
+	         border-bottom-left-radius: 5px;
+
+	        -moz-border-radius-topleft: 5px;
+	       -moz-border-radius-topright: 5px;
+	    -moz-border-radius-bottomright: 5px;
+	     -moz-border-radius-bottomleft: 5px;
+
+	    -webkit-border-top-left-radius: 5px;
+	   -webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	 -webkit-border-bottom-left-radius: 5px;
+
+	font-family:    'open_sanssemibold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      24px;
+	line-height:    58px;
+	letter-spacing: 1px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+
+.dashboard.confirm_SMS .content a.cancel {
+	display:  block;
+	position: relative;
+	float:    left;
+	width:    140px;
+	height:   60px;
+	margin:   30px 0 0 0;
+	padding:  0 0 0 0;
+
+	border: solid 2px rgba(190,195,200,1.0);
+	background-color: rgba(255,255,255,1.0);
+	        border-radius: 15px;
+       -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+
+	font-family:    'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      13px;
+	line-height:    56px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: uppercase;
+	color:          rgba(160,165,170,1.0);
+}
+.dashboard.confirm_SMS .content a.cancel:hover {
+	opacity: 0.5;
+}
+.dashboard.confirm_SMS .content a.continue {
+	display:  block;
+	position: relative;
+	float:    right;
+	width:    140px;
+	height:   60px;
+	margin:   30px 0 0 0;
+	padding:  0 0 0 0;
+
+	border: solid 2px rgba(020,185,210,1.0);
+	background-color: rgba(040,205,230,1.0);
+	        border-radius: 15px;
+       -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+
+	font-family:    'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      13px;
+	line-height:    56px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: uppercase;
+	color:          rgba(255,255,255,1.0);
+}
+.dashboard.confirm_SMS .content a.continue:hover {
+	opacity: 0.5;
+}
+
+
+/* @end */
+/* @group ----- 4__tempaltes/dashboard/dashboard_hasfriends.html ---------- */
+.dashboard.hasfriends {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   100%;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	background-image: url(../images/background__app_icons.jpg);
+	background-size:  645px 675px;
+}
+.dashboard.hasfriends .content {}
+
+.dashboard.hasfriends .content .friendlist {
+	display:   block;
+	position:  relative;
+	width:     100%;
+	max-width: 320px;
+	height:    auto;
+	margin:    0 auto 0 auto;
+	padding:   60px 15px 120px 15px;
+}
+.dashboard.hasfriends .content .friendlist h2 {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  20px 0 10px 0;
+
+	font-family: 'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 24px;
+	line-height: 30px;
+	letter-spacing: 0px;
+	text-align: center;
+	text-indent: 0;
+	text-transform: none;
+	color: rgba(80,100,120,1.0);
+}
+.dashboard.hasfriends .content .friendlist p {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	font-family: 'open_sanssemibold', Arial, "MS Trebuchet", sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 0px;
+	text-align: center;
+	text-indent: 0;
+	text-transform: none;
+	color: rgba(80,100,120,1.0);
+}
+.dashboard.hasfriends .content .friendlist p a {
+	font-family:    'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	text-transform: underline;
+	color:          rgba(80,100,120,1.0);
+}
+
+.dashboard.hasfriends .content .friendlist .circle.add.centered {
+	float:  none;
+	margin: 0 auto 0 auto;
+}
+.dashboard.hasfriends .content .friendlist h3 {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  20px 0 10px 0;
+
+	font-family: 'open_sansbold', Arial, "MS Trebuchet", sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height:    30px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+.dashboard.hasfriends .content .friendlist h3 img {
+	display:  block;
+	position: relative;
+	width:    19px;
+	height:   21px;
+	margin:   0 auto 0 auto;
+	padding:  0 0 0 0;
+}
+.dashboard.hasfriends .content .friendlist p.note {
+	display:  block;
+	position: relative;
+	width:    100%;
+	height:   auto;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	font-family:    'open_sanssemibold', Arial, "MS Trebuchet", sans-serif;
+	font-style:     normal;
+	font-weight:    400;
+	font-size:      11px;
+	line-height:    14px;
+	letter-spacing: 0px;
+	text-align:     center;
+	text-indent:    0;
+	text-transform: none;
+	color:          rgba(80,100,120,1.0);
+}
+
+.dashboard.hasfriends .content .friendlist .circle {
+	display:  block;
+	position: relative;
+	float:    left;
+	width:    130px;
+	height:   130px;
+	margin:   7px 7px 7px 7px;
+	padding:  0 0 0 0;
+
+	border:           solid 5px rgba(245,245,245,1.0);
+	background-color: rgba(255,255,255,1.0);
+
+	-webkit-border-radius: 100%;
+	   -moz-border-radius: 100%;
+	        border-radius: 100%;
+}
+.dashboard.hasfriends .content .friendlist .circle .name {
+	display:  block;
+	position: absolute;
+	width:    98px;
+	height:   98px;
+	left:     11px;
+	top:      50%;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	border:           solid 1px rgba(215,220,225,1.0);
+	background-color: rgba(255,255,255,1.0);
+
+	            border-top-left-radius: 100%;
+	           border-top-right-radius: 100%;
+	        border-bottom-right-radius: 100%;
+	         border-bottom-left-radius: 100%;
+
+	        -moz-border-radius-topleft: 100%;
+	       -moz-border-radius-topright: 100%;
+	    -moz-border-radius-bottomright: 100%;
+	     -moz-border-radius-bottomleft: 100%;
+
+	    -webkit-border-top-left-radius: 100%;
+	   -webkit-border-top-right-radius: 100%;
+	-webkit-border-bottom-right-radius: 100%;
+	 -webkit-border-bottom-left-radius: 100%;
+
+	-webkit-box-shadow: 0px 0px 14px 0px rgba(0,000,000,000.15);
+	   -moz-box-shadow: 0px 0px 14px 0px rgba(0,000,000,000.15);
+	        box-shadow: 0px 0px 14px 0px rgba(0,000,000,000.15);
+
+	font-family:    "open-sans",sans-serif;
+	font-style:     normal;
+	font-weight:    600;
+	font-size:      15px;
+	line-height:    98px;
+	text-indent:    0px;
+	text-align:     center;
+	color:          rgba(50,80,115,1.0);
+	text-transform: uppercase;
+	transform:      translateY(-50%);
+
+	z-index: 2;
+}
+.dashboard.hasfriends .content .friendlist .circle .color {
+	display:  block;
+	position: absolute;
+	width:    120px;
+	height:   120px;
+	left:     0px;
+	top:      0px;
+	margin:   0 0 0 0;
+	padding:  0 0 0 0;
+
+	border:           solid 4px rgba(255,255,255,1.0);
+	background-color: rgba(255,255,255,1.0);
+
+	-webkit-border-radius: 100%;
+	   -moz-border-radius: 100%;
+	        border-radius: 100%;
+
+	z-index: 1;
+}
+
+.dashboard.hasfriends .content .friendlist .circle.add {
+	background-color: rgba(255,255,255,000.0);
+	border: solid 0px;
+	border-color: rgba(245,245,245,1.0);
+}
+.dashboard.hasfriends .content .friendlist .circle.add img {
+	display: block;
+	position: relative;
+	width: auto;
+	height: auto;
+	margin: 0 0 0 0;
+	padding: 11px 0 0 11px;
+}
+.dashboard.hasfriends .content .friendlist .circle.add:hover {
+	opacity: 0.5;
+}
+
+.dashboard.hasfriends .content .friendlist .circle.red_pending .color {
+	border: solid 4px rgba(255,45,45,1.0);
+	background-color: rgba(255,255,255,1.0);
+}
+.dashboard.hasfriends .content .friendlist .circle.red .color {
+	border: solid 4px rgba(255,175,190,1.0);
+	background-color: rgba(255,045,045,1.0);
+}
+.dashboard.hasfriends .content .friendlist .circle.orange_pending .color {
+	border: solid 4px rgba(255,160,050,1.0);
+	background-color: rgba(255,255,255,1.0);
+}
+.dashboard.hasfriends .content .friendlist .circle.orange .color {
+	border: solid 4px rgba(255,215,170,1.0);
+	background-color: rgba(255,160,050,1.0);
+}
+.dashboard.hasfriends .content .friendlist .circle.yellow_pending .color {
+	border: solid 4px rgba(250,225,040,1.0);
+	background-color: rgba(255,255,255,1.0);
+}
+.dashboard.hasfriends .content .friendlist .circle.yellow .color {
+	border: solid 4px rgba(255,250,210,1.0);
+	background-color: rgba(250,225,040,1.0);
+}
+.dashboard.hasfriends .content .friendlist .circle.green_pending .color {
+	border: solid 4px rgba(140,230,110,1.0);
+	background-color: rgba(255,255,255,1.0);
+}
+.dashboard.hasfriends .content .friendlist .circle.green .color {
+	border: solid 4px rgba(190,255,170,1.0);
+	background-color: rgba(140,230,110,1.0);
+}
+.dashboard.hasfriends .content .friendlist .circle.teal_pending .color {
+	border: solid 4px rgba(090,230,225,1.0);
+	background-color: rgba(255,255,255,1.0);
+}
+.dashboard.hasfriends .content .friendlist .circle.teal .color {
+	border: solid 4px rgba(165,255,250,1.0);
+	background-color: rgba(090,230,225,1.0);
+}
+.dashboard.hasfriends .content .friendlist .circle.blue_pending .color {
+	border: solid 4px rgba(035,195,245,1.0);
+	background-color: rgba(255,255,255,1.0);
+}
+.dashboard.hasfriends .content .friendlist .circle.blue .color {
+	border: solid 4px rgba(160,235,255,1.0);
+	background-color: rgba(35,195,245,1.0);
+}
+.dashboard.hasfriends .content .friendlist .circle.purple_pending .color {
+	border: solid 4px rgba(190,100,255,1.0);
+	background-color: rgba(255,255,255,1.0);
+}
+.dashboard.hasfriends .content .friendlist .circle.purple .color {
+	border: solid 4px rgba(220,175,255,1.0);
+	background-color: rgba(190,100,255,1.0);
+}
+.dashboard.hasfriends .content .friendlist .circle.pink_pending .color {
+	border: solid 4px rgba(255,000,255,1.0);
+	background-color: rgba(255,255,255,1.0);
+}
+.dashboard.hasfriends .content .friendlist .circle.pink .color {
+	border: solid 4px rgba(255,150,255,1.0);
+	background-color: rgba(255,000,255,1.0);
+}
+
+
+/* @end */
+
 /* @group ----- 5__tempaltes/friends/friend_editmodal.html ---------------- */
 .friend_editmodal {
 	display:  block;
@@ -1013,6 +2238,7 @@ html, body {
 
 
 /* @end */
+
 /* @group ----- 6__tempaltes/friend_requests/friend_requests.html --------- */
 /* @group --- friend_requests_header ------ (header shown when having friend requests --> under footer) */
 .friend_requests_header {
@@ -2415,6 +3641,7 @@ html, body {
 
 
 /* @end */
+
 /* @group ----- 7__tempaltes/contact_list/contact_list.html --------------- */
 .contact_list {}
 
@@ -2635,7 +3862,8 @@ html, body {
 
 
 /* @end */
-/* @group ----- 9__tempaltes/error_messages/error_nocolorselected.html ----- */
+
+/* @group ----- 9__tempaltes/error_messages/error_nocolorselected.html ---- */
 .banner_error {
 	display:    block;
 	position:   relative;
@@ -2679,4 +3907,6 @@ html, body {
 
 
 /* @end */
+
+
 /* @end */

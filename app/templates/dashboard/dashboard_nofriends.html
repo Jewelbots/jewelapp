@@ -1,0 +1,28 @@
+<ion-view>
+	<ion-content>
+		<!--//this is temporary -->
+		<ion-nav-bar class="bar-positive">
+			<ion-nav-back-button>
+			</ion-nav-back-button>
+		</ion-nav-bar>
+		<!--//needs to be replaced with our navigation-->
+		<div class="dashboard nofriends">
+			<div class="content">
+				<div class="friendlist">
+					<h2>Welcome To Jewelbots!</h2>
+					<p>
+						Add your friends to colors so they light up the same when you're close.
+					</p>
+
+					<div class="circle add centered" ng-disabled="!allowedToAddFriends()" ng-click="openModal(1)" id="datbutton">
+						<img src="images/icon__button_friend_add.svg" />
+					</div>
+					<h3>
+						<img src="images/icon__arrow_up.svg" />
+						Tap to add your friends!
+					</h3>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
