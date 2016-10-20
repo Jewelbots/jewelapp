@@ -107,22 +107,27 @@ angular.module('jewelApp',
    $urlRouterProvider) {
      $stateProvider
 
+		//-- SECTION 1
 		//-- 1__templates/start/load.html --> App Slpash Screen
 		.state('load', {
 			url: '/load',
 			//controller: 'LoadCtrl',
 			templateUrl: 'templates/start/load.html'
 		})
+		//-- 1__templates/start/load.html --> App Slpash Screen
 		.state('privacy', {
 			url: '/privacy',
 			//controller: 'LoadCtrl',
 			templateUrl: 'templates/start/privacy.html'
 		})
+		//-- 1__templates/start/load.html --> App Slpash Screen
 		.state('birthday', {
 			url: '/birthday',
 			//controller: 'LoadCtrl',
 			templateUrl: 'templates/start/birthday.html'
 		})
+
+		//-- SECTION 2
 		//-- 2__templates/quickstart/news_1.html /news_2.html /news_3.html --> Showed on first load / ...after App update
 		.state('quickstart_news_1', {
 			url: '/quickstart/news_1',
@@ -144,6 +149,45 @@ angular.module('jewelApp',
 			//controller: 'DashboardCtrl',
 			templateUrl: 'templates/dashboard/index.html'
 		})
+
+		//-- SECTION 3
+
+		//-- SECTION 4
+		//-- 4__templates/dashboard/dashboard_nofriends.html --> user has no friend
+		.state('dashboard_nofriends', {
+			url: '/dashboard_nofriends/',
+			//controller: 'DashboardCtrl',
+			templateUrl: 'templates/dashboard/dashboard_nofriends.html'
+		})
+		//-- 4__templates/dashboard/dashboard_nofriends_addphone.html --> user has no friend an is promted to add a phone number / if unsuccesful promt for "Access to Contacts"
+		.state('dashboard_nofriends_addphone', {
+			url: '/dashboard_nofriends_addphone/',
+			//controller: 'DashboardCtrl',
+			templateUrl: 'templates/dashboard/dashboard_nofriends_addphone.html'
+		})
+		.state('dashboard_addphone_error', {
+			url: '/dashboard_addphone_error/',
+			//controller: 'DashboardCtrl',
+			templateUrl: 'templates/dashboard/dashboard_addphone_error.html'
+		})
+		.state('dashboard_confirm_SMS', {
+			url: '/dashboard_confirm_SMS/',
+			//controller: 'DashboardCtrl',
+			templateUrl: 'templates/dashboard/dashboard_confirm_SMS.html'
+		})
+		.state('dashboard_send_SMS', {
+			url: '/dashboard_send_SMS/',
+			//controller: 'DashboardCtrl',
+			templateUrl: 'templates/dashboard/dashboard_send_SMS.html'
+		})
+		.state('dashboard_hasfriends', {
+			url: '/dashboard_hasfriends/',
+			//controller: 'DashboardCtrl',
+			templateUrl: 'templates/dashboard/dashboard_hasfriends.html'
+		})
+		
+		
+		
 		//-- 5__templates/friends/friend_editmodal.html --> clicked on friend on dashboard, opens this modal to 1) change color, delete as friend
 		.state('friend_editmodal', {
 			url: '/friend_editmodal',
