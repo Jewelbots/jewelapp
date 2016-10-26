@@ -1,4 +1,4 @@
-<ion-view can-swipe-back="false" view-title="Device Pairing" hide-back-button="true">
+<ion-view can-swipe-back="true" view-title="Device Pairing" hide-back-button="true">
 <ion-content>
 
 <div class="content has-header padding">
@@ -11,6 +11,7 @@
   <button class="button button-neutral" ng-click="pairToDevice(model.chosenDevice.address)">
     Pair your Jewelbot
   </button>
+  <p>{{model.status}}</p>
   <ion-spinner icon="dots" ng-hide="model.pairing || model.isPaired"></ion-spinner>
   <div ng-show="model.isPaired">Jewelbot Paired!</div>
 </div>

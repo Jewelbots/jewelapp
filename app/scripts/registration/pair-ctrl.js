@@ -52,15 +52,14 @@ angular.module('jewelApp.controllers')
 
     var getAvailableDevices = function () {
       var params = {
-        request: true,
-        name: 'JewelBot'
+        request: true
       };
       ionicReady()
         .then(function () {
           return $cordovaBluetoothle.initialize(params)
             .then(function () {
               $scope.model.status = 'Bluetooth Initialized!';
-              return $cordovaBluetoothle.find(params);
+              return $cordovaBluetoothle.startScan(params);
             }, function (err) {
               $logService.Log('error', 'Error trying to initialize bluetoothle ' + JSON.stringify(err));
             });
@@ -73,7 +72,9 @@ angular.module('jewelApp.controllers')
             return $cordovaBluetoothle.stopScan();
           }
         }, function (error) {
-          $scope.model.status = 'Error while scanning.' + JSON.stringify(error);
+          $scope.model.status = 'Error while scanning. ' + JSON.stringify(error);
+          console.log(error);
+          $logService.Log('error', 'Error while scanning. ' + JSON.stringify(error));
           return $cordovaBluetoothle.stopScan();
         }, function (notify) {
           $logService.Log('message', 'notifying scan: ' + JSON.stringify(notify));
