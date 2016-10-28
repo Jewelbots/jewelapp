@@ -68,7 +68,7 @@ angular.module('jewelApp.controllers')
         .then(function (data) {
           $scope.model.status = 'Scanning...';
           $logService.Log('message', 'scan results: ' + JSON.stringify(data));
-          $scope.model.messages = JSON.stringify(data[0].advertisement);
+          $scope.model.messages = JSON.stringify(data[0]);
           if (data[0].status === 'scanResult') {
             $scope.model.status = 'Found device: ' + data[0].name;
             $scope.model.devices.push(data[0]);
@@ -101,6 +101,9 @@ angular.module('jewelApp.controllers')
             return $cordovaBluetoothle.stopScan();
           }
         });
+      }
+      else {
+        $scope.model.status = "Already Paired: " + $scope.model.chosenDevice;
       }
     }
     catch (err) {
