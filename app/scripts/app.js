@@ -55,13 +55,14 @@ angular.module('jewelApp',
   ) {
     Parse.initialize('j5XHG7wZ7z62lWCT4H43220C31slqlbswptPkbbU', '5qEip2ImNHArKNdWDnC3SYNjxFpSQG3vkZ1UOjR6');
     $logService.Log('message', 'platform is: ' + JSON.stringify(ionic.Platform.platform()) );
-  ionicReady().then(function() {
-    if (!bluetoothle) {
-      $logService.Log('message', 'No bluetoothle');
-    }
-    else {
-      $logService.Log('message','bluetoothle is: ' + JSON.stringify(bluetoothle));
-    }
+
+    ionicReady().then(function() {
+      if (!bluetoothle) {
+        $logService.Log('message', 'No bluetoothle');
+      }
+      else {
+        $logService.Log('message','bluetoothle is: ' + JSON.stringify(bluetoothle));
+      }
     $cordovaPushV5.initialize({
      'ios': {
         'badge' : true,
@@ -83,6 +84,7 @@ angular.module('jewelApp',
     }).then(function(notification) {
       $logService.Log('message', 'received push notification, data is: '+ JSON.stringify(notification));
     });
+
     if (navigator.contacts === undefined) {
       //$logService.Log('message', 'contacts plugin not loaded');
     }
@@ -175,9 +177,9 @@ angular.module('jewelApp',
 			//controller: 'DashboardCtrl',
 			templateUrl: 'templates/dashboard/dashboard_hasfriends.html'
 		})
-		
-		
-		
+
+
+
 		//-- 5__templates/friends/friend_editmodal.html --> clicked on friend on dashboard, opens this modal to 1) change color, delete as friend
 		.state('friend_editmodal', {
 			url: '/friend_editmodal',
