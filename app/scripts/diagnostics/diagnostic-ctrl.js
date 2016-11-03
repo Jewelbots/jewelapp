@@ -4,14 +4,23 @@ angular.module('jewelApp.controllers')
   '$logService',
   '$scope',
   '$window',
+  'DataService',
+  'UserService',
+  'JewelbotService',
+  'DeviceService',
   function(
   $logService,
   $scope,
-  $window
+  $window,
+  DataService,
+  UserService,
+  JewelbotService,
+  DeviceService
   ) {
     $scope.model = {
       logs : [],
-      isPaired : false
+      isPaired : DataService.IsPaired(),
+      deviceId : DataService.GetDeviceId()
     };
     $scope.getLoggingInfo = function() {
       var logs = $logService.Get('all');
