@@ -1,31 +1,39 @@
-<div class="circle {{friend.color}}">
-	<div class="name">{{friend.name}}</div>
-	<div class="color"></div>
-</div>
-<div class="circle purple_pending">
-	<div class="name">First L.</div>
-	<div class="color"></div>
-</div>
-<div class="circle purple">
-	<div class="name">First L.</div>
-	<div class="color"></div>
-</div>
-<div class="circle add" ng-disabled="!allowedToAddFriends()" ng-click="openModal(1)" id="datbutton">
-	<img src="/images/icon__button_friend_add.svg" />
-</div>
-<div class="clear">&nbsp;</div>
+<div ng-include src="'templates/menu/top-menu.html'"></div>
+<div ng-include src="'templates/menu/jewelbots_header.html'"></div>
 
-<div class="card" ng-repeat="friend in model.friends">
-	<div class="item">
-		<div>
-			<div class="circle purple_pending">
-				<div class="name">
-					<span class="name_first">First</span> <span class="name_last">L.</span>
-				</div>
-				<div class="color"></div>
-			</div>
-			<div class="circle circle-{{friend.color}}"></div><!-- [red/orange/yellow/green/teal/blue/purple/pink] -->
-			<div class="friend-name">{{friend.name}}</div>
+<ion-view can-swipe-back="true">
+	<ion-content class="center has-header">
+		<span>{{model.message}}</span>
+		<div class="circle {{friend.color}}">
+			<div class="name">{{friend.name}}</div>
+			<div class="color"></div>
 		</div>
-	</div>
-</div>
+		<div class="circle purple_pending">
+			<div class="name">First L.</div>
+			<div class="color"></div>
+		</div>
+		<div class="circle purple">
+			<div class="name">First L.</div>
+			<div class="color"></div>
+		</div>
+		<div class="circle add" ng-disabled="!allowedToAddFriends()" ng-click="openModal(1)" id="datbutton">
+			<img src="/images/icon__button_friend_add.svg" />
+		</div>
+		<div class="clear">&nbsp;</div>
+
+		<div class="card" ng-repeat="friend in model.localFriends">
+			<div class="item">
+				<div>
+					<div class="circle purple_pending">
+						<div class="name">
+							<span class="name_first">First</span> <span class="name_last">L.</span>
+						</div>
+						<div class="color"></div>
+					</div>
+					<div class="circle circle-{{friend.color}}"></div><!-- [red/orange/yellow/green/teal/blue/purple/pink] -->
+					<div class="friend-name">{{friend.name}}</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

@@ -1,14 +1,16 @@
 <ion-view can-swipe-back="false" hide-nav-bar="true" hide-back-button="true">
 <ion-content class="center has-header">
-
+	<div>
+		<p>Paired? {{model.isPaired}}</p>
+		<p>Device ID: {{model.deviceId}}</p>
+	</div>
 	<h1>**Debug-Start** APP</h1>
 	<a ui-sref="home">Start App</a><br>
 	<a ui-sref="pair">Pair</a><br>
 	<a ui-sref="dashboard">Dashboard</a><br>
 	<a ui-sref="diagnostics">Diagnostics</a><br>
-	<a ui-sref="settings">Settings</a>
-
-	<br />
+	<a ui-sref="settings">Settings</a><br>
+	<a ui-sref="friends">Friends</a><br>
 	<hr />
 	<br />
 

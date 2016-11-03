@@ -4,17 +4,19 @@
 <ion-content>
 
 <div class="content has-header padding">
-  Devices!:
+  Available Devices:
   <div class="list" ng-hide="model.deviceChosen()">
     <ion-radio ng-repeat="device in model.devices" ng-model="model.chosenDevice" ng-value="device">
-      {{device.name}}<br />{{device.address}}
+      {{device.name}} - {{device.address}}
     </ion-radio>
   </div>
-  <div ng-show="model.deviceChosen">{{model.chosenDevice.name}}</div>
+  <div ng-show="model.deviceChosen">Chosen Device: {{model.chosenDevice.name}}</div>
   <button class="button button-neutral" ng-click="pairToDevice(model.chosenDevice.address)">
     Pair your Jewelbot
   </button>
   <ion-spinner icon="dots" ng-hide="model.pairing || model.isPaired"></ion-spinner>
+
+  <hr>
   <p>Status: {{model.status}}</p>
   <p>Messages: {{model.messages}}</p>
   <div ng-show="model.isPaired">Jewelbot Paired!</div>

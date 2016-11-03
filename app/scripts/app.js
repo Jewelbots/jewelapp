@@ -177,9 +177,11 @@ angular.module('jewelApp',
 			//controller: 'DashboardCtrl',
 			templateUrl: 'templates/dashboard/dashboard_hasfriends.html'
 		})
-
-
-
+    .state('friends', {
+      url: '/friends',
+      controller: 'FriendsCtrl',
+      templateUrl: 'templates/friends/friends-list.html'
+    })
 		//-- 5__templates/friends/friend_editmodal.html --> clicked on friend on dashboard, opens this modal to 1) change color, delete as friend
 		.state('friend_editmodal', {
 			url: '/friend_editmodal',
@@ -212,6 +214,7 @@ angular.module('jewelApp',
 
     .state('debug-start', {
       url: '/debug-start',
+      controller: 'DiagnosticCtrl',
       templateUrl: 'templates/debug-start.html'
     })
     .state('home', {
@@ -224,78 +227,78 @@ angular.module('jewelApp',
       controller: 'SettingsCtrl',
       templateUrl: 'templates/settings/settings.html'
     })
-      .state('pair', {
-        url: '/pair',
-        controller: 'PairCtrl',
-        templateUrl: 'templates/settings/pair.html'
-      })
-      .state('pair-success', {
-        url: '/pair-success',
-        controller: 'PairCtrl',
-        templateUrl: 'templates/registration/pair-success.html'
-      })
-      .state('registration-step-two', {
-        url: '/register/step-two',
-        controller: 'RegistrationCtrl',
-        templateUrl: 'templates/registration/registration-step-two.html'
-      })
-      .state('registration-step-three', {
-        url: '/register/step-three',
-        controller: 'RegistrationCtrl',
-        templateUrl: 'templates/registration/registration-step-three.html'
-      })
-      .state('registration-step-four', {
-            url: '/register/step-four',
-            controller: 'RegistrationCtrl',
-            templateUrl: 'templates/registration/registration-step-four.html'
-      })
-      .state('diagnostics', {
-        url: '/diagnostics',
-        controller: 'DiagnosticCtrl',
-        templateUrl: 'templates/diagnostics/index.html'
-      })
+    .state('pair', {
+      url: '/pair',
+      controller: 'PairCtrl',
+      templateUrl: 'templates/settings/pair.html'
+    })
+    .state('pair-success', {
+      url: '/pair-success',
+      controller: 'PairCtrl',
+      templateUrl: 'templates/registration/pair-success.html'
+    })
+    .state('registration-step-two', {
+      url: '/register/step-two',
+      controller: 'RegistrationCtrl',
+      templateUrl: 'templates/registration/registration-step-two.html'
+    })
+    .state('registration-step-three', {
+      url: '/register/step-three',
+      controller: 'RegistrationCtrl',
+      templateUrl: 'templates/registration/registration-step-three.html'
+    })
+    .state('registration-step-four', {
+          url: '/register/step-four',
+          controller: 'RegistrationCtrl',
+          templateUrl: 'templates/registration/registration-step-four.html'
+    })
+    .state('diagnostics', {
+      url: '/diagnostics',
+      controller: 'DiagnosticCtrl',
+      templateUrl: 'templates/diagnostics/index.html'
+    })
 
-      .state('start', {
-        url: '/start',
-        controller: 'StartCtrl'
-      })
-      .state('sms-verification-screen', {
-        url: '/sms/verify/:telephone',
-        controller : 'SMSCtrl',
-        templateUrl: 'templates/sms/verify.html'
-      })
-      .state('demo', {
-        url: '/demo',
-        abstract: true,
-        templateUrl: 'templates/demo/tabs.html'
-      })
-      .state('demo.select', {
-        url: '/select',
-        views: {
-          'demo-select': {
-            templateUrl: 'templates/demo/select.html',
-            controller: 'DemoCtrl'
-          }
+    .state('start', {
+      url: '/start',
+      controller: 'StartCtrl'
+    })
+    .state('sms-verification-screen', {
+      url: '/sms/verify/:telephone',
+      controller : 'SMSCtrl',
+      templateUrl: 'templates/sms/verify.html'
+    })
+    .state('demo', {
+      url: '/demo',
+      abstract: true,
+      templateUrl: 'templates/demo/tabs.html'
+    })
+    .state('demo.select', {
+      url: '/select',
+      views: {
+        'demo-select': {
+          templateUrl: 'templates/demo/select.html',
+          controller: 'DemoCtrl'
         }
-      })
-      .state('demo.control', {
-        url: '/control',
-        views: {
-          'demo-control': {
-            templateUrl: 'templates/demo/control.html',
-            controller: 'ControlCtrl'
-          }
+      }
+    })
+    .state('demo.control', {
+      url: '/control',
+      views: {
+        'demo-control': {
+          templateUrl: 'templates/demo/control.html',
+          controller: 'ControlCtrl'
         }
-      })
-      .state('demo.weather', {
-        url: '/weather',
-        views: {
-          'demo-weather': {
-            templateUrl: 'templates/demo/weather.html',
-            controller: 'DemoCtrl'
-          }
+      }
+    })
+    .state('demo.weather', {
+      url: '/weather',
+      views: {
+        'demo-weather': {
+          templateUrl: 'templates/demo/weather.html',
+          controller: 'DemoCtrl'
         }
-      })
-      ;
-      $urlRouterProvider.otherwise('/debug-start');
+      }
+    })
+    ;
+    $urlRouterProvider.otherwise('/debug-start');
 }]);
