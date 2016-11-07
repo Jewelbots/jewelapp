@@ -12,12 +12,12 @@ angular.module('jewelApp.controllers')
       $window,
       DataService) {
       $scope.isPaired = function() {
-        if (!DataService.IsPaired()) {
-          $state.go('pair');
-        }
-        else {
+        if (DataService.IsPaired()) {
           $state.go('dashboard');
         }
       };
+      $scope.goToPairing = function() {
+        $state.go('pair');
+      }
       $scope.isPaired();
 }]);
