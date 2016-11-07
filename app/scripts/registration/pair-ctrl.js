@@ -42,71 +42,67 @@ angular.module('jewelApp.controllers')
               })
               .error(function (err) {
                 $scope.model.status = 'Error While Connecting: ' + JSON.stringify(err);
-                return $cordovaBluetoothle.disconnect(address);
-              })
+                return $cordovaBluetoothle.disconnect(address); })
               .notify(function (notify) {
                 $logService.Log('message', 'still trying to connect: ' + JSON.stringify(notify));
               });
           });
     };
 
-    var getAvailableDevices = function () {
-      var params = {
-      };
-      ionicReady()
-        .then(function () {
-          return $cordovaBluetoothle.initialize(params)
-            .then(function () {
-              $scope.model.status = 'Bluetooth Initialized!';
-              return $cordovaBluetoothle.startScan(params);
-            }, function (err) {
-              $logService.Log('error', 'Error trying to initialize bluetoothle ' + JSON.stringify(err));
-              $scope.model.status = 'Error initializing Bluetooth.'
-              $scope.model.messages = JSON.stringify(err);
-            });
-        })
-        .then(function (data) {
-          $scope.model.status = 'Scanning...';
-          $logService.Log('message', 'scan results: ' + JSON.stringify(data));
-          $scope.model.messages = JSON.stringify(data[0]);
-          if (data[0].status === 'scanResult') {
-            $scope.model.status = 'Found device: ' + data[0].name;
-            $scope.model.devices.push(data[0]);
-            return $cordovaBluetoothle.stopScan();
-          }
-        }, function (error) {
-          $scope.model.status = 'Error while scanning. ' + JSON.stringify(error);
-          console.log(error);
-          $logService.Log('error', 'Error while scanning. ' + JSON.stringify(error));
-          return $cordovaBluetoothle.stopScan();
-        }, function (notify) {
-          $logService.Log('message', 'notifying scan: ' + JSON.stringify(notify));
-        })
-        .then(function () {
-          // $scope.model.status = 'ending scan...';
-          return $cordovaBluetoothle.isScanning().then(function(isScanning) {
-            // $scope.model.status = isScanning ? 'Scan Not Ended' : 'Scan Ended';
-            if (isScanning) {
-              return $cordovaBluetoothle.stopScan();
+    $scope.getAvailableDevices = function () {
+      //TODO: can I filter here instead of in an if statement below?
+      var params = {};
+
+      ionicReady().then(function () {
+        return $cordovaBluetoothle.initialize(params)
+      })
+      .then(function () {
+        $scope.model.status = 'Bluetooth Initialized!';
+        return $cordovaBluetoothle.startScan(params);
+      })
+      .then(function (data) {
+        $scope.model.status = 'Scanning...';
+        $logService.Log('message', 'scan results: ' + JSON.stringify(data));
+        for(var i=0;i < data.length; i++) {
+          $scope.model.debug += JSON.stringify(data[i]);
+          if (data[i].status === 'scanResult' && data[i].advertisement.isConnectable && data[i].advertisement.localName === "JWB_") {
+            var mfg = "";
+            if(data[i].advertisement.manufacturerData !== null) {
+              try {
+                mfg = $cordovaBluetoothle.encodedStringToBytes(data[i].advertisement.manufacturerData);
+              }
+              catch (err) {
+                $logService.Log('error', 'Error attempting to decode manufacturerData: ' + JSON.stringify(err));
+                $scope.model.debug += " --- " + JSON.stringify(err) + "---";
+              }
+              $scope.model.status += '---Found device: ' + data[i].name + " : " + mfg ;
+              $scope.model.devices.push(data[i]);
             }
-          });
-        });
+          }
+        }
+        return $cordovaBluetoothle.stopScan();
+      })
+      .catch(function(err) {
+        $logService.Log('error', 'Error Getting Available Devices: ' + JSON.stringify(err));
+        $scope.model.debug = JSON.stringify(err);
+        return $cordovaBluetoothle.stopScan();
+      });
     };
 
-    try {
-      if (!DataService.IsPaired()) {
-        getAvailableDevices();
-        $cordovaBluetoothle.isScanning().then(function(isScanning) {
-          if (isScanning) {
-            return $cordovaBluetoothle.stopScan();
-          }
-        });
+    $scope.init = function () {
+      try {
+        if (!DataService.IsPaired()) {
+          $scope.getAvailableDevices();
+        }
+        else {
+          $scope.model.status = "Already Paired: " + $scope.model.chosenDevice;
+        }
       }
-      else {
-        $scope.model.status = "Already Paired: " + $scope.model.chosenDevice;
+      catch (err) {
+        $logService.Log('error', 'error trying to getAvailableDevices: ' + JSON.stringify(err));
+        $scope.model.debug = JSON.stringify(err);
       }
-    }
-    catch (err) {
-      $logService.Log('error', 'error trying to getAvailableDevices: ' + JSON.stringify(err));
-    }
+    };
+
+    $scope.init();
 }]);
