@@ -1,30 +1,21 @@
 <ion-view can-swipe-back="false" view-title="Jewelbot Successfully Paired" hide-back-button="true">
-<ion-content>
-  <div class="content has-header padding">
-    <div class="row">
-      <div class="col"><h1>Yay! You're all set! Your Jewelbot and phone are now connected.</div>
-    </div>
-    <div class="row">
-      <img src="images/header_icon.png" alt="Jewelbots Icon" />
-    </div>
-    <div class="row">
-      So what's next?
-    </div>
-    <div class="row">
-      <h3>Connect with Friends</h3>
-    </div>
-    <div class="row">
-      <p>Lorem ipsum etc etc etc</p>
-    </div>
-    <div class="row">
-      <button class="button button-light" ui-sref="dashboard">
-        Continue   ->
-      </button>
-    </div>
-    <div class="row">
-      <a ui-sref="privacy">Privacy Policy</a>
-    </div>
-  </div>
+	<ion-content>
+		<div class="settings paired">
+			<div class="content">
+				<h1>Yay! You're all set! Your Jewelbot and phone are now connected.</h1>
+				<img class="logo" src="images/icon__logo_small.png" alt="Jewelbots Icon" />
+				<p>So what's next?</p>
+				<h3>Connect with Friends</h3>
+				<p>Lorem ipsum etc etc etc</p>
 
-</ion-content>
+				<a class="continue" ui-sref="dashboard">
+					Continue
+					<img src="images/icon__arrow_right_white.svg" />
+				</a>
+				<p>
+					<a ui-sref="privacy">Privacy Policy</a>
+				</p>
+			</div>
+		</div>
+	</ion-content>
 </ion-view>

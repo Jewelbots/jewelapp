@@ -1,28 +1,30 @@
-<div ng-include src="'templates/menu/top-menu.html'"></div>
-<ion-view can-swipe-back="true" view-title="Device Pairing" hide-back-button="true">
+<ion-view>
+	<ion-content>
+		<div class="settings pair">
+			<div class="content">
+				<h1>Pairing</h1>
+				<p>Available Devices:</p>
+				<div class="list" ng-hide="model.deviceChosen()">
+					<ion-radio ng-repeat="device in model.devices" ng-model="model.chosenDevice" ng-value="device">
+						{{device.name}} - {{device.address}}	
+					</ion-radio>
+				</div>
 
-<ion-content>
+				<div ng-show="model.deviceChosen">
+					<p>Chosen Device:</p>
+					<h3 class="name">{{model.chosenDevice.name}}<span class="phone"></span></h3>
+				</div>
 
-<div class="content has-header padding">
-  Available Devices:
-  <div class="list" ng-hide="model.deviceChosen()">
-    <ion-radio ng-repeat="device in model.devices" ng-model="model.chosenDevice" ng-value="device">
-      {{device.name}} - {{device.address}}
-    </ion-radio>
-  </div>
-  <div ng-show="model.deviceChosen">Chosen Device: {{model.chosenDevice.name}}</div>
-  <button class="button button-neutral" ng-click="pairToDevice(model.chosenDevice.address)">
-    Pair your Jewelbot
-  </button>
-  <ion-spinner icon="dots" ng-hide="model.pairing || model.isPaired"></ion-spinner>
+				<ion-spinner icon="lines" ng-hide="model.pairing || model.isPaired"></ion-spinner>
 
-  <hr>
-  <!-- <p>Status: {{model.status}}</p> -->
-  <!-- <p>Debug: {{model.debug}}</p> -->
-  <div ng-show="model.isPaired">Jewelbot Paired!</div>
-</div>
+				<a class="pair" ng-click="pairToDevice(model.chosenDevice.address)">
+					Pair your Jewelbot
+				</a>
+				<!-- <p>Status: {{model.status}}</p> -->
+				<!-- <p>Debug: {{model.debug}}</p> -->
 
-</ion-content>
+				<div ng-show="model.isPaired"><h3 class="name">Jewelbot Paired!<span class="number"></span></h3></div>
+			</div>
+		</div>
+	</ion-content>
 </ion-view>
-
-

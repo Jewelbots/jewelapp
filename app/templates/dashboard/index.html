@@ -1,36 +1,40 @@
-
 <ion-view>
- <!-- <div ng-include src="'templates/menu/top-menu.html'"></div> -->
- <!-- <div ng-include src="'templates/menu/jewelbots_header.html'"></div> -->
- <ion-content class="center has-header">
-<!--
+	<!-- <div ng-include src="'templates/menu/top-menu.html'"></div> -->
+	<!-- <div ng-include src="'templates/menu/jewelbots_header.html'"></div> -->
+	<ion-content>
+		<!--
 		<div class="friendlist">
 			<div class="content">
 				<div ng-show="!hasFriends()"> <ng-include src="'templates/friends/no-friends.html'"></ng-include></div>
 				<div ng-show="hasFriends()"> <ng-include src="'templates/friends/friends-list.html'"></ng-include></div>
 			</div>
 		</div>
--->
-<div>
-	There are no updates currently required for your device!
-	</div>
-	</ion-content>
-	<!--
-	<div class="attach-to-footer">
-		<ng-include src="'templates/friends/all_circle_states.html'"></ng-include> check for sample with all colors and styles
-	</div>
-	<div ng-show="model.outstandingFriendRequests.length > 0">
-		<div class="attach-to-footer">
-			<jewelbots-menu bind="model.selectedItem"></jewelbots-menu>
-		</div>
-		<ion-footer-bar class="bar-balanced" ng-click="openModal(2)">
-			<div class="title">
-				{{model.outstandingFriendRequests.length || 0 }} Color Request{{ model.outstandingFriendRequests.length > 1 ? "s" : "" }}
+		-->
+		<div class="dashboard home">
+			<div class="content">
+				<h2>Dashboard</h2>
+				<p>
+					There are no updates currently required for your device!
+				</p>
 			</div>
-		</ion-footer-bar>
-	</div>
+		</div>
+		<!--
+		<div class="attach-to-footer">
+			<ng-include src="'templates/friends/all_circle_states.html'"></ng-include> check for sample with all colors and styles
+		</div>
+		<div ng-show="model.outstandingFriendRequests.length > 0">
+			<div class="attach-to-footer">
+				<jewelbots-menu bind="model.selectedItem"></jewelbots-menu>
+			</div>
+			<ion-footer-bar class="bar-balanced" ng-click="openModal(2)">
+				<div class="title">
+					{{model.outstandingFriendRequests.length || 0 }} Color Request{{ model.outstandingFriendRequests.length > 1 ? "s" : "" }}
+				</div>
+			</ion-footer-bar>
+		</div>
 
-	<div ng-show="model.outstandingFriendRequests.length == 0">
-		<div ng-include src="'templates/menu/jewelbots_footer.html'"></div>
-	</div> -->
+		<div ng-show="model.outstandingFriendRequests.length == 0">
+			<div ng-include src="'templates/menu/jewelbots_footer.html'"></div>
+		</div> -->
+	</ion-content>
 </ion-view>
