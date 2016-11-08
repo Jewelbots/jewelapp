@@ -153,7 +153,6 @@ angular.module('jewelApp.controllers')
       };
 
       $scope.sendSMS = function (telephone) {
-        console.log('We got to sendSMS()');
         $logService.Log('sending SMS to number: ' + JSON.stringify(telephone));
         $state.go('sms-verification-screen', { telephone: telephone});
       };

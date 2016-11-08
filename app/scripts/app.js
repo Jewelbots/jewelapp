@@ -300,5 +300,8 @@ angular.module('jewelApp',
       }
     })
     ;
-    $urlRouterProvider.otherwise('/debug-start');
+    // when debugging
+    // $urlRouterProvider.otherwise('/debug-start');
+    // when deploying
+    $urlRouterProvider.otherwise('/home');
 }]);
