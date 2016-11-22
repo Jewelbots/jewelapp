@@ -50,6 +50,9 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         Pair : function (address) {
           $localStorage.set('Connection', address);
         },
+        UnPair : function () {
+          $localStorage.set('Connection', '');
+        },
         GetDeviceId : function () {
           return $localStorage.get('Connection', '');
         },

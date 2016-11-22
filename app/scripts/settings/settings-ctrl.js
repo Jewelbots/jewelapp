@@ -1,13 +1,15 @@
 'use strict';
 angular.module('jewelApp.controllers')
-  .controller('SettingsCtrl', ['$logService','$scope', 'SettingsService', function($logService, $scope, SettingsService){
+  .controller('SettingsCtrl',
+              ['$logService','$scope', 'SettingsService', 'DataService',
+                function($logService, $scope, SettingsService, DataService){
    $scope.model = {
     messages: [],
     settings : {
       mockBle : false,
       mockTelephone : false,
-      telephoneNumber : undefined,
-      bleAddress : undefined
+      telephoneNumber : DataService.GetPhoneNumber(),
+      bleAddress : DataService.GetDeviceId()
     }
    };
    $scope.deleteLog = function () {
@@ -21,5 +23,8 @@ angular.module('jewelApp.controllers')
     $scope.model.messages = $logService.Get('all');
     $scope.model.settings = SettingsService.GetSettings();
    };
+   $scope.unPair = function () {
+      DataService.UnPair();
+    };
    $scope.startUp();
   }]);

@@ -109,108 +109,108 @@ angular.module('jewelApp',
    $urlRouterProvider) {
      $stateProvider
 
-		//-- SECTION 1
-		//-- 1__templates/start/load.html --> App Slpash Screen
-		//-- 1__templates/start/load.html --> App Slpash Screen
-		.state('privacy', {
-			url: '/privacy',
-			controller: 'PrivacyCtrl',
-			templateUrl: 'templates/start/privacy.html'
-		})
-		//-- 1__templates/start/load.html --> App Slpash Screen
+    //-- SECTION 1
+    //-- 1__templates/start/load.html --> App Slpash Screen
+    //-- 1__templates/start/load.html --> App Slpash Screen
+    .state('privacy', {
+      url: '/privacy',
+      controller: 'PrivacyCtrl',
+      templateUrl: 'templates/start/privacy.html'
+    })
+    //-- 1__templates/start/load.html --> App Slpash Screen
 
-		//-- SECTION 2
-		//-- 2__templates/quickstart/news_1.html /news_2.html /news_3.html --> Showed on first load / ...after App update
-		.state('quickstart_news_1', {
-			url: '/quickstart/news_1',
-			//controller: 'NewsCtrl',
-			templateUrl: 'templates/quickstart/news_1.html'
-		})
-		.state('quickstart_news_2', {
-			url: '/quickstart/news_2',
-			//controller: 'NewsCtrl',
-			templateUrl: 'templates/quickstart/news_2.html'
-		})
-		.state('quickstart_news_3', {
-			url: '/quickstart/news_3',
-			//controller: 'NewsCtrl',
-			templateUrl: 'templates/quickstart/news_3.html'
-		})
-		.state('dashboard', {
-			url: '/dashboard/:src',
-			controller: 'DashboardCtrl',
-			templateUrl: 'templates/dashboard/index.html'
-		})
+    //-- SECTION 2
+    //-- 2__templates/quickstart/news_1.html /news_2.html /news_3.html --> Showed on first load / ...after App update
+    .state('quickstart_news_1', {
+      url: '/quickstart/news_1',
+      //controller: 'NewsCtrl',
+      templateUrl: 'templates/quickstart/news_1.html'
+    })
+    .state('quickstart_news_2', {
+      url: '/quickstart/news_2',
+      //controller: 'NewsCtrl',
+      templateUrl: 'templates/quickstart/news_2.html'
+    })
+    .state('quickstart_news_3', {
+      url: '/quickstart/news_3',
+      //controller: 'NewsCtrl',
+      templateUrl: 'templates/quickstart/news_3.html'
+    })
+    .state('dashboard', {
+      url: '/dashboard/:src',
+      controller: 'DashboardCtrl',
+      templateUrl: 'templates/dashboard/index.html'
+    })
 
-		//-- SECTION 3
+    //-- SECTION 3
 
-		//-- SECTION 4
-		//-- 4__templates/dashboard/dashboard_nofriends.html --> user has no friend
-		.state('dashboard_nofriends', {
-			url: '/dashboard_nofriends/',
-			//controller: 'DashboardCtrl',
-			templateUrl: 'templates/dashboard/dashboard_nofriends.html'
-		})
-		//-- 4__templates/dashboard/dashboard_nofriends_addphone.html --> user has no friend an is promted to add a phone number / if unsuccesful promt for "Access to Contacts"
-		.state('dashboard_nofriends_addphone', {
-			url: '/dashboard_nofriends_addphone/',
-			//controller: 'DashboardCtrl',
-			templateUrl: 'templates/dashboard/dashboard_nofriends_addphone.html'
-		})
-		.state('dashboard_addphone_error', {
-			url: '/dashboard_addphone_error/',
-			//controller: 'DashboardCtrl',
-			templateUrl: 'templates/dashboard/dashboard_addphone_error.html'
-		})
-		.state('dashboard_confirm_SMS', {
-			url: '/dashboard_confirm_SMS/',
-			//controller: 'DashboardCtrl',
-			templateUrl: 'templates/dashboard/dashboard_confirm_SMS.html'
-		})
-		.state('dashboard_send_SMS', {
-			url: '/dashboard_send_SMS/',
-			//controller: 'DashboardCtrl',
-			templateUrl: 'templates/dashboard/dashboard_send_SMS.html'
-		})
-		.state('dashboard_hasfriends', {
-			url: '/dashboard_hasfriends/',
-			//controller: 'DashboardCtrl',
-			templateUrl: 'templates/dashboard/dashboard_hasfriends.html'
-		})
+    //-- SECTION 4
+    //-- 4__templates/dashboard/dashboard_nofriends.html --> user has no friend
+    .state('dashboard_nofriends', {
+      url: '/dashboard_nofriends/',
+      //controller: 'DashboardCtrl',
+      templateUrl: 'templates/dashboard/dashboard_nofriends.html'
+    })
+    //-- 4__templates/dashboard/dashboard_nofriends_addphone.html --> user has no friend an is promted to add a phone number / if unsuccesful promt for "Access to Contacts"
+    .state('dashboard_nofriends_addphone', {
+      url: '/dashboard_nofriends_addphone/',
+      //controller: 'DashboardCtrl',
+      templateUrl: 'templates/dashboard/dashboard_nofriends_addphone.html'
+    })
+    .state('dashboard_addphone_error', {
+      url: '/dashboard_addphone_error/',
+      //controller: 'DashboardCtrl',
+      templateUrl: 'templates/dashboard/dashboard_addphone_error.html'
+    })
+    .state('dashboard_confirm_SMS', {
+      url: '/dashboard_confirm_SMS/',
+      //controller: 'DashboardCtrl',
+      templateUrl: 'templates/dashboard/dashboard_confirm_SMS.html'
+    })
+    .state('dashboard_send_SMS', {
+      url: '/dashboard_send_SMS/',
+      //controller: 'DashboardCtrl',
+      templateUrl: 'templates/dashboard/dashboard_send_SMS.html'
+    })
+    .state('dashboard_hasfriends', {
+      url: '/dashboard_hasfriends/',
+      //controller: 'DashboardCtrl',
+      templateUrl: 'templates/dashboard/dashboard_hasfriends.html'
+    })
     .state('friends', {
       url: '/friends',
       controller: 'FriendsCtrl',
       templateUrl: 'templates/friends/friends-list.html'
     })
-		//-- 5__templates/friends/friend_editmodal.html --> clicked on friend on dashboard, opens this modal to 1) change color, delete as friend
-		.state('friend_editmodal', {
-			url: '/friend_editmodal',
-			controller: 'DashboardCtrl',
-			templateUrl: 'templates/friends/friend_editmodal.html'
-		})
-		//-- 6__templates/friend_requests/friend_requests.html --> preferred
-		.state('friend_requests', {
-			url: '/friend_requests',
-			controller: 'DashboardCtrl',
-			templateUrl: 'templates/friend_requests/friend_requests.html'
-		})
-		.state('friend_requests_alt', {
-			url: '/friend_requests_alt',
-			controller: 'DashboardCtrl',
-			templateUrl: 'templates/friend_requests/friend_requests_alt.html'
-		})
-		//-- 7__templates/contact_list/contact_list.html --> add states to listed friends to activate etc.. need sleep
-		.state('contact_list', {
-			url: '/contact_list',
-			controller: 'DashboardCtrl',
-			templateUrl: 'templates/contact_list/contact_list.html'
-		})
-		//-- 9__templates/error_messages/error_nocolorselected.html -->
-		.state('error_nocolorselected', {
-			url: '/error_nocolorselected',
-			controller: 'DashboardCtrl',
-			templateUrl: 'templates/error_messages/error_nocolorselected.html'
-		})
+    //-- 5__templates/friends/friend_editmodal.html --> clicked on friend on dashboard, opens this modal to 1) change color, delete as friend
+    .state('friend_editmodal', {
+      url: '/friend_editmodal',
+      controller: 'DashboardCtrl',
+      templateUrl: 'templates/friends/friend_editmodal.html'
+    })
+    //-- 6__templates/friend_requests/friend_requests.html --> preferred
+    .state('friend_requests', {
+      url: '/friend_requests',
+      controller: 'DashboardCtrl',
+      templateUrl: 'templates/friend_requests/friend_requests.html'
+    })
+    .state('friend_requests_alt', {
+      url: '/friend_requests_alt',
+      controller: 'DashboardCtrl',
+      templateUrl: 'templates/friend_requests/friend_requests_alt.html'
+    })
+    //-- 7__templates/contact_list/contact_list.html --> add states to listed friends to activate etc.. need sleep
+    .state('contact_list', {
+      url: '/contact_list',
+      controller: 'DashboardCtrl',
+      templateUrl: 'templates/contact_list/contact_list.html'
+    })
+    //-- 9__templates/error_messages/error_nocolorselected.html -->
+    .state('error_nocolorselected', {
+      url: '/error_nocolorselected',
+      controller: 'DashboardCtrl',
+      templateUrl: 'templates/error_messages/error_nocolorselected.html'
+    })
 
     .state('debug-start', {
       url: '/debug-start',

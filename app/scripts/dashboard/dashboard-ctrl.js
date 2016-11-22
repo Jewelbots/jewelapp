@@ -31,23 +31,23 @@ angular.module('jewelApp.controllers')
           $cordovaDialogs.alert('', 'Your phone number has been verified', 'OK');
           delete $stateParams.src;
         }
-        $ionicModal.fromTemplateUrl('templates/friends/add-friends.html', {
-          id: '1',
-          scope: $scope,
-          animation: 'slide-in-up'
-        }).then(function (modal) {
-          $scope.modal1 = modal;
-        });
+        //$ionicModal.fromTemplateUrl('templates/friends/add-friends.html', {
+          //id: '1',
+          //scope: $scope,
+          //animation: 'slide-in-up'
+        //}).then(function (modal) {
+          //$scope.modal1 = modal;
+        //});
         $scope.model.phoneNumber = UserService.GetPhoneNumber();
-        $scope.checkFriendRequests();
-        $ionicModal.fromTemplateUrl('templates/friends/friend-requests.html', {
-          id: '2',
-          scope: $scope,
-          animation: 'slide-in-up'
-        }).then(function (modal) {
-          $scope.modal2 = modal;
-        });
-        $scope.getFriends();
+        //$scope.checkFriendRequests();
+        //$ionicModal.fromTemplateUrl('templates/friends/friend-requests.html', {
+          //id: '2',
+          //scope: $scope,
+          //animation: 'slide-in-up'
+        //}).then(function (modal) {
+          //$scope.modal2 = modal;
+        //});
+        //$scope.getFriends();
       };
 
       $scope.allowedToAddFriends = function () {
@@ -59,6 +59,7 @@ angular.module('jewelApp.controllers')
       $scope.menu = {
         selectedMenuItem : ''
       };
+
       $scope.getFriends = function () {
         $scope.model.friends = UserService.GetFriends();
       };
@@ -71,7 +72,6 @@ angular.module('jewelApp.controllers')
         selectedContacts : [],
         telephone: ''
       };
-
       $scope.openModal = function (index) {
         if(+index === 1) {
           $scope.modal1.show();
