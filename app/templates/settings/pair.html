@@ -1,30 +1,36 @@
 <ion-view>
-	<ion-content>
-		<div class="settings pair">
-			<div class="content">
-				<h1>Pairing</h1>
-				<p>Available Devices:</p>
-				<div class="list" ng-hide="model.deviceChosen()">
-					<ion-radio ng-repeat="device in model.devices" ng-model="model.chosenDevice" ng-value="device">
-						{{device.name}} - {{device.address}}	
-					</ion-radio>
-				</div>
+  <ion-content>
+    <div class="settings pair">
+      <div class="content">
+        <h1>Pairing</h1>
+        <p>Available Devices:</p>
+        <div class="list" ng-hide="model.deviceChosen()">
+          <ion-radio ng-repeat="device in model.devices" ng-model="model.chosenDevice" ng-value="device">
+            {{device.name}} - {{device.address}}
+          </ion-radio>
+        </div>
 
-				<div ng-show="model.deviceChosen">
-					<p>Chosen Device:</p>
-					<h3 class="name">{{model.chosenDevice.name}}<span class="phone"></span></h3>
-				</div>
+        <div ng-show="model.deviceChosen">
+          <p>Chosen Device:</p>
+          <h3 class="name">{{model.chosenDevice.name}}<span class="phone"></span></h3>
+        </div>
 
-				<ion-spinner icon="lines" ng-hide="model.pairing || model.isPaired"></ion-spinner>
+        <ion-spinner icon="lines" ng-hide="model.pairing || model.isPaired"></ion-spinner>
 
-				<a class="pair" ng-click="pairToDevice(model.chosenDevice.address)">
-					Pair your Jewelbot
-				</a>
-				<!-- <p>Status: {{model.status}}</p> -->
-				<!-- <p>Debug: {{model.debug}}</p> -->
-
-				<div ng-show="model.isPaired"><h3 class="name">Jewelbot Paired!<span class="number"></span></h3></div>
-			</div>
-		</div>
-	</ion-content>
+        <a class="pair" ng-click="pairToDevice(model.chosenDevice.address)">
+          Pair your Jewelbot
+        </a>
+        <!-- <p>Status: {{model.status}}</p> -->
+        <!-- <p>Debug: {{model.debug}}</p> -->
+        <div ng-show="model.error.length > 0">
+          <p>{{model.error}}</p>
+          <a href="#">Help</a><br>
+          <button ng-click="retry()">Retry</button>
+        </div>
+        <div ng-show="model.isPaired">
+          <h3 class="name">Jewelbot Paired!<span class="number"></span></h3>
+        </div>
+      </div>
+    </div>
+  </ion-content>
 </ion-view>
