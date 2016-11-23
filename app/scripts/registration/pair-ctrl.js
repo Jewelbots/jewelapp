@@ -85,6 +85,7 @@ angular.module('jewelApp.controllers')
       .catch(function(err) {
         $logService.Log('error', 'Error Getting Available Devices: ' + JSON.stringify(err));
         $scope.model.debug = JSON.stringify(err);
+        $scope.model.error = "There was an error trying to find your Jewelbot. Please make sure your Jewelbot is turned on, in pairing mode, and near your mobile device.";
         return $cordovaBluetoothle.stopScan();
       });
     };
@@ -101,8 +102,13 @@ angular.module('jewelApp.controllers')
       catch (err) {
         $logService.Log('error', 'error trying to getAvailableDevices: ' + JSON.stringify(err));
         $scope.model.debug = JSON.stringify(err);
+        $scope.model.error = "There was an error trying to get a device. Please make sure your Jewelbot is turned on, in pairing mode, and near your mobile device.";
       }
     };
 
+    $scope.retry = function () {
+      $scope.model.error = "";
+      $scope.getAvailableDevices();
+    };
     $scope.init();
 }]);

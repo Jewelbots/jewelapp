@@ -50,6 +50,9 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         Pair : function (address) {
           $localStorage.set('Connection', address);
         },
+        UnPair : function () {
+          $localStorage.set('Connection', '');
+        },
         GetDeviceId : function () {
           return $localStorage.get('Connection', '');
         },
@@ -106,6 +109,15 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         },
         GetSettings : function () {
           return $localStorage.getObject('settings', {});
+        },
+        GetFirmwareVersion : function () {
+          return $localStorage.getObject('firmwareVersion', '');
+        },
+        SetFirmwareVersion : function (version) {
+          $localStorage.setObject('firmwareVersion', version);
+        },
+        GetLatestFirmwareVersion : function() {
+          //TODO: this will need a server-side implementation with DFU feature
         }
       };
       return service;
