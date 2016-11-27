@@ -91,7 +91,7 @@ angular.module('jewelApp.controllers')
           var friend = packed[i];
           // a valid friend should never have a 0 as the first element
           if(friend[0] !== 0) {
-            friends.push({index: friend[0], address: friend.slice(1,7).reverse().join(':'), color: colors[friend[7]]});
+            friends.push({index: friend[0], address: friend.slice(1,7).reverse().join(':'), color: colors[friend[7]]}, name: "Friend " + friend[0]);
             //TODO: lookup friend name from db if available otherwise Edit Name
           }
         }

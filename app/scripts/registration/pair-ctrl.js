@@ -8,6 +8,7 @@ angular.module('jewelApp.controllers')
   '$state',
   '$timeout',
   'DataService',
+  '$q',
   function(
   $cordovaBluetoothle,
   ionicReady,
@@ -15,7 +16,8 @@ angular.module('jewelApp.controllers')
   $scope,
   $state,
   $timeout,
-  DataService
+  DataService,
+  $q
   ){
     $scope.model = {
       status : 'starting...',
@@ -57,9 +59,8 @@ angular.module('jewelApp.controllers')
       ionicReady().then(function () {
         return $cordovaBluetoothle.initialize(params)
       })
-      .then(function () {
-        //TODO: handle for bluetooth not on
-        $scope.model.status = 'Bluetooth Initialized!';
+      .then(function (data) {
+        $scope.model.debug += "init: " + JSON.stringify(data)
         return $cordovaBluetoothle.startScan(params);
       })
       .then(function (data) {
@@ -82,20 +83,22 @@ angular.module('jewelApp.controllers')
             }
           }
         }
+        if($scope.model.devices.length === 0) {
+          $scope.model.offerRetry = true;
+          $scope.model.error = "We couldn't find your Jewelbot! Please make sure your Jewelbot is turned on, in pairing mode, and near your mobile device."
+        }
         return $cordovaBluetoothle.stopScan();
       })
       .catch(function(err) {
-        $logService.Log('error', 'Error Getting Available Devices: ' + JSON.stringify(err));
-        $scope.model.debug = JSON.stringify(err);
-        $scope.model.error = "There was an error trying to find your Jewelbot. Please make sure your Jewelbot is turned on, in pairing mode, and near your mobile device.";
+        if(err.error === "enable") {
+          $scope.model.error = "Please enable bluetooth on your mobile device and try again."
+        } else {
+          $logService.Log('error', 'Error Getting Available Devices: ' + JSON.stringify(err));
+          $scope.model.debug = JSON.stringify(err);
+          $scope.model.error = "There was an error trying to find your Jewelbot. Please make sure your Jewelbot is turned on, in pairing mode, and near your mobile device.";
+        }
         $scope.model.offerRetry = true;
         return $cordovaBluetoothle.stopScan();
-      })
-      .finally(function() {
-        if($scope.model.devices.length === 0) {
-          $scope.model.offerRetry = true;
-          $scope.model.error = "No bluetooth devices found. Please make sure your Jewelbot is turned on, in pairing mode, and near your mobile device."
-        }
       })
     };
 
