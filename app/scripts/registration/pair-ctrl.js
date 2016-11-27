@@ -23,6 +23,7 @@ angular.module('jewelApp.controllers')
       devices : [],
       pairing: false,
       isPaired : false,
+      offerRetry : false,
       deviceChosen : function () {
         return Object.keys($scope.model.chosenDevice).length !== 0;
       }
@@ -50,13 +51,14 @@ angular.module('jewelApp.controllers')
     };
 
     $scope.getAvailableDevices = function () {
-      //TODO: can I filter here instead of in an if statement below?
+      //TODO: can it filter here instead of in an if statement below?
       var params = {};
 
       ionicReady().then(function () {
         return $cordovaBluetoothle.initialize(params)
       })
       .then(function () {
+        //TODO: handle for bluetooth not on
         $scope.model.status = 'Bluetooth Initialized!';
         return $cordovaBluetoothle.startScan(params);
       })
@@ -86,8 +88,15 @@ angular.module('jewelApp.controllers')
         $logService.Log('error', 'Error Getting Available Devices: ' + JSON.stringify(err));
         $scope.model.debug = JSON.stringify(err);
         $scope.model.error = "There was an error trying to find your Jewelbot. Please make sure your Jewelbot is turned on, in pairing mode, and near your mobile device.";
+        $scope.model.offerRetry = true;
         return $cordovaBluetoothle.stopScan();
-      });
+      })
+      .finally(function() {
+        if($scope.model.devices.length === 0) {
+          $scope.model.offerRetry = true;
+          $scope.model.error = "No bluetooth devices found. Please make sure your Jewelbot is turned on, in pairing mode, and near your mobile device."
+        }
+      })
     };
 
     $scope.init = function () {
@@ -103,11 +112,13 @@ angular.module('jewelApp.controllers')
         $logService.Log('error', 'error trying to getAvailableDevices: ' + JSON.stringify(err));
         $scope.model.debug = JSON.stringify(err);
         $scope.model.error = "There was an error trying to get a device. Please make sure your Jewelbot is turned on, in pairing mode, and near your mobile device.";
+        $scope.model.offerRetry = true;
       }
     };
 
     $scope.retry = function () {
       $scope.model.error = "";
+      $scope.model.offerRetry = false;
       $scope.getAvailableDevices();
     };
     $scope.init();
