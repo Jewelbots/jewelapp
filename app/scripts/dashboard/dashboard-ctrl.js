@@ -119,6 +119,10 @@ angular.module('jewelApp.controllers')
            * there are issues with close() and ios10 according to the GH issues.
            * so, currently, this works, but only in a situation where you open the app fresh.
            * calling connect() when already connected doesn't *appear* to have adverse effects.
+           *
+           * another option might be having a catch-all sitch in the catch() block that
+           * will hard disconnect/close the session and offer a button to try again, similar to
+           * what happens in pair-ctrl.js
            */
           return $timeout($cordovaBluetoothle.connect(params))
         })
