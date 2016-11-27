@@ -25,6 +25,12 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
           }
           return friendsObject.friends;
         },
+        SetFriends: function (friends) {
+          var friendsObject = {
+            friends: friends
+          };
+          $localStorage.setObject('Friends', friendsObject);
+        },
         AddFriend : function (friendRequest) {
           var q = $q.defer();
           try {

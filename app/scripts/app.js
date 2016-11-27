@@ -74,15 +74,15 @@ angular.module('jewelApp',
         }
       }
     }).then(function(push) {
-      $logService.Log('message', 'This is push: ' + JSON.stringify(push));
+      //$logService.Log('message', 'This is push: ' + JSON.stringify(push));
       return $cordovaPushV5.register();
     }).then(function (registration) {
-      $logService.Log('message', 'we were registered: ' + JSON.stringify(registration));
+      //$logService.Log('message', 'we were registered: ' + JSON.stringify(registration));
       return $cordovaPushV5.onNotification(function (notification) {
-        $logService.Log('message', 'we were notified: ' + JSON.stringify(notification));
+        //$logService.Log('message', 'we were notified: ' + JSON.stringify(notification));
       });
     }).then(function(notification) {
-      $logService.Log('message', 'received push notification, data is: '+ JSON.stringify(notification));
+      //$logService.Log('message', 'received push notification, data is: '+ JSON.stringify(notification));
     });
 
     if (navigator.contacts === undefined) {

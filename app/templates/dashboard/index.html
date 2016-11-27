@@ -13,12 +13,18 @@
     <div class="dashboard home">
       <div class="content">
         <h2>Dashboard</h2>
+        <button ng-click="getFirmwareRevision()">Check Firmware</button>
         <p>
           {{model.updateRequired}}
         </p>
         <p>{{model.message}}</p>
+        <a class="continue" ui-sref="friends">
+          See Friends
+          <img src="images/icon__arrow_right_white.svg" />
+        </a>
       </div>
     </div>
+
     <!--
     <div class="attach-to-footer">
       <ng-include src="'templates/friends/all_circle_states.html'"></ng-include> check for sample with all colors and styles
