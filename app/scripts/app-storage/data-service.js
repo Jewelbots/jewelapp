@@ -124,7 +124,42 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         },
         GetLatestFirmwareVersion : function() {
           //TODO: this will need a server-side implementation with DFU feature
-        }
-      };
-      return service;
-    }]);
+          //and probably cache it for if no connectivity with SetFirmwareVersion
+          return this.GetMinimumFirmwareVersion();
+        },
+        GetMinimumFirmwareVersion : function() {
+          //TODO: actually set a value WHEN version checking works
+          return 0;
+        },
+        FirmwareUpdateRequired : function(local) {
+          var remote = this.GetLatestFirmwareVersion();
+          var VPAT = /^\d+(\.\d+){0,2}$/;
+
+          if (!local || !remote || local.length === 0 || remote.length === 0) {
+              return true;
+          }
+          if (local == remote) {
+              return false;
+          }
+          if (VPAT.test(local) && VPAT.test(remote)) {
+              var lparts = local.split('.');
+              while(lparts.length < 3)
+                  lparts.push("0");
+              var rparts = remote.split('.');
+              while (rparts.length < 3)
+                  rparts.push("0");
+              for (var i=0; i<3; i++) {
+                  var l = parseInt(lparts[i], 10);
+                  var r = parseInt(rparts[i], 10);
+                  if (l === r)
+                      continue;
+                  return l < r;
+              }
+              return false;
+          } else {
+              return local <= remote;
+          }
+      }
+    }
+  return service;
+}]);

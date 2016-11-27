@@ -148,18 +148,20 @@ angular.module('jewelApp.controllers')
         .then(function(response) {
           var versionBytes = $cordovaBluetoothle.encodedStringToBytes(response.value);
           var version = $cordovaBluetoothle.bytesToString(versionBytes);
-          // here it would make sense to store current version
-          // DataService.SetFirmwareVersion()
-          // and then check against server version
-          // DataService.GetLatestFirmwareVersion()
+          // TODO: when this is workable, check against server version
           // to kick off DFU process as necessary
           // it also makes sense to check against a minimum firmware version
           // before app DFU is implemented to warn them to upgrade
           // but this can't be done until 2a26 broadcasts appropriately
+          // so obviously this would need to be updated to not hardcode a ver #
 
-          // obviously this would need to be updated to drive things
+          version = 0;
           $scope.model.message += version;
-          $scope.model.updateRequired = "No updates required!";
+          if(DataService.FirmwareUpdateRequired(version)) {
+            $scope.model.updateRequired = "You need to update!";
+          } else {
+            $scope.model.updateRequired = "No updates required!";
+          }
         })
         .catch(function(err) {
           $logService.Log('error', 'failed getFirmwareRevision: ' + JSON.stringify(err));
