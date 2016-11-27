@@ -10,22 +10,25 @@
           </ion-radio>
         </div>
 
-        <div ng-show="model.deviceChosen">
+        <div ng-show="model.deviceChosen()">
           <p>Chosen Device:</p>
           <h3 class="name">{{model.chosenDevice.name}}<span class="phone"></span></h3>
         </div>
 
         <ion-spinner icon="lines" ng-hide="model.pairing || model.isPaired"></ion-spinner>
 
-        <a class="pair" ng-click="pairToDevice(model.chosenDevice.address)">
+
+        <a class="pair" ng-show="model.deviceChosen()" ng-click="pairToDevice(model.chosenDevice.address)">
           Pair your Jewelbot
         </a>
         <!-- <p>Status: {{model.status}}</p> -->
-        <!-- <p>Debug: {{model.debug}}</p> -->
+        <!--<p>Debug: {{model.debug}}</p>-->
         <div ng-show="model.error.length > 0">
           <p>{{model.error}}</p>
           <a href="#">Help</a><br>
-          <button ng-click="retry()">Retry</button>
+          <a class="pair" ng-show="model.offerRetry" ng-click="retry()">
+            Try Again!
+          </a>
         </div>
         <div ng-show="model.isPaired">
           <h3 class="name">Jewelbot Paired!<span class="number"></span></h3>
