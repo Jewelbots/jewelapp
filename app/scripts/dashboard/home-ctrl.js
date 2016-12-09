@@ -13,7 +13,7 @@ angular.module('jewelApp.controllers')
       DataService) {
       $scope.isPaired = function() {
         if (DataService.IsPaired()) {
-          $state.go('dashboard');
+          $state.go('friends-list');
         }
       };
       $scope.goToPairing = function() {

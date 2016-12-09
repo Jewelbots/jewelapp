@@ -14,8 +14,8 @@ angular.module('jewelApp.controllers')
       $state.transitionTo('home');
     }
     else {
-      $logService.Log('message', 'paired-> to dashboard!');
-      $state.transitionTo('dashboard');
+      $logService.Log('message', 'paired-> to friends-list!');
+      $state.transitionTo('friends-list');
     }
 
   }]);

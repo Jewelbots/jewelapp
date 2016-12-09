@@ -55,6 +55,7 @@ angular.module('jewelApp.controllers')
         })
         .then(function(response) {
           var rawFriendsList = $cordovaBluetoothle.encodedStringToBytes(response.value);
+          $cordovaBluetoothle.disconnect({address: deviceId});
           if(rawFriendsList[0] === 0) {
             // if first byte is 0 then friends list is empty
             $scope.model.friends = [];

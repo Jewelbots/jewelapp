@@ -41,7 +41,7 @@ angular.module('jewelApp.controllers')
                 $scope.model.pairing = false;
                 $scope.model.isPaired = true;
                 DataService.Pair(success.address);
-                return $state.go('pair-success');
+                return $state.go('friends');
               })
               .error(function (err) {
                 $scope.model.status = 'Error While Connecting: ' + JSON.stringify(err);
