@@ -3,7 +3,7 @@ Jewelbots App for iOS/Android
 
 # Setup
 
-TBA
+TBA, this is an unfinished application. If you like, you can ask us questions on Slack [here](https://wt-sara-jewelbots-com-0.run.webtask.io/jewelbots-signup).
 
 # Build
 
