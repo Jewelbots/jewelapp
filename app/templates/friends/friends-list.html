@@ -3,11 +3,11 @@
 
 <ion-view can-swipe-back="true">
   <ion-content class="center has-header">
-    <!--<span>{{model.message}}</span>-->
     <div ng-show="model.friends.length == 0" class="clear">
       <div class="friend-name">No friends yet! Edit me for instructions on how to get some!</div>
     </div>
-    <p>{{model.message}}</p>
+    <p>{{model}}</p>
+    <p>{{model.updateRequired}}</p>
     <div ng-show="model.friends.length > 0" class="card" ng-repeat="friend in model.friends">
       <div class="item">
         <div>

@@ -299,7 +299,11 @@ angular.module('jewelApp',
         }
       }
     })
-    ;
+    .state('needs-update', {
+      url: '/needs-update',
+      templateUrl: 'templates/friends/needs-update.html'
+    })
+
     // when debugging
     // $urlRouterProvider.otherwise('/debug-start');
     // when deploying

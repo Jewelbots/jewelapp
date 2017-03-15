@@ -25,14 +25,17 @@ angular.module('jewelApp.controllers')
       $scope.model = {
         message: 'Friends!',
         localFriends: DataService.GetFriends(),
+        firmware: DataService.getFirmwareRevision(),
         deviceFriends: [],
         friends: []
       };
 
       $scope.startup = function(){
-        $scope.ReadFriends();
+          $scope.ReadFriends();
       };
+      //TODO this should be in a central place, not sure where that is right now
 
+    
       // TODO: this should go into a service layer
       $scope.ReadFriends = function() {
         var deviceId = DataService.GetDeviceId();

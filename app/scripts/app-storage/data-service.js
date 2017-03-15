@@ -2,11 +2,13 @@
 angular.module('jewelApp.services')//Todo: Implement Parse.com calls
   .factory('DataService', [
     '$localStorage',
+    '$cordovaBluetoothle',
     '$logService',
     '$q',
     'Parse',
     function(
       $localStorage,
+      $cordovaBluetoothle,
       $logService,
       $q,
       Parse) {
@@ -47,8 +49,6 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
             q.reject(error);
           }
           return q.promise;
-
-
         },
         IsPaired : function () {
           return $localStorage.get('Connection', '').length > 0;
@@ -134,14 +134,16 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
         FirmwareUpdateRequired : function(local) {
           var remote = this.GetLatestFirmwareVersion();
           var VPAT = /^\d+(\.\d+){0,2}$/;
-
+          //this is for testing, please remove
+          return false;
           if (!local || !remote || local.length === 0 || remote.length === 0) {
               return true;
           }
           if (local == remote) {
               return false;
           }
-          if (VPAT.test(local) && VPAT.test(remote)) {
+        /* BELOW IS USING AN OLD FORMAT TO PARSE, MAY NEED LATER
+        if (VPAT.test(local) && VPAT.test(remote)) {
               var lparts = local.split('.');
               while(lparts.length < 3)
                   lparts.push("0");
@@ -156,7 +158,8 @@ angular.module('jewelApp.services')//Todo: Implement Parse.com calls
                   return l < r;
               }
               return false;
-          } else {
+          } */
+           else {
               return local <= remote;
           }
       }

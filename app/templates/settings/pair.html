@@ -3,13 +3,14 @@
     <div class="settings pair">
       <div class="content">
         <h1>Pairing</h1>
+
         <p>Available Devices:</p>
         <div class="list" ng-hide="model.deviceChosen()">
           <ion-radio ng-repeat="device in model.devices" ng-model="model.chosenDevice" ng-value="device">
             {{device.name}} - {{device.address}}
           </ion-radio>
         </div>
-
+        <div>{{model.error}}</div>
         <div ng-show="model.deviceChosen()">
           <p>Chosen Device:</p>
           <h3 class="name">{{model.chosenDevice.name}}<span class="phone"></span></h3>
@@ -24,13 +25,14 @@
         <!-- <p>Status: {{model.status}}</p> -->
         <!--<p>Debug: {{model.debug}}</p>-->
         <div ng-show="model.error.length > 0">
-          <p>{{model.error}}</p>
+
           <a class="pair" ng-show="model.offerRetry" ng-click="retry()">
             Try Again!
           </a>
         </div>
         <div ng-show="model.isPaired">
           <h3 class="name">Jewelbot Paired!<span class="number"></span></h3>
+          <div>{{model.status}}</div>
         </div>
       </div>
     </div>

@@ -38,13 +38,25 @@ angular.module('jewelApp.controllers')
           .then(function () {
             return $cordovaBluetoothle.connect({address: address})
               .then( function (success) {
+                $logService.Log('we are in this if');
+
                 $scope.model.pairing = false;
                 $scope.model.isPaired = true;
                 DataService.Pair(success.address);
-                return $state.go('friends');
+                $logService.Log('before NeedsFirmwareUpdate');
+
+                if($scope.NeedsFirmwareUpdate()){
+                  $logService.Log('we are in the wrong place, just not going');
+                  return $state.go('needs-update');
+                }
+                else{
+                  $logService.Log('we are in the right place, just not going');
+                  return $state.go('friends');
+                }
               })
               .error(function (err) {
                 $scope.model.status = 'Error While Connecting: ' + JSON.stringify(err);
+                $logService.Log('Error While Connecting: ' + JSON.stringify(err));
                 return $cordovaBluetoothle.disconnect(address); })
               .notify(function (notify) {
                 $logService.Log('message', 'still trying to connect: ' + JSON.stringify(notify));
@@ -109,6 +121,7 @@ angular.module('jewelApp.controllers')
         }
         else {
           $scope.model.status = "Already Paired: " + $scope.model.chosenDevice;
+          return $state.go('friends');
         }
       }
       catch (err) {
@@ -124,5 +137,54 @@ angular.module('jewelApp.controllers')
       $scope.model.offerRetry = false;
       $scope.getAvailableDevices();
     };
+    $scope.NeedsFirmwareUpdate = function () {
+    var deviceId = DataService.GetDeviceId();
+    var params = {address: deviceId};
+
+    var result = $cordovaBluetoothle.initialize({'request': true})
+    .then(function (response) {
+      $logService.Log(response);
+      return $timeout($cordovaBluetoothle.connect({address: deviceId}))
+    })
+    .then(function(response) {
+      $logService.Log(response);
+      return $cordovaBluetoothle.services({address: deviceId})
+    })
+    .then(function(response) {
+      $logService.Log(response);
+      return $cordovaBluetoothle.characteristics({address: deviceId, service: "180A"})
+    })
+    .then(function(response) {
+      $logService.Log(response);
+      return $cordovaBluetoothle.read({address: DataService.GetDeviceId(), service: "180A", characteristic: "2A26"})
+    })
+    .then(function(response) {
+      var versionBytes = $cordovaBluetoothle.encodedStringToBytes(response.value);
+      var version = $cordovaBluetoothle.bytesToString(versionBytes);
+      // TODO: when this is workable, check against server version
+      // to kick off DFU process as necessary
+      // it also makes sense to check against a minimum firmware version
+      // before app DFU is implemented to warn them to upgrade
+      // but this can't be done until 2a26 broadcasts appropriately
+      // so obviously this would need to be updated to not hardcode a ver #
+      $logService.Log('actual version:' + version);
+      $logService.Log('version:' + DataService.FirmwareUpdateRequired(version));
+      //version = 0;
+      if(DataService.FirmwareUpdateRequired(version)) {
+        $logService.Log('returned true');
+
+        return true;
+
+      } else {
+        $logService.Log('returned false');
+
+        return false;
+
+      }
+      })
+    .catch(function(err) {
+      $logService.Log('error', 'failed getFirmware Revision: ' + JSON.stringify(err));
+    });
+  };
     $scope.init();
 }]);

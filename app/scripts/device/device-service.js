@@ -136,5 +136,4 @@ angular.module('jewelApp.services')
 
       return svc;
     }
-  ])
-;
+  ]);
