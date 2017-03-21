@@ -1,13 +1,12 @@
 <div ng-include src="'templates/menu/top-menu.html'"></div>
 <div ng-include src="'templates/menu/jewelbots_header.html'"></div>
 
-<ion-view can-swipe-back="true">
+ <ion-view can-swipe-back="true">
   <ion-content class="center has-header">
     <div ng-show="model.friends.length == 0" class="clear">
       <div class="friend-name">No friends yet! Edit me for instructions on how to get some!</div>
     </div>
-    <p>{{model}}</p>
-    <p>{{model.updateRequired}}</p>
+     <p>{{model.message}}</p>
     <div ng-show="model.friends.length > 0" class="card" ng-repeat="friend in model.friends">
       <div class="item">
         <div>
@@ -17,4 +16,4 @@
       </div>
     </div>
   </ion-content>
-</ion-view>
+</ion-view> 

@@ -177,8 +177,8 @@ angular.module('jewelApp',
       //controller: 'DashboardCtrl',
       templateUrl: 'templates/dashboard/dashboard_hasfriends.html'
     })
-    .state('friends', {
-      url: '/friends',
+    .state('friends-list', {
+      url: '/friends-list',
       controller: 'FriendsCtrl',
       templateUrl: 'templates/friends/friends-list.html'
     })

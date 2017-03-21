@@ -25,19 +25,21 @@ angular.module('jewelApp.controllers')
       $scope.model = {
         message: 'Friends!',
         localFriends: DataService.GetFriends(),
-        firmware: DataService.getFirmwareRevision(),
         deviceFriends: [],
         friends: []
       };
 
       $scope.startup = function(){
-          $scope.ReadFriends();
+        $logService.Log('Made it into startup');
+        $scope.ReadFriends();
       };
       //TODO this should be in a central place, not sure where that is right now
 
-    
+
       // TODO: this should go into a service layer
       $scope.ReadFriends = function() {
+        $logService.Log('Made it into read friends');
+
         var deviceId = DataService.GetDeviceId();
         var friendsService = "63400001-1A1E-5704-0A53-844BD14254A1"; //device service address for friends list
         var friendsWriteChar = "63400003-1A1E-5704-0A53-844BD14254A1"; //characteristic address for writing friends list

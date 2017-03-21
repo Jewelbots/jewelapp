@@ -38,21 +38,10 @@ angular.module('jewelApp.controllers')
           .then(function () {
             return $cordovaBluetoothle.connect({address: address})
               .then( function (success) {
-                $logService.Log('we are in this if');
-
                 $scope.model.pairing = false;
                 $scope.model.isPaired = true;
                 DataService.Pair(success.address);
-                $logService.Log('before NeedsFirmwareUpdate');
-
-                if($scope.NeedsFirmwareUpdate()){
-                  $logService.Log('we are in the wrong place, just not going');
-                  return $state.go('needs-update');
-                }
-                else{
-                  $logService.Log('we are in the right place, just not going');
-                  return $state.go('friends');
-                }
+                $scope.NeedsFirmwareUpdate();
               })
               .error(function (err) {
                 $scope.model.status = 'Error While Connecting: ' + JSON.stringify(err);
@@ -172,14 +161,11 @@ angular.module('jewelApp.controllers')
       //version = 0;
       if(DataService.FirmwareUpdateRequired(version)) {
         $logService.Log('returned true');
-
-        return true;
+        return $state.go('needs-update');
 
       } else {
         $logService.Log('returned false');
-
-        return false;
-
+        return $state.go('friends-list');
       }
       })
     .catch(function(err) {
