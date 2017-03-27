@@ -120,5 +120,7 @@ angular.module('jewelApp.controllers')
       };
 
       $scope.startup();
-
+      $scope.showModal = function(friend) {
+        $logService.Log(friend);
+      }
     }]);
