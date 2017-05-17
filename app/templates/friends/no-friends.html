@@ -1,6 +1,7 @@
 <h2>Welcome To Jewelbots!</h2>
 <p>
 	Add your friends to colors so they light up the same when you're close.
+	<input ng-model="friend-name" value="here" type="text" />
 </p>
 
 <div class="circle add centered" ng-disabled="!allowedToAddFriends()" ng-click="openModal(1)" id="datbutton">
@@ -10,7 +11,7 @@
 	<img src="/images/icon__arrow_up.svg" />
 	Tap to add your friends!
 </h3>
-
+<button ng-click="showModal()">hit this</button>
 <div ng-show="!allowedToAddFriends()">
 	<em>In order to add friends through the app, you'll need to add your phone number:</em>
 	<div class="list card">

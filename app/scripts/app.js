@@ -145,6 +145,10 @@ angular.module('jewelApp',
     //-- SECTION 3
 
     //-- SECTION 4
+    .state('modal_testing', {
+      url: '/modal_testing/',
+      templateUrl: 'templates/modal/template.html'
+    })
     //-- 4__templates/dashboard/dashboard_nofriends.html --> user has no friend
     .state('dashboard_nofriends', {
       url: '/dashboard_nofriends/',
@@ -257,6 +261,7 @@ angular.module('jewelApp',
       controller: 'DiagnosticCtrl',
       templateUrl: 'templates/diagnostics/index.html'
     })
+
 
     .state('start', {
       url: '/start',

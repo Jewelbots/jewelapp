@@ -6,6 +6,7 @@ angular.module('jewelApp.controllers')
     '$state',
     '$timeout',
     '$cordovaBluetoothle',
+    '$ionicModal',
     'DataService',
     'UserService',
     'JewelbotService',
@@ -16,6 +17,7 @@ angular.module('jewelApp.controllers')
       $state,
       $timeout,
       $cordovaBluetoothle,
+      $ionicModal,
       DataService,
       UserService,
       DeviceService,
@@ -26,7 +28,8 @@ angular.module('jewelApp.controllers')
         message: 'Friends!',
         localFriends: DataService.GetFriends(),
         deviceFriends: [],
-        friends: []
+        friends: [],
+        test_text : ''
       };
 
       $scope.startup = function(){
@@ -97,7 +100,7 @@ angular.module('jewelApp.controllers')
           var friend = packed[i];
           // a valid friend should never have a 0 as the first element
           if(friend[0] !== 0) {
-            friends.push({index: friend[0], address: friend.slice(1,7).reverse().join(':'), color: colors[friend[7]], name: "Friend " + friend[0]});
+            friends.push({index: i, address: friend.slice(1,7).reverse().join(':'), color: colors[friend[7]], name: "Friend " + friend[0]});
             //TODO: lookup friend name from db if available otherwise Edit Name
           }
         }
@@ -119,8 +122,26 @@ angular.module('jewelApp.controllers')
         //package as flattened uint8array
       };
 
+      $logService.Log($ionicModal.fromTemplateUrl + 'this is everything');
+
+
+      $ionicModal.fromTemplateUrl('templates/modal/template.html', {
+        scope: $scope
+        }).then(function(modal) {
+          $scope.modal = modal;
+        });
+
+
+      $logService.Log('we are out');
+
+      $scope.showModal = function()
+      {
+        $logService.Log('we are out');
+      //  $scope.model.test_text = friend;
+          $scope.modal.show();
+
+      };
+
       $scope.startup();
-      $scope.showModal = function(friend) {
-        $logService.Log(friend);
-      }
+
     }]);
