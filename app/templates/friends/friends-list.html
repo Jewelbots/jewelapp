@@ -6,7 +6,6 @@
     <div ng-show="model.friends.length == 0" class="clear">
       <div class="friend-name">No friends yet! Edit me for instructions on how to get some!</div>
       <button ng-click="showModal()" class="button button-block">hi!</button>
-      <div>{{model.test_text}}</div>
     </div>
      <p>{{model.message}}</p>
     <div  ng-show="model.friends.length > 0" class="card" ng-repeat="friend in model.friends" >

@@ -261,6 +261,11 @@ angular.module('jewelApp',
       controller: 'DiagnosticCtrl',
       templateUrl: 'templates/diagnostics/index.html'
     })
+    .state('template', {
+      url: '/template/',
+      controller: 'FriendsCtrl',
+      templateUrl: 'templates/modal/template.html'
+    })
 
 
     .state('start', {

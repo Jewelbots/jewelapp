@@ -29,7 +29,8 @@ angular.module('jewelApp.controllers')
         localFriends: DataService.GetFriends(),
         deviceFriends: [],
         friends: [],
-        test_text : ''
+        test_text : '',
+        selectedFriend: {color: "test", name: "test"}
       };
 
       $scope.startup = function(){
@@ -122,23 +123,23 @@ angular.module('jewelApp.controllers')
         //package as flattened uint8array
       };
 
-      $logService.Log($ionicModal.fromTemplateUrl + 'this is everything');
 
 
-      $ionicModal.fromTemplateUrl('templates/modal/template.html', {
-        scope: $scope
-        }).then(function(modal) {
-          $scope.modal = modal;
-        });
 
 
-      $logService.Log('we are out');
 
-      $scope.showModal = function()
+
+      $scope.showModal = function(friend)
       {
-        $logService.Log('we are out');
-      //  $scope.model.test_text = friend;
-          $scope.modal.show();
+            $logService.Log("we here" + friend.color);
+            $logService.Log($scope.selectedFriend);
+            $ionicModal.fromTemplateUrl('templates/modal/template.html', {
+              scope: $scope
+              }).then(function(modal) {
+                $scope.selectedFriend = friend;
+                $scope.modal = modal;
+                $scope.modal.show($scope);
+              });
 
       };
 
