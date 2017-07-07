@@ -5,17 +5,21 @@ angular.module('jewelApp.controllers')
   '$state',
   'JewelbotService',
   function (
+   $logService,
    $scope,
    $state,
-   JewelbotService) {
+   JewelbotService, DataService) {
 
-    if (!JewelbotService.IsPaired()) {
-      $logService.Log('message', 'User has Not Paired Device');
-      $state.transitionTo('home');
-    }
-    else {
-      $logService.Log('message', 'paired-> to friends-list!');
-      $state.transitionTo('friends-list');
-    }
 
+       $scope.startUp = function () {
+         if (!JewelbotService.IsPaired()) {
+           $logService.Log('message', 'User has Not Paired Device');
+           $state.transitionTo('home');
+         }
+         else {
+           $logService.Log('message', 'paired-> to friends-list!');
+           $state.transitionTo('friends-list');
+         } 
+       }
+       scope.startUp();
   }]);

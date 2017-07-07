@@ -66,4 +66,3 @@ angular.module('jewelApp.services')
       };
       return service;
     }]);
-

@@ -1,0 +1,22 @@
+<ion-view>
+
+  <div ng-include src="'templates/menu/top-menu.html'"></div>
+  <div ng-include src="'templates/menu/jewelbots_header.html'"></div>
+  <ion-content>
+    <div class="startup">
+      <div class="content">
+        <img src="images/icon__logo.png" class="logo_header"/>
+        <a class="buttons primary" id="friendship" ui-sref="friendship_instruction">
+          Friendship &amp; Messaging
+        </a>
+        <a class="buttons secondary" id="coding" ui-sref="coding_instruction">
+          Coding Your Jewelbots
+        </a>
+        <a class="buttons tertiary" id="community" onclick="window.open('https://jewelbots.com/community', '_blank')">
+          Checkout the Community
+        </a>
+        <div id="status-message"></div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

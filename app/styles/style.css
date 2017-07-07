@@ -20,6 +20,10 @@ html, body {
 /* @end */
 /* @group --------- FONTS ------------------------------------------------------------ */
 /* OPEN SANS - (light) */
+
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
+
 @font-face {
     font-family: 'open_sanslight';
     src: url('../fonts/Opensans-Light.woff2') format('woff2'),
@@ -577,6 +581,68 @@ html, body {
 }
 
 
+/* @end */
+
+/* @group ----- 1__templates/startup.html -------------------------- */
+
+.startup {
+		display:  block;
+		position: relative;
+		width:    100%;
+		height:   100%;
+		margin:   0 0 0 0;
+		padding:  0 0 0 0;
+
+		background-image: url(../images/background__app_icons.jpg);
+		background-size:  645px 675px;
+}
+
+.startup .content .logo_header {
+	height: 200px;
+	padding-top: 20px;
+	position: relative;
+	display: block;
+	margin-top: 65px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.buttons {
+	border-radius: 10px;
+	color: white;
+	display: block;
+	position: relative;
+	font-size: 13px;
+	letter-spacing: 0.1em;
+	padding: 1.25em 1.5em;
+	position: relative;
+	width:    70%;
+	height:   60px;
+	margin-top: 35px;
+	border: solid 2px;
+	margin-left: auto;
+	margin-right: auto;
+  font-family: "Open Sans";
+	font-weight: bold;
+	font-style:      normal;
+	text-align:      center;
+	text-indent:     0;
+	text-transform:  uppercase;
+	text-decoration: none;
+
+}
+
+.buttons.primary  {
+  background: linear-gradient(140deg, rgba(20,200,170, 1.0), rgba(61,236,206, 1.0));
+}
+
+.buttons.secondary{
+  background: linear-gradient(140deg, rgba(169,21,198, 1.0), rgba(206,61,234, 1.0));
+}
+
+.buttons.tertiary {
+  background: linear-gradient(140deg, rgba(198,21,50, 1.0), rgba(234,61,89, 1.0));
+}
 /* @end */
 
 /* @group ----- 3__templates/home.html ------------------------------------ */

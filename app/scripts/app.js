@@ -15,6 +15,7 @@ angular.module('CryptoJS', [])
 
 angular.module('ngCordova', ['ngCordova.plugins']);
 angular.module('ngCordovaBluetoothle');
+angular.module('ngCordova.plugins.inAppBrowser');
 angular.module('ngCordova.plugins.contacts');
 angular.module('ngCordova.plugins.push_v5');
 angular.module('jewelApp.controllers', [
@@ -116,6 +117,16 @@ angular.module('jewelApp',
       url: '/privacy',
       controller: 'PrivacyCtrl',
       templateUrl: 'templates/start/privacy.html'
+    })
+    .state('friendship_instruction', {
+      url: '/friendship_instruction',
+      controller: 'InstructionCtrl',
+      templateUrl: 'templates/start/friendship_instruction.html'
+    })
+    .state('coding_instruction', {
+      url: '/coding_instruction',
+      controller: 'InstructionCtrl',
+      templateUrl: 'templates/start/coding_instruction.html'
     })
     //-- 1__templates/start/load.html --> App Slpash Screen
 
@@ -308,9 +319,14 @@ angular.module('jewelApp',
       url: '/needs-update',
       templateUrl: 'templates/friends/needs-update.html'
     })
+    .state('startup', {
+      url: '/startup',
+      controller: 'StartupCtrl',
+      templateUrl: 'templates/startup.html'
+    })
 
     // when debugging
     // $urlRouterProvider.otherwise('/debug-start');
     // when deploying
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/startup');
 }]);
