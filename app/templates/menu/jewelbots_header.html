@@ -1,13 +1,12 @@
-<ion-nav-bar class="jewelbots_header">
-	<img class="jewelbots-icon" ng-click="toggleTopMenu()" src="/images/icon__header_logo.svg">
-	 <ion-nav-back-button>Back</ion-nav-back-button>
+<ion-nav-bar class="jewelbots_header" id="jewelbots_header" ng-controller="HeaderCtrl">
+	 <ion-nav-back-button><div class='back'>BACK</div></ion-nav-back-button>
 	<style>
 		.jewelbots_header {
 			width:  100%;
 			height: 64px;
 			margin: 0 0 0 0;
 			padding: 0 0 0 0;
-
+			display: block;
 			border-bottom:    solid 3px rgba(120,230,255,1.0);
 			background-color: rgba(105,200,230,1.0);
 
@@ -22,6 +21,9 @@
 			height:   40px;
 			margin:   8px auto 0 auto;
 			padding:  0 0 0 0;
+		}
+		.jewelbots_header .back{
+				float: left;
 		}
 	</style>
 </ion-nav-bar>

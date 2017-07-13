@@ -607,7 +607,7 @@ html, body {
 	margin-right: auto;
 }
 
-.buttons {
+.content .buttons {
 	border-radius: 10px;
 	color: white;
 	display: block;
@@ -641,10 +641,32 @@ html, body {
 }
 
 .buttons.tertiary {
-  background: linear-gradient(140deg, rgba(198,21,50, 1.0), rgba(234,61,89, 1.0));
+	background: linear-gradient(140deg, rgba(198,21,124, 1.0), rgba(234,61,162, 1.0));
+}
+
+.buttons.quaternary{
+	background: linear-gradient(140deg, rgba(198,21,50, 1.0), rgba(234,61,89, 1.0));
+}
+
+.back-button{
+	float:left;
+}
+
+.bar.bar-positive {
+	border-bottom: solid 3px rgba(120,230,255,1.0);
+	background-color: rgba(105,200,230,1.0);
 }
 /* @end */
 
+/* @group ----- 1__templates/instructions -------------------------- */
+
+.instruction {
+	padding-top: 50px;
+
+}
+
+
+/* @end */
 /* @group ----- 3__templates/home.html ------------------------------------ */
 .home.pair_start {
 	display:  block;

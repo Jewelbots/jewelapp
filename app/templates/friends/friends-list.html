@@ -1,6 +1,9 @@
 <div ng-include src="'templates/menu/top-menu.html'"></div>
 <div ng-include src="'templates/menu/jewelbots_header.html'"></div>
-
+<ion-nav-bar class="bar-positive">
+  <ion-nav-back-button>
+  </ion-nav-back-button>
+</ion-nav-bar>
  <ion-view can-swipe-back="true">
   <ion-content class="center has-header">
     <div ng-show="model.friends.length == 0" class="clear">
