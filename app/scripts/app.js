@@ -120,41 +120,50 @@ angular.module('jewelApp',
     })
     .state('friendship_instruction', {
       url: '/friendship_instruction',
+      controller: 'BrowserCtrl',
       templateUrl: 'templates/instruction/friendship_instruction.html'
     })
     .state('coding_instruction', {
       url: '/coding_instruction',
+      controller: 'BrowserCtrl',
       templateUrl: 'templates/instruction/coding_instruction.html'
     })
     .state('setup_instruction', {
       url: '/setup_instruction',
+      controller: 'BrowserCtrl',
       templateUrl: 'templates/instruction/setup_instruction.html'
     })
     .state('arduino_instruction', {
       url: '/arduino_instruction',
+      controller: 'BrowserCtrl',
       templateUrl: 'templates/instruction/arduino_instruction.html'
     })
     .state('friend_API_instruction', {
       url: '/friend_API_instruction',
+      controller: 'BrowserCtrl',
       templateUrl: 'templates/instruction/friend_API_instruction.html'
     })
     .state('solo_API_instruction', {
       url: '/solo_API_instruction',
+      controller: 'BrowserCtrl',
       templateUrl: 'templates/instruction/solo_API_instruction.html'
     })
     .state('friend_coding_instruction', {
       url: '/friend_coding_instruction',
+      controller: 'BrowserCtrl',
       templateUrl: 'templates/instruction/friend_coding_instruction.html'
     })
     .state('solo_coding_instruction', {
       url: '/solo_coding_instruction',
+      controller: 'BrowserCtrl',
       templateUrl: 'templates/instruction/solo_coding_instruction.html'
     })
     .state('glossery_instruction', {
       url: '/glossery_instruction',
+      controller: 'BrowserCtrl',
       templateUrl: 'templates/instruction/glossery_instruction.html'
     })
-    
+
     //-- 1__templates/start/load.html --> App Slpash Screen
 
     //-- SECTION 2
@@ -348,7 +357,7 @@ angular.module('jewelApp',
     })
     .state('startup', {
       url: '/startup',
-      controller: 'StartupCtrl',
+      controller: 'BrowserCtrl',
       templateUrl: 'templates/startup.html'
     })
 
