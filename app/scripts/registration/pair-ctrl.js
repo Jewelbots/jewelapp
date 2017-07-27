@@ -36,11 +36,14 @@ angular.module('jewelApp.controllers')
         $scope.model.pairing = true;
         ionicReady()
           .then(function () {
+                  $logService.Log('message', 'ionic ready' + address);
             return $cordovaBluetoothle.connect({address: address})
               .then( function (success) {
                 $scope.model.pairing = false;
                 $scope.model.isPaired = true;
+                $logService.Log('message', 'about to pair' + address);
                 DataService.Pair(success.address);
+                $logService.Log('message', 'successful pair:' + address);
                 $scope.NeedsFirmwareUpdate();
               })
               .error(function (err) {
@@ -66,7 +69,7 @@ angular.module('jewelApp.controllers')
       })
       .then(function (data) {
         $scope.model.status = 'Scanning...';
-        $logService.Log('message', 'scan results: ' + JSON.stringify(data));
+        //$logService.Log('message', 'scan results: ' + JSON.stringify(data));
         for(var i=0;i < data.length; i++) {
           $scope.model.debug += JSON.stringify(data[i]);
           if (data[i].status === 'scanResult' && data[i].advertisement.isConnectable && data[i].advertisement.localName === "JWB_") {
@@ -106,9 +109,12 @@ angular.module('jewelApp.controllers')
     $scope.init = function () {
       try {
         if (!DataService.IsPaired()) {
+          $logService.Log('message', 'thinks we are paired');
+
           $scope.getAvailableDevices();
         }
         else {
+          $logService.Log('message', 'Im paired, but not moving');
           $scope.model.status = "Already Paired: " + $scope.model.chosenDevice;
           return $state.go('friends');
         }
@@ -122,6 +128,7 @@ angular.module('jewelApp.controllers')
     };
 
     $scope.retry = function () {
+      $logService.Log('message', 'retry' +   DataService.IsPaired());
       $scope.model.error = "";
       $scope.model.offerRetry = false;
       $scope.getAvailableDevices();
@@ -164,7 +171,9 @@ angular.module('jewelApp.controllers')
         return $state.go('needs-update');
 
       } else {
-        $logService.Log('returned false');
+        $scope.model.chosenDevice = {};
+        $scope.model.isPaired = false;
+        $logService.Log('ready for the next page');
         return $state.go('friends-list');
       }
       })

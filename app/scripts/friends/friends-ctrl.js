@@ -63,13 +63,19 @@ angular.module('jewelApp.controllers')
         })
         .then(function(response) {
           var rawFriendsList = $cordovaBluetoothle.encodedStringToBytes(response.value);
+          $logService.Log('we made it to raw friends list' + rawFriendsList[0]);
+
           $cordovaBluetoothle.disconnect({address: deviceId});
           if(rawFriendsList[0] === 0) {
+            $logService.Log('we made it to past disconnect list' + rawFriendsList[0]);
+
             // if first byte is 0 then friends list is empty
             $scope.model.friends = [];
           } else {
             $scope.model.deviceFriends = $scope.parseFriends([].slice.call(rawFriendsList));
             $scope.model.friends = $scope.model.deviceFriends;
+            $logService.Log('message', 'device friends: ' + $scope.model.friends);
+
           }
         })
         .catch(function(err) {
@@ -90,58 +96,69 @@ angular.module('jewelApp.controllers')
        *   0 = red, 1 = green, 2 = blue, 3 = cyan (will be more later)
        */
       $scope.parseFriends = function(raw) {
-        var colors = ["red", "green", "blue", "cyan"];
+        //var colors = ["red", "green", "blue", "cyan"];
+        $logService.Log('we are on for parse friends');
         var packed = [];
+        var red = 0, green = 0, blue = 0, cyan = 0;
         while (raw.length > 0) {
           packed.push(raw.splice(0, 8));
         }
         var friends = [];
         for(var i=0; i<packed.length; i++) {
           var friend = packed[i];
+
           // a valid friend should never have a 0 as the first element
           if(friend[0] !== 0) {
-            friends.push({index: i, address: friend.slice(1,7).reverse().join(':'), color: colors[friend[7]], name: "Friend " + friend[0]});
+            //in order to return a detailed friends list return the array built below. We are switching to the below for iteration one of the app
+            //friends.push({index: i, address: friend.slice(1,7).reverse().join(':'), color: colors[friend[7]], name: "Friend " + friend[0]});
             //TODO: lookup friend name from db if available otherwise Edit Name
+            switch(friend[7]){
+            case 0:
+              red++;
+              break;
+            case 1:
+              green++;
+              break;
+            case 2:
+              blue++;
+              break;
+             case 3:
+              cyan++
+              break;
+            default:
+              break;
+            }
           }
         }
+        var color_count = [red, green, blue, cyan];
+
         //TODO: possibly should compare friends from device and friends from db
         //and update local db based on device, if device is canonical
         //doesn't need to be implemented until there are future friends list
         //would need to handle for a "name" that can be stored on the db but not
         //on the device, so can't be a straight compare. In here would call
         //DataService.SetFriends(friends) and probably abstract the names thing to the DataService?
-        return friends
+        $logService.Log('message', 'info count: ' + color_count);
+
+        return color_count;
       };
 
-      /* call before re-writing to device. not implemented so just guidance
-       *
-       */
       $scope.packageFriends = function(friends) {
         //re-reverse address and remove any delimiters
         //store appropriate color index number
         //package as flattened uint8array
       };
 
-      $logService.Log($ionicModal.fromTemplateUrl + 'this is everything');
+      $scope.startup();
 
 
-      $ionicModal.fromTemplateUrl('templates/modal/template.html', {
-        scope: $scope
-        }).then(function(modal) {
-          $scope.modal = modal;
-        });
 
-
-      $logService.Log('we are out');
-
-      $scope.showModal = function()
-      {
-        $logService.Log('we are out');
-      //  $scope.model.test_text = friend;
-          $scope.modal.show();
-
+      $scope.disconnectBLE = function(){
+        var deviceId = DataService.GetDeviceId();
+        $logService.Log('we are out' + deviceId);
+        var disconnect = $cordovaBluetoothle.close({address: deviceId});
+        $state.go('friendship_instruction');
       };
 
-      $scope.startup();
 
     }]);

@@ -23,6 +23,8 @@ html, body {
 
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,300i,700,700i%7CQuicksand:700');
+
 
 @font-face {
     font-family: 'open_sanslight';
@@ -646,6 +648,9 @@ html, body {
 
 .buttons.quaternary{
 	background: linear-gradient(140deg, rgba(198,21,50, 1.0), rgba(234,61,89, 1.0));
+}
+.buttons.beautiful {
+	background: linear-gradient(100deg, rgba(234,61,162, 1.0), rgba(20,200,170, 1.0));
 }
 
 .back-button{
@@ -2197,9 +2202,9 @@ html, body {
 	display:  block;
 	position: relative;
 	float:    left;
-	width:    130px;
-	height:   130px;
-	margin:   7px 7px 7px 7px;
+	width:     40px;
+	height:    40px;
+	margin:   5px 5px 5px 5px;
 	padding:  0 0 0 0;
 
 	border:           solid 5px rgba(245,245,245,1.0);
@@ -2208,6 +2213,27 @@ html, body {
 	-webkit-border-radius: 100%;
 	   -moz-border-radius: 100%;
 	        border-radius: 100%;
+}
+
+.dashboard.hasfriends .content .friendlist .circle.color {
+	display:  block;
+	position: relative;
+	float:    left;
+	width:    25px;
+	height:   25px;
+	left:     0px;
+	top:      0px;
+	margin:   3px 3px 3px 3px;
+	padding:  0 0 0 0;
+
+	border:           solid 4px rgba(255,255,255,1.0);
+	background-color: rgba(255,255,255,1.0);
+
+	-webkit-border-radius: 100%;
+	   -moz-border-radius: 100%;
+	        border-radius: 100%;
+
+	z-index: 1;
 }
 .dashboard.hasfriends .content .friendlist .circle .name {
 	display:  block;
@@ -2254,25 +2280,6 @@ html, body {
 
 	z-index: 2;
 }
-.dashboard.hasfriends .content .friendlist .circle .color {
-	display:  block;
-	position: absolute;
-	width:    120px;
-	height:   120px;
-	left:     0px;
-	top:      0px;
-	margin:   0 0 0 0;
-	padding:  0 0 0 0;
-
-	border:           solid 4px rgba(255,255,255,1.0);
-	background-color: rgba(255,255,255,1.0);
-
-	-webkit-border-radius: 100%;
-	   -moz-border-radius: 100%;
-	        border-radius: 100%;
-
-	z-index: 1;
-}
 
 .dashboard.hasfriends .content .friendlist .circle.add {
 	background-color: rgba(255,255,255,000.0);
@@ -2295,7 +2302,7 @@ html, body {
 	border: solid 4px rgba(255,45,45,1.0);
 	background-color: rgba(255,255,255,1.0);
 }
-.dashboard.hasfriends .content .friendlist .circle.red .color {
+.dashboard.hasfriends .content .friendlist .circle.red {
 	border: solid 4px rgba(255,175,190,1.0);
 	background-color: rgba(255,045,045,1.0);
 }
@@ -2319,7 +2326,7 @@ html, body {
 	border: solid 4px rgba(140,230,110,1.0);
 	background-color: rgba(255,255,255,1.0);
 }
-.dashboard.hasfriends .content .friendlist .circle.green .color {
+.dashboard.hasfriends .content .friendlist .circle.green  {
 	border: solid 4px rgba(190,255,170,1.0);
 	background-color: rgba(140,230,110,1.0);
 }
@@ -2327,7 +2334,7 @@ html, body {
 	border: solid 4px rgba(090,230,225,1.0);
 	background-color: rgba(255,255,255,1.0);
 }
-.dashboard.hasfriends .content .friendlist .circle.teal .color {
+.dashboard.hasfriends .content .friendlist .circle.cyan  {
 	border: solid 4px rgba(165,255,250,1.0);
 	background-color: rgba(090,230,225,1.0);
 }
@@ -2335,7 +2342,7 @@ html, body {
 	border: solid 4px rgba(035,195,245,1.0);
 	background-color: rgba(255,255,255,1.0);
 }
-.dashboard.hasfriends .content .friendlist .circle.blue .color {
+.dashboard.hasfriends .content .friendlist .circle.blue  {
 	border: solid 4px rgba(160,235,255,1.0);
 	background-color: rgba(35,195,245,1.0);
 }
@@ -2356,7 +2363,29 @@ html, body {
 	background-color: rgba(255,000,255,1.0);
 }
 
+.content .friendlist .item.red {
+	background-color:rgba(255,045,045,0.2);
+	color:rgba(255,045,045,1.0);
+}
 
+ .content .friendlist .item.green {
+	background-color: rgba(140,230,110,0.2);
+	color: rgba(140,230,110,1.0);
+}
+
+ .content .friendlist .item.blue{
+	background-color:  rgba(35,195,245,0.2);
+	color:  rgba(35,195,245,1.0);
+}
+
+ .content .friendlist .item .cyan{
+	background-color: rgba(090,230,225,0.2);
+  color: rgba(090,230,225,1.0);
+}
+
+ .content .friendlist .text {
+
+ }
 /* @end */
 
 /* @group ----- 5__tempaltes/friends/friend_editmodal.html ---------------- */
@@ -4463,6 +4492,23 @@ html, body {
 
 
 /* @end */
+/* @group ----- 9__tempaltes/friends/instructions.html ---- */
 
+  .friends-pages{
+		font-weight:300;
+		color: black;
+	}
+	.friends-pages .inner-content {
+		padding-top:70px;
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+
+	.friends-pages .header,
+{
+		font-family: 'Quicksand', sans-serif;
+		font-weight:400;
+		color: #e1146e;
+   }
 
 /* @end */

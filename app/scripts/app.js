@@ -123,15 +123,15 @@ angular.module('jewelApp',
       controller: 'BrowserCtrl',
       templateUrl: 'templates/instruction/friendship_instruction.html'
     })
-    .state('coding_instruction', {
-      url: '/coding_instruction',
-      controller: 'BrowserCtrl',
-      templateUrl: 'templates/instruction/coding_instruction.html'
-    })
     .state('setup_instruction', {
       url: '/setup_instruction',
       controller: 'BrowserCtrl',
       templateUrl: 'templates/instruction/setup_instruction.html'
+    })
+    .state('coding_instruction', {
+      url: '/coding_instruction',
+      controller: 'BrowserCtrl',
+      templateUrl: 'templates/instruction/coding_instruction.html'
     })
     .state('arduino_instruction', {
       url: '/arduino_instruction',
@@ -163,7 +163,14 @@ angular.module('jewelApp',
       controller: 'BrowserCtrl',
       templateUrl: 'templates/instruction/glossery_instruction.html'
     })
-
+    .state('connection_instruction', {
+      url: '/connection_instruction',
+      templateUrl: 'templates/instruction/connection_instruction.html'
+    })
+    .state('pairing_first_time', {
+      url: '/pairing_first_time',
+      templateUrl: 'templates/friends/pairing_first_time.html'
+    })
     //-- 1__templates/start/load.html --> App Slpash Screen
 
     //-- SECTION 2
@@ -231,6 +238,7 @@ angular.module('jewelApp',
     .state('friends-list', {
       url: '/friends-list',
       controller: 'FriendsCtrl',
+      cache: false,
       templateUrl: 'templates/friends/friends-list.html'
     })
     //-- 5__templates/friends/friend_editmodal.html --> clicked on friend on dashboard, opens this modal to 1) change color, delete as friend
@@ -281,6 +289,7 @@ angular.module('jewelApp',
     .state('pair', {
       url: '/pair',
       controller: 'PairCtrl',
+      cache: false,
       templateUrl: 'templates/settings/pair.html'
     })
     .state('pair-success', {

@@ -1,26 +1,51 @@
-<div ng-include src="'templates/menu/top-menu.html'"></div>
-<div ng-include src="'templates/menu/jewelbots_header.html'"></div>
-<ion-nav-bar class="bar-positive">
-  <ion-nav-back-button>
-  </ion-nav-back-button>
-</ion-nav-bar>
- <ion-view can-swipe-back="true">
-  <ion-content class="center has-header">
+
+ <ion-view cache-view="false" >
+  <ion-content class="center dashboard hasfriends">
+    <ion-nav-bar class="bar-positive">
+
+    </ion-nav-bar>
+    <div class="friends-pages">
+    <div class="content inner-content">
     <div ng-show="model.friends.length == 0" class="clear">
-      <div class="friend-name">No friends yet! Edit me for instructions on how to get some!</div>
-      <button ng-click="showModal()" class="button button-block">hi!</button>
-      <div>{{model.test_text}}</div>
+      <div ><h3 class="header">No friends yet :( Make some by pairing with your Jewelbots!</h3></div>
     </div>
-     <p>{{model.message}}</p>
-    <div  ng-show="model.friends.length > 0" class="card" ng-repeat="friend in model.friends" >
-      <div  class="item">
-        <div  ng-click="showModal(friend)">
-          <div  class="circle circle-{{friend.color}}">{{friend.color}} friend</div>
-          <div  class="friend-name">{{friend.name}}</div>
+    <div  ng-show="model.friends.length > 0" class="" >
+      <div ><h3 class="header">Checkout Your Friends!</h3></div>
+      <div class="friendlist" >
+        <div  ng-class="(model.friends[0] > 0) ? 'item red' : 'item'">
+        <div  class="circle red">
+          <div  class="color"></div>
         </div>
+          <div class="text">You have <b>{{model.friends[0]}}</b> Red Friend(s)</div>
       </div>
+      <div ng-class="(model.friends[1] > 0) ? 'item green_pending' : 'item'">
+      <div  class="circle green">
+        <div class="color"></div>
+      </div>
+      <div class="text">You have <b>{{model.friends[1]}}</b> Green Friend(s)</div>
+    </div>
+    <div ng-class="(model.friends[2] > 0) ? 'item blue' : 'item'">
+    <div  class="circle blue">
+      <div  class="color "></div>
+    </div>
+      <div class="text">You have <b>{{model.friends[2]}}</b> Blue Friend(s)</div>
+    </div>
+    <div ng-class="(model.friends[3] > 0) ? 'item cyan' : 'item'">
+    <div  class="circle cyan">
+        <div  class="color"></div>
+      </div>
+      <div class="text">You have <b>{{model.friends[1]}}</b> Cyan Friend(s)</div>
     </div>
 
+      </div>
+
+
+    </div>
+    <a class="buttons secondary"  ng-click="disconnectBLE()">
+      Go Back
+    </a>
+  </div>
+  </div>
 
   </ion-content>
 
