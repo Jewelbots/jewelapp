@@ -650,7 +650,8 @@ html, body {
 	background: linear-gradient(140deg, rgba(198,21,50, 1.0), rgba(234,61,89, 1.0));
 }
 .buttons.beautiful {
-	background: linear-gradient(100deg, rgba(234,61,162, 1.0), rgba(20,200,170, 1.0));
+	background: linear-gradient(100deg, rgba(234,61,162, 1.0), rgba(255,242,140, 1.0), rgba(20,200,170, 1.0));
+	color: #c6157c;
 }
 
 .back-button{
@@ -1165,7 +1166,7 @@ html, body {
 	max-width: 320px;
 	height:    auto;
 	margin:    0 auto 0 auto;
-	padding:   60px 15px 120px 15px;
+	padding:   60px 15px 60px 15px;
 }
 
 .dashboard.nofriends .content .friendlist h2 {
@@ -2101,7 +2102,7 @@ html, body {
 	max-width: 320px;
 	height:    auto;
 	margin:    0 auto 0 auto;
-	padding:   60px 15px 120px 15px;
+	padding:   40px 15px 40px 15px;
 }
 .dashboard.hasfriends .content .friendlist h2 {
 	display:  block;
@@ -2370,7 +2371,7 @@ html, body {
 
  .content .friendlist .item.green {
 	background-color: rgba(140,230,110,0.2);
-	color: rgba(140,230,110,1.0);
+	color: rgba(98,161,77,1.0);
 }
 
  .content .friendlist .item.blue{
@@ -2384,7 +2385,11 @@ html, body {
 }
 
  .content .friendlist .text {
-
+	 height: 20px;
+  line-height: 20px;
+	padding-top:7px;
+	margin-top: 7px;
+	float:left;
  }
 /* @end */
 

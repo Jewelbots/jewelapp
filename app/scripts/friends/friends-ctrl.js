@@ -40,50 +40,47 @@ angular.module('jewelApp.controllers')
 
 
       // TODO: this should go into a service layer
-      $scope.ReadFriends = function() {
-        $logService.Log('Made it into read friends');
+      // TODO: this should go into a service layer
+   $scope.ReadFriends = function() {
+     $logService.Log('Made it into read friends');
 
-        var deviceId = DataService.GetDeviceId();
-        var friendsService = "63400001-1A1E-5704-0A53-844BD14254A1"; //device service address for friends list
-        var friendsWriteChar = "63400003-1A1E-5704-0A53-844BD14254A1"; //characteristic address for writing friends list
-        var friendsReadChar = "63400002-1A1E-5704-0A53-844BD14254A1"; //characteristic address for reading friends list
+     var deviceId = DataService.GetDeviceId();
+     var friendsService = "63400001-1A1E-5704-0A53-844BD14254A1"; //device service address for friends list
+     var friendsWriteChar = "63400003-1A1E-5704-0A53-844BD14254A1"; //characteristic address for writing friends list
+     var friendsReadChar = "63400002-1A1E-5704-0A53-844BD14254A1"; //characteristic address for reading friends list
 
-        var result = $cordovaBluetoothle.initialize({'request': true})
-        .then(function (response) {
-          return $timeout($cordovaBluetoothle.connect({address: deviceId}))
-        })
-        .then(function(response) {
-          return $cordovaBluetoothle.services({address: deviceId})
-        })
-        .then(function(response) {
-          return $cordovaBluetoothle.characteristics({address: deviceId, service: friendsService})
-        })
-        .then(function(response) {
-          return $cordovaBluetoothle.read({address: deviceId, service: friendsService, characteristic: friendsReadChar})
-        })
-        .then(function(response) {
-          var rawFriendsList = $cordovaBluetoothle.encodedStringToBytes(response.value);
-          $logService.Log('we made it to raw friends list' + rawFriendsList[0]);
+     var result = $cordovaBluetoothle.initialize({'request': true})
+     .then(function (response) {
+       return $timeout($cordovaBluetoothle.connect({address: deviceId}))
+     })
+     .then(function(response) {
+       return $cordovaBluetoothle.services({address: deviceId})
+     })
+     .then(function(response) {
+       return $cordovaBluetoothle.characteristics({address: deviceId, service: friendsService})
+     })
+     .then(function(response) {
+       return $cordovaBluetoothle.read({address: deviceId, service: friendsService, characteristic: friendsReadChar})
+     })
+     .then(function(response) {
+       var rawFriendsList = $cordovaBluetoothle.encodedStringToBytes(response.value);
+       $cordovaBluetoothle.disconnect({address: deviceId});
+       if(rawFriendsList[0] === 0) {
+         $logService.Log('no friends :');
 
-          $cordovaBluetoothle.disconnect({address: deviceId});
-          if(rawFriendsList[0] === 0) {
-            $logService.Log('we made it to past disconnect list' + rawFriendsList[0]);
-
-            // if first byte is 0 then friends list is empty
-            $scope.model.friends = [];
-          } else {
-            $scope.model.deviceFriends = $scope.parseFriends([].slice.call(rawFriendsList));
-            $scope.model.friends = $scope.model.deviceFriends;
-            $logService.Log('message', 'device friends: ' + $scope.model.friends);
-
-          }
-        })
-        .catch(function(err) {
-          $logService.Log('error', 'failed ReadFriends: ' + JSON.stringify(err));
-          $scope.model.message += "Error: " + JSON.stringify(err);
-        });
-        return true;
-      };
+         // if first byte is 0 then friends list is empty
+         $scope.model.friends = [];
+       } else {
+         $scope.model.deviceFriends = $scope.parseFriends([].slice.call(rawFriendsList));
+         $scope.model.friends = $scope.model.deviceFriends;
+       }
+     })
+     .catch(function(err) {
+       $logService.Log('error', 'failed ReadFriends: ' + JSON.stringify(err));
+       $scope.model.message += "Error: " + JSON.stringify(err);
+     });
+     return true;
+   };
 
       /* friends will come from device as a flattened uint8array
        * each "friend" is 8 bytes of the array, up to I think 16 friends
