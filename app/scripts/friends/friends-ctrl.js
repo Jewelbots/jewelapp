@@ -123,6 +123,7 @@ angular.module('jewelApp.controllers')
               cyan++
               break;
             default:
+              $logService.Log('we are in the default of the switch statement');
               break;
             }
           }
