@@ -1,0 +1,45 @@
+<ion-view cache-view="false" >
+	<ion-content>
+		<!--//this is temporary -->
+		<ion-nav-bar class="bar-positive">
+			<ion-nav-back-button>
+			</ion-nav-back-button>
+		</ion-nav-bar>
+    <div class="friends-pages">
+      <div class="content inner-content">
+
+        <div> <h2 class="header">Ready to Pair?</h2>
+        <p>Hit the button below then choose your device from the list.</p></div>
+        <div class="list" ng-hide="model.deviceChosen()">
+          <ion-radio ng-repeat="device in model.devices" ng-model="model.chosenDevice" ng-value="device">
+            {{device.name}} - {{device.address}}
+          </ion-radio>
+        </div>
+        <div ng-show="model.deviceChosen()">
+          <p>Chosen Device:</p>
+          <h3 class="name">{{model.chosenDevice.name}}<span class="phone"></span></h3>
+        </div>
+
+        <ion-spinner icon="lines" ng-hide="model.pairing || model.isPaired"></ion-spinner>
+
+
+        <a class="buttons secondary" ng-show="model.deviceChosen()" ng-click="pairToDevice(model.chosenDevice.address)">
+          This one's mine!
+        </a>
+      <!--  <p>Status: {{model.status}}</p>
+        <p>Debug: {{model.debug}}</p>
+        <p>Status: {{model.error}}</p> -->
+        <div ng-show="model.error.length > 0">
+
+          <a class="buttons secondary " ng-show="model.offerRetry" ng-click="retry()">
+            Ready!
+          </a>
+        </div>
+      <!--  <div ng-show="model.isPaired">
+          <h3 class="name">Jewelbot Paired!<span class="number"></span></h3>
+          <div>{{model.status}}</div>
+        </div> -->
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,64 @@
+<ion-view view-title="Select Jewelbots to Control">
+
+	<ion-content class="has-tabs has-header has-subheader has-footer">
+
+		<ion-refresher pulling-text="Pull to refresh..." on-refresh="scanForDevices()">
+		</ion-refresher>
+
+		<ion-list ng-show="numDetected()" type="card" can-swipe="false">
+			<div class="item item-divider">
+				<i class="ion-ios-search-strong"></i> Nearby Jewelbots
+			</div>
+			<ion-item
+				ng-repeat="device in devices.detected"
+				ng-click="selectDevice(device)"
+        		ng-class="getDeviceColor(device)"
+			>
+				<i class="ion-bluetooth"></i> <em>{{display(device)}}</em>
+			</ion-item>
+		</ion-list>
+
+		<div class="card" ng-hide="numDetected()">
+			<div class="item item-divider">
+				<i class="ion-ios-search"></i> No Jewelbots Detected
+			</div>
+			<div class="item item-text-wrap">
+				Nearby Jewelbots will appear here.
+			</div>
+		</div>
+
+		<div class="card" ng-show="numDetected()">
+			<div class="item item-divider">
+			<i class="ion-ios-lightbulb-outline"></i> Jewelbots PROTIP
+			</div>
+			<div class="item item-text-wrap">
+			<i class="ion-ios-arrow-forward"></i> Tap on the name of each Jewelbot you wish to control.
+			</div>
+			<div class="item item-text-wrap">
+			<i class="ion-ios-arrow-forward"></i> When you're ready to continue, proceed to the <b>Control</b> tab.
+			</div>
+		</div>
+
+		<div class="card" ng-hide="numDetected()">
+			<div class="item item-divider">
+			<i class="ion-ios-lightbulb-outline"></i> Jewelbots PROTIP
+			</div>
+			<div class="item item-text-wrap">
+			<i class="ion-ios-arrow-forward"></i> New Jewelbots may take up to a minute to appear.
+			</div>
+			<div class="item item-text-wrap">
+			<i class="ion-ios-arrow-forward"></i> Pull down to refresh the list of nearby Jewelbots.
+			</div>
+		</div>
+
+	</ion-content>
+	<ion-footer-bar align-title="left" class="bar-calm">
+		<div class="title">{{
+			numDetected() == 0 ?
+				"No devices found" :
+				numDetected() == 1 ?
+					"1 device found" :
+					numDetected() + " devices found"
+		}}</div>
+	</ion-footer-bar>
+</ion-view>

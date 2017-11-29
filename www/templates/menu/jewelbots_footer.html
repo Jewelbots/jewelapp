@@ -1,0 +1,27 @@
+<ion-footer-bar class="bar-light color_group_select"><!--[has_friendrequests/has_friendsselected/error/red..pink]-->
+	<div class="banner_error no_friends_selected">
+		<img src="/images/icon__error.svg" />
+		<p>
+			Select at least one friend and a color below.
+		</p>
+	</div>
+
+	<jewelbots-menu bind="model.selectedMenuItem"></jewelbots-menu>
+
+	<div class="friend_requests">
+		<div class="friend_requests_header">
+			<a class="close">
+				<img src="/images/icon__(x)_white.svg" />
+			</a>
+			<div class="badge">
+				<div class="number">
+					4123
+				</div>
+				<p>YOU HAVE FRIEND REQUESTS</p>
+
+			</div>
+		</div>
+	</div>
+	<a class="button_add_friends">2 friends selected</a><!--[red,orange..pink]-->
+
+</ion-footer-bar>

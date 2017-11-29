@@ -1,0 +1,32 @@
+<ion-view>
+	<ion-content>
+		<!--//this is temporary -->
+		<ion-nav-bar class="bar-positive">
+			<ion-nav-back-button>
+			</ion-nav-back-button>
+		</ion-nav-bar>
+		<!--//needs to be replaced with our navigation-->
+		<div class="dashboard hasfriends">
+			<div class="content">
+				<div class="friendlist">
+					<div class="circle purple_pending">
+						<div class="name">First L.</div>
+						<div class="color"></div>
+					</div>
+					<div class="circle purple">
+						<div class="name">First L.</div>
+						<div class="color"></div>
+					</div>
+					<div class="circle teal">
+						<div class="name">First L.</div>
+						<div class="color"></div>
+					</div>
+					<div class="circle add" ng-disabled="!allowedToAddFriends()" ng-click="openModal(1)" id="datbutton">
+						<img src="images/icon__button_friend_add.svg" />
+					</div>
+					<div class="clear">&nbsp;</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

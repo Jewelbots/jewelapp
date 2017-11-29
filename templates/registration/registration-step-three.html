@@ -1,0 +1,32 @@
+<ion-nav-view view-title="Enter Phone">
+    <div class="bar bar-header bar-light">
+        <h1 class="title">Enter Login Details</h1>
+    </div>
+    <div class="content has-header padding">
+        <div class="list">
+            <label class="item item-input">
+                <span class="input-label">Name</span>
+                <input type="text">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Email</span>
+                <input type="email">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Password</span>
+                <input type="password">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Age</span>
+                <input type="number" ng-model="model.age">
+            </label>
+
+        </div>
+        <button class="button button-full button-positive" ng-click="validateLoginCredentials()">
+            Continue
+        </button>
+    </div>
+
+    </div>
+
+</ion-nav-view>

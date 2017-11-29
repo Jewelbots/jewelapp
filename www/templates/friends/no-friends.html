@@ -1,0 +1,31 @@
+<h2>Welcome To Jewelbots!</h2>
+<p>
+	Add your friends to colors so they light up the same when you're close.
+	<input ng-model="friend-name" value="here" type="text" />
+</p>
+
+<div class="circle add centered" ng-disabled="!allowedToAddFriends()" ng-click="openModal(1)" id="datbutton">
+	<img src="/images/icon__button_friend_add.svg" />
+</div>
+<h3>
+	<img src="/images/icon__arrow_up.svg" />
+	Tap to add your friends!
+</h3>
+<button ng-click="showModal()">hit this</button>
+<div ng-show="!allowedToAddFriends()">
+	<em>In order to add friends through the app, you'll need to add your phone number:</em>
+	<div class="list card">
+		Text message rates may apply.
+		<label class="item item-input">
+		<i class="icon ion-ios-telephone"></i>
+			<span class="input-label">Enter phone number</span>
+			<input type="tel" ng-model="model.telephone">
+		</label>
+	</div>
+	<div class="buttons">
+		<button class="button" ng-class="model.telephone.length > 0 ? 'button-positive' : 'button-stable'" ng-click="sendSMS(model.telephone);">Add phone</button>
+	</div>
+</div>
+<p class="note">
+	We do not collect or store your phone number in a retrievable format. Read our <a href="#">privacy policy</a> for more information.
+</p>

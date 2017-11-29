@@ -1,0 +1,25 @@
+<ion-view>
+	<ion-content>
+		<!--//this is temporary -->
+		<ion-nav-bar class="bar-positive">
+			<ion-nav-back-button>
+			</ion-nav-back-button>
+		</ion-nav-bar>
+		<!--//needs to be replaced with our navigation-->
+		<div class="birthday">
+			<div class="content">
+				<h2>When is your Birthday?</h2>
+				<p>This information is never sent to Jewelbots.</p>
+
+				<p>Please enter your birthday and confirm:</p>
+				<label class="item item-input">
+					<input type="date" placeholder="MM/DD/YYYY">
+				</label>
+				<a class="continue" ng-click="setBirthday()" ng-model="model.birthday">
+					Continue
+					<img src="images/icon__arrow_right_white.svg" />
+				</a>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

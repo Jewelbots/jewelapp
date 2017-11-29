@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="25px" height="21px" viewBox="0 0 25 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40.2 (33826) - http://www.bohemiancoding.com/sketch -->
+    <title>arrow</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Beginning" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Default---(v.1)---contacts---1-Copy-2" transform="translate(-30.000000, -503.000000)" fill="#BBC3C8">
+            <g id="section" transform="translate(15.000000, 483.000000)">
+                <g id="arrow" transform="translate(27.500000, 30.500000) scale(-1, 1) rotate(90.000000) translate(-27.500000, -30.500000) translate(17.000000, 18.000000)">
+                    <rect id="Rectangle-6" x="9" y="4.5" width="3" height="20" rx="1.5"></rect>
+                    <rect id="Rectangle-6" transform="translate(6.500000, 6.500000) rotate(45.000000) translate(-6.500000, -6.500000) " x="5" y="-1" width="3" height="15" rx="1.5"></rect>
+                    <rect id="Rectangle-6" transform="translate(14.500000, 6.500000) rotate(-45.000000) translate(-14.500000, -6.500000) " x="13" y="-1" width="3" height="15" rx="1.5"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

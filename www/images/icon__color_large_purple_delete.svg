@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40.3 (33839) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 30</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="25" cy="25" r="25"></circle>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="50" height="50" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <circle id="path-3" cx="25" cy="25" r="25"></circle>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="50" height="50" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-30">
+            <use id="c2" stroke="#C566FB" mask="url(#mask-2)" stroke-width="6" fill="#E1AFFC" xlink:href="#path-1"></use>
+            <rect id="/" fill="#C80000" transform="translate(25.500000, 24.500000) rotate(45.000000) translate(-25.500000, -24.500000) " x="24" y="12" width="3" height="25" rx="1.5"></rect>
+            <rect id="/" fill="#C80000" transform="translate(25.500000, 24.500000) rotate(-45.000000) translate(-25.500000, -24.500000) " x="24" y="12" width="3" height="25" rx="1.5"></rect>
+            <use id="c2" stroke="#B70909" mask="url(#mask-4)" stroke-width="6" stroke-dasharray="6,6" xlink:href="#path-3"></use>
+        </g>
+    </g>
+</svg>
